@@ -1,0 +1,98 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+@media (max-width: 979px) /* tablets and smartphones */
+{
+    .sidenav{
+        display: none;
+    }
+    .sticky_top{
+        width: 100%;
+        height: 10vh;
+        position: fixed;
+        top: 0;
+        background-color: #FA9836;
+    }
+    .stickyitem{
+        margin: 0px;
+        width: 40px;
+        height: 100%;
+        background-image: url('../image/opt.png');
+        background-repeat: no-repeat;
+        background-position: left;
+        background-size: cover;
+        border: none;
+        outline: none;
+    }
+    .stickyitem:active{
+        box-shadow: inset 0px 0px 2px 2px #555555;
+    }
+    #f{
+        border-top: 1px solid #555555;
+    }
+    .topnav{
+        display: none;
+    }
+    .topnav .navitem{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px 5px;
+        font-family: Helvetica;
+        background-color: #FA9836;
+        border: none;
+        color: #ffffff;
+        outline: none;
+        cursor: pointer;
+        border-bottom: 1px solid #555555;
+    }
+    .topnav #historyButtonPhone{
+        background-image: url('../image/down.png');
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: contain;
+    }
+    #onePhone, #twoPhone{
+        display: none;
+        margin-left: 20px;
+        width: 90%;
+    }
+}
+@media (min-width: 980px) /* laptops and desktops */
+{
+    .sticky_top{
+        display: none;
+    }
+    .sidenav{
+        display: flex;
+        flex-direction: column;
+        justify-content: initial;
+        width: 20%;
+        border: 1px solid black;
+    }
+
+    .sidenav .navitem{
+        box-sizing: border-box;
+        width: 95%;
+        padding: 10px 5px;
+        margin: 5px;
+        font-family: Helvetica;
+        border-radius: 10px;
+        background-color: #FA9836;
+        border: none;
+        color: #ffffff;
+        outline: none;
+        cursor: pointer;
+    }
+    .sidenav #historyButton{
+        background-image: url('../image/down.png');
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: contain;
+    }
+    #one, #two{
+        display: none;
+        margin-left: 20px;
+        width: 90%;
+    }
+}
