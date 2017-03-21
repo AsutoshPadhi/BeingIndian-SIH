@@ -52,7 +52,7 @@ body{
         background-position: right;
         background-size: contain;
     }
-    #onePhone, #twoPhone{
+    #onePhone, #twoPhone, #threePhone{
         display: none;
         margin-left: 20px;
         width: 90%;
@@ -90,7 +90,7 @@ body{
         background-position: right;
         background-size: contain;
     }
-    #one, #two{
+    #one, #two, #three{
         display: none;
         margin-left: 20px;
         width: 90%;
