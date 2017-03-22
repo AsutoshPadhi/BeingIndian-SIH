@@ -7,7 +7,7 @@
     <body>
         <div>
             <form>
-                <div class="form-group col-xs-6 col-md-2">
+                <div class="top form-group col-xs-6 col-md-2">
                     <select class="form-control">
                         <option>1</option>
                         <option>2</option>
@@ -16,7 +16,7 @@
                         <option>5</option>
                     </select>
                 </div>
-                <div class="form-group col-xs-6 col-md-2">
+                <div class="top form-group col-xs-6 col-md-2">
                     <select class="form-control">
                         <option>1</option>
                         <option>2</option>
