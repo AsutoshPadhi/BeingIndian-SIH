@@ -26,13 +26,13 @@
                     </select>
                 </div>
                 <div class="col-xs-6 col-md-2">
-                    <input class="form-control" id="ex1" type="text" placeholder="Enter locality here">
+                    <input class="form-control" type="text" placeholder="Enter locality here">
                 </div>
                 <div class="col-xs-6 col-md-2">
-                    <input class="form-control" id="ex1" type="text" placeholder="Enter pincode here">
+                    <input class="form-control" type="text" placeholder="Enter pincode here">
                 </div>
                 <div class="search col-xs-10 col-md-3">
-                    <input class="form-control" id="ex1" type="text" placeholder="Enter pincode here">
+                    <input class="form-control" type="text" placeholder="Enter pincode here">
                 </div>
                 <input class="search btn btn-primary" type="submit" value="Search">
             </form>
