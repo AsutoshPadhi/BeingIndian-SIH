@@ -110,6 +110,10 @@ body {
     width: 250px;
     margin-top: 51px;
   }
+  .main-content{
+    margin-left: 250px;
+    padding: 15px;
+  }
   .navbar-top-links .dropdown-messages,
   .navbar-top-links .dropdown-tasks,
   .navbar-top-links .dropdown-alerts {
@@ -434,5 +438,11 @@ table.dataTable thead .sorting:after {
     left: -14px;
     border-right-width: 14px;
     border-left-width: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .search{
+    margin: 10px 0;
   }
 }

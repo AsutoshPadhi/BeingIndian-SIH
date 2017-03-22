@@ -164,6 +164,12 @@
         </nav>
         
         <!-- Page Content -->
+
+        <div class="main-content">
+            <div style="width:100%;">
+                <?php require('searchBar.php'); ?>
+            </div>
+
 			<script>
 				if (window.XMLHttpRequest)
 				{
@@ -185,6 +191,7 @@
 				xhttp.open("GET", 'search1.php', true);
 				xhttp.send();
 			</script>
+
             <div class="container-fluid" id="field">
                 
             </div>
@@ -246,7 +253,7 @@
           </div>					
 			</div>
             <!-- /.container-fluid -->
-        
+        </div>
         <!-- /#page-wrapper -->
 
         
