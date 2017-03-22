@@ -133,22 +133,22 @@
                             <a onClick="javascript:loadDoc('dipshi.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
-                        </li>
-                        <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Added by you</a>
+                                    <a href="flot.html">Solutions Provided</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Upvoted by you</a>
+                                    <a href="morris.html">Reported as bogus</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Reported as duplicate</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-user fa-fw"></i> Profile</a>
+                            <a href="forms.html"><i class="fa fa-user fa-fw"></i> Change Password</a>
                         </li>
                         
                     </ul>
