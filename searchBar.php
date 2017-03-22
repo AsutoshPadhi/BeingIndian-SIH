@@ -7,24 +7,24 @@
     <body>
         <div>
             <form>
-<<<<<<< HEAD
+
                 <div class="form-group col-xs-6 col-md-2">
                     <select class="form-control" id="state">
-=======
+
                 <div class="top form-group col-xs-6 col-md-2">
                     <select class="form-control">
->>>>>>> refs/remotes/origin/master
+
                         <option disabled selected>State</option>
                         <?php include 'stateList.php'; ?>
                     </select>
                 </div>
-<<<<<<< HEAD
+
                 <div class="form-group col-xs-6 col-md-2">
                     <select class="form-control" id="district">
-=======
+
                 <div class="top form-group col-xs-6 col-md-2">
                     <select class="form-control">
->>>>>>> refs/remotes/origin/master
+
                         <option disabled selected>Districts</option>
                         <?php include 'district_list.php';?>
                     </select>
