@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="functions/ajax.js"></script>
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
@@ -16,8 +17,6 @@
     <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
-    <!-- Morris Charts CSS -->
-    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -36,13 +35,33 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
+                <?php
+                    session_start();
+
+                    if(isset($_SESSION['$name'])){
+                        $login = true;
+                        $name = $_SESSION['$name'];
+                        $fname = $_SESSION['$fname'];
+                        $lname = $_SESSION['$lname'];
+                        $email = $_SESSION['$email'];
+                    }
+                    else{
+                        $login = false;
+                    }
+
+                    if($login){
+
+                ?>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><font color=#E77607>Better</font><font color=#138808>India</font></a>
+                <?php
+                    }
+                ?>
+                <a class="navbar-brand" href="index.html"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -55,7 +74,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
-                            <a href="#">
+                            <a onClick="javascript:loadDoc('login.php'); return false;" href="login.php">
                                 <div>
                                     <i class="fa fa-info-circle fa-fw"></i> User guide
                                 </div>
@@ -79,14 +98,6 @@
                     <ul class="dropdown-menu dropdown-user">
 
                         <?php
-                            session_start();
-
-                            if(isset($_SESSION['$name'])){
-                                $login = true;
-                            }
-                            else{
-                                $login = false;
-                            }
                             
                             if($login){
                         ?>
@@ -111,7 +122,7 @@
             </ul>
             <!-- /.navbar-top-links -->
             <?php
-                if(!$login){
+                if($login){
 
             ?>
             <div class="navbar-default sidebar" role="navigation">
@@ -151,14 +162,8 @@
         
         <!-- Page Content -->
         
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
+            <div class="container-fluid" id="field">
+                
             </div>
             <!-- /.container-fluid -->
         
