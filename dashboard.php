@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!-- AJAX change page -->
     <script src="functions/ajax.js"></script>
 
     <title>Better India!</title>
@@ -38,12 +39,13 @@
                 <?php
                     session_start();
 
-                    if(isset($_SESSION['$name'])){
+                    if(isset($_SESSION['$email'])){
                         $login = true;
+                        $email = $_SESSION['$email'];
                         $name = $_SESSION['$name'];
                         $fname = $_SESSION['$fname'];
                         $lname = $_SESSION['$lname'];
-                        $email = $_SESSION['$email'];
+                        
                     }
                     else{
                         $login = false;
@@ -74,7 +76,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
-                            <a onClick="javascript:loadDoc('login.php'); return false;" href="login.php">
+                            <a>
                                 <div>
                                     <i class="fa fa-info-circle fa-fw"></i> User guide
                                 </div>
@@ -102,13 +104,13 @@
                             if($login){
                         ?>
                             </li>
-                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
                             }
                             else{
                         ?>
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Login</a>
+                        <li><a onClick="javascript:loadDoc('login.php'); return false;" href="login.php"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
                         <li><a href="#"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php

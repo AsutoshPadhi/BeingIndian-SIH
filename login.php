@@ -58,6 +58,7 @@
                     echo "<a href='" . $authUrl . "'><img class='loginButton_gplus' src='gplus/signin_button.png' height='50px'/></a>";
                 } 
                 else {
+                    session_start();
                     $_SESSION['$name'] = $name;
                     $_SESSION['$fname'] = $fname;
                     $_SESSION['$lname'] = $fname;
