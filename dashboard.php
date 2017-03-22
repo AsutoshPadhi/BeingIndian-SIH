@@ -38,12 +38,13 @@
                 <?php
                     session_start();
 
-                    if(isset($_SESSION['$name'])){
+                    if(isset($_SESSION['$email'])){
                         $login = true;
+                        $email = $_SESSION['$email'];
                         $name = $_SESSION['$name'];
                         $fname = $_SESSION['$fname'];
                         $lname = $_SESSION['$lname'];
-                        $email = $_SESSION['$email'];
+                        
                     }
                     else{
                         $login = false;
@@ -102,7 +103,7 @@
                             if($login){
                         ?>
                             </li>
-                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
                             }
