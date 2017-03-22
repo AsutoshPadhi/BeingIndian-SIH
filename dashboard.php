@@ -46,7 +46,7 @@
                         $name = $_SESSION['$name'];
                         $fname = $_SESSION['$fname'];
                         $lname = $_SESSION['$lname'];
-                        
+
                     }
                     else{
                         $login = false;
@@ -80,7 +80,7 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                
+
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -112,7 +112,7 @@
                     <ul class="dropdown-menu dropdown-user">
 
                         <?php
-                            
+
                             if($login){
                         ?>
                             </li>
@@ -148,7 +148,7 @@
 
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
+                            <a onClick="generateUrl()"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
@@ -165,7 +165,7 @@
                         <li>
                             <a href="forms.html"><i class="fa fa-user fa-fw"></i> Profile</a>
                         </li>
-                        
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -175,7 +175,7 @@
             ?>
             <!-- /.navbar-static-side -->
         </nav>
-        
+
         <!-- Page Content -->
 
         <div class="main-content" id="main">
@@ -184,14 +184,14 @@
             </div>
 
             <div class="container-fluid" id="field">
-                
+
             </div>
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
-        
+
     </div>
-    
+
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
