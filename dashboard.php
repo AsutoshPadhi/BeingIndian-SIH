@@ -74,7 +74,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
-                            <a onClick="javascript:loadDoc('login.php'); return false;" href="login.php">
+                            <a>
                                 <div>
                                     <i class="fa fa-info-circle fa-fw"></i> User guide
                                 </div>
@@ -108,7 +108,7 @@
                             }
                             else{
                         ?>
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Login</a>
+                        <li><a onClick="javascript:loadDoc('login.php'); return false;" href="login.php"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
                         <li><a href="#"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
