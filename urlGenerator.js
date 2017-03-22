@@ -1,6 +1,6 @@
 function generateUrl()
 {
-	var query = document.getElementById("issueSearch").value;	//Change the ids
+	var query = document.getElementById("issue").value;	//Change the ids
     var state = document.getElementById("state").value;
     var district = document.getElementById("district").value;
     var locality = document.getElementById("locality").value;
