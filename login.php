@@ -54,8 +54,12 @@
             </div>
             <div class="styleBox">
                 <?php
-                if (isset($authUrl)) {
-                    echo "<a href='" . $authUrl . "'><img class='loginButton_gplus' src='gplus/signin_button.png' height='50px'/></a>";
+                if (isset($authUrl)) { ?>
+                    <!--echo "<a href='" . $authUrl . "'><img class='loginButton_gplus' src='gplus/signin_button.png' height='50px'/></a>";-->
+                    <a class="btn btn-block btn-social btn-google-plus" href='<?php echo $authUrl ?>'>
+                        <i class="fa fa-google-plus"></i> Sign in with Google
+                    </a>
+                <?php
                 } 
                 else {
                     session_start();
