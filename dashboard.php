@@ -49,10 +49,21 @@
                     else{
                         $login = false;
                     }
-
+                ?>
+                <script>
+                    var login = <?php if($login){echo "true";}else{echo "false";}?>;
+                    if(login){
+                        document.getElementById("main").style.marginLeft = "0px";
+                    }
+                    else{
+                        document.getElementById("main").style.marginLeft = "250px";
+                    }
+                </script>
+                <?php
                     if($login){
 
                 ?>
+
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -102,7 +113,7 @@
                             
                             if($login){
                         ?>
-                            <li>
+                            </li>
                             <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
@@ -165,97 +176,17 @@
         
         <!-- Page Content -->
 
-        <div class="main-content">
+        <div class="main-content" id="main">
             <div style="width:100%;">
                 <?php require('searchBar.php'); ?>
             </div>
 
-			<script>
-				if (window.XMLHttpRequest)
-				{
-					// code for modern browsers
-					xhttp = new XMLHttpRequest();
-				}
-				else
-				{
-					// code for IE6, IE5
-					xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-				}
-				xhttp.onreadystatechange = function()
-				{
-					if (this.readyState == 4 && this.status == 200)
-					{
-						document.getElementById("field").innerHTML = this.responseText;
-					}
-				};
-				xhttp.open("GET", 'search1.php', true);
-				xhttp.send();
-			</script>
-
             <div class="container-fluid" id="field">
                 
             </div>
-			<div>
-			<?php
-					$con= mysqli_connect("localhost","root","");
-					$selected = mysqli_select_db($con,'problems') 
-					or die("Could not select examples");
-					$sql="Select * from issue where 1 ";
-					$result=mysqli_query($con,$sql);
-					$no_of_results=mysqli_num_rows($result);
-					$results_per_page=5;
-					while($row= mysqli_fetch_array($result))
-					{
-					$row=$row['issue_id'].''.$row['title'].''.'<br>';
-					}
-
-					//dtermine the number of pages in a page
-					$no_of_pages= ceil($no_of_results/$results_per_page);
-
-					//determine the number of results in one page
-
-					if(!isset($_GET['page']))
-					{
-					$page=1;
-					}
-					else
-					{
-					$page=$_GET['page'];
-					}
-
-					$start_limit=($page-1)*$results_per_page;
-
-
-					$last=$row/$results_per_page;
-					if($last<1)
-					{
-					$last=1;
-					}
-					$sql="select * from issue LIMIT ".$start_limit.','.$results_per_page;
-
-					$result=mysqli_query($con,$sql);?>
-					<div class="container">
-            <ul class="pagination">
-              <li><a href="">&laquo;</a></li>
-
-              <?php
-
-                for($page=1;$page<=$no_of_pages;$page++)
-                {
-                  $pageurl = 'search'.$page.'.php';
-              ?>
-                <li><a onClick="javascript:loadDoc($pageurl)"><?php echo $page; ?><a><li>
-              <?php
-                }
-              ?>
-              <li><a href="">&raquo;</a></li>
-            </ul>
-          </div>					
-			</div>
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
-
         
     </div>
     
