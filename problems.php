@@ -67,8 +67,8 @@ while($row = mysqli_fetch_array($result))
 		?>
 	<br>
 	<br>
-	  <button type="button" class="btn btn-info problems" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
-      <?php  echo  $row["title"]. " " . "<br>";?>
+	  <button type="button" class="btn btn-info problems" data-toggle="collapse" data-target='#demo<?php echo $i; ?>'>
+      <?php  echo  $row['title']. ' ' . '<br>';?>
 	  </button>
 	  <div id="demo<?php echo $i; ?>" class="collapse">
 		<?php
@@ -79,7 +79,7 @@ while($row = mysqli_fetch_array($result))
 			echo $row["description"];
 			$i++;
 		?>
-  </div>
+	  </div>
 	  
 		
    <?php 

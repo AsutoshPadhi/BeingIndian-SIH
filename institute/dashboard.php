@@ -8,17 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <script src="functions/ajax.js"></script>
+    <script src="../functions/ajax.js"></script>
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
-    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -47,6 +47,7 @@
                     }
                     else{
                         $login = false;
+                        header('Location: loginpage.php');
                     }
 
                     if($login){
@@ -61,7 +62,7 @@
                 <?php
                     }
                 ?>
-                <a class="navbar-brand" href="index.html"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
+                <a class="navbar-brand" href="../index.html"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -110,7 +111,7 @@
                         ?>
                         <li><a onClick="javascript:loadDoc('login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a onClick="javascript:loadDoc('loginpage.php')"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a href="loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
                             }
                         ?>
@@ -129,25 +130,25 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a onClick="javascript:loadDoc('dipshi.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick="javascript:loadDoc('search.php')" ><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Solutions Provided</a>
+                                    <a onClick="javascript:loadDoc('solutions-provided.php')">Solutions Provided</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Reported as bogus</a>
+                                    <a onClick="javascript:loadDoc('reported-bogus.php')">Reported as bogus</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Reported as duplicate</a>
+                                    <a onClick="javascript:loadDoc('reported-duplicate.php')">Reported as duplicate</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-user fa-fw"></i> Change Password</a>
+                            <a onClick="javascript:loadDoc('change-password.php')"><i class="fa fa-user fa-fw"></i> Change Password</a>
                         </li>
                         
                     </ul>
@@ -162,9 +163,12 @@
         
         <!-- Page Content -->
         
+        <div class="main-content" id="main">
             <div class="container-fluid" id="field">
-                
+
             </div>
+            <!-- /.container-fluid -->
+        </div>
             <!-- /.container-fluid -->
         
         <!-- /#page-wrapper -->
@@ -174,16 +178,16 @@
     
 
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/sb-admin-2.js"></script>
 
 </body>
 

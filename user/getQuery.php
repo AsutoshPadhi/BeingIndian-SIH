@@ -6,14 +6,15 @@
        get_query();
 	function get_query()
 	{
-		include 'functions/dataBaseConn.php';
+		include '../functions/dataBaseConn.php';
 		require_once 'CosineSimilarity.php';
 		
 		$str = $_GET['issue'];
 		$state = $_GET['state'];
 		$district = $_GET['district'];
 
-
+		echo "".$state;
+		
 		//print_r( array_count_values(str_word_count($str, 1)) );
 		$query_word_count =  array_count_values(str_word_count($str, 1));
 
@@ -44,9 +45,26 @@
 			if($percentage[$i]>0.3)
 			{
 				echo "<a href='#'>".$row[$i]['title']."</a>";
+			
 			}
 		}
 
 	}
 
 ?>
+
+<!--?>
+					
+					<button type='button' class='btn btn-info problems' data-toggle='collapse' data-target="#demo<?php echo $i; ?>">
+					<?php  //echo  $row["title"]. " " . "<br>";?>
+					</button>
+					<div id="demo<?php //echo $i; ?>" class="collapse">
+					<?php
+					//echo "CODE:".$row["issue_id"]; ?>
+					<br><?php
+						//echo $row["Description"];
+						//echo $row[""]
+						//$i++;
+					?>
+				  	</div>;
+		  	<?php-->
