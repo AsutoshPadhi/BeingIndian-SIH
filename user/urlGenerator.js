@@ -4,7 +4,7 @@ function generateUrl(state,district,locality,pin,issueTitle)
 	loadDoc(url);
 }
 
-function loadDoc(url) 
+function loadDoc(url)               //tab doesn't work after removing this
 {   
     if (window.XMLHttpRequest)
     {
