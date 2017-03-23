@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
-<link href="style/styleLogin.css" rel="stylesheet">
+<link href="style1.css" style="css/stylesheet">
 <head>
 </head>
 <body>
-<div class="fullpage">
-<form action="insthomepage.php" method="post">
-<div class="container">
- <b>PASSWORD</b>:
- <input type="password" name="psw" id="psw" required>
+<div class="continue">
+<form action="dashboard.php" method="post">
+ PASSWORD:
+ <input type="text" name="psw" id="psw">
  <br><br>
-<b> CONFIRM PASSWORD</b>:
- <input type="password" name="psw1" id="psw1" required>
+ CONFIRM PASSWORD:
+ <input type="text" name="psw1" id="psw1">
  <br><br>
- <input type="submit" name="submit" class="login" value="Proceed">
-</div>
+ <input type="submit" name="submit" id="submit" value="Proceed">
+ <a href="dashboard.php"></a>
  </form>
  
 </div>

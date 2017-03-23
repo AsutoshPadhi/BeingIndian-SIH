@@ -1,9 +1,11 @@
+<?php
+/*if(isset($SESSION['login_user'])){
+	header("location:securepage.php");
+}*/
+?>
 
 <!DOCTYPE html>
 <html>
-<head>
-
-</head>
 <body>
 <!--<div>
 <button>REGISTRATION</button>
@@ -12,25 +14,24 @@
 <button onclick="f1()">LOGIN</button>
 </div>
 -->
-
   <div class="fullpage" id="i1">
   <form action="login3.php" method="post">
 
 <h1 style="text-align:center"><u>Login Form</u></h1>
   <div class="container">
-    <label><b>Email</b></label>
-    <input type="email" placeholder="Enter Email" name="username" required>
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
 
     <label><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" required maxlength=9>
         
-    <input type="submit" value="LOGIN" name="loginuser" class="login">
+    <input type="submit" value="login" name="loginuser">
 	<br>
     <input type="checkbox" checked="checked"> Remember me
   </div>
 </form>
-  <div class="container" style="background-color:#f1f1f3">
-    <button type="button" class="cancelbtn" onclick="f1()">Cancel</button>
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
     <span class="psw">Forgot <a href="#">password?</a></span>
   </div>
   </div>
@@ -47,6 +48,5 @@ if(event.target==x){
 x.style.display="none";
 }
 }
-</script>
 </body>
 </html>

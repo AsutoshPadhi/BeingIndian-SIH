@@ -29,6 +29,7 @@
 </head>
 
 <body>
+
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -81,7 +82,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="loginpage.php">
+                            <a href="#">
                                 <div>
                                     <i class="fa fa-institution fa-fw"></i> Institute guide
                                 </div>
@@ -110,7 +111,7 @@
                         ?>
                         <li><a onClick="javascript:loadDoc('login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a onClick="javascript:loadDoc('loginpage.php')"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a href="#"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
                             }
                         ?>
