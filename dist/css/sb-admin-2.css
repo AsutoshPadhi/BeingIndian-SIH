@@ -14,6 +14,9 @@ body {
   min-height: 568px;
   background-color: white;
 }
+a{
+  cursor: pointer;
+}
 @media (min-width: 768px) {
   #page-wrapper {
     position: inherit;
@@ -109,6 +112,10 @@ body {
     position: absolute;
     width: 250px;
     margin-top: 51px;
+  }
+  .main-content{
+    margin-left: 250px;
+    padding: 15px;
   }
   .navbar-top-links .dropdown-messages,
   .navbar-top-links .dropdown-tasks,
@@ -407,6 +414,12 @@ table.dataTable thead .sorting:after {
   margin-top: 5px;
 }
 @media (max-width: 767px) {
+  .top{
+    margin-top: 10px;
+  }
+  .search.btn{
+    margin-left: 15px;
+  }
   ul.timeline:before {
     left: 40px;
   }
@@ -434,5 +447,11 @@ table.dataTable thead .sorting:after {
     left: -14px;
     border-right-width: 14px;
     border-left-width: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .search{
+    margin: 10px 0;
   }
 }
