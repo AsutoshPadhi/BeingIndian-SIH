@@ -19,6 +19,8 @@
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Social Buttons CSS -->
+    <link href="../vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -44,15 +46,26 @@
                         $name = $_SESSION['$name'];
                         $fname = $_SESSION['$fname'];
                         $lname = $_SESSION['$lname'];
-                        
+
                     }
                     else{
                         $login = false;
                     }
-
+                ?>
+                <script>
+                    var login = <?php if($login){echo "true";}else{echo "false";}?>;
+                    if(login){
+                        document.getElementById("main").style.marginLeft = "0px";
+                    }
+                    else{
+                        document.getElementById("main").style.marginLeft = "250px";
+                    }
+                </script>
+                <?php
                     if($login){
 
                 ?>
+
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -67,7 +80,7 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                
+
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -99,10 +112,10 @@
                     <ul class="dropdown-menu dropdown-user">
 
                         <?php
-                            
+
                             if($login){
                         ?>
-                            <li>
+                            </li>
                             <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
@@ -143,7 +156,7 @@
 >>>>>>> origin/Dipshi
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
+                            <a onClick="generateUrl()"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
@@ -160,7 +173,7 @@
                         <li>
                             <a href="forms.html"><i class="fa fa-user fa-fw"></i> Profile</a>
                         </li>
-                        
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -170,96 +183,23 @@
             ?>
             <!-- /.navbar-static-side -->
         </nav>
-        
+
         <!-- Page Content -->
-			<script>
-				if (window.XMLHttpRequest)
-				{
-					// code for modern browsers
-					xhttp = new XMLHttpRequest();
-				}
-				else
-				{
-					// code for IE6, IE5
-					xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-				}
-				xhttp.onreadystatechange = function()
-				{
-					if (this.readyState == 4 && this.status == 200)
-					{
-						document.getElementById("field").innerHTML = this.responseText;
-					}
-				};
-				xhttp.open("GET", 'search1.php', true);
-				xhttp.send();
-			</script>
-            <div class="container-fluid" id="field">
-                
+
+        <div class="main-content" id="main">
+            <div style="width:100%;">
+                <?php require('searchBar.php'); ?>
             </div>
-			<div>
-			<?php
-					$con= mysqli_connect("localhost","root","");
-					$selected = mysqli_select_db($con,'problems') 
-					or die("Could not select examples");
-					$sql="Select * from issue where 1 ";
-					$result=mysqli_query($con,$sql);
-					$no_of_results=mysqli_num_rows($result);
-					$results_per_page=5;
-					while($row= mysqli_fetch_array($result))
-					{
-					$row=$row['issue_id'].''.$row['title'].''.'<br>';
-					}
 
-					//dtermine the number of pages in a page
-					$no_of_pages= ceil($no_of_results/$results_per_page);
+            <div class="container-fluid" id="field">
 
-					//determine the number of results in one page
-
-					if(!isset($_GET['page']))
-					{
-					$page=1;
-					}
-					else
-					{
-					$page=$_GET['page'];
-					}
-
-					$start_limit=($page-1)*$results_per_page;
-
-
-					$last=$row/$results_per_page;
-					if($last<1)
-					{
-					$last=1;
-					}
-					$sql="select * from issue LIMIT ".$start_limit.','.$results_per_page;
-
-					$result=mysqli_query($con,$sql);?>
-					<div class="container">
-            <ul class="pagination">
-              <li><a href="">&laquo;</a></li>
-
-              <?php
-
-                for($page=1;$page<=$no_of_pages;$page++)
-                {
-                  $pageurl = 'search'.$page.'.php';
-              ?>
-                <li><a onClick="javascript:loadDoc($pageurl)"><?php echo $page; ?><a><li>
-              <?php
-                }
-              ?>
-              <li><a href="">&raquo;</a></li>
-            </ul>
-          </div>					
-			</div>
+            </div>
             <!-- /.container-fluid -->
-        
+        </div>
         <!-- /#page-wrapper -->
 
-        
     </div>
-    
+
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
