@@ -1,9 +1,7 @@
-function generateUrl(state,district,locality,pin,issue)
+function generateUrl(state,district,locality,pin,issueTitle)
 {
-	var url = "getQuery.php?issue="+issue+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin+"&callFunction=get_query";
-	
-    loadDoc(url);
-
+	var url = "getQuery.php?issue="+issueTitle+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin+"&callFunction=get_query";
+	loadDoc(url);
 }
 
 function loadDoc(url) 
@@ -26,7 +24,6 @@ function loadDoc(url)
             document.getElementById("field").innerHTML = this.responseText;
         }
     };
-
     xhttp.open("GET", url, true);
     xhttp.send();
 }

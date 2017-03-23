@@ -42,8 +42,9 @@
 			
 			if($percentage[$i]>0.3)
 			{
-				//echo "<a href='#'>".$row[$i]['title']."</a>";
+				echo "<a href='#'>".$row[$i]['title']."</a>";
 			?>
+					
 					<button type='button' class='btn btn-info problems' data-toggle='collapse' data-target="#demo<?php echo $i; ?>">
 					<?php  echo  $row["title"]. " " . "<br>";?>
 					</button>
