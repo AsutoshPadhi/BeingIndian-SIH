@@ -8,7 +8,7 @@
 	</div>
 
 	<div class="form-group col-xs-6 col-md-3">
-	    <select class="form-control" name="district" id="district">             
+	    <select class="form-control" name="district" id="district" onclick="getDistrictFromState(document.getElementById('state').value)">             
 	        <option disabled selected>Districts</option>
 	        <?php include 'district_list.php';?>
 	    </select>
