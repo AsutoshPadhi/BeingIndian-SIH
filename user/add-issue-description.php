@@ -43,5 +43,5 @@
 <br><hr>
 <div class="alert alert-warning alert-dismissable">
 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-You will be notified when the problem is solved.
+You will be notified when the problem is solved by nearby colleges.
 </div>
