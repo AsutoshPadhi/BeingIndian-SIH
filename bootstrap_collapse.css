@@ -6,18 +6,18 @@ body{
 		width:100%;
 		background-color:;
 	}
-	.problems
+	.problem
 	{
-		background-color:#FA9836;
-		border-color: #E77607;
+		background-color:;
+		border-color: ;
 	}
-	.problems:hover
+	.problem:hover
 	{
-		background-color: #FFB061;
+		background-color: ;
 	}
-	.problems:focus
+	.problem:focus
 	{
-		background-color: #FFB061;
+		background-color:;
 	}
 	.pagination {
     display: inline-block;

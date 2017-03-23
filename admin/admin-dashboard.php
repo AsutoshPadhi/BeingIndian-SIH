@@ -60,16 +60,34 @@ function exportToCSV($sql){
         <![endif]-->
 
     </head>
-<div class="form-group col-md-3 col-sm-12" style="margin: 20px 0;">
-    <input class="form-control" placeholder="Enter State">
-</div>
-<div class="form-group col-md-3 col-sm-12" style="margin: 20px 0;">
-    <input class="form-control" placeholder="Enter District">
-</div>
-<div class="form-group col-md-3 col-sm-12" style="margin: 20px 0;">
-    <input class="form-control" placeholder="Enter College">
-</div>
-<button type="button" class="btn btn-primary col-md-3 col-sm-12" style="margin: 20px 0;">Download Report</button>
+
+    <body>
+        <form method="GET" action="admin-dashboard.php">
+            <div class="form-group col-md-3 col-sm-6 col-lg-3" style="margin: 20px 0;">
+                <input class="form-control" name="state" placeholder="Enter State">
+            </div>
+            <div class="form-group col-md-3 col-sm-6 col-lg-3" style="margin: 20px 0;">
+                <input class="form-control" name="district" placeholder="Enter District">
+            </div>
+            <div class="form-group col-md-3 col-sm-8 col-lg-3" style="margin: 20px 0;">
+                <input class="form-control" name="college" placeholder="Enter College">
+            </div>
+            <button type="button" class="btn btn-primary col-md-2 col-sm-3 col-lg-2 col-xs-8" style="margin: 20px 15px;">Download Report</button>
+        </form>
+    </body>
+    <?php
+        if(isset($_GET['state'])){
+            $state = $_GET['state']; 
+        }
+        if(isset($_GET['district'])){
+            $district = $GET['district'];
+        }
+        if(isset($_GET['college'])){
+            $college = $GET['college'];
+        }
+    ?>
+
+
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
