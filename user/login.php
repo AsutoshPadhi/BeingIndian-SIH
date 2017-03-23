@@ -10,7 +10,7 @@
 
     const CLIENT_ID = '544991555244-5pemrlfvr778rqql3demuc5qkl05pild.apps.googleusercontent.com';
     const CLIENT_SECRET = 'mrGZsngSYw6bjHcdNPnruup_';
-    const REDIRECT_URI = 'http://localhost:80/login.php';
+    const REDIRECT_URI = 'http://localhost:80/user/login.php';
 
     $client = new Google_Client();
     $client->setClientId(CLIENT_ID);

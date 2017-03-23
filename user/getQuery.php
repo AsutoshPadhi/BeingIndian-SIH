@@ -6,14 +6,13 @@
        get_query();
 	function get_query()
 	{
-		include 'functions/dataBaseConn.php';
+		include '../functions/dataBaseConn.php';
 		require_once 'CosineSimilarity.php';
 		
 		$str = $_GET['issue'];
 		$state = $_GET['state'];
 		$district = $_GET['district'];
-
-
+		
 		//print_r( array_count_values(str_word_count($str, 1)) );
 		$query_word_count =  array_count_values(str_word_count($str, 1));
 

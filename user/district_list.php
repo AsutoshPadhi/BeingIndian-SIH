@@ -12,7 +12,7 @@
 		die("Connection Failed".$conn->connect_error);
 	}
 
-	$sql = "SELECT district_name FROM district WHERE state_id = 1";
+	$sql = "SELECT district_name FROM district WHERE state_id = "."SELECT state_id FROM state WHERE state =";
 	$result = $conn->query($sql);
 	if($result->num_rows>0)
 	{
