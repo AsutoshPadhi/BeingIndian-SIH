@@ -102,7 +102,7 @@
                             
                             if($login){
                         ?>
-                            </li>
+                            <li>
                             <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
@@ -131,10 +131,16 @@
                     <ul class="nav" id="side-menu">
                         <li>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <a onClick="javascript:loadDoc('search1.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 =======
                             <a onClick="javascript:loadDoc('dipshi.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 >>>>>>> refs/remotes/origin/master
+=======
+
+                            <a onClick="javascript:loadDoc('search1.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+
+>>>>>>> origin/Dipshi
                         </li>
                         <li>
                             <a href="tables.html"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
@@ -230,27 +236,22 @@
 
 					$result=mysqli_query($con,$sql);?>
 					<div class="container">
-					<ul class="pagination">
-					<li><a href="">&laquo;</a></li>
+            <ul class="pagination">
+              <li><a href="">&laquo;</a></li>
 
-					<?php
+              <?php
 
-					for($page=1;$page<=$no_of_pages;$page++)
-					{
-						$pageurl = 'search'.$page.'.php';
-					?>
-					<li><a onClick="javascript:loadDoc($pageurl)"><?php echo $page; ?><a><li>
-					<?php
-					}
-					?>
-
-
-	
-
-
-	
-<li><a href="">&raquo;</a></li>
-</ul></div>					
+                for($page=1;$page<=$no_of_pages;$page++)
+                {
+                  $pageurl = 'search'.$page.'.php';
+              ?>
+                <li><a onClick="javascript:loadDoc($pageurl)"><?php echo $page; ?><a><li>
+              <?php
+                }
+              ?>
+              <li><a href="">&raquo;</a></li>
+            </ul>
+          </div>					
 			</div>
             <!-- /.container-fluid -->
         
