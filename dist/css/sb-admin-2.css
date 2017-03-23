@@ -17,6 +17,7 @@ body {
 a{
   cursor: pointer;
 }
+
 @media (min-width: 768px) {
   #page-wrapper {
     position: inherit;

@@ -112,9 +112,9 @@
                             }
                             else{
                         ?>
-                        <li><a onClick="javascript:loadDoc('user/login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
+                        <li><a data-toggle="modal" data-target="#myModal2"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a href="institute/loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a data-toggle="modal" data-target="#myModal"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
                             }
                         ?>
@@ -161,6 +161,94 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+
+    <!-- Large modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×</button>
+                    <h4 class="modal-title" id="myModalLabel">Institute Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <form action="institute/login.php" methond="POST" role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">
+                                        Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="email1" placeholder="Email" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1" class="col-sm-2 control-label">
+                                        Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Email" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            Submit</button>
+                                        <a href="javascript:;">Forgot your password?</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php require('user/login.php') ?>
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×</button>
+                    <h4 class="modal-title" id="myModalLabel">User Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mainBox">
+                                <div class="loginText">
+                                    User Login
+                                </div>
+                                <div style="margin: 15px 0px;" class="styleBox">
+                                    <?php
+                                    if (isset($authUrl)) { ?>
+                                        <a class="btn btn-block btn-social btn-google-plus" href='<?php echo $authUrl ?>'>
+                                            <i class="fa fa-google-plus"></i> Sign in with Google
+                                        </a>
+                                    <?php
+                                    } 
+                                    else {
+                                        session_start();
+                                        $_SESSION['$name'] = $name;
+                                        $_SESSION['$fname'] = $fname;
+                                        $_SESSION['$lname'] = $fname;
+                                        $_SESSION['$email'] = $email;
+                                        header('Location: dashboard.php');
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </body>
 
