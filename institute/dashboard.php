@@ -47,6 +47,7 @@
                     }
                     else{
                         $login = false;
+                        header('Location: loginpage.php');
                     }
 
                     if($login){
@@ -110,7 +111,7 @@
                         ?>
                         <li><a onClick="javascript:loadDoc('login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a onClick="javascript:loadDoc('loginpage.php')"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a href="loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
                             }
                         ?>
