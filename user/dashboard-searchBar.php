@@ -18,7 +18,30 @@
                 <div class="form-group col-xs-6 col-md-2">
                     <select class="form-control" id="district">             
                         <option disabled selected>Districts</option>
-                        <?php include 'district_list.php';?>
+                        <script>
+                            var state = document.getElementById('state').value;
+                            if (window.XMLHttpRequest)
+                            {
+                                // code for modern browsers
+                                xhttp = new XMLHttpRequest();
+                            }
+                            else
+                            {
+                                // code for IE6, IE5
+                                xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                            }
+                            
+                            xhttp.onreadystatechange = function()
+                            {
+                                if (this.readyState == 4 && this.status == 200)
+                                {
+                                    document.getElementById("district").innerHTML = this.responseText;
+                                }
+                            };
+                            xhttp.open("GET", "district_list.php?state = "+state, true);
+                            xhttp.send();
+                        </script>
+                        
                     </select>
                 </div>
                 <div class="col-xs-6 col-md-2">

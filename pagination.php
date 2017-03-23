@@ -40,27 +40,28 @@
 
 
 
-<?php require('problems.php'); ?>
+
 <div class="container">
-	<ul class="pagination">
-	<li><a href="">&laquo;</a></li>
-	<?php
- 
- 
- 
-	for($page=1;$page<=$no_of_pages;$page++)
-	{
-		$url = 'problems.php?page='.$page;
-	?>
-	<li><a onclick="javascript:loadSearch('problems.php?page=2')"><?php echo $page; ?></a></li>
-	<?php
+			<ul class="pagination">
+				<li><a href="">&laquo;</a></li>
+				<?php
 
-	}
+					for($page=1;$page<=$no_of_pages;$page++)
+					{
+						$url = "problems.php?page=".$page."";
+				?>
+				<script>
+					var url<?php echo $page; ?> = '<?php echo $url; ?>';
+				</script>
+				<?php
+						echo '<li><a onclick="javascript:loadSearch(url'.$page.')">'.$page.'</a></li>';
 
+					}
 
-	?>
-	<li><a href="">&raquo;</a></li>
-	</ul></div>
+				?>
+				<li><a href="">&raquo;</a></li>
+			</ul>
+		</div>	
 
 </body>
 </html>
