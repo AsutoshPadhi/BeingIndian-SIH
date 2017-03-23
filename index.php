@@ -19,6 +19,8 @@
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Social Buttons CSS -->
+    <link href="../vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style/styleIndex.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -104,7 +106,7 @@
                             if($login){
                         ?>
                             </li>
-                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="user/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
                             }
@@ -112,7 +114,7 @@
                         ?>
                         <li><a onClick="javascript:loadDoc('user/login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a onClick="javascript:loadDoc('institute/loginpage.php')"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a href="institute/loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
                             }
                         ?>
