@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +9,6 @@
     <script src="functions/ajax.js"></script>
     <script src="urlGenerator.js"></script>
     <script src="tabs.js"></script>
-
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
@@ -32,8 +28,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
+
 
     <div id="wrapper">
 
@@ -49,13 +45,11 @@
                         $name = $_SESSION['$name'];
                         $fname = $_SESSION['$fname'];
                         $lname = $_SESSION['$lname'];
+
                     }
                     else{
                         $login = false;
                     }
-
-                    if($login){
-
                 ?>
                 <script>
                     var login = <?php if($login){echo "true";}else{echo "false";}?>;
@@ -70,6 +64,7 @@
                     if($login){
 
                 ?>
+
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -84,6 +79,7 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -169,6 +165,7 @@
                         <li>
                             <a href="javascript:loadDoc('profile.php')"><i class="fa fa-user fa-fw"></i> Profile</a>
                         </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -191,6 +188,7 @@
 
     </div>
 
+
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -204,5 +202,4 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
 </body>
-
 </html>
