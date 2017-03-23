@@ -5,26 +5,13 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!--<link rel="stylesheet" href="inst_dashboard.css">-->
+	<link rel="stylesheet" href="dashboard.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<!--<script src="..jquery-3.2.0.min.js"></script>-->
+	<script src="..jquery-3.2.0.min.js"></script>
 	<script>
-/*$(document).ready(function() {
-    $("#problem" ).load( "search1.php"); //load initial records
-    
-    //executes code below when user click on pagination links
-    $("#problem").on( "click", ".pagination a", function (e){
-        e.preventDefault();
-       // $(".loading-div").show(); //show loading element
-        var page = $(this).attr("page"); //get page number from link
-        $("#problem").load("fetch_pages.php",{"page":page}, function(){ //get content from PHP page
-           // $(".loading-div").hide(); //once done, hide loading element
-        });
-        
-    });
-});*/
-	
+
 	function loadSearch(url){
+		
 		if (window.XMLHttpRequest)
 		{
 			// code for modern browsers
@@ -90,50 +77,69 @@ $result=mysqli_query($con,$sql);
 
 	<div id="problem">
 		<?php
+			$i = 1;
 		while($row=mysqli_fetch_array($result))
 		{
 			
 			 // output data of each row
-			$i = 1;
-			while($row = $result->fetch_assoc()) {?>
+		
+			?>
 			<br>
-			<br>
-			<button type="button" class="btn btn-info problems" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
+			
+			<button type="button" class="btn  problems btn btn-primary btn-lg btn-block " data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
 			<?php  echo  $row["title"]. " " . "<br>";?>
 			</button>
-				<div id="demo<?php echo $i; ?>" class="collapse">
+				<div id="demo<?php echo $i; ?>" class="collapse body">
 					<?php
-					echo "CODE:".$row["issue_id"]; ?>
+					echo "<b id='code'>CODE : </b> ".$row["issue_id"]; ?>
 					<br><?php
-						echo $row["Description"];
+						echo "<b id='code'>Description :</b> <br>".$row["description"];?><br>
+						<br>
+						
+						<?php
 						//echo $row[""]
+						if($row["upvote_count"]>=500)
+						{
+							echo "Voting closed";
+						}
+						else
+						{
+							
+							echo "<button class='btn-primary'> Upvote</button>";
+						}
+						if($row["solution_count"]>0)
+						{
+							echo "<button class='btn-primary'> See solution </button>";
+						}
+						
 						$i++;
 					?>
 				</div>
 		<?php
-			}
+			
 		}
 			//display links to the pages
 		?>
 		<div class="container">
 			<ul class="pagination">
-				<li><a href="">&laquo;</a></li>
+				<?php echo "<li><a href='search1new.php?page=".($page-1)."' class='button'>Previous</a></li>"; ?>
+
 				<?php
 
 					for($page=1;$page<=$no_of_pages;$page++)
 					{
-						$url = "search1.php?page=".$page."";
+						$url = "search1new.php?page=".$page."";
 				?>
-				<script>
-					var url<?php echo $page; ?> = '<?php echo $url; ?>';
-				</script>
-				<?php
-						echo '<li><a onclick="javascript:loadSearch(url'.$page.')">'.$page.'</a></li>';
+						<script>
+							var url<?php echo $page; ?> = '<?php echo $url; ?>';
+						</script>
+						<?php
+								echo '<li><a onclick="javascript:loadSearch(url'.$page.')">'.$page.'</a></li>';
 
 					}
 
-				?>
-				<li><a href="">&raquo;</a></li>
+			
+				echo "<li><a href='search1new.php?page=".($page+1)."' class='button'>NEXT</a></li>";	?>
 			</ul>
 		</div>
 	</div>
