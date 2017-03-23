@@ -2,7 +2,8 @@
 
 	include 'C:\xampp\htdocs\Github\testProject\functions\dataBaseConn.php';
 
-	
+	/*$state = $_GET['state'];
+	echo $state;*/
 
 	$sql = "SELECT district_name FROM district WHERE state_id = "."SELECT state_id FROM state WHERE state ='1'";
 	$result = $conn->query($sql);
