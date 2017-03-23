@@ -9,6 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <script src="functions/ajax.js"></script>
+    <script src="urlGenerator.js"></script>
+    <script src="tabs.js"></script>
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
@@ -115,7 +117,7 @@
 
                             if($login){
                         ?>
-                            </li>
+                            <li>
                             <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
@@ -144,11 +146,12 @@
                     <ul class="nav" id="side-menu">
                         <li>
 
-                            <a onClick="javascript:loadDoc('search1.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick="javascript:loadDoc('problems.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
                         </li>
-                        <li>
-                            <a onClick="generateUrl()"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
+                        <!-- onclick="javascript:openField(event, 'addIssue')"-->
+                        <li id="addIssue">
+                            <a><i class="fa fa-plus fa-fw"></i> Add Issue</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>

@@ -1,14 +1,5 @@
-function generateUrl(state,district,locality,pin,issue)
-{
-	var url = "getQuery.php?issue="+issue+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin+"&callFunction=get_query";
-	
-    loadDoc(url);
-
-}
-
-function loadDoc(url) 
-{   
-    if (window.XMLHttpRequest)
+function loadSearch(url){
+	if (window.XMLHttpRequest)
     {
         // code for modern browsers
         xhttp = new XMLHttpRequest();
@@ -18,12 +9,11 @@ function loadDoc(url)
         // code for IE6, IE5
         xhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    
     xhttp.onreadystatechange = function()
     {
         if (this.readyState == 4 && this.status == 200)
         {
-            document.getElementById("field").innerHTML = this.responseText;
+            document.getElementById("problem").innerHTML = this.responseText;
         }
     };
     xhttp.open("GET", url, true);
