@@ -1,18 +1,19 @@
 <form>
 
 	<div class="form-group col-xs-6 col-md-3">
-	    <select class="form-control" name="state" id="state">
+	    <select class="form-control" name="state" id="state" onchange="getDistrict">
             <option disabled selected>State</option>
 	        <?php include 'stateList.php'; ?>
 	    </select>
 	</div>
 
 	<div class="form-group col-xs-6 col-md-3">
-	    <select class="form-control" name="district" id="district" onclick="javascript: getDistrict">             
+	    <select class="form-control" name="district" id="district">             
 	        <option disabled selected>Districts</option>
-	        <script>
-	            function getDistrict()
+	        <!--<script>
+	            getDistrict()
 	            {
+	            	alert("yes");
 	            	var state = document.getElementById('state').value;
 		            alert(state);
 		            if (window.XMLHttpRequest)
@@ -36,7 +37,8 @@
 		            xhttp.open("GET", "district_list.php?state = "+state, true);
 		            xhttp.send();
 	            }
-	        </script>
+	        </script>-->
+	        <?php include 'district_list.php'?>
 	    </select>
 	</div>
 
