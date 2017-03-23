@@ -35,21 +35,10 @@
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <?php
-                    session_start();
-
-                    if(isset($_SESSION['$email'])){
-                        $login = true;
-                        $email = $_SESSION['$email'];
-                        $name = $_SESSION['$name'];
-                        $fname = $_SESSION['$fname'];
-                        $lname = $_SESSION['$lname'];
-                        
-                    }
-                    else{
+                
+                    
                         $login = false;
-                        header('Location: loginpage.php');
-                    }
-
+                       // header('Location: loginpage.php');
                     if($login){
 
                 ?>
