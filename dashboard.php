@@ -143,9 +143,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-
-                            <a onClick="javascript:loadDoc('search1.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-
+                            <a onClick="javascript:loadDoc('problems.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a onClick="generateUrl()"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
