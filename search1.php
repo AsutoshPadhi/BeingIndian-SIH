@@ -15,7 +15,7 @@
 <body>
 <?php
 $con= mysqli_connect("localhost","root","");
-$selected = mysqli_select_db($con,'problems') 
+$selected = mysqli_select_db($con,'hackathon') 
   or die("Could not select examples");
 $sql="Select * from issue where 1 ";
 $result=mysqli_query($con,$sql);
@@ -56,9 +56,12 @@ while($row=mysqli_fetch_array($result))
 	
 	 // output data of each row
 	$i = 1;
-    while($row = $result->fetch_assoc()) {?>
+	$a=1;
+   
+		?>
 	<br>
 	<br>
+	<div id="page<?php echo $a; ?>"  class="page<?php echo $a; ?>">
 	  <button type="button" class="btn btn-info problems" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
       <?php  echo  $row["title"]. " " . "<br>";?>
 	  </button>
@@ -69,31 +72,41 @@ while($row=mysqli_fetch_array($result))
 			echo $row["Description"];
 			//echo $row[""]
 			$i++;
+			$a++;
 		?>
   </div>
-	  
-		
-   <?php }
-}
-//display links to the pages
-?>
-<!--<div class="container">
+</div>  
+<div class="container">
 	<ul class="pagination">
 	<li><a href="">&laquo;</a></li>
 <?php
 
-/*for($page=1;$page<=$no_of_pages;$page++)
+for($page=1;$page<=$no_of_pages;$page++)
 {
-	echo '<li><a onClick="javascript:loadDoc(\'search\'.$page.\'.php')"">\'.$page.\'<a><li>';
+	//echo '<li><a onClick="javascript:loadDoc(\'search\'.$page.\'.php')"">\'.$page.\')<a><li>';
+	 echo' <a onclick="f("page<?php echo $a; ?>")" class="w3-button">1</a>';
+
 
 }
-
-
-	
-
 ?>
 <li><a href="">&raquo;</a></li>
-</ul></div>-->
-*/?>-->
+</ul></div>
+<script>
+function f(cityName) {
+    var i;
+    var x = document.getElementsByClassName("page<?php echo $a; ?>");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    document.getElementById(cityName).style.display = "block";  
+}
+
+		
+   <?php }
+
+//display links to the pages
+?>
+
+</script>
 </body>
 </html>
