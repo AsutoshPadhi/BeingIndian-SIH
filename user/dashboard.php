@@ -143,27 +143,27 @@
                     <ul class="nav" id="side-menu">
                         <li>
 
-                            <a onClick="javascript:loadDoc('problems.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick="javascript:loadDoc('search.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
                         </li>
                         <!-- onclick="javascript:openField(event, 'addIssue')"-->
                         <li id="addIssue">
-                            <a><i class="fa fa-plus fa-fw"></i> Add Issue</a>
+                            <a onClick="javascript:loadDoc('add-issue.php')"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Added by you</a>
+                                    <a onClick="javascript:loadDoc('added-by-you.php')">Added by you</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Upvoted by you</a>
+                                    <a onClick="javascript:loadDoc('upvoted-by-you.php')">Upvoted by you</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-user fa-fw"></i> Profile</a>
+                            <a href="javascript:loadDoc('profile.php')"><i class="fa fa-user fa-fw"></i> Profile</a>
                         </li>
 
                     </ul>
@@ -179,10 +179,6 @@
         <!-- Page Content -->
 
         <div class="main-content" id="main">
-            <div style="width:100%;">
-                <?php require('searchBar.php'); ?>
-            </div>
-
             <div class="container-fluid" id="field">
 
             </div>
