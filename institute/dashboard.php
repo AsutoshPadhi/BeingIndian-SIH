@@ -129,7 +129,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a onClick="javascript:loadDoc('search.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick="javascript:loadDoc('search.php')" ><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
@@ -147,7 +147,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href=onClick="javascript:loadDoc('change-password.php')"><i class="fa fa-user fa-fw"></i> Change Password</a>
+                            <a onClick="javascript:loadDoc('change-password.php')"><i class="fa fa-user fa-fw"></i> Change Password</a>
                         </li>
                         
                     </ul>
@@ -162,9 +162,12 @@
         
         <!-- Page Content -->
         
+        <div class="main-content" id="main">
             <div class="container-fluid" id="field">
-                
+
             </div>
+            <!-- /.container-fluid -->
+        </div>
             <!-- /.container-fluid -->
         
         <!-- /#page-wrapper -->
