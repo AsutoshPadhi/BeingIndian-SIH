@@ -19,8 +19,6 @@
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- Social Buttons CSS -->
-    <link href="../vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,7 +29,6 @@
 </head>
 
 <body>
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -46,26 +43,15 @@
                         $name = $_SESSION['$name'];
                         $fname = $_SESSION['$fname'];
                         $lname = $_SESSION['$lname'];
-
+                        
                     }
                     else{
                         $login = false;
                     }
-                ?>
-                <script>
-                    var login = <?php if($login){echo "true";}else{echo "false";}?>;
-                    if(login){
-                        document.getElementById("main").style.marginLeft = "0px";
-                    }
-                    else{
-                        document.getElementById("main").style.marginLeft = "250px";
-                    }
-                </script>
-                <?php
+
                     if($login){
 
                 ?>
-
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -80,7 +66,7 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-
+                
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -95,7 +81,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="loginpage.php">
                                 <div>
                                     <i class="fa fa-institution fa-fw"></i> Institute guide
                                 </div>
@@ -112,7 +98,7 @@
                     <ul class="dropdown-menu dropdown-user">
 
                         <?php
-
+                            
                             if($login){
                         ?>
                             </li>
@@ -124,7 +110,7 @@
                         ?>
                         <li><a onClick="javascript:loadDoc('login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a onClick="javascript:loadDoc('loginpage.php')"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
                             }
                         ?>
@@ -143,27 +129,27 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a onClick="javascript:loadDoc('problems.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a onClick="generateUrl()"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
+                            <a onClick="javascript:loadDoc('dipshi.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Added by you</a>
+                                    <a href="flot.html">Solutions Provided</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Upvoted by you</a>
+                                    <a href="morris.html">Reported as bogus</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Reported as duplicate</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-user fa-fw"></i> Profile</a>
+                            <a href="forms.html"><i class="fa fa-user fa-fw"></i> Change Password</a>
                         </li>
-
+                        
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -173,23 +159,19 @@
             ?>
             <!-- /.navbar-static-side -->
         </nav>
-
+        
         <!-- Page Content -->
-
-        <div class="main-content" id="main">
-            <div style="width:100%;">
-                <?php require('searchBar.php'); ?>
-            </div>
-
+        
             <div class="container-fluid" id="field">
-
+                
             </div>
             <!-- /.container-fluid -->
-        </div>
+        
         <!-- /#page-wrapper -->
 
+        
     </div>
-
+    
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
