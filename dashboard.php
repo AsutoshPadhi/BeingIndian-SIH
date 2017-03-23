@@ -117,7 +117,7 @@
 
                             if($login){
                         ?>
-                            </li>
+                            <li>
                             <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
@@ -146,7 +146,7 @@
                     <ul class="nav" id="side-menu">
                         <li>
 
-                            <a onclick="javascript:loadDoc('search1.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick="javascript:loadDoc('problems.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
                         </li>
                         <!-- onclick="javascript:openField(event, 'addIssue')"-->
