@@ -2,21 +2,17 @@
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/isha
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
     <script src="functions/ajax.js"></script>
-<<<<<<< HEAD
-=======
     <script src="urlGenerator.js"></script>
     <script src="tabs.js"></script>
->>>>>>> origin/isha
+
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
@@ -27,29 +23,18 @@
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<<<<<<< HEAD
-=======
     <!-- Social Buttons CSS -->
     <link href="../vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
->>>>>>> origin/isha
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/isha
 </head>
 
 <body>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/isha
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -64,21 +49,13 @@
                         $name = $_SESSION['$name'];
                         $fname = $_SESSION['$fname'];
                         $lname = $_SESSION['$lname'];
-<<<<<<< HEAD
-                        
-=======
-
->>>>>>> origin/isha
                     }
                     else{
                         $login = false;
                     }
-<<<<<<< HEAD
 
                     if($login){
 
-                ?>
-=======
                 ?>
                 <script>
                     var login = <?php if($login){echo "true";}else{echo "false";}?>;
@@ -93,8 +70,6 @@
                     if($login){
 
                 ?>
-
->>>>>>> origin/isha
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -109,11 +84,6 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-<<<<<<< HEAD
-                
-=======
-
->>>>>>> origin/isha
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -145,17 +115,10 @@
                     <ul class="dropdown-menu dropdown-user">
 
                         <?php
-<<<<<<< HEAD
-                            
-                            if($login){
-                        ?>
-                            </li>
-=======
 
                             if($login){
                         ?>
                             <li>
->>>>>>> origin/isha
                             <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
@@ -183,12 +146,6 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-<<<<<<< HEAD
-                            <a onClick="javascript:loadDoc('dipshi.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="tables.html"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
-=======
 
                             <a onClick="javascript:loadDoc('problems.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
@@ -196,7 +153,6 @@
                         <!-- onclick="javascript:openField(event, 'addIssue')"-->
                         <li id="addIssue">
                             <a><i class="fa fa-plus fa-fw"></i> Add Issue</a>
->>>>>>> origin/isha
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
@@ -213,11 +169,6 @@
                         <li>
                             <a href="forms.html"><i class="fa fa-user fa-fw"></i> Profile</a>
                         </li>
-<<<<<<< HEAD
-                        
-=======
-
->>>>>>> origin/isha
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -227,21 +178,6 @@
             ?>
             <!-- /.navbar-static-side -->
         </nav>
-<<<<<<< HEAD
-        
-        <!-- Page Content -->
-        
-            <div class="container-fluid" id="field">
-                
-            </div>
-            <!-- /.container-fluid -->
-        
-        <!-- /#page-wrapper -->
-
-        
-    </div>
-    
-=======
 
         <!-- Page Content -->
 
@@ -258,8 +194,6 @@
         <!-- /#page-wrapper -->
 
     </div>
-
->>>>>>> origin/isha
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
