@@ -1,13 +1,31 @@
-function generateUrl()
+function generateUrl(state,district,locality,pin,issue)
 {
-	alert("Please Fill the fields");
-	var query = document.getElementById("issue").value;	//Change the ids
-    var state = document.getElementById("state").value;
-    var district = document.getElementById("district").value;
-    var locality = document.getElementById("locality").value;
-    var pin = document.getElementById("pin").value;
-
-    var url = "ajax.js?query="+query+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin;
-		//Git is connected
+	var url = "getQuery.php?issue="+issue+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin+"&callFunction=get_query";
+	
     loadDoc(url);
+
+}
+
+function loadDoc(url) 
+{   
+    if (window.XMLHttpRequest)
+    {
+        // code for modern browsers
+        xhttp = new XMLHttpRequest();
+    }
+    else
+    {
+        // code for IE6, IE5
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    
+    xhttp.onreadystatechange = function()
+    {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            document.getElementById("field").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
 }

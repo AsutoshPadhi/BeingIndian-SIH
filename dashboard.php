@@ -149,8 +149,9 @@
                             <a onclick="javascript:loadDoc('search1.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
                         </li>
+                        <!-- onclick="javascript:openField(event, 'addIssue')"-->
                         <li id="addIssue">
-                            <a onclick="javascript:openField(event,'addIssue');return false;"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
+                            <a><i class="fa fa-plus fa-fw"></i> Add Issue</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
