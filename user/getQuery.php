@@ -12,11 +12,11 @@
 		$str = $_GET['issue'];
 		$state = $_GET['state'];
 		$district = $_GET['district'];
-		
+
 		//print_r( array_count_values(str_word_count($str, 1)) );
 		$query_word_count =  array_count_values(str_word_count($str, 1));
 
-		$sql = "SELECT title FROM issue";
+		$sql = "SELECT *FROM issue";
 		$result = $conn->query($sql);
 		if($result->num_rows > 0)
 		{
@@ -43,23 +43,40 @@
 			if($percentage[$i]>0.3)
 			{
 				//echo "<a href='#'>".$row[$i]['title']."</a>";
+				
 			?>
-					<button type='button' class='btn btn-info problems' data-toggle='collapse' data-target="#demo<?php echo $i; ?>">
-					<?php  echo  $row["title"]. " " . "<br>";?>
-					</button>
-					<div id="demo<?php echo $i; ?>" class="collapse">
-					<?php
-					echo "CODE:".$row["issue_id"]; ?>
-					<br><?php
-						echo $row["Description"];
-						//echo $row[""]
-						$i++;
+				<button type='button' class='btn btn-info problems' data-toggle='collapse' data-target="#demo<?php echo $i; ?>">
+				<?php  echo  $row[$i]["title"]. " " . "<br>";?>
+				</button>
+				<div id="demo<?php echo $i; ?>" class="collapse">
+				<?php
+				echo "CODE:".$row[$i]["issue_id"]; ?>
+				<br><?php
+					echo $row[$i]["description"];
+					//echo $row[""]
+					//$i++;
 					?>
-				  	</div>;
-		  	<?php
+			  	</div>;
+	  		<?php
 			}
 		}
 
 	}
 
 ?>
+
+<!--?>
+					
+					<button type='button' class='btn btn-info problems' data-toggle='collapse' data-target="#demo<?php echo $i; ?>">
+					<?php  //echo  $row["title"]. " " . "<br>";?>
+					</button>
+					<div id="demo<?php //echo $i; ?>" class="collapse">
+					<?php
+					//echo "CODE:".$row["issue_id"]; ?>
+					<br><?php
+						//echo $row["Description"];
+						//echo $row[""]
+						//$i++;
+					?>
+				  	</div>;
+		  	<?php-->

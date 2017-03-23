@@ -19,7 +19,9 @@
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="styleIndex.css">
+    <!-- Social Buttons CSS -->
+    <link href="../vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style/styleIndex.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -30,6 +32,7 @@
 </head>
 
 <body>
+
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -62,7 +65,7 @@
                 <?php
                     }
                 ?>
-                <a class="navbar-brand" href="index.html"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
+                <a class="navbar-brand" href="index.php"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -103,15 +106,15 @@
                             if($login){
                         ?>
                             </li>
-                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="user/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
                             }
                             else{
                         ?>
-                        <li><a onClick="javascript:loadDoc('login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
+                        <li><a onClick="javascript:loadDoc('user/login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a onClick="javascript:loadDoc('loginpage.php')"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a href="institute/loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
                             }
                         ?>
@@ -122,14 +125,6 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-            <?php
-                if($login){
-
-            ?>
-            
-            <?php
-                }
-            ?>
             <!-- /.navbar-static-side -->
         </nav>
         
@@ -141,7 +136,7 @@
                 <div class="aboutUs lead">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis ornare risus. Quisque sit amet pharetra quam. Curabitur fermentum justo eu est sagittis tincidunt. Cras eu massa nunc. Integer imperdiet molestie tempus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis arcu lorem, bibendum eget commodo quis, fringilla non nibh. </div>
                 <div class="buttons">
                     <button type="button" onclick="location.href='user/dashboard.php';" class="btn btn-outline btn-primary btn-lg" id="search">Search an Issue</button>
-                    <button type="button" onclick="location.href='user/login.php';" class="btn btn-outline btn-primary btn-lg" id="add">Add an Issue</button>
+                    <button type="button" onclick="location.href='user/<?php if($login)echo 'dashboard.php'; else echo "login.php";?>';" class="btn btn-outline btn-primary btn-lg" id="add">Add an Issue</button>
                 </div>
             </div>
             </div>
