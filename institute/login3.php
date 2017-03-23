@@ -6,7 +6,7 @@ $error = "Username or Password is invalid";
 }
 else
 {
-include("dataBaseConn.php");
+include("functions/dataBaseConn.php");
 $username=$_POST['username'];
 $pass=$_POST['password'];
 $var=md5($pass);
