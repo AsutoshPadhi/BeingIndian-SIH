@@ -1,16 +1,8 @@
 <?php
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$db = "hackathon";
+	include 'C:\xampp\htdocs\Github\testProject\functions\dataBaseConn.php';
 
-	$conn = new mysqli($servername, $username, $password, $db);
-
-	if($conn->connect_error)
-	{
-		die("Connection Failed".$conn->connect_error);
-	}
+	
 
 	$sql = "SELECT district_name FROM district WHERE state_id = "."SELECT state_id FROM state WHERE state =";
 	$result = $conn->query($sql);
