@@ -65,7 +65,7 @@
                 <?php
                     }
                 ?>
-                <a class="navbar-brand" href="index.html"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
+                <a class="navbar-brand" href="index.php"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
             </div>
             <!-- /.navbar-header -->
 
