@@ -68,7 +68,6 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 
-                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-info fa-fw"></i> <i class="fa fa-caret-down"></i>
