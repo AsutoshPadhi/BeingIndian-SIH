@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="style/styleLogin.css">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <meta name="google-signin-client_id" content="544991555244-56l58k2od6ib7ahfm1bup3ea78q1g3gg.apps.googleusercontent.com">
     </head>
@@ -49,16 +48,12 @@
     ?>
     <body>
         <div class="mainBox">
-            <div class="loginText">
-                User Login
-            </div>
             <div class="styleBox">
                 <?php
                 if (isset($authUrl)) { ?>
-                    <!--echo "<a href='" . $authUrl . "'><img class='loginButton_gplus' src='gplus/signin_button.png' height='50px'/></a>";-->
-                    <a class="btn btn-block btn-social btn-google-plus" href='<?php echo $authUrl ?>'>
+                    <!--<a class="btn btn-block btn-social btn-google-plus" href='<?php echo $authUrl ?>'>
                         <i class="fa fa-google-plus"></i> Sign in with Google
-                    </a>
+                    </a>-->
                 <?php
                 } 
                 else {
@@ -68,7 +63,6 @@
                     $_SESSION['$lname'] = $fname;
                     $_SESSION['$email'] = $email;
                     header('Location: dashboard.php');
-                    // echo "<a href='?logout'><img src='gplus/signout_button.png' height='50px'/></a></a>";
                 }
                 ?>
             </div>
