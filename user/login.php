@@ -10,7 +10,7 @@
 
     const CLIENT_ID = '544991555244-5pemrlfvr778rqql3demuc5qkl05pild.apps.googleusercontent.com';
     const CLIENT_SECRET = 'mrGZsngSYw6bjHcdNPnruup_';
-    const REDIRECT_URI = 'http://localhost:80/login.php';
+    const REDIRECT_URI = 'http://localhost:80/user/login.php';
 
     $client = new Google_Client();
     $client->setClientId(CLIENT_ID);
@@ -54,8 +54,12 @@
             </div>
             <div class="styleBox">
                 <?php
-                if (isset($authUrl)) {
-                    echo "<a href='" . $authUrl . "'><img class='loginButton_gplus' src='gplus/signin_button.png' height='50px'/></a>";
+                if (isset($authUrl)) { ?>
+                    <!--echo "<a href='" . $authUrl . "'><img class='loginButton_gplus' src='gplus/signin_button.png' height='50px'/></a>";-->
+                    <a class="btn btn-block btn-social btn-google-plus" href='<?php echo $authUrl ?>'>
+                        <i class="fa fa-google-plus"></i> Sign in with Google
+                    </a>
+                <?php
                 } 
                 else {
                     session_start();

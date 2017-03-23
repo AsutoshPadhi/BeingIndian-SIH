@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- AJAX change page -->
     <script src="functions/ajax.js"></script>
 
     <title>Better India!</title>
@@ -20,6 +19,7 @@
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="style/styleIndex.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -83,7 +83,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="loginpage.php">
                                 <div>
                                     <i class="fa fa-institution fa-fw"></i> Institute guide
                                 </div>
@@ -104,15 +104,15 @@
                             if($login){
                         ?>
                             </li>
-                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="user/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
                             }
                             else{
                         ?>
-                        <li><a onClick="javascript:loadDoc('login.php'); return false;" href="login.php"><i class="fa fa-user fa-fw"></i> User Login</a>
+                        <li><a onClick="javascript:loadDoc('user/login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a href="institute/loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
                             }
                         ?>
@@ -123,55 +123,28 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-            <?php
-                if($login){
-
-            ?>
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="tables.html"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Added by you</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Upvoted by you</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-user fa-fw"></i> Profile</a>
-                        </li>
-                        
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <?php
-                }
-            ?>
             <!-- /.navbar-static-side -->
         </nav>
         
         <!-- Page Content -->
         
             <div class="container-fluid" id="field">
-                
+                <div class="container">
+                <div class="tagline panel-body"><h1>Ask questions for a better tomorrow</h1></div>
+                <div class="aboutUs lead">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis ornare risus. Quisque sit amet pharetra quam. Curabitur fermentum justo eu est sagittis tincidunt. Cras eu massa nunc. Integer imperdiet molestie tempus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis arcu lorem, bibendum eget commodo quis, fringilla non nibh. </div>
+                <div class="buttons">
+                    <button type="button" onclick="location.href='user/dashboard.php';" class="btn btn-outline btn-primary btn-lg" id="search">Search an Issue</button>
+                    <button type="button" onclick="location.href='user/<?php if($login)echo 'dashboard.php'; else echo "user/login.php";?>';" class="btn btn-outline btn-primary btn-lg" id="add">Add an Issue</button>
+                </div>
+            </div>
             </div>
             <!-- /.container-fluid -->
         
         <!-- /#page-wrapper -->
+        <video autoplay loop width="100%" height="auto">
+            <source src="https://indiastack.org/wp-content/themes/indiastack/video/videobg.webm" type="video/webm">
+        </video>
 
-        
     </div>
     
 
