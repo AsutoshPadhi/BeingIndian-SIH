@@ -26,6 +26,7 @@ function loadDoc(url)
             document.getElementById("field").innerHTML = this.responseText;
         }
     };
+
     xhttp.open("GET", url, true);
     xhttp.send();
 }

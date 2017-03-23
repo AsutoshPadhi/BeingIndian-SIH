@@ -23,13 +23,13 @@
                 </div>
                 <div class="col-xs-6 col-md-2">
 
-                    <input class="form-control" id="locality" type="text" placeholder="Enter locality here">
+                    <input class="form-control" id="locality" type="text" placeholder="locality (optional)">
                 </div>
                 <div class="col-xs-6 col-md-2">
-                    <input class="form-control" id="pin" type="text" placeholder="Enter pincode here">
+                    <input class="form-control" id="pin" type="text" placeholder="pincode (optional)">
                 </div>
                 <div class="search col-xs-10 col-md-3">
-                    <input class="form-control" id="issue" type="text" placeholder="Search here">
+                    <input class="form-control" id="issue" type="text" placeholder="Keywords">
                 </div>
                 <input class="search btn btn-primary" type="submit" value="Search" 
                 onclick="generateUrl((document.getElementById('state').value),(document.getElementById('district').value),
