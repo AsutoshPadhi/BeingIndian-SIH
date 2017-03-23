@@ -2,14 +2,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="../functions/ajax.js"></script>
+
+    <title>Better India!</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 <body>
 <?php
 	session_start();
 		//$use_name=$_POST['username'];
+	$login=true;
 	if($_SESSION['login_user']!=null)
 	{
-		//echo "Welcome " . $_SESSION['login_user'] . "<br>";
+		
 		$a=$_SESSION['login_user'];
 		 $conn=mysqli_connect("localhost","root","","hackathon");
 		//$result=$conn->query($sql); //this query is stored in result variable 
@@ -28,35 +52,33 @@
 				else
 				{
 					//include("dashboard.php");
-					//header("location:dashboard.php");
-					 <a class="navbar-brand" href="../index.html"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
+					//header("location:dashboard.php");?>
+					<div id="wrapper">
+					<!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <?php
+                     //echo "Welcome " . $_SESSION['login_user'] . "<br>";
+                                          
+                     if($login){
+
+                ?>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <?php
+                    }
+                ?>
+                <a class="navbar-brand" href="../index.html"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
                 
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-info fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a onClick="MyWindow=window.open('../userguide.php','MyWindow',width=300,height=150)">
-                                <div>
-                                    <i class="fa fa-info-circle fa-fw"></i> User guide
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a onClick="MyWindow=window.open('../instituteguide.php','MyWindow',width=300,height=150)">
-                                <div>
-                                    <i class="fa fa-institution fa-fw"></i> Institute guide
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
+               
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -69,7 +91,7 @@
                             if($login){
                         ?>
                             </li>
-                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="logout1.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
                             }
@@ -81,9 +103,10 @@
                         <?php
                             }
                         ?>
+                        </li>
+                        </ul>
 
-                    </ul>
-                    <!-- /.dropdown-user -->
+              
                 </li>
                 <!-- /.dropdown -->
             </ul>
@@ -91,15 +114,6 @@
             <?php
                 if($login){
 
-            ?>
-             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <?php
-            }
             ?>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -163,11 +177,12 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <?php
+			    }
 
-				}
-			}
-		}
-					
+			 }
+	}
+
 	else
 	{
 		echo "<b>Something went wrong</b>!!!!";

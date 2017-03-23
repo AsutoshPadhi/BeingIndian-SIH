@@ -25,7 +25,45 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
- 
+  <style>
+  .modal {
+    display: none; /* Hidden by default */
+    position:fixed;
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+  </style>
 
 </head>
 
@@ -100,7 +138,61 @@
                         ?>
                         <li><a onclick="javascript:loadDoc('login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a href="loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a  id="click"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form action="login3.php" method="post">
+
+<h1 style="text-align:center"><u>Login Form</u></h1>
+  
+    <label><b>Email</b></label>
+    <input type="email" placeholder="Enter Email" name="username" required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required maxlength=9>
+        
+    <input type="submit" value="LOGIN" name="loginuser" class="login">
+    <br>
+    <input type="checkbox" checked="checked"> Remember me
+  
+</form>
+  <div class="container" style="background-color:#f1f1f3">
+   <!--<button type="button" class="cancelbtn" onclick="f1()">Cancel</button>-->
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+  </div>
+</div>
+<script>
+
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("click");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick =function () {
+    modal.style.display = "block";
+    alert("hello");
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
                         <?php
 
                             }
