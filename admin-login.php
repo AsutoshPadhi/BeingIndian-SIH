@@ -13,7 +13,7 @@
     </head>
 
     <body>
-        <? require('function/dataBaseConn.php'); ?>
+        <?php require('functions/dataBaseConn.php'); ?>
         <?php
             if(isset($_POST['username'])&& isset($_POST['password'])){
                 $username = $_POST['username'];
@@ -42,7 +42,7 @@
                 <div class="col-md-4 form-group input-group">
                     <span class="input-group-addon"><i class="fa fa-hashtag"></i>
                     </span>
-                    <input type="text" class="form-control" name="password" placeholder="Enter Password">
+                    <input type="password" class="form-control" name="password" placeholder="Enter Password">
                 </div>
                 <input class="col-md-4 search btn btn-primary" type="submit" value="Login">
             </form>
