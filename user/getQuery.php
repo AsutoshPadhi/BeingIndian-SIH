@@ -38,10 +38,10 @@
 		/*For notification and proceed to add button*/
 		?>
 
-		<button type="button" class="btn btn-primary btn-lg btn-block" onclick="loadDoc('add-issue-description.php')">Proceed to Add new Issue</button><br><hr><br>		<!--Add the variable to be passed to the url-->
+		
 		<div class="alert alert-info alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            Please check if the solution already exists or else click on the above button.
+            Please check if the solution already exists or else Proceed.
         </div>
 
 		<?php
@@ -56,7 +56,7 @@
 				
 			?>
 				
-				<button type='button' class='btn btn-info problems' data-toggle='collapse' data-target="#demo<?php echo $i ?>">
+				<button type='button' class='col-md-12 btn btn-info problems' data-toggle='collapse' data-target="#demo<?php echo $i ?>">
 				<?php  echo  $row[$i]["title"]. " " . "<br>";?>
 				</button>
 				<div id="demo<?php echo $i; ?>" class="collapse">
@@ -67,11 +67,15 @@
 					//echo $row[""]
 					//$i++;
 					?>
-			  	</div>
+			  	</div><hr><br>
 	  		<?php
 			}
 		}
+		?>
+		<br><br><hr>
+		<button type="button" class="btn btn-primary btn-lg btn-block" onclick="loadDoc('add-issue-description.php')">Proceed to Add new Issue</button>		<!--Add the variable to be passed to the url-->
 
+	<?php
 	}
 
 ?>
