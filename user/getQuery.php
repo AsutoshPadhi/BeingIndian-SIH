@@ -52,7 +52,7 @@
 				<?php
 				echo "CODE:".$row[$i]["issue_id"]; ?>
 				<br><?php
-					echo $row[$i]["Description"];
+					echo $row[$i]["description"];
 					//echo $row[""]
 					//$i++;
 					?>
