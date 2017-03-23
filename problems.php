@@ -15,7 +15,7 @@
 
 <?php
 $con= mysqli_connect("localhost","root","");
-$selected = mysqli_select_db($con,'problems') 
+$selected = mysqli_select_db($con,'hackathon') 
   or die("Could not select examples");
   
   
