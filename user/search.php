@@ -150,13 +150,13 @@
 					{
 						$url = "search.php?page=".$page."";
 				?>
-				<script>
+				<!--<script>
 					alert("apple");
-					var url<?php echo $page; ?> = '<?php echo $url; ?>';
+					var url<?php //echo $page; ?> = '<?php //echo $url; ?>';
 					field = "problem";
-				</script>
+				</script>-->
 				<?php
-						echo '<li><a onclick="javascript:loadDoc(url'.$page.',field)">'.$page.'</a></li>';
+						echo "<li><a onclick='javascript:loadDoc(\"".$url."\",\"problem\")'>".$page."</a></li>";
 					}
 					echo "<li><a onclick='javascript:loadDoc(\"search.php?page=".$next."\",\"problem\")' class='button'>NEXT</a></li>";
 				?>
