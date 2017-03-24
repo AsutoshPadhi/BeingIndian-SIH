@@ -13,14 +13,8 @@ function generateUrlAdd(state,district,locality,pin,issueTitle,description)
 function getDistrict(state)
 {
     var url = "district_list.php?state="+state+"&callFunction=get_query";
-    alert(url);
+    //alert(url);
     loadDoc2(url);
-}
-
-function generateUrlAdd(state,district,locality,pin,issueTitle,description)
-{
-    var url = "insertIssue.php?issueTitle="+issueTitle+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin+"&description="+description+"&callFunction=get_query";
-    loadDoc(url);
 }
 
 function loadDoc(url)               //tab doesn't work after removing this
