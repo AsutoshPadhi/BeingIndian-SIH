@@ -5,9 +5,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="dashboard.css">
+	 <link rel="stylesheet" href="problemdescription.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="..jquery-3.2.0.min.js"></script>
+	
 	<script>
 
 	function loadSearch(url){
@@ -37,7 +37,7 @@
 <body>
 <?php
 $con= mysqli_connect("localhost","root","");
-$selected = mysqli_select_db($con,'hackathon') 
+$selected = mysqli_select_db($con,'problems') 
   or die("Could not select examples");
 $sql="Select * from issue where 1 ";
 $result=mysqli_query($con,$sql);
@@ -64,12 +64,28 @@ while($row= mysqli_fetch_array($result))
 
 $start_limit=($page-1)*$results_per_page;
 
-
-$last=$row/$results_per_page;
-if($last<1)
+if($page>1)
 {
-	$last=1;
+$pre=$page-1;
+//$next=$page+1;
 }
+else
+{
+	$pre=1;
+	
+}
+if($page<$no_of_pages)
+{
+$next=$page+1;
+//$next=$page+1;
+}
+else
+{
+	$next=$no_of_pages;
+	
+}
+
+
 $sql="select * from issue LIMIT ".$start_limit.','.$results_per_page;
 
 $result=mysqli_query($con,$sql);
@@ -105,7 +121,7 @@ $result=mysqli_query($con,$sql);
 						else
 						{
 							
-							echo "<button style='float:right' class='btn-primary'> Upvote</button>";
+							echo "<button  class='btn-primary'> Upvote</button>";
 						}
 						
 						
@@ -158,13 +174,13 @@ $result=mysqli_query($con,$sql);
 		?>
 		<div class="container">
 			<ul class="pagination">
-				<?php echo "<li><a href='search1new.php?page=".($page-1)."' class='button'>Previous</a></li>"; ?>
+				<?php echo "<li><a href='buttononsearchresults.php?page=".$pre." class='button'>Previous</a></li>"; ?>
 
 				<?php
 
 					for($page=1;$page<=$no_of_pages;$page++)
 					{
-						$url = "search1new.php?page=".$page."";
+						$url = "buttononsearchresults.php?page=".$page."";
 				?>
 						<script>
 							var url<?php echo $page; ?> = '<?php echo $url; ?>';
@@ -175,7 +191,7 @@ $result=mysqli_query($con,$sql);
 					}
 
 			
-				echo "<li><a href='search1new.php?page=".($page+1)."' class='button'>NEXT</a></li>";	?>
+				echo "<li><a href='buttononsearchresults.php?page=".$next."' class='button'>NEXT</a></li>";		?>
 			</ul>
 		</div>
 	</div>
