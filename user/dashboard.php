@@ -132,27 +132,27 @@
                     <ul class="nav" id="side-menu">
                         <li>
 
-                            <a onClick="javascript:loadDoc('search.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick="javascript:loadDoc('search.php','field')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
                         </li>
                         <!-- onclick="javascript:openField(event, 'addIssue')"-->
                         <li id="addIssue">
-                            <a onClick="javascript:loadDoc('add-issue.php')"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
+                            <a onClick="javascript:loadDoc('add-issue.php','field')"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a onClick="javascript:loadDoc('added-by-you.php')">Added by you</a>
+                                    <a onClick="javascript:loadDoc('added-by-you.php','field')">Added by you</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('upvoted-by-you.php')">Upvoted by you</a>
+                                    <a onClick="javascript:loadDoc('upvoted-by-you.php','field')">Upvoted by you</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="javascript:loadDoc('profile.php')"><i class="fa fa-user fa-fw"></i> Profile</a>
+                            <a href="javascript:loadDoc('profile.php','field')"><i class="fa fa-user fa-fw"></i> Profile</a>
                         </li>
 
                     </ul>
@@ -185,7 +185,7 @@
         else{
             document.getElementById("main").style.marginLeft = "0px";
         }
-        loadDoc('search.php');
+        loadDoc('search.php','field');
     </script>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>

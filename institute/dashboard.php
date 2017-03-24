@@ -98,7 +98,7 @@
                             }
                             else{
                         ?>
-                        <li><a onclick="javascript:loadDoc('login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
+                        <li><a onclick="javascript:loadDoc('login.php','field')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
                         <li><a href="loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
@@ -120,25 +120,25 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a onClick="javascript:loadDoc('search.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick="javascript:loadDoc('search.php','field')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a onClick="javascript:loadDoc('solutions-provided.php')">Solutions Provided</a>
+                                    <a onClick="javascript:loadDoc('solutions-provided.php','field')">Solutions Provided</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('reported-bogus.php')">Reported as bogus</a>
+                                    <a onClick="javascript:loadDoc('reported-bogus.php','field')">Reported as bogus</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('reported-duplicate.php')">Reported as duplicate</a>
+                                    <a onClick="javascript:loadDoc('reported-duplicate.php','field')">Reported as duplicate</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a onClick="javascript:loadDoc('change-password.php')"><i class="fa fa-user fa-fw"></i> Change Password</a>
+                            <a onClick="javascript:loadDoc('change-password.php','field')"><i class="fa fa-user fa-fw"></i> Change Password</a>
                         </li>
                         
                     </ul>
