@@ -80,12 +80,11 @@
 		<div id="demo<?php echo $i; ?>" class="collapse body">
 			<?php
 				echo "<b id='code'>CODE : </b> ".$row["issue_id"]; ?>
-			<br>
+			<br><hr>
 			<?php
 				echo "<b id='code'>Description :</b> <br>".$row["description"];
-			?><br>
-			<br>
-
+			?><br><hr>
+			
 			<?php
 			//echo $row[""]
 				if($row["upvote_count"]>=500)
@@ -94,17 +93,17 @@
 				}
 				else
 				{
-					echo "<button  class='btn-primary'> Upvote</button>";
+					echo "<button style='margin-left: 15px' class='btn btn-primary'> Upvote</button>";
 				}
 
 
 				if($row["solution_count"] >0)
 				{
 
-			?>
+			?><hr>
 			<div class='panel-body'>
 				<!-- Button trigger modal -->
-				<button class='btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal'>
+				<button class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
 				See the solution
 				</button>
 				<!-- Modal -->

@@ -10,9 +10,9 @@ function generateUrlAdd(state,district,locality,pin,issueTitle,description)
     loadDoc(url);
 }
 
-function getDistrict(state)
+function getDistrict(state1)
 {
-    var url = "district_list.php?state="+state+"&callFunction=get_query";
+    var url = "district_list.php?state="+state1+"&callFunction=get_query";
     //alert(url);
     loadDoc2(url);
 }
@@ -62,7 +62,7 @@ function loadDoc2(url)               //tab doesn't work after removing this
     {
         if (this.readyState == 4 && this.status == 200)
         {
-            document.getElementById("district").innerHTML = this.responseText;
+            document.getElementById("district1").innerHTML = this.responseText;
         }
     };
     xhttp.open("GET", url, true);
