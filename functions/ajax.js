@@ -1,4 +1,4 @@
-function loadDoc(url) 
+function loadDoc(url,field) 
 {   
     if (window.XMLHttpRequest)
     {
@@ -14,7 +14,7 @@ function loadDoc(url)
     {
         if (this.readyState == 4 && this.status == 200)
         {
-            document.getElementById("field").innerHTML = this.responseText;
+            document.getElementById(field).innerHTML = this.responseText;
         }
     };
     xhttp.open("GET", url, true);
