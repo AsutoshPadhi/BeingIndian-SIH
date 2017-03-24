@@ -6,7 +6,9 @@ $error = "Username or Password is invalid";
 }
 else
 {
-include("functions/dataBaseConn.php");
+//include("D:/testProject/functions/dataBaseConn.php");
+	$conn=mysqli_connect("localhost","root","","hackathon");
+	
 $username=$_POST['username'];
 $pass=$_POST['password'];
 $var=md5($pass);
