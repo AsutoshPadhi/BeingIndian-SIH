@@ -18,7 +18,6 @@
                 <div class="form-group col-xs-6 col-md-2">
                     <select class="form-control" id="district">             
                         <option disabled selected>Districts</option>
-                        <?php include 'district_list.php'; ?>
                     </select>
                 </div>
                 <div class="col-xs-6 col-md-2">
