@@ -105,7 +105,7 @@ $result=mysqli_query($con,$sql);
 						else
 						{
 							
-							echo "<button style='float:right' class='btn-primary'> Upvote</button>";
+							echo "<button style='float:right,padding:50px' class='btn-primary'> Upvote</button>";
 						}
 						
 						
