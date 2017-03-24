@@ -10,7 +10,7 @@
 	<div class="form-group col-xs-6 col-md-3">
 	    <select class="form-control" name="district" id="district">             
 	        <option disabled selected>Districts</option>
-	        <!--<?php //include 'district_list.php'?>-->
+	        <?php include 'district_list.php';?>
 	    </select>
 	</div>
 
