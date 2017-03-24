@@ -37,7 +37,7 @@
 <body>
 <?php
 $con= mysqli_connect("localhost","root","");
-$selected = mysqli_select_db($con,'problems') 
+$selected = mysqli_select_db($con,'hackathon') 
   or die("Could not select examples");
 $sql="Select * from issue where 1 ";
 $result=mysqli_query($con,$sql);

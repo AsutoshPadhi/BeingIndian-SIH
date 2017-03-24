@@ -91,7 +91,7 @@
                             
                             if($login){
                         ?>
-                            </li>
+				
                             <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
@@ -100,15 +100,50 @@
                         ?>
                         <li><a onclick="javascript:loadDoc('login.php','field')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a href="loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
-                        <?php
+						
+                        <li><a  class='btn 'onclick="javascript:loadDoc('loginpagetest.php','field')" data-toggle='modal'data-target='#myModal' ><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                         </li>	
+						
+						
+						<?php
+                           /* <!-- Button trigger modal -->
+                           <!-- <button  data-toggle='modal'data-target='#myModal'>
+                                Launch Demo Modal
+                            </button>
+                            <!-- Modal -->
+                          <!--  <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>-->
+						  echo "<div class='panel-body'>
+                                <div class='modal-dialog'>
+                                    <div class='modal-content'>
+                                        <div class='modal-header'>
+                                            <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+                                            <h4 class='modal-title'id='myModalLabel'>Modal title</h4>
+                                        </div>
+                                        <div class='modal-body'>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        </div>
+                                        <div class='modal-footer'>
+                                            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                                            <button type='button' class='btn btn-primary'>Save changes</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>";*/
+                 
+                       ?>
+							
+							   
+					
+						<?php
+							}?>
 
-                            }
-                        ?>
-
+					
                     </ul>
+					</li>
                     <!-- /.dropdown-user -->
-                </li>
+               
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
