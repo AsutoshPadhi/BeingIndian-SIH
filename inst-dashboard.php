@@ -101,7 +101,7 @@
                             
                             if($login){
                         ?>
-                            </li>
+                            <li>
                             <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
