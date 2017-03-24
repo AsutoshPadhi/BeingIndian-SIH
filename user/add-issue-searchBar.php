@@ -1,7 +1,7 @@
 <form>
 
 	<div class="form-group col-xs-6 col-md-3">
-	    <select class="form-control" name="state" id="state">
+	    <select class="form-control" name="state" id="state" onchange="getDistrict(document.getElementById('state').value)">
             <option disabled selected>State</option>
 	        <?php include 'stateList.php'; ?>
 	    </select>
@@ -10,7 +10,7 @@
 	<div class="form-group col-xs-6 col-md-3">
 	    <select class="form-control" name="district" id="district" onclick="getDistrictFromState(document.getElementById('state').value)">             
 	        <option disabled selected>Districts</option>
-	        <?php include 'district_list.php';?>
+	        <!--<?php //include 'district_list.php'?>-->
 	    </select>
 	</div>
 
