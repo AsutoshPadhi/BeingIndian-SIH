@@ -1,5 +1,5 @@
 <?php
     session_start();
     session_destroy();
-    include("dashboard.php");
+    include("login1.php");
 ?>
