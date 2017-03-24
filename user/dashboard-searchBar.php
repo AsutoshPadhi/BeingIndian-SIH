@@ -9,13 +9,8 @@
             <form>
 
                 <div class="form-group col-xs-6 col-md-2">
-<<<<<<< HEAD
-                    <select class="form-control" id="state">
-                        <option disabled selected>State</option>
-=======
                     <select class="form-control" id="state" onchange="getDistrict(document.getElementById('state').value)">
-                            <option disabled selected>State</option>
->>>>>>> refs/remotes/origin/master
+                        <option disabled selected>State</option>
                         <?php include 'stateList.php'; ?>
                     </select>
                 </div>
