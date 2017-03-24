@@ -1,45 +1,17 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <script src="../functions/ajax.js"></script>
-
-    <title>Better India!</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-<body>
 <?php
 	session_start();
-		//$use_name=$_POST['username'];
 	$login=true;
+	//$use_name=$_POST['username'];
 	if($_SESSION['login_user']!=null)
 	{
-		
+		//echo "Welcome " . $_SESSION['login_user'] . "<br>";
 		$a=$_SESSION['login_user'];
-		 $conn=mysqli_connect("localhost","root","","hackathon");
-		//$result=$conn->query($sql); //this query is stored in result variable 
-		$sql="select * from institute where inst_email='$a'";
-		$result=mysqli_query($conn,$sql);
-		while($row=mysqli_fetch_array($result))//fetch a complete record from a particular table
+		
+ $conn=mysqli_connect("localhost","root","","hackathon");
+//$result=$conn->query($sql); //this query is stored in result variable 
+$sql="select * from institute where inst_email='$a'";
+$result=mysqli_query($conn,$sql);
+	while($row=mysqli_fetch_array($result))//fetch a complete record from a particular table
 			{
 				$flag=$row['flag'];
 				if($flag==0)
@@ -49,145 +21,16 @@
 					header("location:loginpage2.php");
 				
 				}
+				else if($flag==1)
+				{
+					include("afterlogin.php");
+				}
+			}
+		}
 				else
 				{
-					//include("dashboard.php");
-					//header("location:dashboard.php");?>
-					<div id="wrapper">
-					<!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <?php
-                     //echo "Welcome " . $_SESSION['login_user'] . "<br>";
-                                          
-                     if($login){
-
-                ?>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <?php
-                    }
-                ?>
-                <a class="navbar-brand" href="../index.html"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                
-               
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-
-                        <?php
-                            
-                            if($login){
-                        ?>
-                            </li>
-                            <li><a href="logout1.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                            </li>
-                        <?php
-                            }
-                            else{
-                        ?>
-                        <li><a onClick="javascript:loadDoc('login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
-                        </li>
-                        <li><a href="loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
-                        <?php
-                            }
-                        ?>
-                        </li>
-                        </ul>
-
-              
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-            <?php
-                if($login){
-
-            ?>
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a onClick="javascript:loadDoc('search.php')" ><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a onClick="javascript:loadDoc('solutions-provided.php')">Solutions Provided</a>
-                                </li>
-                                <li>
-                                    <a onClick="javascript:loadDoc('reported-bogus.php')">Reported as bogus</a>
-                                </li>
-                                <li>
-                                    <a onClick="javascript:loadDoc('reported-duplicate.php')">Reported as duplicate</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a onClick="javascript:loadDoc('change-password.php')"><i class="fa fa-user fa-fw"></i> Change Password</a>
-                        </li>
-                        
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <?php
-                }
-            ?>
-            <!-- /.navbar-static-side -->
-        </nav>
-        
-        <!-- Page Content -->
-        
-        <div class="main-content" id="main">
-            <div class="container-fluid" id="field">
-
-            </div>
-            <!-- /.container-fluid -->
-        </div>
-            <!-- /.container-fluid -->
-        
-        <!-- /#page-wrapper -->
-
-        
-    </div>
-    
-
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-    <?php
-			    }
-
-			 }
-	}
-
-	else
-	{
-		echo "<b>Something went wrong</b>!!!!";
-		
-	}
+					echo "something went wrong....";
+				}
 ?>
-</body>
-</html>
+					
+					

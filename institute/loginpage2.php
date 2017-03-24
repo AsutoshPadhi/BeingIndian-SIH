@@ -5,7 +5,8 @@
 </head>
 <body>
 <div class="fullpage">
-<form action="insthomepage.php" method="post">
+
+<form action="afterlogin.php" method="post">
 <div class="container">
  <b>PASSWORD</b>:
  <input type="password" name="psw" id="psw" required>
