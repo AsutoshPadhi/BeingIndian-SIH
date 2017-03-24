@@ -1,6 +1,6 @@
 <?php
 
-	include 'C:\xampp\htdocs\Github\testProject\functions\dataBaseConn.php';
+	include '../functions/dataBaseConn.php';
 
 	session_start();
 	$state = $_GET['state'];
