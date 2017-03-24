@@ -30,6 +30,8 @@
 </head>
 <body>
 
+     loadDoc('search.php');
+
     <div id="wrapper">
 
         <!-- Navigation -->
