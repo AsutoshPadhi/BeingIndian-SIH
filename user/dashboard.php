@@ -176,7 +176,11 @@
         <!-- /#page-wrapper -->
 
     </div>
-
+    <?php 
+        if(isset($_GET['toOpen'])){
+            $toOpen = $_GET['toOpen'];
+        }
+    ?>
     <script>
         var login = <?php if($login){echo "true";}else{echo "false";}?>;
         if(login){
@@ -185,7 +189,7 @@
         else{
             document.getElementById("main").style.marginLeft = "0px";
         }
-        loadDoc('search.php','field');
+        loadDoc('<?php echo $toOpen; ?>','field');
     </script>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
