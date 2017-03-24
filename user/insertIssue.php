@@ -58,9 +58,9 @@
 	}
 	
 	
-	if(isset($locality))
+	if($locality != "")
 	{
-		if(isset($pin))
+		if($pin != "")
 		{
 			$sql = "INSERT INTO issue(issue_id, user_id, district_id, region_id, locality, pin, title, description)VALUES()";
 		}
