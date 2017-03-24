@@ -135,8 +135,19 @@
                 <div class="tagline panel-body"><h1>Ask questions for a better tomorrow</h1></div>
                 <div class="aboutUs lead">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis ornare risus. Quisque sit amet pharetra quam. Curabitur fermentum justo eu est sagittis tincidunt. Cras eu massa nunc. Integer imperdiet molestie tempus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis arcu lorem, bibendum eget commodo quis, fringilla non nibh. </div>
                 <div class="buttons">
-                    <button type="button" onclick="location.href='user/dashboard.php';" class="btn btn-outline btn-primary btn-lg" id="search">Search an Issue</button>
-                    <button type="button" onclick="location.href='user/<?php if($login)echo 'dashboard.php'; else echo "login.php";?>';" class="btn btn-outline btn-primary btn-lg" id="add">Add an Issue</button>
+                    <button type="button" onclick="location.href='user/dashboard.php?toOpen=search.php';" class="btn btn-outline btn-primary btn-lg" id="search">Search an Issue</button>
+                    <?php 
+                        if($login){
+                    ?>
+                    <button type="button" onclick="location.href='user/dashboard.php?toOpen=add-issue.php'" class="btn btn-outline btn-primary btn-lg" id="add">Add an Issue</button>
+                    <?php
+                        }
+                        else{
+                    ?>
+                    <button type="button" class="btn btn-outline btn-primary btn-lg" id="add" data-toggle="modal" data-target="#myModal2">Add an Issue</button>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
             </div>
@@ -165,7 +176,7 @@
     <!-- Large modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -209,7 +220,7 @@
     <?php require('user/login.php') ?>
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -218,7 +229,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <div class="mainBox">
                                 <div class="loginText">
                                     User Login
