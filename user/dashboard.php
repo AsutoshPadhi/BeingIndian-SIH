@@ -29,9 +29,9 @@
     <![endif]-->
 </head>
 <body>
-    <script>
-        loadDoc('search.php');
-    </script>
+
+     loadDoc('search.php');
+
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -51,17 +51,7 @@
                     else{
                         $login = false;
                     }
-                ?>
-                <script>
-                    var login = <?php if($login){echo "true";}else{echo "false";}?>;
-                    if(login){
-                        document.getElementById("main").style.marginLeft = "0px";
-                    }
-                    else{
-                        document.getElementById("main").style.marginLeft = "250px";
-                    }
-                </script>
-                <?php
+
                     if($login){
 
                 ?>
@@ -189,7 +179,16 @@
 
     </div>
 
-
+    <script>
+        var login = <?php if($login){echo "true";}else{echo "false";}?>;
+        if(login){
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+        else{
+            document.getElementById("main").style.marginLeft = "0px";
+        }
+        loadDoc('search.php');
+    </script>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
