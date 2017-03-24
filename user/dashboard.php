@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <script src="functions/ajax.js"></script>
+    <script src="../functions/ajax.js"></script>
     <script src="urlGenerator.js"></script>
     <script src="tabs.js"></script>
 
@@ -176,7 +176,11 @@
         <!-- /#page-wrapper -->
 
     </div>
-
+    <?php 
+        if(isset($_GET['toOpen'])){
+            $toOpen = $_GET['toOpen'];
+        }
+    ?>
     <script>
         var login = <?php if($login){echo "true";}else{echo "false";}?>;
         if(login){
@@ -185,7 +189,7 @@
         else{
             document.getElementById("main").style.marginLeft = "0px";
         }
-        loadDoc('search.php','field');
+        loadDoc('<?php echo $toOpen; ?>','field');
     </script>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -198,9 +202,10 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -244,7 +249,7 @@
     <?php require('login.php') ?>
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -253,7 +258,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <div class="mainBox">
                                 <div class="loginText">
                                     User Login
