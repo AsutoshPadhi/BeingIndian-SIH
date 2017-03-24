@@ -11,12 +11,15 @@
 	$title = $_GET['issueTitle'];
 	$description = $_GET['description'];
 
-	$district_id = 2;
+	//$district_id = 2;
 	$user_id = 2000;
 
-	#$get_state_id = "SELECT state_id from state where state_name='.$state.'";
 	$get_district_id = "SELECT district_id FROM district, state WHERE state.state_id = district.district_id";	
-	#Use nested or join
+	$dist = $conn->query($get_district_id);
+	$get_dist = $dist->fetch_assoc();
+	$district_id = $get_dist['district_id'];
+	//echo "".$district_id;
+
 
 	$get_last_issue_id = "SELECT issue_id FROM issue";
 
@@ -32,10 +35,9 @@
 	}
 	$issue_id = 100000+$j;
 
-	echo "issue_id".$issue_id;
-
+	//echo "district_id = ".$district_id."<br>";
 	#get region_id also
-	$get_region_id = "SELECT region_id FROM districtsinregion WHERE district_id = 2";	//Change this number
+	$get_region_id = "SELECT region_id FROM districtsinregion WHERE district_id = '".$district_id."'";
 	$result = $conn->query($get_region_id);
 	if($result->num_rows > 0)
 	{
@@ -48,12 +50,18 @@
 	//echo "region_id".$region_id;
 
 	$sql = "INSERT INTO issue(issue_id, user_id, district_id, region_id, title, description) VALUES
-			('$issue_id','$user_id','$district_id','$region_id','$title','$description')";
-	$conn->query($sql);
-	
+			('$issue_id','$user_id','$district_id', '$region_id', '$title','$description')";
+	if ($conn->query($sql) === TRUE)
+	{
+	    echo "New record created successfully";
+	}
+	else
+	{
+	    echo "Error: " . $sql . "<br>" . $conn->error;
+	}
 
 	//$sql = "INSERT INTO issue(issue_id,)";
-	if(isset($locality))
+	/*if(isset($locality))
 	{
 		if(isset($pin))
 		{
@@ -67,6 +75,6 @@
 	else
 	{
 		$sql = "INSERT INTO issue(issue_id, user_id, district_id, region_id, title, description)VALUES()";
-	}
+	}*/
 
 ?>
