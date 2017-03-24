@@ -9,14 +9,14 @@
             <form>
 
                 <div class="form-group col-xs-6 col-md-2">
-                    <select class="form-control" id="state" onchange="getDistrict(document.getElementById('state').value)">
+                    <select class="form-control" id="state1" onchange="getDistrict(document.getElementById('state1').value)">
                         <option disabled selected>State</option>
                         <?php include 'stateList.php'; ?>
                     </select>
                 </div>
 
                 <div class="form-group col-xs-6 col-md-2">
-                    <select class="form-control" id="district">             
+                    <select class="form-control" id="district1">             
                         <option disabled selected>Districts</option>
                     </select>
                 </div>

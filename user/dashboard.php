@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="../functions/ajax.js"></script>
     <script src="urlGenerator.js"></script>
     <script src="tabs.js"></script>
@@ -132,27 +133,28 @@
                     <ul class="nav" id="side-menu">
                         <li>
 
-                            <a onClick="javascript:loadDoc('search.php','field')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick="javascript:loadDoc('search.php','field');$('#searchBar').show();"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
                         </li>
                         <!-- onclick="javascript:openField(event, 'addIssue')"-->
                         <li id="addIssue">
-                            <a onClick="javascript:loadDoc('add-issue.php','field')"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
+                            <a onclick="javascript:loadDoc('add-issue.php','field');$('#searchBar').hide();" 
+                            onload="hideSearchBar()"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a onClick="javascript:loadDoc('added-by-you.php','field')">Added by you</a>
+                                    <a onClick="javascript:loadDoc('added-by-you.php','field');$('#searchBar').hide();">Added by you</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('upvoted-by-you.php','field')">Upvoted by you</a>
+                                    <a onClick="javascript:loadDoc('upvoted-by-you.php','field');$('#searchBar').hide();">Upvoted by you</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="javascript:loadDoc('profile.php','field')"><i class="fa fa-user fa-fw"></i> Profile</a>
+                            <a onClick="javascript:loadDoc('profile.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Profile</a>
                         </li>
 
                     </ul>
@@ -168,6 +170,9 @@
         <!-- Page Content -->
 
         <div class="main-content" id="main">
+            <div class="searchBar" id="searchBar">
+                <?php require('dashboard-searchBar.php'); ?>
+            </div>
             <div class="container-fluid" id="field">
 
             </div>
