@@ -7,7 +7,7 @@ body
 
 
 .body
-{
+{	
 	border: 0.5px solid #337ab7;
 	padding:15px;
 	background:3F9FBA;
@@ -22,9 +22,4 @@ body
 button
 {
 	background-color:;
-}
-#problem{
-	width: 100%;
-	overflow-y: scroll;
-	overflow-x: hidden;
 }
