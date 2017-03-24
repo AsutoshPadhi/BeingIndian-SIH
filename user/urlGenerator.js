@@ -64,3 +64,14 @@ function loadDoc2(url)               //tab doesn't work after removing this
     xhttp.open("GET", url, true);
     xhttp.send();
 }
+
+function hideSearchBar()
+{
+    //alert("hi");
+    //document.getElementById('searchBar').style.display = "none";
+    $("#searchBar").hide();
+}
+function showSearchBar()
+{
+    $("#searchBar").show();
+}
