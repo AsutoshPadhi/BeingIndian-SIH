@@ -1,3 +1,4 @@
+<!-- Hello World-->
 <?php
 	
 	$callFunction = $_REQUEST['callFunction'];			//Receives 
