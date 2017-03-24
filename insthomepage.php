@@ -81,7 +81,8 @@ input[type=text]
 	 
 }
 
-
+//<li><a href="loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+  
 
 </style>
 
