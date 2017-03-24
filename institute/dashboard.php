@@ -100,7 +100,13 @@
                         ?>
                         <li><a onclick="javascript:loadDoc('login.php','field')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a href="loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        
+                        <li><a ><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <?php
+                        include("likepage.php");
+                        ?>
+                            </li>
+                            </div>
                         <?php
 
                             }
@@ -108,7 +114,7 @@
 
                     </ul>
                     <!-- /.dropdown-user -->
-                </li>
+                
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
