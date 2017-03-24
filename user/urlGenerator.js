@@ -17,6 +17,12 @@ function getDistrict(state)
     loadDoc2(url);
 }
 
+function generateUrlAdd(state,district,locality,pin,issueTitle,description)
+{
+    var url = "insertIssue.php?issueTitle="+issueTitle+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin+"&description="+description+"&callFunction=get_query";
+    loadDoc(url);
+}
+
 function loadDoc(url)               //tab doesn't work after removing this
 {   
     if (window.XMLHttpRequest)
