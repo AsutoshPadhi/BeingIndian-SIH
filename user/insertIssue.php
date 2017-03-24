@@ -11,8 +11,17 @@
 	$title = $_GET['issueTitle'];
 	$description = $_GET['description'];
 
+	#To get user_id from email
+	$user_email = $_SESSION['$email'];
+	//echo "".$user_email;
+	$get_user_id_sql = "SELECT * FROM user WHERE user_email = '".$user_email."'";
+	$get_user_id = $conn->query($get_user_id_sql);
+	$get_user_id_res = $get_user_id->fetch_assoc();
+	$user_id = $get_user_id_res['user_id'];
+	//echo "<br>user id = ".$user_id;
+
 	//$district_id = 2;
-	$user_id = 2000;
+	//$user_id = 2000;
 
 	$get_district_id = "SELECT district_id FROM district, state WHERE state.state_id = district.district_id";	
 	$dist = $conn->query($get_district_id);
@@ -47,21 +56,9 @@
 			$region_id = $row['region_id'];
 		}
 	}
-	//echo "region_id".$region_id;
-
-	$sql = "INSERT INTO issue(issue_id, user_id, district_id, region_id, title, description) VALUES
-			('$issue_id','$user_id','$district_id', '$region_id', '$title','$description')";
-	if ($conn->query($sql) === TRUE)
-	{
-	    echo "New record created successfully";
-	}
-	else
-	{
-	    echo "Error: " . $sql . "<br>" . $conn->error;
-	}
-
-	//$sql = "INSERT INTO issue(issue_id,)";
-	/*if(isset($locality))
+	
+	
+	if(isset($locality))
 	{
 		if(isset($pin))
 		{
@@ -74,7 +71,17 @@
 	}
 	else
 	{
-		$sql = "INSERT INTO issue(issue_id, user_id, district_id, region_id, title, description)VALUES()";
-	}*/
+		$sql = "INSERT INTO issue(issue_id, user_id, district_id, region_id, title, description) VALUES
+			('$issue_id','$user_id','$district_id', '$region_id', '$title','$description')";
+	}
+
+	if ($conn->query($sql) === TRUE)
+	{
+	    echo "New record created successfully";
+	}
+	else
+	{
+	    echo "Error: " . $sql . "<br>" . $conn->error;
+	}
 
 ?>
