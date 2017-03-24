@@ -154,7 +154,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="javascript:loadDoc('profile.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Profile</a>
+                            <a onClick="javascript:loadDoc('profile.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Profile</a>
                         </li>
 
                     </ul>
