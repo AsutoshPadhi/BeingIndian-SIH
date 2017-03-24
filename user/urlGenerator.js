@@ -19,6 +19,10 @@ function getDistrict(state)
 
 function loadDoc(url)               //tab doesn't work after removing this
 {   
+    if(url == 'add-issue.php')      //to hide the searchBar when user clicks Add an issue in home page
+    {
+        $('#searchBar').hide();
+    }
     if (window.XMLHttpRequest)
     {
         // code for modern browsers
@@ -64,14 +68,8 @@ function loadDoc2(url)               //tab doesn't work after removing this
     xhttp.open("GET", url, true);
     xhttp.send();
 }
-
 function hideSearchBar()
 {
-    //alert("hi");
-    //document.getElementById('searchBar').style.display = "none";
-    $("#searchBar").hide();
-}
-function showSearchBar()
-{
-    $("#searchBar").show();
+    alert("yes");
+    $('#searchBar').hide();
 }

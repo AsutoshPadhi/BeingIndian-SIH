@@ -133,27 +133,28 @@
                     <ul class="nav" id="side-menu">
                         <li>
 
-                            <a onClick="javascript:loadDoc('search.php','field');showSearchBar()"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick="javascript:loadDoc('search.php','field');$('#searchBar').show();"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
                         </li>
                         <!-- onclick="javascript:openField(event, 'addIssue')"-->
                         <li id="addIssue">
-                            <a onClick="javascript:loadDoc('add-issue.php','field');hideSearchBar()"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
+                            <a onclick="javascript:loadDoc('add-issue.php','field');$('#searchBar').hide();" 
+                            onload="hideSearchBar()"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a onClick="javascript:loadDoc('added-by-you.php','field');hideSearchBar()">Added by you</a>
+                                    <a onClick="javascript:loadDoc('added-by-you.php','field');$('#searchBar').hide();">Added by you</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('upvoted-by-you.php','field');hideSearchBar()">Upvoted by you</a>
+                                    <a onClick="javascript:loadDoc('upvoted-by-you.php','field');$('#searchBar').hide();">Upvoted by you</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="javascript:loadDoc('profile.php','field');hideSearchBar()"><i class="fa fa-user fa-fw"></i> Profile</a>
+                            <a href="javascript:loadDoc('profile.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Profile</a>
                         </li>
 
                     </ul>
