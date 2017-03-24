@@ -10,7 +10,7 @@
 
                 <div class="form-group col-xs-6 col-md-2">
                     <select class="form-control" id="state">
-                            <option disabled selected>State</option>
+                        <option disabled selected>State</option>
                         <?php include 'stateList.php'; ?>
                     </select>
                 </div>
@@ -32,9 +32,7 @@
                     <input class="form-control" id="issue" type="text" placeholder="Keywords">
                 </div>
                 <input class="search btn btn-primary" type="submit" value="Search" 
-                onclick="generateUrl((document.getElementById('state').value),(document.getElementById('district').value),
-                (document.getElementById('locality').value),(document.getElementById('pin').value),
-                (document.getElementById('issue').value));return false;">
+                onclick="loadDoc(search1.php)">
             </form>
         </div>
     </body>
