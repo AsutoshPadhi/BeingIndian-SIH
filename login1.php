@@ -25,8 +25,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  <style>
  
+
 </head>
 
 <body>
@@ -91,40 +91,24 @@
                             
                             if($login){
                         ?>
-                            </li>
+                            
                             <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
                             }
                             else{
                         ?>
-                        <li><a onclick="javascript:loadDoc('login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
+                        <li><a onclick="javascript:loadDoc('login.php','field')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a ><i class="fa fa-institution fa-fw"></i> Institute Login</a>
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                    <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
-                            </div>
-                        <?php
+                        
+                        <li><a class='btn' onclick="javascript:loadDoc('likepage.php','field')" data-toggle="modal" data-target="#myModal"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                       
+                            </li>
 
+                        <?php
                             }
                         ?>
-
+                        
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -139,25 +123,25 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a onClick="javascript:loadDoc('search.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick="javascript:loadDoc('search.php','field')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a onClick="javascript:loadDoc('solutions-provided.php')">Solutions Provided</a>
+                                    <a onClick="javascript:loadDoc('solutions-provided.php','field')">Solutions Provided</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('reported-bogus.php')">Reported as bogus</a>
+                                    <a onClick="javascript:loadDoc('reported-bogus.php','field')">Reported as bogus</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('reported-duplicate.php')">Reported as duplicate</a>
+                                    <a onClick="javascript:loadDoc('reported-duplicate.php','field')">Reported as duplicate</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a onClick="javascript:loadDoc('change-password.php')"><i class="fa fa-user fa-fw"></i> Change Password</a>
+                            <a onClick="javascript:loadDoc('change-password.php','field')"><i class="fa fa-user fa-fw"></i> Change Password</a>
                         </li>
                         
                     </ul>

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -22,16 +25,21 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+ 
+
 </head>
+
 <body>
-<div id="wrapper">
+    <div id="wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-            <?php
-                   $login=true;            
-
+                <?php
+                
+                    
+                        $login = false;
+                       // header('Location: loginpage.php');
                     if($login){
 
                 ?>
@@ -50,7 +58,29 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 
-                                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-info fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a onClick="MyWindow=window.open('../userguide.php','MyWindow',width=300,height=150)">
+                                <div>
+                                    <i class="fa fa-info-circle fa-fw"></i> User guide
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a onClick="MyWindow=window.open('../instituteguide.php','MyWindow',width=300,height=150)">
+                                <div>
+                                    <i class="fa fa-institution fa-fw"></i> Institute guide
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -61,21 +91,24 @@
                             
                             if($login){
                         ?>
-                            </li>
+                            
                             <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
                             }
                             else{
                         ?>
-                        <li><a onclick="javascript:loadDoc('login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
+                        <li><a onclick="javascript:loadDoc('login.php','field')"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a href="loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
-                        <?php
+                        
+                        <li><a class='btn' onclick="javascript:loadDoc('likepage.php','field')" data-toggle="modal" data-target="#myModal"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                       
+                            </li>
 
+                        <?php
                             }
                         ?>
-
+                        
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -90,25 +123,25 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a onClick="javascript:loadDoc('search.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick="javascript:loadDoc('search.php','field')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a onClick="javascript:loadDoc('solutions-provided.php')">Solutions Provided</a>
+                                    <a onClick="javascript:loadDoc('solutions-provided.php','field')">Solutions Provided</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('reported-bogus.php')">Reported as bogus</a>
+                                    <a onClick="javascript:loadDoc('reported-bogus.php','field')">Reported as bogus</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('reported-duplicate.php')">Reported as duplicate</a>
+                                    <a onClick="javascript:loadDoc('reported-duplicate.php','field')">Reported as duplicate</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a onClick="javascript:loadDoc('change-password.php')"><i class="fa fa-user fa-fw"></i> Change Password</a>
+                            <a onClick="javascript:loadDoc('change-password.php','field')"><i class="fa fa-user fa-fw"></i> Change Password</a>
                         </li>
                         
                     </ul>
@@ -149,6 +182,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-
 </body>
+
 </html>
