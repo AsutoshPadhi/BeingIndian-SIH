@@ -22,7 +22,6 @@
                     </select>
                 </div>
                 <div class="col-xs-6 col-md-2">
-
                     <input class="form-control" id="locality" type="text" placeholder="locality (optional)">
                 </div>
                 <div class="col-xs-6 col-md-2">
