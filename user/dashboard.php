@@ -29,8 +29,9 @@
     <![endif]-->
 </head>
 <body>
-
-
+    <script>
+        loadDoc('search.php');
+    </script>
     <div id="wrapper">
 
         <!-- Navigation -->
