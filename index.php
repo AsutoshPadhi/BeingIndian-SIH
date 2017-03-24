@@ -135,8 +135,8 @@
                 <div class="tagline panel-body"><h1>Ask questions for a better tomorrow</h1></div>
                 <div class="aboutUs lead">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis ornare risus. Quisque sit amet pharetra quam. Curabitur fermentum justo eu est sagittis tincidunt. Cras eu massa nunc. Integer imperdiet molestie tempus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis arcu lorem, bibendum eget commodo quis, fringilla non nibh. </div>
                 <div class="buttons">
-                    <button type="button" onclick="location.href='user/dashboard.php';" class="btn btn-outline btn-primary btn-lg" id="search">Search an Issue</button>
-                    <button type="button" onclick="location.href='user/<?php if($login)echo 'dashboard.php'; else echo "login.php";?>';" class="btn btn-outline btn-primary btn-lg" id="add">Add an Issue</button>
+                    <button type="button" onclick="location.href='user/dashboard.php?toOpen=search.php';" class="btn btn-outline btn-primary btn-lg" id="search">Search an Issue</button>
+                    <button type="button" onclick="location.href='user/<?php if($login)echo 'dashboard.php?toOpen=add-issue.php'; else echo "login.php";?>';" class="btn btn-outline btn-primary btn-lg" id="add">Add an Issue</button>
                 </div>
             </div>
             </div>
