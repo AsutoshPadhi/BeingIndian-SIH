@@ -10,6 +10,13 @@ function generateUrlAdd(state,district,locality,pin,issueTitle,description)
     loadDoc(url);
 }
 
+function getDistrict(state)
+{
+    var url = "district_list.php?state="+state+"&callFunction=get_query";
+    alert(url);
+    loadDoc2(url);
+}
+
 function loadDoc(url)               //tab doesn't work after removing this
 {   
     if (window.XMLHttpRequest)
@@ -28,6 +35,30 @@ function loadDoc(url)               //tab doesn't work after removing this
         if (this.readyState == 4 && this.status == 200)
         {
             document.getElementById("field").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+
+function loadDoc2(url)               //tab doesn't work after removing this
+{   
+    if (window.XMLHttpRequest)
+    {
+        // code for modern browsers
+        xhttp = new XMLHttpRequest();
+    }
+    else
+    {
+        // code for IE6, IE5
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    
+    xhttp.onreadystatechange = function()
+    {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            document.getElementById("district").innerHTML = this.responseText;
         }
     };
     xhttp.open("GET", url, true);
