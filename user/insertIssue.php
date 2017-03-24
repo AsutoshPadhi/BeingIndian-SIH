@@ -4,7 +4,7 @@
 
 	session_start();
 	$state = $_GET['state'];
-	echo "state = ".$state;
+	//echo "state = ".$state;
 	$district = $_GET['district'];
 	$locality = $_GET['locality'];
 	$pin = $_GET['pin'];
