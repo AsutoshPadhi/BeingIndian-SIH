@@ -168,6 +168,9 @@
         <!-- Page Content -->
 
         <div class="main-content" id="main">
+            <div class="searchBar" id="searchBar">
+                <?php require('dashboard-searchBar.php'); ?>
+            </div>
             <div class="container-fluid" id="field">
 
             </div>
