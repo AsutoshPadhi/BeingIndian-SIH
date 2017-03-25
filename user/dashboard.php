@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <script src="functions/ajax.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="../functions/ajax.js"></script>
     <script src="urlGenerator.js"></script>
     <script src="tabs.js"></script>
 
@@ -30,7 +31,6 @@
 </head>
 <body>
 
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -50,17 +50,7 @@
                     else{
                         $login = false;
                     }
-                ?>
-                <script>
-                    var login = <?php if($login){echo "true";}else{echo "false";}?>;
-                    if(login){
-                        document.getElementById("main").style.marginLeft = "0px";
-                    }
-                    else{
-                        document.getElementById("main").style.marginLeft = "250px";
-                    }
-                </script>
-                <?php
+
                     if($login){
 
                 ?>
@@ -143,27 +133,28 @@
                     <ul class="nav" id="side-menu">
                         <li>
 
-                            <a onClick="javascript:loadDoc('search.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick="javascript:loadDoc('search.php','field');$('#searchBar').show();"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
                         </li>
                         <!-- onclick="javascript:openField(event, 'addIssue')"-->
                         <li id="addIssue">
-                            <a onClick="javascript:loadDoc('add-issue.php')"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
+                            <a onclick="javascript:loadDoc('add-issue.php','field');$('#searchBar').hide();" 
+                            onload="hideSearchBar()"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a onClick="javascript:loadDoc('added-by-you.php')">Added by you</a>
+                                    <a onClick="javascript:loadDoc('added-by-you.php','field');$('#searchBar').hide();">Added by you</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('upvoted-by-you.php')">Upvoted by you</a>
+                                    <a onClick="javascript:loadDoc('upvoted-by-you.php','field');$('#searchBar').hide();">Upvoted by you</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="javascript:loadDoc('profile.php')"><i class="fa fa-user fa-fw"></i> Profile</a>
+                            <a onClick="javascript:loadDoc('profile.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Profile</a>
                         </li>
 
                     </ul>
@@ -179,6 +170,9 @@
         <!-- Page Content -->
 
         <div class="main-content" id="main">
+            <div class="searchBar" id="searchBar">
+                <?php require('dashboard-searchBar.php'); ?>
+            </div>
             <div class="container-fluid" id="field">
 
             </div>
@@ -187,8 +181,21 @@
         <!-- /#page-wrapper -->
 
     </div>
-
-
+    <?php 
+        if(isset($_GET['toOpen'])){
+            $toOpen = $_GET['toOpen'];
+        }
+    ?>
+    <script>
+        var login = <?php if($login){echo "true";}else{echo "false";}?>;
+        if(login){
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+        else{
+            document.getElementById("main").style.marginLeft = "0px";
+        }
+        loadDoc('<?php echo $toOpen; ?>','field');
+    </script>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -200,9 +207,10 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -246,7 +254,7 @@
     <?php require('login.php') ?>
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -255,7 +263,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <div class="mainBox">
                                 <div class="loginText">
                                     User Login

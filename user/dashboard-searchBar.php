@@ -9,20 +9,18 @@
             <form>
 
                 <div class="form-group col-xs-6 col-md-2">
-                    <select class="form-control" id="state">
-                            <option disabled selected>State</option>
+                    <select class="form-control" id="state1" onchange="getDistrict(document.getElementById('state1').value)">
+                        <option disabled selected>State</option>
                         <?php include 'stateList.php'; ?>
                     </select>
                 </div>
 
                 <div class="form-group col-xs-6 col-md-2">
-                    <select class="form-control" id="district">             
+                    <select class="form-control" id="district1">             
                         <option disabled selected>Districts</option>
-                        <?php include 'district_list.php'; ?>
                     </select>
                 </div>
                 <div class="col-xs-6 col-md-2">
-
                     <input class="form-control" id="locality" type="text" placeholder="locality (optional)">
                 </div>
                 <div class="col-xs-6 col-md-2">
@@ -32,9 +30,7 @@
                     <input class="form-control" id="issue" type="text" placeholder="Keywords">
                 </div>
                 <input class="search btn btn-primary" type="submit" value="Search" 
-                onclick="generateUrl((document.getElementById('state').value),(document.getElementById('district').value),
-                (document.getElementById('locality').value),(document.getElementById('pin').value),
-                (document.getElementById('issue').value));return false;">
+                onclick="loadDoc(search1.php)">
             </form>
         </div>
     </body>
