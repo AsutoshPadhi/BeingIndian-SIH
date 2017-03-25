@@ -43,27 +43,23 @@
 
                     if(isset($_SESSION['$email'])){
                         $login = true;
+                        $loginCollege = false;
                         $email = $_SESSION['$email'];
                         $name = $_SESSION['$name'];
                         $fname = $_SESSION['$fname'];
                         $lname = $_SESSION['$lname'];
                         
                     }
-                    else{
+                    else if(isset($_SESSION['$cemail'])){
+                        $loginCollege = true;
                         $login = false;
                     }
-
-                    if($login){
-
-                ?>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <?php
+                    else{
+                        $login = false;
+                        $loginCollege = false;
                     }
+
+                    
                 ?>
                 <a class="navbar-brand" href="index.php"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
             </div>
@@ -103,7 +99,7 @@
 
                         <?php
                             
-                            if($login){
+                            if($login || $loginCollege){
                         ?>
                             </li>
                             <li><a href="user/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

@@ -1,12 +1,13 @@
 <?php
     session_start();
-    if(isset($SESSION['$cemail'])){
+    if(isset($_SESSION['$cemail'])){
         $loginCollege = true;
-        echo "yes";
+        //echo "yes";
     }
     else{
         $loginCollege = false;
-        echo "no";
+        //echo "no";
+        header("Location: index.php");
     }
 ?>
 <!DOCTYPE html>
@@ -125,7 +126,7 @@
         
         <div class="main-content" id="main">
             <div class="container-fluid" id="field">
-
+                
             </div>
             <!-- /.container-fluid -->
         </div>
