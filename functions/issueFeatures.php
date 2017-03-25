@@ -121,11 +121,9 @@ define('like_threhold',100);
 		include '../functions/dataBaseConn.php';
 		//$state_id = 1006;
 		//$sql =$variable; 
-<<<<<<< HEAD
-		$sql= "SELECT *FROM issue WHERE issue_id =";
-=======
-		$sql= "SELECT *FROM issue WHERE issue_id =1.";
->>>>>>> refs/remotes/origin/master
+
+		$sql= "SELECT *FROM issue WHERE issue_id =1";
+
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
 		if($row['uovote_count']>=500)
@@ -160,12 +158,9 @@ define('like_threhold',100);
 		}
 		else
 		{
-<<<<<<< HEAD
+
 			echo "voting on";//voting on
-=======
-			//return 5;//voting on
-			echo"voting on";
->>>>>>> refs/remotes/origin/master
+
 		}
 	}
 	
@@ -223,7 +218,7 @@ function f1()
 		
 	}
 
-<<<<<<< HEAD
+
 	function CountBogus($sql)
 	{
 		include '../functions/dataBaseConn.php';
@@ -319,9 +314,7 @@ function f1()
 //voteAsDuplicate("update issue set duplicate_count=duplicate_count+1 where issue_id=100000");
 //AddSolution("insert into solution(solution_id, issue_id, inst_id, solution_url, like_count, added_on) values(,"$row['issue_id']",,"$var");");
 ?>
-=======
 
->>>>>>> refs/remotes/origin/master
 
 
 
