@@ -62,7 +62,7 @@ function loadDoc2(url)               //tab doesn't work after removing this
     {
         if (this.readyState == 4 && this.status == 200)
         {
-            document.getElementById("district1").innerHTML = this.responseText;
+            document.getElementById("district").innerHTML = this.responseText;
         }
     };
     xhttp.open("GET", url, true);
