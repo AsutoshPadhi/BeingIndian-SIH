@@ -1,10 +1,12 @@
 <?php
 	include('dataBaseConn.php');
-
+$bogus_threshold=5;
+$upvote_threshold=500;
+$like_threhold=100;
 	//user
-
+//history
 	$votedByMe = 
-	SELECT user.fname,user.lname ,issue.title FROM user INNER JOIN issueupvote inner join issue on user.user_id=issueupvote.user_id and issue.issue_id=issueupvote.issue_id WHERE issueupvote.user_id='$row['user_id']';//user_id is fetched using a particular user's session
+	SELECT * FROM user INNER JOIN issueupvote inner join issue on user.user_id=issueupvote.user_id and issue.issue_id=issueupvote.issue_id WHERE issueupvote.user_id='$row['user_id']';//user_id is fetched using a particular user's session
 	$toupvote=
 	update issue set upvote_count=upvote_count+1 where issue_id=$row['issue'] and  title=$row['title'];
 	$addedissue = 
@@ -12,10 +14,10 @@
 	$search = select title from issue where title like '%".$_POST['']."%';
 
 	$addedbyme=
-	select issue.title from issue inner join user on issue.user_id=user.user_id where  user_email="$_SESSION['']";
+	select * from issue inner join user on issue.user_id=user.user_id where  user_email="$_SESSION['']";
 
 	$sendEmail=
-	select issue.issue_id,user.user_email,issue.title from issue inner join issueupvote inner join user on issue.issue_id=issueupvote.issue_id and user.user_id=issueupvote.user_id where issue.bogus_count>5;
+	select * from issue inner join issueupvote inner join user on issue.issue_id=issueupvote.issue_id and user.user_id=issueupvote.user_id where issue.bogus_count>5;
 
   $approvedSolution=
   select * from solution where 1;
@@ -28,6 +30,14 @@
   SELECT *  FROM district INNER JOIN state ON district.state_id=state.state_id;
   $state=$_POST['textstate'];
   SELECT district_name FROM district INNER JOIN state ON district.state_id=state.state_id where state_name="$state";
+  
+  $displayissues="select * from issue where district_id='$row['district_id']'";
+  
+ // $displayLoc="select * from region inner join districtsinregion on region.region_id=district.region_id where district_id='$row[]'";
+ //display
+ $displayLocIssues="select * from issue inner join district on issue.district_id=district.district_id where district.state_id=1 and district.district_id=3 and issue.region_id=501 or issue.pincode=421202"; 
+  
+  $displaystateIssues="select * from issue inner join district on issue.district_id=district.district_id where district.state_id=1 and district.district_id=3";//display according to district and state
 
   $solutionCount=
   select count(issue.issue_id)as solution_count,issue.title from issue INNER JOIN solution on solution.issue_id=issue.issue_id group by issue.title having issue.issue_id="$row['issue_id']";
@@ -62,8 +72,5 @@
 	$likeCount=
    select * from solutionlikedetails where 1;
    update solution set like_count=like_count+1 where solution_id="$row[solution_id]";
-
-
-
 ?>
 

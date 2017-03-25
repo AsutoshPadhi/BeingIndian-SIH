@@ -63,13 +63,13 @@
 		?>
 		<label>Location : </label><br>
 		<div class="form-group col-xs-6 col-md-4">
-            <select class="form-control" style='padding-left: -15px' name="state" id="state1" onchange="getDistrict(document.getElementById('state1').value);return false;">
+            <select class="form-control" style='padding-left: -15px' name="state" id="state1" onchange="getDistrict((document.getElementById('state1').value),'district3');return false;">
                 <option selected><?php echo $state; ?></option>
                 <?php include 'stateList.php'; ?>
             </select>
         </div>
         <div class="form-group col-xs-6 col-md-2">
-            <select class="form-control" name="district1" id="district1">             
+            <select class="form-control" name="district1" id="district3">             
                 <option selected><?php echo $district; ?></option>
             </select>
         </div><br><br><br>

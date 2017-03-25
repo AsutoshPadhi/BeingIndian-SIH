@@ -65,9 +65,11 @@
 
 	<div id="problem">
 		<?php
+		include('../functions/issueFeatures.php');
 		$i = 1;
 		while($row=mysqli_fetch_array($result))
 		{
+		
 
 		// output data of each row
 
@@ -80,10 +82,10 @@
 		<br>
 		<div id="demo<?php echo $i; ?>" class="collapse body">
 			<?php
-				echo "<b id='code'>CODE : </b> ".$row["issue_id"]; ?>
+				echo "<a id='code' data-toggle='modal' data-target='#myModal3' data-id=".$row['issue_id'].'" >CODE : </a> ".$row["issue_id"]; ?>
 			<br><hr>
 			<?php
-				echo "<b id='code'>Description :</b> <br>".$row["description"];
+				echo "<b id='code'>STATUS :</b> ".status() ;
 			?><br><hr>
 			
 			<?php
@@ -142,11 +144,11 @@
 		?>
 		<div class="container">
 			<ul class="pagination">
-				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?page=".$pre."\",\"problem\")' class='button'>PREVIOUS</a></li>"; ?>
+				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?page=".$pre."\",\"field\")' class='button'>PREVIOUS</a></li>"; ?>
 
 				<?php
 					for($page=1;$page<=$no_of_pages;$page++)
-					{
+					{	
 						$url = "issue-display.php?page=".$page."";
 				?>
 				<!--<script>
@@ -155,13 +157,16 @@
 					field = "problem";
 				</script>-->
 				<?php
-						echo "<li><a onclick='javascript:loadDoc(\"".$url."\",\"problem\")'>".$page."</a></li>";
+						echo "<li><a onclick='javascript:loadDoc(\"".$url."\",\"field\")'>".$page."</a></li>";
 					}
-					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?page=".$next."\",\"problem\")' class='button'>NEXT</a></li>";
+					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?page=".$next."\",\"field\")' class='button'>NEXT</a></li>";
 				?>
 			</ul>
 		</div>
 	</div>
 
+	<?php
+		require('modal.php');
+	?>
 </body>
 </html>

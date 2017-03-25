@@ -74,7 +74,7 @@
 		}
 		?>
 		<br><br><hr>
-		<button type="button" class="btn btn-primary btn-lg btn-block" onclick="loadDoc('add-issue-description.php')">Proceed to Add new Issue</button>		<!--Add the variable to be passed to the url-->
+		<button type="button" class="btn btn-primary btn-lg btn-block" onclick="loadDoc('add-issue-description.php','field')">Proceed to Add new Issue</button>		<!--Add the variable to be passed to the url-->
 
 	<?php
 	}
