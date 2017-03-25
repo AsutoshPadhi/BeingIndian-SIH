@@ -41,21 +41,18 @@
             <div class="navbar-header">
                 <?php
                     session_start();
+                    header("refresh:5;url=../index.php");
 
-                    if(isset($_SESSION['$email'])){
-                        $login = true;
-                        $email = $_SESSION['$email'];
-                        $name = $_SESSION['$name'];
-                        $fname = $_SESSION['$fname'];
-                        $lname = $_SESSION['$lname'];
+                    if(isset($_SESSION['$cemail'])){
+                        $loginCollege = true;
 
                     }
                     else{
-                        $login = false;
+                        $loginCollege = false;
                     }
                 ?>
                 <script>
-                    var login = <?php if($login){echo "true";}else{echo "false";}?>;
+                    var login = <?php if($loginCollege){echo "true";}else{echo "false";}?>;
                     if(login){
                         document.getElementById("main").style.marginLeft = "0px";
                     }
@@ -64,7 +61,7 @@
                     }
                 </script>
                 <?php
-                    if($login){
+                    if($loginCollege){
 
                 ?>
 
@@ -115,7 +112,7 @@
 
                         <?php
 
-                            if($login){
+                            if($loginCollege){
                         ?>
                             <li>
                             <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -150,10 +147,11 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-<?php
-    echo "<h2>Successfully Logout</h2>";
-    // header('loginpage.php');
-?>
+    <div class="text-center" style="margin-top: 30vh;">
+        <img src="../logincallout.png" alt="Successfully Logged out!">
+        <!--<h1>Successfully Logged out</h1>-->
+    </div>
+
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-md">
@@ -197,7 +195,6 @@
             </div>
         </div>
     </div>
-    <?php require('../user/login.php') ?>
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -215,22 +212,9 @@
                                     User Login
                                 </div>
                                 <div style="margin: 15px 0px;" class="styleBox">
-                                    <?php
-                                    if (isset($authUrl)) { ?>
-                                        <a class="btn btn-block btn-social btn-google-plus" href='<?php echo $authUrl ?>'>
-                                            <i class="fa fa-google-plus"></i> Sign in with Google
-                                        </a>
-                                    <?php
-                                    } 
-                                    else {
-                                        session_start();
-                                        $_SESSION['$name'] = $name;
-                                        $_SESSION['$fname'] = $fname;
-                                        $_SESSION['$lname'] = $fname;
-                                        $_SESSION['$email'] = $email;
-                                        header('Location: ../user/dashboard.php');
-                                    }
-                                    ?>
+                                    <a class="btn btn-block btn-social btn-google-plus" href='user/login.php'>
+                                        <i class="fa fa-google-plus"></i> Sign in with Google
+                                    </a>
                                 </div>
                             </div>
                         </div>
