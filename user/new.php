@@ -5,6 +5,31 @@
 	<link rel="stylesheet" href="problemdescription.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="../functions/ajax.js"></script>
+	<script>
+
+	function loadSearch(url){
+		
+		if (window.XMLHttpRequest)
+		{
+			// code for modern browsers
+			xhttp = new XMLHttpRequest();
+		}
+		else
+		{
+			// code for IE6, IE5
+			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhttp.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				document.getElementById("problem").innerHTML = this.responseText;
+			}
+		};
+		xhttp.open("GET", url, true);
+		xhttp.send();
+	}
+	</script>
 </head>
 <body>
 	<?php
@@ -82,7 +107,7 @@
 		<br>
 		<div id="demo<?php echo $i; ?>" class="collapse body">
 			<?php
-				echo "<a id='code' data-toggle='modal' data-target='#myModal3' data-id=".$row['issue_id'].'" >CODE : </a> ".$row["issue_id"]; ?>
+				echo "<b id='code' class='btn' data-toggle='modal' data-target='#myModal' href='modal.php'>CODE : </b> ".$row["issue_id"]; ?>
 			<br><hr>
 			<?php
 				echo "<b id='code'>STATUS :</b> ".status() ;
@@ -144,7 +169,7 @@
 		?>
 		<div class="container">
 			<ul class="pagination">
-				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?page=".$pre."\",\"field\")' class='button'>PREVIOUS</a></li>"; ?>
+				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?page=".$pre."\",\"problem\")' class='button'>PREVIOUS</a></li>"; ?>
 
 				<?php
 					for($page=1;$page<=$no_of_pages;$page++)
@@ -157,16 +182,13 @@
 					field = "problem";
 				</script>-->
 				<?php
-						echo "<li><a onclick='javascript:loadDoc(\"".$url."\",\"field\")'>".$page."</a></li>";
+						echo "<li><a onclick='javascript:loadDoc(\"".$url."\",\"problem\")'>".$page."</a></li>";
 					}
-					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?page=".$next."\",\"field\")' class='button'>NEXT</a></li>";
+					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?page=".$next."\",\"problem\")' class='button'>NEXT</a></li>";
 				?>
 			</ul>
 		</div>
 	</div>
 
-	<?php
-		require('modal.php');
-	?>
 </body>
 </html>
