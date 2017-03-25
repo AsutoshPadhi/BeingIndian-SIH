@@ -1,5 +1,9 @@
 function loadDoc(url,field) 
 {   
+    if(url == 'add-issue.php')      //to hide the searchBar when user clicks Add an issue in home page
+    {
+        $('#searchBar').hide();
+    }
     if (window.XMLHttpRequest)
     {
         // code for modern browsers
