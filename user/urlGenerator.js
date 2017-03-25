@@ -13,7 +13,7 @@ function generateUrlAdd(state,district,locality,pin,issueTitle,description)
 function getDistrict(state1)
 {
     var url = "district_list.php?state="+state1+"&callFunction=get_query";
-    alert(url);
+    //alert(url);
     loadDoc2(url);
 }
 
