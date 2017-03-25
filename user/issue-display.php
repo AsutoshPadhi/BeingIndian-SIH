@@ -81,7 +81,7 @@
 		<br>
 		<div id="demo<?php echo $i; ?>" class="collapse body">
 			<?php
-				echo "<b id='code'>CODE : </b> ".$row["issue_id"]; ?>
+				echo "<b id='code' class='btn' data-toggle='modal' data-target='#myModal' href='modal.php'>CODE : </b> ".$row["issue_id"]; ?>
 			<br><hr>
 			<?php
 				echo "<b id='code'>STATUS :</b> ".status() ;
