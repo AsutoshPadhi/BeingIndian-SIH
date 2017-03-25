@@ -74,9 +74,10 @@
 		?>
 		<br>
 
-		<button type="button" class="btn  problems btn btn-primary btn-lg btn-block " data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
-		<?php  echo  $row["title"]. " " . "<br>";?>
+		<button type="button" class="btn btn btn-primary btn-lg btn-block btn-social" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
+		<?php echo "<font style='font-size: 1em;'>#".$row["issue_id"]."</font>".$row["title"]; ?>
 		</button>
+		<br>
 		<div id="demo<?php echo $i; ?>" class="collapse body">
 			<?php
 				echo "<b id='code'>CODE : </b> ".$row["issue_id"]; ?>

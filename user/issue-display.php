@@ -65,6 +65,7 @@
 
 	<div id="problem">
 		<?php
+		include('../functions/issueFeatures.php');
 		$i = 1;
 		while($row=mysqli_fetch_array($result))
 		{
@@ -80,10 +81,10 @@
 		<br>
 		<div id="demo<?php echo $i; ?>" class="collapse body">
 			<?php
-				echo "<b id='code'>CODE : </b> ".$row["issue_id"]; ?>
+				echo "<b id='code' class='btn' data-toggle='modal' data-target='#myModal' href='modal.php'>CODE : </b> ".$row["issue_id"]; ?>
 			<br><hr>
 			<?php
-				echo "<b id='code'>Description :</b> <br>".$row["description"];
+				echo "<b id='code'>STATUS :</b> ".status() ;
 			?><br><hr>
 			
 			<?php

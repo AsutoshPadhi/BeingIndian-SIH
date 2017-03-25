@@ -109,7 +109,7 @@
 		include '../functions/dataBaseConn.php';
 		//$state_id = 1006;
 		//$sql =$variable; 
-		$sql= "SELECT *FROM issue WHERE issue_id = .$state_id.";
+		$sql= "SELECT *FROM issue WHERE issue_id =1.";
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
 		if($row['uovote_count']>=500)
@@ -151,12 +151,7 @@
 
 
 
-<?php
-showStatus();
-echo "<h1>Status</h1>";
-historyadd("select * from issue inner join user on issue.user_id=user.user_id where  user_email='shreyajangale@gmail.com'");
 
-?>
 
 
 
