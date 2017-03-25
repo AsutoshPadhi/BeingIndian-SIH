@@ -10,15 +10,19 @@ function generateUrlAdd(state,district,locality,pin,issueTitle,description)
     loadDoc(url);
 }
 
-function getDistrict(state)
+function getDistrict(state1)
 {
-    var url = "district_list.php?state="+state+"&callFunction=get_query";
+    var url = "district_list.php?state="+state1+"&callFunction=get_query";
     //alert(url);
     loadDoc2(url);
 }
 
 function loadDoc(url)               //tab doesn't work after removing this
 {   
+    if(url == 'add-issue.php')      //to hide the searchBar when user clicks Add an issue in home page
+    {
+        $('#searchBar').hide();
+    }
     if (window.XMLHttpRequest)
     {
         // code for modern browsers
@@ -63,4 +67,9 @@ function loadDoc2(url)               //tab doesn't work after removing this
     };
     xhttp.open("GET", url, true);
     xhttp.send();
+}
+function hideSearchBar()
+{
+    alert("yes");
+    $('#searchBar').hide();
 }

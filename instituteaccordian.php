@@ -33,9 +33,9 @@
 //include ("a.php");
 //$conn=new mysqli("localhost","root","","user");
 $con=new mysqli("localhost","root","","hackathon");
-$a=$_SESSION['login_user'];
+//$a=$_SESSION['login_user'];
 echo "<h3>Welcome</h3>".$a;
-$sql="SELECT * FROM issue INNER JOIN district INNER JOIN institute ON  district.district_id=issue.district_id and district.district_id=institute.district_id where institute.district_id=district.district_id and institute.inst_email='$a'";
+$sql="SELECT * FROM issue INNER JOIN district INNER JOIN institute ON  district.district_id=issue.district_id and district.district_id=institute.district_id where institute.district_id=district.district_id and institute.inst_email='2015isha.shetty@ves.ac.in'";
 $result=$con->query($sql);
 
 if($result->num_rows!=0) {

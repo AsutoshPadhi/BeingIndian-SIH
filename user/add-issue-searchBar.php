@@ -1,18 +1,17 @@
 <form>
 
-	<div class="form-group col-xs-6 col-md-3">
-	    <select class="form-control" name="state" id="state" onchange="getDistrict(document.getElementById('state').value)">
+	<div class="form-group col-xs-6 col-md-2">
+        <select class="form-control" id="state" onchange="getDistrict(document.getElementById('state').value);return false;">
             <option disabled selected>State</option>
-	        <?php include 'stateList.php'; ?>
-	    </select>
-	</div>
+            <?php include 'stateList.php'; ?>
+        </select>
+    </div>
 
-	<div class="form-group col-xs-6 col-md-3">
-	    <select class="form-control" name="district" id="district">             
-	        <option disabled selected>Districts</option>
-	        <?php include 'district_list.php';?>
-	    </select>
-	</div>
+    <div class="form-group col-xs-6 col-md-2">
+        <select class="form-control" id="district">             
+            <option disabled selected>Districts</option>
+        </select>
+    </div>
 
 	<div class="col-xs-6 col-md-3">
 		<input class="form-control" name="locality" id="locality" type="text" placeholder="locality (optional)">

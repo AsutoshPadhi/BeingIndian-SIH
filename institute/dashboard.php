@@ -1,3 +1,15 @@
+<?php
+    session_start();
+    if(isset($_SESSION['$cemail'])){
+        $loginCollege = true;
+        //echo "yes";
+    }
+    else{
+        $loginCollege = false;
+        //echo "no";
+        header("Location: index.php");
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,22 +41,13 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-            <?php
-                   $login=true;            
-
-                    if($login){
-
-                ?>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <?php
-                    }
-                ?>
-                <a class="navbar-brand" href="../index.html"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
+                <a class="navbar-brand" href="../index.php"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -53,39 +56,40 @@
                                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-info fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a onClick="MyWindow=window.open('../userguide.php','MyWindow',width=300,height=150)">
+                                <div>
+                                    <i class="fa fa-info-circle fa-fw"></i> User guide
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a onClick="MyWindow=window.open('../instituteguide.php','MyWindow',width=300,height=150)">
+                                <div>
+                                    <i class="fa fa-institution fa-fw"></i> Institute guide
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-
-                        <?php
-                            
-                            if($login){
-                        ?>
                             </li>
                             <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
-                        <?php
-                            }
-                            else{
-                        ?>
-                        <li><a onclick="javascript:loadDoc('login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
-                        </li>
-                        <li><a href="loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
-                        <?php
-
-                            }
-                        ?>
-
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-            <?php
-                if($login){
-
-            ?>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -115,9 +119,6 @@
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
-            <?php
-                }
-            ?>
             <!-- /.navbar-static-side -->
         </nav>
         
@@ -125,7 +126,7 @@
         
         <div class="main-content" id="main">
             <div class="container-fluid" id="field">
-
+                
             </div>
             <!-- /.container-fluid -->
         </div>
