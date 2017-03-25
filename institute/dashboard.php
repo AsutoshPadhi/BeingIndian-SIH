@@ -32,6 +32,7 @@
             <?php
             if(!isset($SESSION['$cemail'])){
                 $loginCollege = false;
+                header('Location: ../index.php');
             }
             else{
                 $loginCollege = true;
