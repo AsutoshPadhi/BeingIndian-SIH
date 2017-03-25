@@ -3,6 +3,7 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
+
 body {
   background-color: #f8f8f8;
 }
@@ -16,6 +17,10 @@ body {
 }
 a{
   cursor: pointer;
+}
+#changePassword{
+  width: 40%;
+  margin: 20vh auto;
 }
 
 @media (min-width: 768px) {

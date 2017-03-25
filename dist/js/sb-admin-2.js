@@ -4,12 +4,7 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
-function check(){
-    var cemail = document.getElementById("cemail").value;
-    var password = document.getElementById("password").value;
 
-    loadDoc("localhost/institute/login.php?cemail="+cemail+"&password="+password,"message");
-}
 
 $('#myModal').modal('show');
 $('#myModal2').modal('show');

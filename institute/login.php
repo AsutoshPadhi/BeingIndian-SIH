@@ -21,7 +21,7 @@ if (isset($_POST['cemail']))
             $_SESSION['$cemail']=$cemail; // Initializing Session
             // Redirecting To Other Page
             //$_SESSION['login_user']=session_id();
-            header("location: change-password.php"); // Redirecting To Other Page
+            header("location: flag-check.php"); // Redirecting To Other Page
         } 
         else 
         {
