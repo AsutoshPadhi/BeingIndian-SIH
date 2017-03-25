@@ -166,26 +166,26 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <form action="institute/login.php" methond="POST" role="form" class="form-horizontal">
+                            <form action="login.php" method="POST" role="form" class="form-horizontal">
                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label">
+                                    <label for="cemail" class="col-sm-2 control-label">
                                         Email</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="email1" placeholder="Email" />
+                                        <input type="email" class="form-control" name="cemail" id="cemail" placeholder="Email" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1" class="col-sm-2 control-label">
+                                    <label for="password" class="col-sm-2 control-label">
                                         Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Email" />
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Email" />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-2">
                                     </div>
                                     <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary btn-sm">
+                                        <button  type="submit" class="btn btn-primary btn-sm">
                                             Submit</button>
                                         <a href="javascript:;">Forgot your password?</a>
                                     </div>

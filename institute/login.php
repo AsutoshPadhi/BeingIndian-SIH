@@ -31,5 +31,8 @@ if (isset($_POST['cemail']))
         $conn->close(); // Closing Connection
     }
 }
+else{
+    echo "Something went wrong ...";
+}
 
 ?>
