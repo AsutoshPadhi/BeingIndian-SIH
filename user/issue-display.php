@@ -65,6 +65,7 @@
 
 	<div id="problem">
 		<?php
+		include('../functions/issueFeatures.php');
 		$i = 1;
 		while($row=mysqli_fetch_array($result))
 		{
@@ -83,7 +84,7 @@
 				echo "<b id='code'>CODE : </b> ".$row["issue_id"]; ?>
 			<br><hr>
 			<?php
-				echo "<b id='code'>Description :</b> <br>".$row["description"];
+				echo "<b id='code'>STATUS :</b> ".status() ;
 			?><br><hr>
 			
 			<?php
