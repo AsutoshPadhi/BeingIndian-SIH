@@ -1,3 +1,11 @@
-<?php
-    echo "Search"
-?>
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+
+    <body>
+
+    </body>
+
+</html>
