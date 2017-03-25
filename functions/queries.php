@@ -1,8 +1,8 @@
 <?php
-	include('dataBaseConn.php');
-$bogus_threshold=5;
-$upvote_threshold=500;
-$like_threhold=100;
+define('bogus_threshold',5);
+define('upvote_threshold',500);
+define('like_threhold',100);
+
 	//user
 //history
 	$votedByMe = 
@@ -17,7 +17,7 @@ $like_threhold=100;
 	select * from issue inner join user on issue.user_id=user.user_id where  user_email="$_SESSION['']";
 
 	$sendEmail=
-	select * from issue inner join issueupvote inner join user on issue.issue_id=issueupvote.issue_id and user.user_id=issueupvote.user_id where issue.bogus_count>5;
+	"select * from issue inner join issueupvote inner join user on issue.issue_id=issueupvote.issue_id and user.user_id=issueupvote.user_id where issue.bogus_count>'$bogus_threshold'";
 
   $approvedSolution=
   select * from solution where 1;
@@ -51,7 +51,7 @@ $like_threhold=100;
 	SELECT issue.title,institute.inst_name,issue.district_id FROM issue INNER JOIN district INNER JOIN institute ON  district.district_id=issue.district_id and district.district_id=institute.district_id where  institute.inst_email="2015isha.shetty@ves.ac.in" ;//in location of college
 
 	$reportedBogusByme = 
-	select issue.title,issue.id,institute.inst_name  from issue inner join institute inner join issuebogusupvote on issue.issue_id=issuebogusupvote.issue_id and institute.inst_id=issuebogusupvote.inst_id where bogus_count>5;
+	select issue.title,issue.issue_id,institute.inst_name  from issue inner join institute inner join issuebogusupvote on issue.issue_id=issuebogusupvote.issue_id and institute.inst_id=issuebogusupvote.inst_id where bogus_count>bogus_threshold;
 
 	
 	$reportedDuplicateByMe = 
@@ -72,5 +72,9 @@ $like_threhold=100;
 	$likeCount=
    select * from solutionlikedetails where 1;
    update solution set like_count=like_count+1 where solution_id="$row[solution_id]";
+   
+  /// $addsolution="insert into solution(solution_id,issue_id,inst_id,solution_url,like_count,added_on) values()";
+   
+   
 ?>
 
