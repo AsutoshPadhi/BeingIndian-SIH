@@ -12,9 +12,12 @@ if (isset($_POST['cemail']))
         $conn=mysqli_connect("localhost","root","","hackathon");
 
         $cemail=$_POST['cemail'];
+        //echo $cemail;
         $pass=$_POST['password'];
         $pass=md5($pass);
-        $sql = "select * from institute where inst_password='$pass' AND inst_email='$cemail'";
+        //echo $pass;
+        //$sql = "select * from institute where inst_password='$pass' AND inst_email='$cemail'";
+        $sql = "SELECT *FROM institute WHERE inst_password = '".$pass."' AND inst_email = '".$cemail."'";
         $result =$conn->query($sql);
         if ($result->num_rows > 0) {
             session_start();
