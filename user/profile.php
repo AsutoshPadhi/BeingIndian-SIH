@@ -15,6 +15,10 @@
                 <!--<span class="input-group-addon"><i class="fa fa-laptop"></i></span>-->
                 <label>Email : </label><input type="text" name="email" class="form-control" value='<?php echo $email; ?>'">
             </div>
+            <div class="form-group">
+                <input class="form-control">
+                <p class="help-block"><?php echo $email; ?></p>
+            </div>
 
 		<?php
 		//echo "name = ".$name."<br>";
@@ -33,6 +37,9 @@
 	                <!--<span class="input-group-addon"><i class="fa fa-mobile"></i></span>-->
 	                <label>Phone : </label><input type="text" name="mobile" class="form-control" placeholder="Enter your phone number">
 	            </div>
+	            <div class="form-group">
+                    <input class="form-control" placeholder="<?php echo $row['mobile_number']; ?>">
+                </div>
 
 			<?php
 		}
@@ -44,6 +51,9 @@
 	                <!--<span class="input-group-addon"><i class="fa fa-mobile"></i></span>-->
 	                <label>Phone : </label><input type="text" name="mobile" class="form-control" value='<?php echo $row['mobile_number']; ?>'>
 	            </div>
+	            <div class="form-group">
+                    <input class="form-control" placeholder="<?php echo $row['mobile_number']; ?>">
+                </div>
 
             <?php
 		}
