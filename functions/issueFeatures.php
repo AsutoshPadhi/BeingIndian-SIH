@@ -117,32 +117,35 @@
 			
 			if($row['approved_solution']>0)
 			{
-				echo "status approved";
+				echo "Solution approved";
 			}
 			else
 				if($row['solution_count']>0)
 				
 				{
-					echo " Following number of solutions are available";
+					echo "  solutions are available";
 				}
 				else
 					if($row['dupicate_count']>1)
 					{
-						echo "";
+						echo "Issue marked as duplicte";
 					}
 				else
 					if($row['bogus_count']>5)
 					{
-						return 4;
+						//return 4;
+						echo "bogus issue";
 					}
 				else
-					return 0;//solution awaited
+					//return 0;//solution awaited
+				echo "Solution awaited";
 			
 				
 		}
 		else
 		{
-			return 5;//voting on
+			//return 5;//voting on
+			echo"voting on";
 		}
 	}
 ?>
