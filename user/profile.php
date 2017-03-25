@@ -12,9 +12,8 @@
 		?>
 		<form action="profile-update.php" method="post">
 			<div class="form-group input-group col-xs-6 col-md-4">
-                <span class="input-group-addon"><i class="fa fa-laptop"></i>
-                </span>
-                <input type="text" name="email" class="form-control" value='<?php echo $email; ?>'">
+                <!--<span class="input-group-addon"><i class="fa fa-laptop"></i></span>-->
+                <label>Email : </label><input type="text" name="email" class="form-control" value='<?php echo $email; ?>'">
             </div>
 
 		<?php
@@ -31,9 +30,8 @@
 			?>
 
 				<div class="form-group input-group col-xs-6 col-md-4">
-	                <span class="input-group-addon"><i class="fa fa-mobile"></i>
-	                </span>
-	                <input type="text" name="mobile" class="form-control" placeholder="Enter your phone number">
+	                <!--<span class="input-group-addon"><i class="fa fa-mobile"></i></span>-->
+	                <label>Phone : </label><input type="text" name="mobile" class="form-control" placeholder="Enter your phone number">
 	            </div>
 
 			<?php
@@ -43,8 +41,8 @@
 			echo "mobile = ".$row['mobile_number'];
 			?>
 				<div class="form-group input-group col-xs-6 col-md-4">
-	                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-	                <input type="text" name="mobile" class="form-control" value='<?php echo $row['mobile_number']; ?>'>
+	                <!--<span class="input-group-addon"><i class="fa fa-mobile"></i></span>-->
+	                <label>Phone : </label><input type="text" name="mobile" class="form-control" value='<?php echo $row['mobile_number']; ?>'>
 	            </div>
 
             <?php
@@ -63,15 +61,15 @@
 		$row = $result->fetch_assoc();
 		$state = $row['state_name'];
 		?>
-
+		<label>Location : </label><br>
 		<div class="form-group col-xs-6 col-md-4">
-            <select class="form-control" name="state" id="state1">
+            <select class="form-control" style='padding-left: -15px' name="state" id="state1" onchange="getDistrict(document.getElementById('state1').value);return false;">
                 <option selected><?php echo $state; ?></option>
                 <?php include 'stateList.php'; ?>
             </select>
         </div>
         <div class="form-group col-xs-6 col-md-2">
-            <select class="form-control" name="district" id="district1">             
+            <select class="form-control" name="district1" id="district1">             
                 <option selected><?php echo $district; ?></option>
             </select>
         </div><br><br><br>
