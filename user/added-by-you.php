@@ -1,1 +1,3 @@
-<?php require('issue-display.php') ?>
+<?php 
+    require('issue-display.php') 
+?>

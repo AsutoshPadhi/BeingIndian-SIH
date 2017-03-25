@@ -12,16 +12,19 @@ if (isset($_POST['cemail']))
         $conn=mysqli_connect("localhost","root","","hackathon");
 
         $cemail=$_POST['cemail'];
+        //echo $cemail;
         $pass=$_POST['password'];
         $pass=md5($pass);
-        $sql = "select * from institute where inst_password='$pass' AND inst_email='$cemail'";
+        //echo $pass;
+        //$sql = "select * from institute where inst_password='$pass' AND inst_email='$cemail'";
+        $sql = "SELECT *FROM institute WHERE inst_password = '".$pass."' AND inst_email = '".$cemail."'";
         $result =$conn->query($sql);
         if ($result->num_rows > 0) {
             session_start();
             $_SESSION['$cemail']=$cemail; // Initializing Session
             // Redirecting To Other Page
             //$_SESSION['login_user']=session_id();
-            header("location: change-password.php"); // Redirecting To Other Page
+            header("location: flag-check.php"); // Redirecting To Other Page
         } 
         else 
         {
@@ -30,6 +33,9 @@ if (isset($_POST['cemail']))
         }
         $conn->close(); // Closing Connection
     }
+}
+else{
+    echo "Something went wrong ...";
 }
 
 ?>

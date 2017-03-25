@@ -9,7 +9,7 @@
             <form>
 
                 <div class="form-group col-xs-6 col-md-2">
-                    <select class="form-control" id="state1" onchange="getDistrict(document.getElementById('state1').value)">
+                    <select class="form-control" id="state" onchange="getDistrict((document.getElementById('state').value),'district1')">
                         <option disabled selected>State</option>
                         <?php include 'stateList.php'; ?>
                     </select>
@@ -30,7 +30,7 @@
                     <input class="form-control" id="issue" type="text" placeholder="Keywords">
                 </div>
                 <input class="search btn btn-primary" type="submit" value="Search" 
-                onclick="loadDoc(search1.php)">
+                onclick="loadDoc('search.php','problem')">
             </form>
         </div>
     </body>
