@@ -5,6 +5,21 @@
 	<link rel="stylesheet" href="problemdescription.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="../functions/ajax.js"></script>
+	<script>
+	$(document).ready(function(){
+		$('#myModal').on('show.bs.modal', function (e) {
+			var rowid = $(e.relatedTarget).data('issue_id');
+			$.ajax({
+				type : 'post',
+				url : 'modal.php', //Here you will fetch records 
+				data :  'rowid='+ rowid, //Pass $id
+				success : function(data){
+				$('.fetched-data').html(data);//Show fetched data from database
+				}
+			});
+		 });
+	});
+</script>
 </head>
 <body>
 	<?php
@@ -82,7 +97,7 @@
 		<br>
 		<div id="demo<?php echo $i; ?>" class="collapse body">
 			<?php
-				echo "<a id='code' data-toggle='modal' data-target='#myModal3' data-id=".$row['issue_id'].'" >CODE : </a> ".$row["issue_id"]; ?>
+				echo "<a id='code' data-toggle='modal' data-target='#myModal3' data-id=".$row['issue_id']." >CODE : </a> ".$row["issue_id"]; ?>
 			<br><hr>
 			<?php
 				echo "<b id='code'>STATUS :</b> ".status() ;
