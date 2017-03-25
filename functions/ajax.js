@@ -6,6 +6,7 @@ function loadDoc(url,field)
     }
     if (window.XMLHttpRequest)
     {
+
         // code for modern browsers
         xhttp = new XMLHttpRequest();
     }
@@ -18,6 +19,7 @@ function loadDoc(url,field)
     {
         if (this.readyState == 4 && this.status == 200)
         {
+			
             document.getElementById(field).innerHTML = this.responseText;
         }
     };
