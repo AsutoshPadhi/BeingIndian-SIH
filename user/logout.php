@@ -166,7 +166,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <form action="institute/login.php" methond="POST" role="form" class="form-horizontal">
+                            <form action="../institute/login.php" methond="POST" role="form" class="form-horizontal">
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">
                                         Email</label>
