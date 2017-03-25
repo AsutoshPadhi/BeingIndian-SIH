@@ -78,16 +78,16 @@
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
-                            <a>
+                            <a onClick="MyWindow=window.open('userguide.php','MyWindow',width=300,height=150)">
                                 <div>
-                                    <i onClick="MyWindow=window.open('userguide.php','MyWindow',width=300,height=150)" class="fa fa-info-circle fa-fw"></i> User guide
+                                    <i class="fa fa-info-circle fa-fw"></i> User guide
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="loginpage.php">
+                            <a onClick="MyWindow=window.open('instituteguide.php','MyWindow',width=300,height=150)">
                                 <div>
-                                    <i onClick="MyWindow=window.open('instituteguide.php','MyWindow',width=300,height=150)" class="fa fa-institution fa-fw"></i> Institute guide
+                                    <i class="fa fa-institution fa-fw"></i> Institute guide
                                 </div>
                             </a>
                         </li>
