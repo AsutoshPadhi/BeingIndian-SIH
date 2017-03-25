@@ -33,7 +33,7 @@
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
 		//show and disable upvote button
-		echo "<h1>Status</h1>";
+		
 		/*if($row['upvote_count']>=500)
 		{
 			echo "voting close";
@@ -69,6 +69,12 @@
 	
 				}
 		}
+		
+	}
+	function historyUovote($sql)
+	{
+		
+		
 		
 	}
 	function collegeStatus($variable)
@@ -142,9 +148,64 @@
 		}
 		else
 		{
-			return 5;//voting on
+			echo "voting on";//voting on
 		}
 	}
+	
+	//institute
+	function addSolution($sql)
+	{
+		include '../functions/dataBaseConn.php';
+		$result = $conn->query($sql);
+		$sql1="select * fom solution where 1";
+		$result1 = $conn->query($sql1);
+		echo "Solution addded";
+		
+	
+	}
+	function f()
+	{
+		include '../functions/dataBaseConn.php';
+		$sql1="select * from solution where 1";
+		$result1 = $conn->query($sql1);
+		echo "Solution addded";
+		if($result1->num_rows!=0)
+		{
+    // output data of each row
+	
+			while($row = $result1->fetch_assoc())
+				{
+	               $val=$row['solution_id'];
+				}
+				return $val;
+		}
+
+	}
+	function f1()
+	{
+		include '../functions/dataBaseConn.php';
+		$sql="select * from  issue where 1";
+		$result = $conn->query($sql);
+		//$row = $result->fetch_assoc();
+		if($result->num_rows!=0)
+		{
+    // output data of each row
+	
+			while($row = $result->fetch_assoc())
+				{
+					$issue_id1=$row['issue_id'];
+				}
+				return $issue_id1;
+		}
+		
+	}
+	function reportedBogus($sql)
+	{
+		include '../functions/dataBaseConn.php';
+		$result = $conn->query($sql);
+		//$row = $result->fetch_assoc();
+	}
+		
 ?>
 
 
@@ -152,11 +213,15 @@
 
 
 <?php
-showStatus();
-echo "<h1>Status</h1>";
-historyadd("select * from issue inner join user on issue.user_id=user.user_id where  user_email='shreyajangale@gmail.com'");
-
+//howStatus();
+//historyadd("select * from issue inner join user on issue.user_id=user.user_id where  user_email='shreyajangale@gmail.com'");
+//$result=f();
+//addSolution("insert into solution(solution_id,issue_id,inst_id,solution_url,like_count,added_on) values($result+1,2003,6,'https://www.youtube.com/watch?v=G62HrubdD6o',,'2017-10-23')");
+$result=f1();
+echo $result;
+reportedbogus("update issue set bogus_count=bogus_count+1 where issue_id='row['issue_id']'");
 ?>
+
 
 
 
