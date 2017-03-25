@@ -13,10 +13,12 @@
 				if($flag)
 				{
                     $sql = "UPDATE institute set reset_password = 0 WHERE inst_email='$cemail'";
+					$_SESSION['$cemail']=$cemail;
                     header("Location: change-password.php");
 				}
 				else
 				{
+					$_SESSION['$cemail']=$cemail;
 					header("Location: dashboard.php");
 				}
         }

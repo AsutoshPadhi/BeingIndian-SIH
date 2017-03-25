@@ -15,19 +15,11 @@ if(isset($_SESSION['$cemail'])){
         $result =$conn->query($sql);
         if ($result->num_rows > 0) {
             $sql = "UPDATE institute set inst_password = '$new' WHERE inst_password = '$old'";
-?>
-            <script>
-                alert("Password changed successfully!");
-            </script>
-<?php
+            $_SESSION['$cemail']=$cemail;
             header('Location: dashboard.php');
         }
         else{
-?>
-            <script>
-                alert("Old password did not match");
-            </script>
-<?php
+            $_SESSION['$cemail']=$cemail;
             header('Location: dashboard.php');
         }
 
