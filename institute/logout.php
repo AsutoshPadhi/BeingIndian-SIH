@@ -197,7 +197,7 @@
             </div>
         </div>
     </div>
-    <?php require('login.php') ?>
+    <?php require('../user/login.php') ?>
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -228,7 +228,7 @@
                                         $_SESSION['$fname'] = $fname;
                                         $_SESSION['$lname'] = $fname;
                                         $_SESSION['$email'] = $email;
-                                        header('Location: dashboard.php');
+                                        header('Location: ../user/dashboard.php');
                                     }
                                     ?>
                                 </div>
