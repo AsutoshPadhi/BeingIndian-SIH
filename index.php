@@ -43,6 +43,7 @@
 
                     if(isset($_SESSION['$email'])){
                         $login = true;
+                        $loginCollege = false;
                         $email = $_SESSION['$email'];
                         $name = $_SESSION['$name'];
                         $fname = $_SESSION['$fname'];
@@ -51,6 +52,7 @@
                     }
                     else if(isset($_SESSION['$cemail'])){
                         $loginCollege = true;
+                        $login = false;
                     }
                     else{
                         $login = false;
