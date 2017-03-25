@@ -151,12 +151,7 @@
 
 
 
-<?php
-showStatus();
-echo "<h1>Status</h1>";
-historyadd("select * from issue inner join user on issue.user_id=user.user_id where  user_email='shreyajangale@gmail.com'");
 
-?>
 
 
 
