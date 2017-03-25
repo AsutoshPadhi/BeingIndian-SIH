@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    if(isset($SESSION['$cemail'])){
+        $loginCollege = true;
+        echo "yes";
+    }
+    else{
+        $loginCollege = false;
+        echo "no";
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,17 +40,6 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-            <?php
-            session_start();
-            if(isset($SESSION['$cemail'])){
-                $loginCollege = false;
-            }
-            else{
-                $loginCollege = true;
-                header('Location: ../index.php');
-            }
-
-            ?>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
