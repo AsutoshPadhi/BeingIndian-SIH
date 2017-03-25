@@ -1,3 +1,1 @@
-<?php
-    echo "Upvoted by you!";
-?>
+<?php require('issue-display.php') ?>
