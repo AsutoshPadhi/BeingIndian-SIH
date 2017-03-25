@@ -121,7 +121,11 @@ define('like_threhold',100);
 		include '../functions/dataBaseConn.php';
 		//$state_id = 1006;
 		//$sql =$variable; 
+<<<<<<< HEAD
 		$sql= "SELECT *FROM issue WHERE issue_id =";
+=======
+		$sql= "SELECT *FROM issue WHERE issue_id =1.";
+>>>>>>> refs/remotes/origin/master
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
 		if($row['uovote_count']>=500)
@@ -129,32 +133,39 @@ define('like_threhold',100);
 			
 			if($row['approved_solution']>0)
 			{
-				echo "status approved";
+				echo "Solution approved";
 			}
 			else
 				if($row['solution_count']>0)
 				
 				{
-					echo " Following number of solutions are available";
+					echo "  solutions are available";
 				}
 				else
 					if($row['dupicate_count']>1)
 					{
-						echo "";
+						echo "Issue marked as duplicte";
 					}
 				else
 					if($row['bogus_count']>5)
 					{
-						return 4;
+						//return 4;
+						echo "bogus issue";
 					}
 				else
-					return 0;//solution awaited
+					//return 0;//solution awaited
+				echo "Solution awaited";
 			
 				
 		}
 		else
 		{
+<<<<<<< HEAD
 			echo "voting on";//voting on
+=======
+			//return 5;//voting on
+			echo"voting on";
+>>>>>>> refs/remotes/origin/master
 		}
 	}
 	
@@ -212,6 +223,7 @@ function f1()
 		
 	}
 
+<<<<<<< HEAD
 	function CountBogus($sql)
 	{
 		include '../functions/dataBaseConn.php';
@@ -307,6 +319,9 @@ function f1()
 //voteAsDuplicate("update issue set duplicate_count=duplicate_count+1 where issue_id=100000");
 //AddSolution("insert into solution(solution_id, issue_id, inst_id, solution_url, like_count, added_on) values(,"$row['issue_id']",,"$var");");
 ?>
+=======
+
+>>>>>>> refs/remotes/origin/master
 
 
 

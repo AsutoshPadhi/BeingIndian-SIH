@@ -41,7 +41,7 @@
             <div class="navbar-header">
                 <?php
                     session_start();
-
+                    header("refresh:5;url=../index.php");
                     if(isset($_SESSION['$email'])){
                         $login = true;
                         $email = $_SESSION['$email'];
@@ -150,10 +150,9 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-<?php
-    echo "<h2>Successfully Logout</h2>";
-    // header('loginpage.php');
-?>
+    <div class="text-center" style="margin-top: 30vh;">
+        <img src="../logincallout.png" alt="Successfully Logged out!">
+    </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-md">
@@ -166,7 +165,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <form action="institute/login.php" methond="POST" role="form" class="form-horizontal">
+                            <form action="../institute/login.php" methond="POST" role="form" class="form-horizontal">
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">
                                         Email</label>
@@ -197,7 +196,6 @@
             </div>
         </div>
     </div>
-    <?php require('login.php') ?>
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -215,22 +213,9 @@
                                     User Login
                                 </div>
                                 <div style="margin: 15px 0px;" class="styleBox">
-                                    <?php
-                                    if (isset($authUrl)) { ?>
-                                        <a class="btn btn-block btn-social btn-google-plus" href='<?php echo $authUrl ?>'>
-                                            <i class="fa fa-google-plus"></i> Sign in with Google
-                                        </a>
-                                    <?php
-                                    } 
-                                    else {
-                                        session_start();
-                                        $_SESSION['$name'] = $name;
-                                        $_SESSION['$fname'] = $fname;
-                                        $_SESSION['$lname'] = $fname;
-                                        $_SESSION['$email'] = $email;
-                                        header('Location: dashboard.php');
-                                    }
-                                    ?>
+                                    <a class="btn btn-block btn-social btn-google-plus" href='user/login.php'>
+                                        <i class="fa fa-google-plus"></i> Sign in with Google
+                                    </a>
                                 </div>
                             </div>
                         </div>
