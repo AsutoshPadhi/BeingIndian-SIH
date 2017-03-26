@@ -22,8 +22,7 @@ if(isset($_SESSION['$cemail'])){
             $sql = "UPDATE institute set inst_password = '".$new."' WHERE inst_password = '".$old."' AND inst_email = '".$cemail."'";
             $result =$conn->query($sql);
             $_SESSION['$cemail']=$cemail;
-            header('Location: dashboard.php');
-            $_SESSION['$message'] = 'success';
+            header('Location: dashboard.php?changed_password=success');
         }
         else{
             $_SESSION['$cemail']=$cemail;
