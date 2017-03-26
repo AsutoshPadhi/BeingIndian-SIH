@@ -203,7 +203,7 @@
                                     <div class="col-sm-10">
                                         <button  type="submit" class="btn btn-primary btn-sm">
                                             Submit</button>
-                                        <a href="javascript:;">Forgot your password?</a>
+                                        <a onClick="loadDoc('../institute/forgot-password.php','field')">Forgot your password?</a>
                                     </div>
                                 </div>
                             </form>
