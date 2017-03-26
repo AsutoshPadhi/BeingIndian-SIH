@@ -11,6 +11,7 @@
         header("Location: index.php");
     }
     require('../functions/func_in.php');
+    require('../functions/func_out.php');
 ?>
 <!DOCTYPE html>
 <html>
