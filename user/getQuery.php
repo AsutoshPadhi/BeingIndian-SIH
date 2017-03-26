@@ -13,6 +13,8 @@
 		$str = $_GET['issue'];
 		$state = $_GET['state'];
 		$district = $_GET['district'];
+		$locality = $_GET['locality'];
+		$pin = $_GET['pin'];
 
 		$get_district_id = "SELECT *FROM district WHERE district_name = '".$district."'";
 		$result = $conn->query($get_district_id);
@@ -79,7 +81,7 @@
 		}
 		?>
 		<br><br><hr>
-		<button type="button" class="btn btn-primary btn-lg btn-block" onclick="loadDoc('add-issue-description.php?state=<?php echo $state ?>&district=<?php echo $district ?>&issue=<?php echo $str ?>','field')">Proceed to Add new Issue</button>		<!--Add the variable to be passed to the url-->
+		<button type="button" class="btn btn-primary btn-lg btn-block" onclick="alert('<?php echo $locality ?>');loadDoc('add-issue-description.php?state=<?php echo $state ?>&district=<?php echo $district ?>&issue=<?php echo $str ?>&locality=<?php echo $locality ?>&pin=<?php echo $pin ?>','field')">Proceed to Add new Issue</button>		<!--Add the variable to be passed to the url-->
 
 	<?php
 	}
