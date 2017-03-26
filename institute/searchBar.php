@@ -16,7 +16,7 @@
         <div class="form-group col-md-8">
             <input id="new2" type="password" class="form-control" placeholder="Keywords">
         </div>
-        <input type="submit" onClick="loadDoc('issue-display.php','problem')" class="btn btn-primary col-md-3" value="Search">
+        <input type="submit" onClick="loadDoc('issue-display.php','field')" class="btn btn-primary col-md-3" value="Search">
     </body>
 
 </html>
