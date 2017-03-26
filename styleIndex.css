@@ -45,7 +45,7 @@ video
 .container .aboutUs
 {
 	order: 2;
-	position: absolute;
+	position: relative !important;
 	top: 30%;
 	width: 70%;
 	left: 50%;
@@ -55,7 +55,7 @@ video
 {
 	order: 3;
 	width: 40%;
-	position: absolute;
+	position: relative !important;
 	top: 70%;
 	left: 50%;
 	transform: translateX(-50%);

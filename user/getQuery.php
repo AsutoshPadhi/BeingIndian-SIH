@@ -14,10 +14,15 @@
 		$state = $_GET['state'];
 		$district = $_GET['district'];
 
+		$get_district_id = "SELECT *FROM district WHERE district_name = '".$district."'";
+		$result = $conn->query($get_district_id);
+		$row = $result->fetch_assoc();
+		//echo "".$row['district_id'];
+
 		//print_r( array_count_values(str_word_count($str, 1)) );
 		$query_word_count =  array_count_values(str_word_count($str, 1));
 
-		$sql = "SELECT *FROM issue";
+		$sql = "SELECT *FROM issue WHERE district_id = '".$row['district_id']."'";
 		$result = $conn->query($sql);
 		if($result->num_rows > 0)
 		{
@@ -31,7 +36,7 @@
 		}
 		else
 		{
-			echo "not working";
+			//echo "not working";
 		}
 
 		$cs = new CosineSimilarity();
