@@ -118,7 +118,7 @@ define('like_threhold',100);
 		else
 		{
 			//return 1;//not upvoted
-			echo "<button style='margin-left: 15px' id='$id' class='btn btn-primary' onclick='".upvoteUser($id)."'> $id</button>";
+			echo "<button style='margin-left: 15px' id='$id' value='$id' class='btn btn-primary' onclick='".upvoteUser($id)."'> $id</button>";
 			
 		}
 		 
@@ -131,10 +131,11 @@ define('like_threhold',100);
 			
 		
 			include '../functions/dataBaseConn.php';
-			$sql="update issue set upvote_count=upvote_count+1 where issue_id=".$id ."";
+			$sql="update issue set upvote_count=upvote_count+1 where issue_id=$id";
 			$result=$conn->query($sql);
-
-		//	echo $row['upvote_count'];
+			//$row=mysqli_fetch_assoc($result);
+			//echo $row['upvote_count'];
+			
 			
 		}
 		
