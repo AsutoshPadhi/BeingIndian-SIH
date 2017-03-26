@@ -5,22 +5,28 @@
 session_start();
 if(isset($_SESSION['$cemail'])){
     if(isset($_POST['old'])){
+        $cemail = $_SESSION['$cemail'];
+        //echo $cemail;
         $old = $_POST['old'];
+        //echo $old;
         $old = md5($old);
         $new = $_POST['new'];
         $new = md5($new);
 
         $conn=mysqli_connect("localhost","root","","hackathon");
-        $sql =  "SELECT * from institute WHERE inst_password = '$old' and $cemail = '$cemail'";
+        $sql =  "SELECT * from institute WHERE inst_password = '".$old."' AND inst_email = '".$cemail."'";
         $result =$conn->query($sql);
+        $row = $result->fetch_assoc();
+        echo $row['inst_password'];
         if ($result->num_rows > 0) {
-            $sql = "UPDATE institute set inst_password = '$new' WHERE inst_password = '$old'";
+            $sql = "UPDATE institute set inst_password = '".$new."' WHERE inst_password = '".$old."' AND inst_email = '".$cemail."'";
+            $result =$conn->query($sql);
             $_SESSION['$cemail']=$cemail;
-            header('Location: dashboard.php');
+            //header('Location: dashboard.php');
         }
         else{
             $_SESSION['$cemail']=$cemail;
-            header('Location: dashboard.php');
+            //header('Location: dashboard.php');
         }
 
     }
@@ -68,7 +74,7 @@ if(isset($_SESSION['$cemail'])){
     }
 }
 else{
-    header('index.php');
+    header('../localhost/index.php');
 }
 ?>
 </html>
