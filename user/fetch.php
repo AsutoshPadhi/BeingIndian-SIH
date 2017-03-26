@@ -1,8 +1,8 @@
  <?php
 	 
-		$id=$_POST['rowid'];
-	if(isset($_POST['rowid']))
-		{
+		
+	if($_POST['rowid']) {
+    $id = $_POST['rowid']; 
 			$con= mysqli_connect("localhost","root","");
 			$selected = mysqli_select_db($con,'hackathon') ;	
 			$id = $_POST['rowid']; //escape string
