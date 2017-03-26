@@ -39,6 +39,14 @@
 		or die("Could not select examples");
 		$result=mysqli_query($con,$sql);
 		$no_of_results=mysqli_num_rows($result);
+		if($no_of_results == 0)
+		{
+			?>
+				<div class="alert alert-danger">
+                    You have not participated in this section yet.
+                </div>
+			<?php
+		}
 		$results_per_page=5;
 
 		//dtermine the number of pages in a page
