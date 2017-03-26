@@ -16,6 +16,7 @@ $(document).ready(function(){
      });
 });
 </script>-->
+
 </head>
 <body>
 
@@ -30,29 +31,7 @@ $(document).ready(function(){
 			</div>
 			<div class="modal-body">
 			 <div class="fetched-data">
-			 <?php
-			 
-			require("issue-display.php");
-//Include database connection
-				if($_POST['rowid'])
-					{
-						$id = $_POST['rowid']; //escape string
-						// Run the Query
-						// Fetch Records
-						// Echo the data you want to show in modal
-
-
-						$sql="Select * from issue where issue_id='$id '";
-						$result=mysqli_query($con,$sql);
-						$no_of_results=mysqli_num_rows($result);
-						
-						while($row= mysqli_fetch_array($result))
-						{
-								echo $row['issue_id'];
-						}
-					}		
-
-				?>
+			<?php echo "HEllo";?>
 			 </div> 
             </div>
 				<div class="row">
