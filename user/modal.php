@@ -31,7 +31,7 @@ $(document).ready(function(){
 			</div>
 			<div class="modal-body">
 			 <div class="fetched-data">
-			<?php echo "HEllo";?>
+			<?php   ?>
 			 </div> 
             </div>
 				<div class="row">
