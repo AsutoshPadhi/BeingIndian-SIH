@@ -9,6 +9,20 @@
 $('#myModal').modal('show');
 $('#myModal2').modal('show');
 
+$(document).ready(function(){
+    $('#myModal3').on('show.bs.modal', function (e) {
+        var rowid = $(e.relatedTarget).data('id');
+        $.ajax({
+            type : 'POST',
+            url : 'fetch.php', //Here you will fetch records 
+            data :  'rowid='+ rowid, //Pass $id
+            success : function(data){
+            $('.fetched-data').html(data);//Show fetched data from database
+            }
+        });
+     });
+});
+
 $(function() {
     $('#side-menu').metisMenu();
 });

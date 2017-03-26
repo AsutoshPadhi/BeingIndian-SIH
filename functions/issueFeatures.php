@@ -25,7 +25,8 @@
 <input type="submit" name="class" value="click me" onclick="f1()">
 </form>
 <?php
-     define('bogus_threshold',5);
+
+define('bogus_threshold',5);
 define('upvote_threshold',500);
 define('like_threhold',100);
 
@@ -59,6 +60,8 @@ define('like_threhold',100);
 			echo "solution Awaited";
 		}
 	}
+
+
 	function historyadd($sql)
 	{
 		include '../functions/dataBaseConn.php';
@@ -77,12 +80,31 @@ define('like_threhold',100);
 		}
 		
 	}
-	function historyUovote($sql)
+
+
+	function historyUpvote($sql)
 	{
 		
-		
+		include '../functions/dataBaseConn.php';
+		$result = $conn->query($sql);
+		//$row = $result->fetch_assoc();
+		if($result->num_rows!=0)
+		{
+    // output data of each row
+	
+			while($row = $result->fetch_assoc())
+				{
+
+					echo $row['title'];
+	
+				}
+		}
 		
 	}
+		
+	}
+
+
 	function collegeStatus($variable)
 	{
 		include '../functions/dataBaseConn.php';
@@ -100,6 +122,8 @@ define('like_threhold',100);
 		}
 		
 	}
+
+
 	function userStatus($variable)
 	{
 		include '../functions/dataBaseConn.php';
@@ -116,6 +140,7 @@ define('like_threhold',100);
 		
 	}
 	
+
 	function status()
 	{
 		include '../functions/dataBaseConn.php';
@@ -175,6 +200,8 @@ define('like_threhold',100);
 		
 	
 	}
+
+
 	function f()
 	{
 		include '../functions/dataBaseConn.php';
@@ -192,11 +219,9 @@ define('like_threhold',100);
 				return $val;
 		}
 
-	}?>
-	<script>
-	document.getElementById('class').innerHTML;
-	</script>
-<?php	
+	}
+	
+
 function f1()
 	{
 		include '../functions/dataBaseConn.php';
@@ -222,9 +247,71 @@ function f1()
 	function CountBogus($sql)
 	{
 		include '../functions/dataBaseConn.php';
+
 		$result = $conn->query($sql);
 		//$row = $result->fetch_assoc();
+		if($result->num_rows!=0)
+			{
+			while($row = $result->fetch_assoc())
+				{
+	               $val=$row['bogus_count'];
+	           }
+	       }
+		
 	}
+
+
+	function ApprovedSolution($sql)
+	{
+		include '../functions/dataBaseConn.php';
+		$sql1="select * from solution where 1";
+		if($result1->num_rows!=0)
+		{
+			while($row = $result1->fetch_assoc())
+			{
+				$val=$row['like_count'];
+			}
+		}
+		if($val>500) 
+       {
+  	//update issue set approvedSolution=1 where issue_id="$row['issue_id']";
+  	         $result= $conn->query($sql);
+       }
+
+
+	}
+
+
+	function SolutionCount()
+	{
+		include '../functions/dataBaseConn.php';
+		$sql1="select * from issue where 1";
+		$result1= $conn->query($sql);
+		//$row = $result->fetch_assoc();
+		if($result1->num_rows!=0)
+		{
+			while($row = $result1->fetch_assoc())
+			{
+				$val=$row['title'];
+			}
+		}
+
+		$sql=" select count(issue.issue_id)as solution_count,issue.title from issue INNER JOIN solution on solution.issue_id=issue.issue_id group by issue.title HAVING issue.title='$val'";
+		$result = $conn->query($sql);
+		//$row = $result->fetch_assoc();
+		if($result->num_rows!=0)
+			{
+			while($row = $result->fetch_assoc())
+			{ 
+				echo $row['solution_count'];
+
+			}
+		}
+
+
+	}
+
+
 	function ReportedBogus($sql)
 	{
 		include '../functions/dataBaseConn.php';
@@ -240,6 +327,8 @@ function f1()
 		}
 		
 	}
+
+
 	function ReportedDuplicateByMe($sql)
 	{
 			include '../functions/dataBaseConn.php';
@@ -256,6 +345,8 @@ function f1()
 				
 			}
 	}
+
+
 	function proLogin($sql)
 	{
 		include '../functions/dataBaseConn.php';
@@ -272,6 +363,8 @@ function f1()
 				
 			}
 	}
+
+
 	function solvedByMe($sql)
 	{
 		include '../functions/dataBaseConn.php';
@@ -289,6 +382,8 @@ function f1()
 				
 			}
 	}
+
+
 	function voteAsDuplicate($sql)
 	{
 		include '../functions/dataBaseConn.php';
@@ -305,20 +400,112 @@ function f1()
 			}
 			 $result = $conn->query($sql);
 	}
+
+
+	function voteAsBogus()
+	{
+        include '../functions/dataBaseConn.php';
+		$sql1="select * from issue where 1";
+		    $result = $conn->query($sql1);
+			if($result->num_rows!=0)
+			{
+	
+			while($row = $result->fetch_assoc())
+			{
+				 $val=$row['issue_id'];
+			}
+		}
+		$sql="update issue set bogus_count=bogus_count+1 where issue_id='$val";
+		$result = $conn->query($sql);
+
+		
+	}
+
+
+	function voteAsDuplicate()
+	{
+		include '../functions/dataBaseConn.php';
+		$sql1="select * from issue where 1";
+		    $result = $conn->query($sql1);
+			if($result->num_rows!=0)
+			{
+	
+			while($row = $result->fetch_assoc())
+			{
+				 $val=$row['issue_id'];
+			}
+		}
+		$sql="update issue set duplicate_count=duplicate_count+1 where issue_id='$val";
+		$result = $conn->query($sql);
+
+	}
+
+
+	function postedsolution($date,$url)
+	{
+		include '../functions/dataBaseConn.php';
+		$sql1="select * from solution where 1";
+		    $result = $conn->query($sql1);
+			if($result->num_rows!=0)
+			{
+	
+			while($row = $result->fetch_assoc())
+			{
+				 $val=$row['issue_id'];
+				 $val1=$row['solution_id'];
+			}
+		}
+		
+		sql="insert into solution(solution_id, issue_id, inst_id, solution_url, like_count, added_on) values('$val1'+1,'$val',,$url,,$date)";
+		$result = $conn->query($sql);
+
+	}
+
+
+	function LikeCount()
+	{
+		include '../functions/dataBaseConn.php';
+		$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id ";
+		    $result = $conn->query($sql1);
+			if($result->num_rows!=0)
+			{
+	
+			while($row = $result->fetch_assoc())
+			{
+				 $val=$row['issue_id'];
+				 $val1=$row['solution_id'];
+			}
+		}
+		$sql=" update solution set like_count=like_count+1 where solution_id='$val1'";
+          $result1 = $conn->query($sql);
+	}
+
+	function numberOfLikes()
+	{
+		include '../functions/dataBaseConn.php';
+		$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id ";
+		    $result = $conn->query($sql1);
+			if($result->num_rows!=0)
+			{
+	
+			while($row = $result->fetch_assoc())
+			{
+				 $val=$row['title'];
+				 $val1=$row['solution_id'];
+			}
+			$sql="  select count(solution.solution_id)as like_count,issue.title from issue INNER JOIN solution on solution.issue_id=issue.issue_id group by issue.title having issue.title='$val'";
+             $result1 = $conn->query($sql);
+			if($result1->num_rows!=0)
+			{
+	
+			while($row = $result1->fetch_assoc())
+			{
+				 $val=$row['like_count'];
+			}
+			return $val;
+		}
+	}
 	?>
-<?php
-//ReportedBogus("select issue.title,issue.issue_id,institute.inst_name  from issue inner join institute inner join issuebogusupvote on issue.issue_id=issuebogusupvote.issue_id and institute.inst_id=issuebogusupvote.inst_id where issue.bogus_count>5");
-//ReportedDuplicateByMe("select issue.title,issueduplicateupvote.issue_id,issueduplicateupvote.inst_id,issueduplicateupvote.similar_to_issue,user.user_email from issueduplicateupvote inner join issue inner join user on issue.issue_id=issueduplicateupvote.issue_id and user.user_id=issue.user_id where issue.duplicate_count>0");
-//proLogin("SELECT issue.title,institute.inst_name,issue.district_id FROM issue INNER JOIN district INNER JOIN institute ON  district.district_id=issue.district_id and district.district_id=institute.district_id where  institute.inst_email='2015isha.shetty@ves.ac.in' ");//in location of college
-//solvedByMe("select solution.solution_url,institute.inst_name,issue.title from solution inner join institute INNER JOIN issue on institute.inst_id=solution.inst_id and issue.issue_id=solution.issue_id WHERE issue.solution_count>0");
-//voteAsDuplicate("update issue set duplicate_count=duplicate_count+1 where issue_id=100000");
-//AddSolution("insert into solution(solution_id, issue_id, inst_id, solution_url, like_count, added_on) values(,"$row['issue_id']",,"$var");");
-?>
-
-
-
-
-
 
 </body>
 </html>

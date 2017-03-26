@@ -10,7 +10,16 @@
         //echo "no";
         header("Location: index.php");
     }
+
+    if(isset($_SESSION['$message']) && $_SESSION['$message']=="success")
+    {
+        ?><div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        Your Password has been reset
+    </div><?php
+    }
     require('../functions/func_in.php');
+
     require('../functions/func_out.php');
 ?>
 <!DOCTYPE html>

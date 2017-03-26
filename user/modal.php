@@ -31,7 +31,29 @@ $(document).ready(function(){
 			</div>
 			<div class="modal-body">
 			 <div class="fetched-data">
-			<?php ?>
+			<?php
+	 
+	
+				include '../functions/dataBaseConn.php';
+				
+						$id=$_GET['id'];
+						//$id = isset($_GET['id']) ? $_GET['id'] : ''
+						//$id = $_POST['rowid']; //escape string
+						// Run the Query
+						// Fetch Records
+						// Echo the data you want to show in modal
+						$sql="Select * from issue where issue_id='$id'";
+						$result=mysqli_query($con,$sql);
+						$no_of_results=mysqli_num_rows($result);
+						
+						$row= mysqli_fetch_array($result);
+						echo "hello";
+						echo $row['description'];
+						
+						
+					
+
+?>
 			 </div> 
             </div>
 				<div class="row">

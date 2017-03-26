@@ -5,46 +5,7 @@
 	<link rel="stylesheet" href="problemdescription.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="../functions/ajax.js"></script>
-	<script>
-	$(document).ready(function()
-	{
-			alert("hii");
-		$('.view_data').click( function() {
-			alert("hii");
-			//var rowid = $(e.relatedTarget).data('issue_id');
-			var rowid=$(this).attr("id");
-				//$('#myModal3').modal("show")};
-			$.ajax({
-				type : 'post',
-				url : 'fetch.php', //Here you will fetch records 
-			data :  {rowid: rowid}, //Pass $id
-				success : function(data){
-				$('.fetched-data').html(data);//Show fetched data from database
-				}
-			});
-		 });
-	});
-</script>
- <script>
 	
-	$(document).ready(function() 
-	   { 
-		 $('#myModal3').on('show.bs.modal', function (e) 
-			{
-
-			  var rowid = $(e.relatedTarget).data('id');                                                                                                 
-			  $.ajax({
-						  type : 'post',
-						  url : 'fetch.php', //Here you will fetch records 
-						  data :  'rowid='+ rowid, //Pass rowid
-						  success : function(data)
-						 {
-							   $('.fetched-data').html(data);//Show fetched data
-						 }
-					  });
-			});
-	   });
-</script>
 </head>
 <body>
 	<?php
@@ -121,38 +82,26 @@
 			</button>
 			<br>
 			<div id="demo<?php echo $i; ?>" class="collapse body">
-				<?php
-					echo "<a id='code'  data-toggle='modal' data-target='#myModal3' value=".$row['issue_id']."
-					id=".$row['issue_id']." class='view_data' >CODE : </a> ".$row["issue_id"]; ?>
-					
-				<br><hr>
-				<?php
+				<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo $row["issue_id"]; ?>	
+			<br><hr>
+			
+			<?php
 				
 					echo  postedBy($row['issue_id']);
 				?>
 				<br><hr>
-				<?php
-					echo "<b id='code'>STATUS :</b>";
-				?><br>
-				<?php 
-					echo status($row['issue_id']);
 				
-				?>
-				<hr>
-				
-				<?php
-				
-					userStatus('2003',$row['issue_id']);
-					/*if($row["upvote_count"]>=500)
-					{
-						echo "Voting closed";
-					}
-					else
-					{
-						echo "<button style='margin-left: 15px' class='btn btn-primary'> Upvote</button>";
-					}*/
-
-
+			<?php
+				$id = $row['issue_id'];
+				echo "<b id='code'>STATUS :</b>";
+			?>
+			<?php 
+			    echo status($row['issue_id']);
+			?>
+			<hr>
+			
+			<?php
+				userStatus('2003',$row['issue_id']);
 				if($row["solution_count"] >0)
 				{
 
@@ -173,14 +122,14 @@
 							</div>
 							<div class='modal-body'>
 								<?php
-									} 
+									//} 
 								$sql1="select solution_url from solution where issue_id=".$row['issue_id']."";
 								$result1=mysqli_query($con,$sql1);
 								while($row=mysqli_fetch_array($result1))
 								{
 								echo "<a href=".$row["solution_url"].">".$row["solution_url"]."</a> </br>";
 								}
-
+				}
 								?>
 							</div>
 						<!-- /.modal-content -->
@@ -190,7 +139,33 @@
 				<!-- /.modal -->
 				</div>
 			</div>
+		</div>
+		<div class="modal fade" id='myModal<?php echo $id; ?>' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-md " role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							×</button>
+						<h4 class="modal-title" id="myModalLabel">Description</h4>
+					</div>
+					<div class="modal-body">
+						<?php 
+						
+								
+							$sql3="Select * from issue where issue_id='$id'";
+							$result3=mysqli_query($con,$sql3);
+							$no_of_results=mysqli_num_rows($result3);
+							
+							$row= mysqli_fetch_array($result3);
+							
+							echo $row['description'];
+
+						?>
+					</div>
+				</div>
 			</div>
+		</div>
 			<?php
 				$i++;
 		}
@@ -219,8 +194,6 @@
 		</div>
 	</div>
 
-	<?php
-		require('modal.php');
-	?>
+	
 </body>
 </html>

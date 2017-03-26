@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <script src="functions/ajax.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="../functions/ajax.js"></script>
+    <script src="urlGenerator.js"></script>
+    <script src="tabs.js"></script>
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
-    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Social Buttons CSS -->
     <link href="../vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style/styleIndex.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -30,7 +30,6 @@
     <![endif]-->
 
 </head>
-
 <body>
 
     <div id="wrapper">
@@ -43,30 +42,35 @@
 
                     if(isset($_SESSION['$email'])){
                         $login = true;
-                        $loginCollege = false;
                         $email = $_SESSION['$email'];
                         $name = $_SESSION['$name'];
                         $fname = $_SESSION['$fname'];
                         $lname = $_SESSION['$lname'];
-                        
-                    }
-                    else if(isset($_SESSION['$cemail'])){
-                        $loginCollege = true;
-                        $login = false;
+
                     }
                     else{
                         $login = false;
-                        $loginCollege = false;
                     }
 
-                    
+                    if($login){
+
                 ?>
-                <a class="navbar-brand" href="index.php"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <?php
+                    }
+                ?>
+                <a class="navbar-brand" href="../index.php"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                
+
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -74,14 +78,14 @@
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
-                            <a onClick="MyWindow=window.open('userguide.php','MyWindow',width=300,height=150)">
+                            <a onClick="MyWindow=window.open('../userguide.php','MyWindow',width=300,height=150)">
                                 <div>
                                     <i class="fa fa-info-circle fa-fw"></i> User guide
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a onClick="MyWindow=window.open('instituteguide.php','MyWindow',width=300,height=150)">
+                            <a onClick="MyWindow=window.open('../instituteguide.php','MyWindow',width=300,height=150)">
                                 <div>
                                     <i class="fa fa-institution fa-fw"></i> Institute guide
                                 </div>
@@ -98,11 +102,11 @@
                     <ul class="dropdown-menu dropdown-user">
 
                         <?php
-                            
-                            if($login || $loginCollege){
+
+                            if($login){
                         ?>
-                            </li>
-                            <li><a href="user/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li>
+                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         <?php
                             }
@@ -121,55 +125,90 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
+            <?php
+                if($login){
+
+            ?>
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+
+                            <a onClick="javascript:loadDoc('search.php','field');$('#searchBar').show();"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+
+                        </li>
+                        <!-- onclick="javascript:openField(event, 'addIssue')"-->
+                        <li id="addIssue">
+                            <a onclick="javascript:loadDoc('add-issue.php','field');$('#searchBar').hide();" 
+                            onload="hideSearchBar()"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a onClick="javascript:loadDoc('added-by-you.php','field');$('#searchBar').hide();">Added by you</a>
+                                </li>
+                                <li>
+                                    <a onClick="javascript:loadDoc('upvoted-by-you.php','field');$('#searchBar').hide();">Upvoted by you</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a onClick="javascript:loadDoc('profile.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Profile</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <?php
+                }
+            ?>
             <!-- /.navbar-static-side -->
         </nav>
-        
+
         <!-- Page Content -->
-        
+
+        <div class="main-content" id="main">
+            <div class="searchBar" id="searchBar">
+                <?php require('dashboard-searchBar.php'); ?>
+            </div>
             <div class="container-fluid" id="field">
-                <div class="container">
-                    <div class="tagline panel-body"><h1>Ask questions for a better tomorrow</h1></div>
-                    <div class="aboutUs lead">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis ornare risus. Quisque sit amet pharetra quam. Curabitur fermentum justo eu est sagittis tincidunt. Cras eu massa nunc. Integer imperdiet molestie tempus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis arcu lorem, bibendum eget commodo quis, fringilla non nibh. </div>
-                    <div class="buttons">
-                        <button type="button" onclick="location.href='user/dashboard.php?toOpen=search.php';" class="btn btn-outline btn-primary btn-lg" id="search">Search an Issue</button>
-                        <?php 
-                            if($login){
-                        ?>
-                        <button type="button" onclick="location.href='user/dashboard.php?toOpen=add-issue.php'" class="btn btn-outline btn-primary btn-lg" id="add">Add an Issue</button>
-                        <?php
-                            }
-                            else{
-                        ?>
-                        <button type="button" class="btn btn-outline btn-primary btn-lg" id="add" data-toggle="modal" data-target="#myModal2">Add an Issue</button>
-                        <?php
-                            }
-                        ?>
-                    </div>
-                </div>
+
             </div>
             <!-- /.container-fluid -->
-        
+        </div>
         <!-- /#page-wrapper -->
-        <video autoplay loop width="100%" height="auto">
-            <source src="https://indiastack.org/wp-content/themes/indiastack/video/videobg.webm" type="video/webm">
-        </video>
 
     </div>
-    
-
+    <?php 
+        if(isset($_GET['toOpen'])){
+            $toOpen = $_GET['toOpen'];
+        }
+    ?>
+    <script>
+        var login = <?php if($login){echo "true";}else{echo "false";}?>;
+        if(login){
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+        else{
+            document.getElementById("main").style.marginLeft = "0px";
+        }
+        loadDoc('<?php echo $toOpen; ?>','field');
+    </script>
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/sb-admin-2.js"></script>
 
-    <!-- Large modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-md">
@@ -182,28 +221,28 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <form action="institute/login.php" method="POST" role="form" class="form-horizontal">
+                            <form action="localhost/institute/login.php" methond="POST" role="form" class="form-horizontal">
                                 <div class="form-group">
-                                    <label for="cemail" class="col-sm-2 control-label">
+                                    <label for="email" class="col-sm-2 control-label">
                                         Email</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" name="cemail" id="cemail" placeholder="Email" />
+                                        <input type="email" class="form-control" id="email1" placeholder="Email" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="col-sm-2 control-label">
+                                    <label for="exampleInputPassword1" class="col-sm-2 control-label">
                                         Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Email" />
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Email" />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-2">
                                     </div>
                                     <div class="col-sm-10">
-                                        <button  type="submit" class="btn btn-primary btn-sm">
+                                        <button type="submit" class="btn btn-primary btn-sm">
                                             Submit</button>
-                                        <a onClick="loadDoc('../institute/forgot-password.php','field')">Forgot your password?</a>
+                                        <a href="javascript:;">Forgot your password?</a>
                                     </div>
                                 </div>
                             </form>
@@ -242,7 +281,5 @@
         </div>
     </div>
 
-
 </body>
-
 </html>
