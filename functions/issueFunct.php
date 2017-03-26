@@ -118,7 +118,7 @@ define('like_threhold',100);
 		else
 		{
 			//return 1;//not upvoted
-			echo "<button style='margin-left: 15px' id='$id' class='btn btn-primary' onclick='".upvoteUser($id)."'> $id</button>";
+			echo "<button style='margin-left: 15px' id='$id' value='$id' class='btn btn-primary' onclick='".upvoteUser($id)."'> $id</button>";
 			
 		}
 		 
