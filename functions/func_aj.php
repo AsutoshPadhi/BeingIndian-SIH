@@ -10,14 +10,33 @@
         return $sql;
     }
 
-    function historyReportedBogus($cemail){
+    function getInstId($cemail){
         require('dataBaseConn.php');
         $sql = "SELECT inst_id FROM institute WHERE inst_email = '$cemail'";
         $result = $conn->query($sql);
         while($row = $result->fetch_assoc()){
             $instid = $row['inst_id'];
         }
+        return $instid;
+    }
+
+    function historyReportedBogus($cemail){
+        $instid = getInstId($cemail);
         $sql = "SELECT * FROM issue, issuebogusupvote WHERE issuebogusupvote.inst_id = $instid AND issuebogusupvote.issue_id = issue.issue_id";
+        return $sql;
+    }
+
+    function historyReportedDuplicate($cemail){
+        require('dataBaseConn.php');
+        $instid = getInstId($cemail);
+        $sql = "SELECT * FROM issue, issueduplicateupvote WHERE issueduplicateupvote.inst_id = $instid AND issueduplicateupvote.issue_id = issue.issue_id";
+        return $sql;
+    }
+
+    function historySolutionProvided($cemail){
+        require('dataBaseConn.php');
+        $instid = getInstId($cemail);
+        $sql = "SELECT * FROM issue, solution WHERE solution.inst_id = $instid AND solution.issue_id = issue.issue_id";
         return $sql;
     }
 
@@ -76,10 +95,10 @@
 		}
 	}
 
-    function userStatus($variable,$id)
+    function userStatus($userid,$issueid)
 	{
 		include '../functions/dataBaseConn.php';
-		$sql="select * from issueupvote where user_id='$variable' And issue_id='$id ' ";//user session
+		$sql="select * from issueupvote where user_id='$userid' And issue_id='$issueid ' ";//user session
 		$result = $conn->query($sql);
 		//$num_rows = mysql_num_rows($result);
 		
