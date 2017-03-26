@@ -10,20 +10,20 @@
 		{
 			$('#myModal3').on('show.bs.modal', function (e) 
 				{
-
 				var rowid = $(e.relatedTarget).data('id');                                                                                                 
 				$.ajax({
-							type : 'post',
+							type : 'POST',
 							url : 'fetch.php', //Here you will fetch records 
-							data :  'rowid='+ rowid, //Pass rowid
+							data :  'rowid='+ rowid + '', //Pass rowid
 							success : function(data)
 							{
-								$('.fetched-data').html(data);//Show fetched data
+								$('#data').html(data);//Show fetched data
 							}
 						});
 				});
 		});
 	</script>
+	<!--<script src="../dist/js/sb-admin-2.js"></script>-->
 </head>
 <body>
 	<?php
@@ -43,7 +43,7 @@
 		{
 			?>
 				<div class="alert alert-danger">
-                    You have not participated in this section yet.
+                    No Results Found.
                 </div>
 			<?php
 		}
@@ -107,11 +107,10 @@
 		</button>
 		<br>
 		<div id="demo<?php echo $i; ?>" class="collapse body">
-			<?php
-				echo "<a id='code'  data-toggle='modal' data-target='#myModal3' id=".$row['issue_id']." class='view_data' >CODE : </a> ".$row["issue_id"]; ?>
-				
+				<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo $row["issue_id"]; ?>	
 			<br><hr>
 			<?php
+				$id = $row['issue_id'];
 				echo "<b id='code'>STATUS :</b>";
 			?>
 			<?php 
@@ -159,9 +158,24 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal fade" id='myModal<?php echo $id; ?>' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-md " role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							×</button>
+						<h4 class="modal-title" id="myModalLabel">Description</h4>
+					</div>
+					<div class="modal-body">
+						<?php echo $id; ?>
+					</div>
+				</div>
+			</div>
+		</div>
 		<?php
-				$i++;
-			}
+			$i++;
+		}
 		//display links to the pages
 		?>
 		<div class="container">
@@ -179,8 +193,21 @@
 			</ul>
 		</div>
 	</div>
-	<?php
-		require('modal.php');
-	?>
+	<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+	aria-hidden="true">
+		<div class="modal-dialog modal-md " role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						×</button>
+					<h4 class="modal-title" id="myModalLabel">Description</h4>
+				</div>
+				<div class="modal-body">
+					<div class="fetched-data">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
