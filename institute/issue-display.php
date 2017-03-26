@@ -27,7 +27,7 @@
 </head>
 <body>
 	<?php
-		require('../functions/func_aj.php');
+		require('../functions/func_in.php');
 		if(!isset($_GET['sql'])){
 			$sql = "SELECT * FROM issue WHERE 1";
 		}
