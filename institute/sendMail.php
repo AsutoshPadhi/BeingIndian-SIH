@@ -1,9 +1,7 @@
 <?php
 
-	$message = "This works";
+	$message = $otp;
 	$headers = "From : asutosh.padhi123@gmail.com". "\r\n";
-	mail("ashutosh_padhi1@yahoo.in", "test 2", $message, $headers);
-
-	echo "Working?";
+	mail($cemail, "Password for BetterIndia", $message, $headers);
 
 ?>
