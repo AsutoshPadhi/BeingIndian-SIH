@@ -100,10 +100,11 @@ define('like_threhold',100);
 		}
 		
 	}
+	//show upvote button
 	function userStatus($variable,$id)
 	{
 		include '../functions/dataBaseConn.php';
-		$sql="select * from issueupvote where user_id='$variable' And issue_id='$id ' ";//user session
+		$sql="select * from issueupvote where user_id='$variable' AND issue_id='$id ' ";//user session
 		$result = $conn->query($sql);
 		//$num_rows = mysql_num_rows($result);
 		
@@ -117,20 +118,39 @@ define('like_threhold',100);
 		else
 		{
 			//return 1;//not upvoted
-			echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='upvoteUser('$id')'> Upvote</button>";
+			echo "<button style='margin-left: 15px' id='$id' class='btn btn-primary' onclick='".upvoteUser($id)."'> $id</button>";
+			
+		}
+		 
+  }
+		
+		
+	
+		function upvoteUser($id)
+		{
+			
+		
+			include '../functions/dataBaseConn.php';
+			$sql="update issue set upvote_count=upvote_count+1 where issue_id=".$id ."";
+			$result=$conn->query($sql);
+
+		//	echo $row['upvote_count'];
+			
 		}
 		
-	}
-	
-	function upvoteUser($issue)
-	{
-		include '../functions/dataBaseConn.php';
-		$sql="update issue set upvote_count=upvote_count+1 where issue_id=$issue";
-		$result=$conn->query($sql);
 		
-	}
-	
-	
+		
+		//posted by
+				
+		function postedBy($id)
+		{
+			include '../functions/dataBaseConn.php';
+			$sql="select *from issue  inner join user on issue.user_id=user.user_id where issue.issue_id=$id";
+			$result=$conn->query($sql);
+			$row = $result->fetch_assoc();
+			echo"<b> POSTED BY : </b>". $row['fname']. "  ".$row['lname'];
+			
+		}
 	function status($id)
 	{
 		include '../functions/dataBaseConn.php';

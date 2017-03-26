@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="problemdescription.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="../functions/ajax.js"></script>
-	<!--<script>
+	<script>
 	$(document).ready(function()
 	{
 			alert("hii");
@@ -24,10 +24,11 @@
 			});
 		 });
 	});
-</script>-->
+</script>
  <script>
+	
 	$(document).ready(function() 
-	   {
+	   { 
 		 $('#myModal3').on('show.bs.modal', function (e) 
 			{
 
@@ -110,40 +111,46 @@
 		{
 		
 
-		// output data of each row
+			// output data of each row
 
-		?>
-		<br>
-
-		<button type="button" class="btn btn btn-primary btn-lg btn-block btn-social" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
-		<?php echo "<font style='font-size: 1em;'>#".$row["issue_id"]."</font>".$row["title"]; ?>
-		</button>
-		<br>
-		<div id="demo<?php echo $i; ?>" class="collapse body">
-			<?php
-				echo "<a id='code'  data-toggle='modal' data-target='#myModal3' id=".$row['issue_id']." class='view_data' >CODE : </a> ".$row["issue_id"]; ?>
-				
-			<br><hr>
-			<?php
-				echo "<b id='code'>STATUS :</b>";
-			?><br>
-			<?php 
-			    echo status($row['issue_id']);
-			
 			?>
-			<hr>
-			
-			<?php
-			//echo $row[""]
-				userStatus('2003',$row['issue_id']);
-				/*if($row["upvote_count"]>=500)
-				{
-					echo "Voting closed";
-				}
-				else
-				{
-					echo "<button style='margin-left: 15px' class='btn btn-primary'> Upvote</button>";
-				}*/
+			<br>
+
+			<button type="button" class="btn btn btn-primary btn-lg btn-block btn-social" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
+			<?php echo "<font style='font-size: 1em;'>#".$row["issue_id"]."</font>".$row["title"]; ?>
+			</button>
+			<br>
+			<div id="demo<?php echo $i; ?>" class="collapse body">
+				<?php
+					echo "<a id='code'  data-toggle='modal' data-target='#myModal3' value=".$row['issue_id']."
+					id=".$row['issue_id']." class='view_data' >CODE : </a> ".$row["issue_id"]; ?>
+					
+				<br><hr>
+				<?php
+				
+					echo  postedBy($row['issue_id']);
+				?>
+				<br><hr>
+				<?php
+					echo "<b id='code'>STATUS :</b>";
+				?><br>
+				<?php 
+					echo status($row['issue_id']);
+				
+				?>
+				<hr>
+				
+				<?php
+				
+					userStatus('2003',$row['issue_id']);
+					/*if($row["upvote_count"]>=500)
+					{
+						echo "Voting closed";
+					}
+					else
+					{
+						echo "<button style='margin-left: 15px' class='btn btn-primary'> Upvote</button>";
+					}*/
 
 
 				if($row["solution_count"] >0)
@@ -183,10 +190,10 @@
 				<!-- /.modal -->
 				</div>
 			</div>
-		</div>
-		<?php
+			</div>
+			<?php
 				$i++;
-			}
+		}
 		//display links to the pages
 		?>
 		<div class="container">
