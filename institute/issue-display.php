@@ -105,25 +105,13 @@
 			<br><hr>
 			<?php
 				echo "<b id='code'>STATUS :</b>";
-			?><br>
+			?>
 			<?php 
 			    echo status($row['issue_id']);
-			
 			?>
 			<hr>
 			
 			<?php
-			//echo $row[""]
-				userStatus('2003',$row['issue_id']);
-				/*if($row["upvote_count"]>=500)
-				{
-					echo "Voting closed";
-				}
-				else
-				{
-					echo "<button style='margin-left: 15px' class='btn btn-primary'> Upvote</button>";
-				}*/
-
 
 				if($row["solution_count"] >0)
 				{
