@@ -20,11 +20,11 @@
 	</div>
 
 	<div class="col-xs-6 col-md-3">
-		<input class="form-control" name="locality" id="locality" type="text" placeholder="locality (optional)">
+		<input class="form-control" name="locality" id="locality" type="text" value="<?php echo $_GET['locality']; ?>">
 	</div>
 
 	<div class="col-xs-6 col-md-3">
-	    <input class="form-control" name="pin" id="pin" type="text" placeholder="pincode (optional)">
+	    <input class="form-control" name="pin" id="pin" type="text" value="<?php echo $_GET['pin']; ?>">
 	</div>
 
 	<div style="position: relative;top: 50%;">
