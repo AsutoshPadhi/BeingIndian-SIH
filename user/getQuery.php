@@ -79,7 +79,7 @@
 		}
 		?>
 		<br><br><hr>
-		<button type="button" class="btn btn-primary btn-lg btn-block" onclick="alert('what');loadDoc('add-issue-description.php?state=<?php echo $state ?>&district=<?php echo $district ?>&issue=<?php echo $str ?>','field')">Proceed to Add new Issue</button>		<!--Add the variable to be passed to the url-->
+		<button type="button" class="btn btn-primary btn-lg btn-block" onclick="loadDoc('add-issue-description.php?state=<?php echo $state ?>&district=<?php echo $district ?>&issue=<?php echo $str ?>','field')">Proceed to Add new Issue</button>		<!--Add the variable to be passed to the url-->
 
 	<?php
 	}
