@@ -53,10 +53,14 @@
 
 		}
 	}
-
-    function userStatus($userid,$issueid)
+	function getUserId($email){
+		include '../functions/dataBaseConn.php';
+		$sql = "SELECT * FROM user where user_email = '".$email."'";
+	}
+    function userStatus($email,$issueid)
 	{
 		include '../functions/dataBaseConn.php';
+		$userid = getUserId($email);
 		$sql="select * from issueupvote where user_id='$userid' And issue_id='$issueid ' ";//user session
 		$result = $conn->query($sql);
 		//$num_rows = mysql_num_rows($result);
@@ -71,9 +75,18 @@
 		else
 		{
 			//return 1;//not upvoted
-			echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='upvoteUser('$id')'> Upvote</button>";
+			echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='upvoteUser('$issueid')'> Upvote</button>";
 		}
 		
 	}
+	function postedBy($id)
+	{
+        include '../functions/dataBaseConn.php';
+        $sql="select *from issue  inner join user on issue.user_id=user.user_id where issue.issue_id=$id";
+        $result=$conn->query($sql);
+        $row = $result->fetch_assoc();
+        echo"<b> POSTED BY : </b>". $row['fname']. "  ".$row['lname'];
+        
+    }
 
 ?>
