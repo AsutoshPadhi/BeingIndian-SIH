@@ -9,6 +9,7 @@
         //echo "no";
         header("Location: index.php");
     }
+    require('../functions/func_aj.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,7 +40,7 @@
 </head>
 <body>
 <div id="wrapper">
-
+    
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -105,7 +106,12 @@
                                     <a onClick="javascript:loadDoc('solutions-provided.php','field')">Solutions Provided</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('reported-bogus.php','field')">Reported as bogus</a>
+                                    <?php
+                                        $cemail = $_SESSION['$cemail'];
+                                        $sql = historyReportedBogus($cemail);
+                                        $url = "issue-display.php?sql=".$sql."";
+                                    ?>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");'>Reported as bogus</a>
                                 </li>
                                 <li>
                                     <a onClick="javascript:loadDoc('reported-duplicate.php','field')">Reported as duplicate</a>

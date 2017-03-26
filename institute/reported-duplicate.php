@@ -1,3 +1,4 @@
 <?php
-    echo "Reported duplicate";
+    $sql ="";
+    require('issue-display.php');
 ?>
