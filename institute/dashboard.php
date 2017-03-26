@@ -11,13 +11,6 @@
         header("Location: index.php");
     }
 
-    if(isset($_SESSION['$message']) && $_SESSION['$message']=="success")
-    {
-        ?><div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        Your Password has been reset
-    </div><?php
-    }
     require('../functions/func_in.php');
 
     require('../functions/func_out.php');
@@ -155,6 +148,17 @@
         <!-- Page Content -->
         
         <div class="main-content" id="main">
+            <?php
+            if(isset($_GET['password_changed']) && $_GET['password_changed'] == 'success')
+                {
+            ?>
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        Your password has been reset
+                    </div>
+            <?php
+                }
+            ?>
             <div id="searchBar">
                 <?php require("searchBar.php"); ?>
             </div>
