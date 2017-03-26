@@ -1,5 +1,5 @@
  <?php
-		echo "hello";	 
+	 
 		$id=$_POST['rowid'];
 	if(isset($_POST['rowid']))
 		{

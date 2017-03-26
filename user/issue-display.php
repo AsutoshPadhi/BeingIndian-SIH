@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="problemdescription.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="../functions/ajax.js"></script>
-	<!--<script>
+	<script>
 	$(document).ready(function()
 	{
 			alert("hii");
@@ -24,7 +24,7 @@
 			});
 		 });
 	});
-</script>-->
+</script>
  <script>
 	
 	$(document).ready(function() 
