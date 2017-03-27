@@ -40,11 +40,15 @@
                 <?php
                     session_start();
                     require('../functions/func_out.php');
+					require('../functions/dataBaseConn.php');
                     if(isset($_SESSION['$email'])){
                         $login = true;
                         $email = $_SESSION['$email'];
-                        $name = $_SESSION['$name'];
-                        $fname = $_SESSION['$fname'];
+                        $sql = "SELECT * from user WHERE user_email = '$email'";
+						$result = $conn->query($sql);
+						$row = $result->fetch_assoc();
+						$fname = $row['fname'];
+						$lname = $row['lname'];
                         if($fname == ""){
                             $fname  = 'Anonymous';
                         }
