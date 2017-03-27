@@ -20,27 +20,20 @@ $(document).ready(function(){
 </head>
 <body>
 
-<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-	aria-hidden="true">
-	<div class="modal-dialog modal-md " role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					×</button>
-				<h4 class="modal-title" id="myModalLabel">Description</h4>
-			</div>
-			<div class="modal-body">
-			 <div class="fetched-data">
-			<?php ?>
-			 </div> 
-            </div>
-				<div class="row">
-					<div class="col-md-10">
-						
+<div class="modal fade" id='confirmation' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-md " role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							×</button>
+						<h4 class="modal-title" id="myModalLabel">PLEASE LOGIN</h4>
+					</div>
+					<div class="modal-body">
+						<?php 
+						echo "hello";
+						?>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-

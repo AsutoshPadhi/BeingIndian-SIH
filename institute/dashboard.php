@@ -10,16 +10,6 @@
         //echo "no";
         header("Location: index.php");
     }
-
-    if(isset($_SESSION['$message']) && $_SESSION['$message']=="success")
-    {
-        ?><div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        Your Password has been reset
-    </div><?php
-    }
-    require('../functions/func_in.php');
-
     require('../functions/func_out.php');
 ?>
 <!DOCTYPE html>
@@ -155,6 +145,18 @@
         <!-- Page Content -->
         
         <div class="main-content" id="main">
+            <?php
+            if(isset($_SESSION['$message']) && $_SESSION['$message'] == true)
+                {
+            ?>
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        Your password has been reset
+                    </div>
+            <?php
+                unset($_SESSION['message']);
+                }
+            ?>
             <div id="searchBar">
                 <?php require("searchBar.php"); ?>
             </div>
