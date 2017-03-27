@@ -10,7 +10,16 @@
 <body>
 	<?php
 		session_start();
-		$email = $_SESSION['$email'];
+		if(isset($_SESSION['$email']))
+		{
+			$login=true;
+			$email = $_SESSION['$email'];
+		}	
+		else
+		{
+			$login=False;
+		}
+		
 		require('../functions/func_in.php');
 		if(!isset($_GET['sql'])){
 			$sql = "SELECT * FROM issue WHERE 1";
@@ -116,8 +125,19 @@
 			<hr>
 			<div id=<?php echo $row['issue_id'] ?> >
 			<?php
-				userStatus($email,$row['issue_id']);
+			if($login)
+			{
+					userStatus($email,$row['issue_id']);
 				
+			}
+			else
+			{?>
+				<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
+				
+				<?php
+				
+			}
+			
 				
 				?>
 				</div>
@@ -186,6 +206,24 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal fade" id='confirmation' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-md " role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							×</button>
+						<h4 class="modal-title" id="myModalLabel">PLEASE LOGIN</h4>
+					</div>
+					<div class="modal-body">
+						<?php 
+						echo "<a href='#myModal2'  class='btn btn-primary' data-toggle='modal' data-dismiss='modal'  >Click here to login</a> ";
+						?>
+					</div>
+				</div>
+			</div>
+		</div
+		
 			<?php
 				$i++;
 		}
@@ -208,7 +246,10 @@
 			</ul>
 		</div>
 	</div>
+<?php
+//require "modal.php";
 
+?>
 	
 </body>
 </html>
