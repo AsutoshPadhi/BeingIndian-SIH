@@ -30,7 +30,7 @@
                     <input class="form-control" id="issue" type="text" placeholder="Keywords">
                 </div>
                 <input class="search btn btn-primary" type="submit" value="Search" 
-                onclick="loadDoc('getQuery.php?state='+(document.getElementById('state1').value)+'&district='+(document.getElementById('district1').value)+'&locality='+(document.getElementById('locality').value)+'&pin='+(document.getElementById('pin').value)+'&issue='+(document.getElementById('issue').value)+'&callFunction=get_query','problem')">
+                onclick="generateUrl((document.getElementById('state1').value),(document.getElementById('district1').value),(document.getElementById('locality').value),(document.getElementById('pin').value),(document.getElementById('issue').value),'field','dashboard')">
             </form>
         </div>
     </body>
