@@ -35,7 +35,6 @@ if($result->num_rows>0)
 {
 	while($row=$result->fetch_assoc())//fetch a complete record from a particular table
 			{
-		
 			$title=$row['title'];
 			$email=$row['email'];
 			echo "<h2>".$title."</h2>";

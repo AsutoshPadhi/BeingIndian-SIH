@@ -5,27 +5,17 @@
 	<link rel="stylesheet" href="problemdescription.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="../functions/ajax.js"></script>
-	<script>
-	$(document).ready(function(){
-		$('#myModal').on('show.bs.modal', function (e) {
-			var rowid = $(e.relatedTarget).data('issue_id');
-			$.ajax({
-				type : 'post',
-				url : 'modal.php', //Here you will fetch records 
-				data :  'rowid='+ rowid, //Pass $id
-				success : function(data){
-				$('.fetched-data').html(data);//Show fetched data from database
-				}
-			});
-		 });
-	});
-</script>
+	
 </head>
 <body>
 	<?php
+		session_start();
 		$con= mysqli_connect("localhost","root","");
 		$selected = mysqli_select_db($con,'hackathon') 
 		or die("Could not select examples");
+		/*$state = $_GET['state'];
+		echo $state;
+		require 'getQuery.php';*/
 		$sql="Select * from issue where 1 ";
 		$result=mysqli_query($con,$sql);
 		$no_of_results=mysqli_num_rows($result);
@@ -80,45 +70,46 @@
 
 	<div id="problem">
 		<?php
-		include('../functions/issueFeatures.php');
+		include('../functions/func_in.php');
 		$i = 1;
 		while($row=mysqli_fetch_array($result))
 		{
-		
+			// output data of each row
 
-		// output data of each row
+			?>
+			<br>
 
-		?>
-		<br>
-
-		<button type="button" class="btn btn btn-primary btn-lg btn-block btn-social" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
-		<?php echo "<font style='font-size: 1em;'>#".$row["issue_id"]."</font>".$row["title"]; ?>
-		</button>
-		<br>
-		<div id="demo<?php echo $i; ?>" class="collapse body">
-			<?php
-				echo "<a id='code' data-toggle='modal' data-target='#myModal3' data-id=".$row['issue_id']." >CODE : </a> ".$row["issue_id"]; ?>
+			<button type="button" class="btn btn btn-primary btn-lg btn-block btn-social" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
+			<?php echo "<font style='font-size: 1em;'>#".$row["issue_id"]."</font>".$row["title"]; ?>
+			</button>
+			<br>
+			<div id="demo<?php echo $i; ?>" class="collapse body">
+				<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo "#".$row["issue_id"]; ?>	
 			<br><hr>
-			<?php
-				echo "<b id='code'>STATUS :</b> ".status() ;
-			?><br><hr>
 			
 			<?php
-			//echo $row[""]
-				if($row["upvote_count"]>=500)
-				{
-					echo "Voting closed";
-				}
-				else
-				{
-					echo "<button style='margin-left: 15px' class='btn btn-primary'> Upvote</button>";
-				}
-
-
+				
+				echo  postedBy($row['issue_id']);
+			?>
+			<br><hr>
+				
+			<?php
+				$id = $row['issue_id'];
+				echo "<b id='code'>STATUS :</b>";
+			?>
+			<?php 
+			    echo status($row['issue_id']);
+			?>
+			<hr>
+			
+			<?php
+				$email = $_SESSION['$email'];
+				userStatus($email,$row['issue_id']);
 				if($row["solution_count"] >0)
 				{
 
 			?><hr>
+			
 			<div class='panel-body'>
 				<!-- Button trigger modal -->
 				<button class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
@@ -134,14 +125,14 @@
 							</div>
 							<div class='modal-body'>
 								<?php
-									} 
+									//} 
 								$sql1="select solution_url from solution where issue_id=".$row['issue_id']."";
 								$result1=mysqli_query($con,$sql1);
 								while($row=mysqli_fetch_array($result1))
 								{
 								echo "<a href=".$row["solution_url"].">".$row["solution_url"]."</a> </br>";
 								}
-
+				}
 								?>
 							</div>
 						<!-- /.modal-content -->
@@ -152,36 +143,55 @@
 				</div>
 			</div>
 		</div>
-		<?php
+		<div class="modal fade" id='myModal<?php echo $id; ?>' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-md " role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							×</button>
+						<h4 class="modal-title" id="myModalLabel">Issue<?php echo " #".$id; ?></h4>
+					</div>
+					<div class="modal-body">
+						<?php 
+						
+							$sql3="Select * from issue where issue_id='$id'";
+							$result3=mysqli_query($con,$sql3);
+							$no_of_results=mysqli_num_rows($result3);
+							$row= mysqli_fetch_array($result3);
+							echo "Code: #".$id;
+							echo "<br><br>Title: ".$row['title'];
+							echo "<br><br>Description:";
+							echo "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp".$row['description'];
+
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+			<?php
 				$i++;
-			}
+		}
 		//display links to the pages
 		?>
 		<div class="container">
 			<ul class="pagination">
-				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?page=".$pre."\",\"field\")' class='button'>PREVIOUS</a></li>"; ?>
+				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=1\",\"field\")' class='button'>FIRST</a></li>"; ?>
+				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$pre."\",\"field\")' class='button'><<</a></li>"; ?>
 
 				<?php
 					for($page=1;$page<=$no_of_pages;$page++)
 					{	
-						$url = "issue-display.php?page=".$page."";
-				?>
-				<!--<script>
-					alert("apple");
-					var url<?php //echo $page; ?> = '<?php //echo $url; ?>';
-					field = "problem";
-				</script>-->
-				<?php
+						$url = "issue-display.php?sql=".$sql."&page=".$page."";
 						echo "<li><a onclick='javascript:loadDoc(\"".$url."\",\"field\")'>".$page."</a></li>";
 					}
-					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?page=".$next."\",\"field\")' class='button'>NEXT</a></li>";
+					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$next."\",\"field\")' class='button'>>></a></li>";
+					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$no_of_pages."\",\"field\")' class='button'>LAST</a></li>";
 				?>
 			</ul>
 		</div>
 	</div>
 
-	<?php
-		require('modal.php');
-	?>
+	
 </body>
 </html>

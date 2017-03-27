@@ -1,6 +1,7 @@
 <?php
     session_start();
     if(isset($_SESSION['$cemail'])){
+        $cemail = $_SESSION['$cemail'];
         $loginCollege = true;
         //echo "yes";
     }
@@ -9,6 +10,10 @@
         //echo "no";
         header("Location: index.php");
     }
+
+    require('../functions/func_in.php');
+
+    require('../functions/func_out.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,6 +33,8 @@
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Social Buttons CSS -->
+    <link href="../vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -37,7 +44,7 @@
 </head>
 <body>
 <div id="wrapper">
-
+    
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -94,25 +101,41 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a onClick="javascript:loadDoc('search.php','field')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <?php
+                                $sql = "SELECT * FROM issue WHERE 1";
+                                $url = "issue-display.php?sql=".$sql."";
+                            ?>
+                            <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a onClick="javascript:loadDoc('solutions-provided.php','field')">Solutions Provided</a>
+                                    <?php
+                                        $sql = historySolutionProvided($cemail);
+                                        $url = "issue-display.php?sql=".$sql."";
+                                    ?>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Solutions Provided</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('reported-bogus.php','field')">Reported as bogus</a>
+                                    <?php
+                                        $sql = historyReportedBogus($cemail);
+                                        $url = "issue-display.php?sql=".$sql."";
+                                    ?>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Reported as bogus</a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('reported-duplicate.php','field')">Reported as duplicate</a>
+                                    <?php
+                                        $sql = historyReportedDuplicate($cemail);
+                                        $url = "issue-display.php?sql=".$sql."";
+                                    ?>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Reported as duplicate</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a onClick="javascript:loadDoc('change-password.php','field')"><i class="fa fa-user fa-fw"></i> Change Password</a>
+                            <a onClick="javascript:loadDoc('change-password.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Change Password</a>
                         </li>
                         
                     </ul>
@@ -125,6 +148,20 @@
         <!-- Page Content -->
         
         <div class="main-content" id="main">
+            <?php
+            if(isset($_GET['password_changed']) && $_GET['password_changed'] == 'success')
+                {
+            ?>
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        Your password has been reset
+                    </div>
+            <?php
+                }
+            ?>
+            <div id="searchBar">
+                <?php require("searchBar.php"); ?>
+            </div>
             <div class="container-fluid" id="field">
                 
             </div>
