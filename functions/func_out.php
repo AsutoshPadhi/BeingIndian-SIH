@@ -40,14 +40,7 @@
         return $sql;
     }
 
-    function postedBy($id){
-        include '../functions/dataBaseConn.php';
-        $sql="select *from issue  inner join user on issue.user_id=user.user_id where issue.issue_id=$id";
-        $result=$conn->query($sql);
-        $row = $result->fetch_assoc();
-        echo"<b> POSTED BY : </b>". $row['fname']. "  ".$row['lname'];
-        
-    }
+    
 
 
 ?>
