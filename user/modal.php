@@ -20,49 +20,20 @@ $(document).ready(function(){
 </head>
 <body>
 
-<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-	aria-hidden="true">
-	<div class="modal-dialog modal-md " role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					×</button>
-				<h4 class="modal-title" id="myModalLabel">Description</h4>
-			</div>
-			<div class="modal-body">
-			 <div class="fetched-data">
-			<?php
-	 
-	
-				include '../functions/dataBaseConn.php';
-				
-						$id=$_GET['id'];
-						//$id = isset($_GET['id']) ? $_GET['id'] : ''
-						//$id = $_POST['rowid']; //escape string
-						// Run the Query
-						// Fetch Records
-						// Echo the data you want to show in modal
-						$sql="Select * from issue where issue_id='$id'";
-						$result=mysqli_query($con,$sql);
-						$no_of_results=mysqli_num_rows($result);
-						
-						$row= mysqli_fetch_array($result);
+<div class="modal fade" id='confirmation' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-md " role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							×</button>
+						<h4 class="modal-title" id="myModalLabel">PLEASE LOGIN</h4>
+					</div>
+					<div class="modal-body">
+						<?php 
 						echo "hello";
-						echo $row['description'];
-						
-						
-					
-
-?>
-			 </div> 
-            </div>
-				<div class="row">
-					<div class="col-md-10">
-						
+						?>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-
