@@ -36,10 +36,12 @@
 		else{
 			$sql = $_GET['sql'];
 		}
+		//echo $sql;
 		$con= mysqli_connect("localhost","root","");
 		$selected = mysqli_select_db($con,'hackathon') 
 		or die("Could not select examples");
 		$result=mysqli_query($con,$sql);
+		//var_dump($result->fetch_assoc['title']);
 		$no_of_results=mysqli_num_rows($result);
 		if($no_of_results == 0)
 		{
