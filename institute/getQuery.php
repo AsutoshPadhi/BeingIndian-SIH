@@ -13,20 +13,17 @@
 		require_once 'CosineSimilarity.php';
 
 		$str = $_GET['issue'];
-		$state = $_GET['state'];
-		$district = $_GET['district'];
-		$locality = $_GET['locality'];
-		$pin = $_GET['pin'];
-		$type = $_GET['type'];
-
-		$get_district_id = "SELECT *FROM district WHERE district_name = '".$district."'";
+		session_start();
+		$cemail = $_SESSION['$cemail'];
+		
+		$get_district_id = "SELECT *FROM institute WHERE inst_email = '".$cemail."'";
 		$result = $conn->query($get_district_id);
 		$row = $result->fetch_assoc();
-		//echo "".$row['district_ido
-		//print_r( array_count_values(str_word_count($str, 1)) );
+		$district_id = $row['district_id'];
+		
 		$query_word_count =  array_count_values(str_word_count($str, 1));
 
-		$sql = "SELECT *FROM issue WHERE district_id = '".$row['district_id']."'";
+		$sql = "SELECT *FROM issue WHERE district_id = '".$district_id."'";
 
 		$result = $conn->query($sql);
 		if($result->num_rows > 0)
@@ -49,12 +46,7 @@
 		/*For notification and proceed to add button*/
 		?>
 
-		<br>
-		<div class="alert alert-info alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            Please check if the solution already exists or else Proceed.
-        </div>
-
+		
 		<?php
 		include('../functions/func_in.php');
 		for($i=0;$i<$result->num_rows;$i++)
@@ -72,7 +64,7 @@
 
 			
 			<button type="button" class="btn btn btn-primary btn-lg btn-block btn-social" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
-			<?php echo "<font style='font-size: 1em;'>#".$row[$i]["issue_id"]."</font>".$row[$i]["title"]; ?>
+			<?php echo "<font style='font-size: 1em;'>#".$row[$i]['issue_id']."</font>".$row[$i]["title"]; ?>
 			</button>
 			<br>
 			<div id="demo<?php echo $i; ?>" class="collapse body">
@@ -95,9 +87,9 @@
 			<hr>
 			<div id=<?php echo $row[$i]['issue_id'] ?> >
 			<?php
-				session_start();
+				/*session_start();
 				$email = $_SESSION['$email'];
-				userStatus($email,$row[$i]['issue_id']);
+				userStatus($email,$row[$i]['issue_id']);*/
 				
 				
 				?>
