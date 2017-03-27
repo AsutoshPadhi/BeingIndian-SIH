@@ -101,10 +101,15 @@
 			    echo status($row['issue_id']);
 			?>
 			<hr>
-			
+			<div id=<?php echo $row['issue_id'] ?> >
 			<?php
 				$email = $_SESSION['$email'];
 				userStatus($email,$row['issue_id']);
+				
+				
+				?>
+				</div>
+				<?php
 				if($row["solution_count"] >0)
 				{
 
