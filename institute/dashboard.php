@@ -10,9 +10,6 @@
         //echo "no";
         header("Location: index.php");
     }
-
-    require('../functions/func_in.php');
-
     require('../functions/func_out.php');
 ?>
 <!DOCTYPE html>
@@ -149,7 +146,7 @@
         
         <div class="main-content" id="main">
             <?php
-            if(isset($_GET['password_changed']) && $_GET['password_changed'] == 'success')
+            if(isset($_SESSION['$message']) && $_SESSION['$message'] == true)
                 {
             ?>
                     <div class="alert alert-success alert-dismissable">
