@@ -60,6 +60,7 @@ if(isset($_SESSION['$cemail'])){
                 <div class="form-group">
                     <label>Old Password</label>
                     <input id="old" type="password" name="old" class="form-control" placeholder="Enter the old password">
+                    <div class="help-block">If you have forgotten your old password, enter the password sent to you by mail</div>
                 </div>
                 <div class="form-group">
                     <label>New Password</label>
