@@ -40,13 +40,27 @@
         return $sql;
     }
 
-    function postedBy($id){
-        include '../functions/dataBaseConn.php';
-        $sql="select *from issue  inner join user on issue.user_id=user.user_id where issue.issue_id=$id";
-        $result=$conn->query($sql);
+    function getUserId($email){
+        require('dataBaseConn.php');
+        $sql = "SELECT user_id FROM user WHERE user_email = '$email'";
+        $result = $conn->query($sql);
         $row = $result->fetch_assoc();
-        echo"<b> POSTED BY : </b>". $row['fname']. "  ".$row['lname'];
-        
+        $userid = $row['user_id'];
+        return $userid;
+    }
+    
+    function historyUpvoted($email){
+        require('dataBaseConn.php');
+        $userId = getUserId($email);
+        $sql = "SELECT * FROM issue, issueupvote WHERE issueupvote.user_id = $userId AND issueupvote.issue_id = issue.issue_id";
+        return $sql;
+    }
+
+    function historyAdded($email){
+        require('dataBaseConn.php');
+        $userid = getUserId($email);
+        $sql = "SELECT * FROM issue WHERE issue.user_id = $userid";
+        return $sql;
     }
 
 
