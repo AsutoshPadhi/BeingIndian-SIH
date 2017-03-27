@@ -33,7 +33,7 @@
 				<input class="form-control" name="issueTitle" id="issueTitle" placeholder="What Issue are you facing?" required/>
 				</div>
 				<div class="form-group col-xs-6 col-md-3">
-				<button type="button" class="btn btn-primary" onclick="generateUrl((document.getElementById('state2').value),(document.getElementById('district2').value),(document.getElementById('locality2').value),(document.getElementById('pin2').value),(document.getElementById('issueTitle').value))">Next</button>
+				<button type="button" class="btn btn-primary" onclick="generateUrl((document.getElementById('state2').value),(document.getElementById('district2').value),(document.getElementById('locality2').value),(document.getElementById('pin2').value),(document.getElementById('issueTitle').value),'field')">Next</button>
 				</div>
 			</div>
 

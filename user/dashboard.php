@@ -39,12 +39,15 @@
             <div class="navbar-header">
                 <?php
                     session_start();
-
+                    require('../functions/func_out.php');
                     if(isset($_SESSION['$email'])){
                         $login = true;
                         $email = $_SESSION['$email'];
                         $name = $_SESSION['$name'];
                         $fname = $_SESSION['$fname'];
+                        if($fname == ""){
+                            $fname  = 'Anonymous';
+                        }
                         $lname = $_SESSION['$lname'];
 
                     }
@@ -97,7 +100,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i><?php if($login)echo "Welcome, ".$fname;else echo "Welcome User"; ?> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
 
@@ -133,8 +136,11 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-
-                            <a onClick="javascript:loadDoc('search.php','field');$('#searchBar').show();"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <?php
+                                $sql = "SELECT * FROM issue WHERE 1";
+                                $url = "issue-display.php?sql=".$sql."";
+                            ?>
+                            <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
                         </li>
                         <!-- onclick="javascript:openField(event, 'addIssue')"-->
@@ -146,10 +152,18 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a onClick="javascript:loadDoc('added-by-you.php','field');$('#searchBar').hide();">Added by you</a>
+                                    <?php
+                                        $sql = historyAdded($email);
+                                        $url = "issue-display.php?sql=".$sql."";
+                                    ?>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Added by <?php echo $fname; ?></a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('upvoted-by-you.php','field');$('#searchBar').hide();">Upvoted by you</a>
+                                    <?php
+                                        $sql = historyUpvoted($email);
+                                        $url = "issue-display.php?sql=".$sql."";
+                                    ?>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Upvoted by <?php echo $fname; ?></a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -221,7 +235,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <form action="localhost/institute/login.php" methond="POST" role="form" class="form-horizontal">
+                            <form action="../institute/login.php" methond="POST" role="form" class="form-horizontal">
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">
                                         Email</label>
@@ -269,7 +283,7 @@
                                     User Login
                                 </div>
                                 <div style="margin: 15px 0px;" class="styleBox">
-                                    <a class="btn btn-block btn-social btn-google-plus" href='user/login.php'>
+                                    <a class="btn btn-block btn-social btn-google-plus" href='login.php'>
                                         <i class="fa fa-google-plus"></i> Sign in with Google
                                     </a>
                                 </div>

@@ -27,6 +27,8 @@
 </head>
 <body>
 	<?php
+		session_start();
+		$cemail = $_SESSION['$cemail'];
 		require('../functions/func_in.php');
 		if(!isset($_GET['sql'])){
 			$sql = "SELECT * FROM issue WHERE 1";
@@ -61,8 +63,8 @@
 		{
 			$page=$_GET['page'];
 		}
-
-		$start_limit=($page-1)*$results_per_page;
+		$curr_page = $page;
+		$start_limit = ($page-1) * $results_per_page;
 
 		if($page>1)
 		{
@@ -107,7 +109,12 @@
 		</button>
 		<br>
 		<div id="demo<?php echo $i; ?>" class="collapse body">
-				<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo $row["issue_id"]; ?>	
+				<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo "#".$row["issue_id"]; ?>	
+			<br><hr>
+			<?php
+				
+					echo  postedBy($row['issue_id']);
+			?>
 			<br><hr>
 			<?php
 				$id = $row['issue_id'];
@@ -117,7 +124,9 @@
 			    echo status($row['issue_id']);
 			?>
 			<hr>
-			
+				<input type="button" class="btn btn-primary btn-sm btn-block" value="Provide a Solution">
+				<input type="button" class="btn btn-primary btn-sm btn-block" value="Report as Bogus">
+				<input type="button" class="btn btn-primary btn-sm btn-block" value="Report as Duplicate">
 			<?php
 
 				if($row["solution_count"] >0)
@@ -165,10 +174,19 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 							×</button>
-						<h4 class="modal-title" id="myModalLabel">Description</h4>
+						<h4 class="modal-title" id="myModalLabel">Issue <? echo "#".$id; ?></h4>
 					</div>
 					<div class="modal-body">
-						<?php echo $id; ?>
+						<?php 
+							$sql3="Select * from issue where issue_id='$id'";
+							$result3=mysqli_query($con,$sql3);
+							$no_of_results=mysqli_num_rows($result3);
+							$row= mysqli_fetch_array($result3);
+							echo "Code: #".$id;
+							echo "<br><br>Title: ".$row['title'];
+							echo "<br><br>Description:";
+							echo "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp".$row['description'];
+						?>
 					</div>
 				</div>
 			</div>
@@ -180,7 +198,8 @@
 		?>
 		<div class="container">
 			<ul class="pagination">
-				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$pre."\",\"field\")' class='button'>PREVIOUS</a></li>"; ?>
+				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=1\",\"field\")' class='button'>FIRST</a></li>"; ?>
+				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$pre."\",\"field\")' class='button'><<</a></li>"; ?>
 
 				<?php
 					for($page=1;$page<=$no_of_pages;$page++)
@@ -188,25 +207,10 @@
 						$url = "issue-display.php?sql=".$sql."&page=".$page."";
 						echo "<li><a onclick='javascript:loadDoc(\"".$url."\",\"field\")'>".$page."</a></li>";
 					}
-					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$next."\",\"field\")' class='button'>NEXT</a></li>";
+					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$next."\",\"field\")' class='button'>>></a></li>";
+					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$no_of_pages."\",\"field\")' class='button'>LAST</a></li>";
 				?>
 			</ul>
-		</div>
-	</div>
-	<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-	aria-hidden="true">
-		<div class="modal-dialog modal-md " role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						×</button>
-					<h4 class="modal-title" id="myModalLabel">Description</h4>
-				</div>
-				<div class="modal-body">
-					<div class="fetched-data">
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </body>
