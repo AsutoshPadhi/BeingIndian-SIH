@@ -7,7 +7,7 @@
 
 	$swift = Swift_Mailer::newInstance($transport);
 
-	$content = "Your temporarypassword is ".$otp;
+	$content = "Your temporary password is ".$otp;
 
 	$message = \Swift_Message::newInstance("Test Mail")
 			->setFrom(['asutosh.padhi123@gmail.com'=>'Support'])
