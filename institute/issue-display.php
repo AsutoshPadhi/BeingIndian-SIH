@@ -27,6 +27,8 @@
 </head>
 <body>
 	<?php
+		session_start();
+		$cemail = $_SESSION['$cemail'];
 		require('../functions/func_in.php');
 		if(!isset($_GET['sql'])){
 			$sql = "SELECT * FROM issue WHERE 1";
@@ -122,7 +124,9 @@
 			    echo status($row['issue_id']);
 			?>
 			<hr>
-			
+				<input type="button" class="btn btn-primary btn-sm btn-block" value="Provide a Solution">
+				<input type="button" class="btn btn-primary btn-sm btn-block" value="Report as Bogus">
+				<input type="button" class="btn btn-primary btn-sm btn-block" value="Report as Duplicate">
 			<?php
 
 				if($row["solution_count"] >0)
