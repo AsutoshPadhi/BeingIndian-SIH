@@ -25,7 +25,7 @@
 <input type="submit" name="class" value="click me" onclick="f1()">
 </form>
 <?php
-     define('bogus_threshold',5);
+define('bogus_threshold',5);
 define('upvote_threshold',500);
 define('like_threhold',100);
 
