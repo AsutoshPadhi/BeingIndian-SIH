@@ -10,15 +10,30 @@
 <body>
 	<?php
 		session_start();
+		$email = $_SESSION['$email'];
+		require('../functions/func_in.php');
+		if(!isset($_GET['sql'])){
+			$sql = "SELECT * FROM issue WHERE 1";
+		}
+		else{
+			$sql = $_GET['sql'];
+		}
 		$con= mysqli_connect("localhost","root","");
 		$selected = mysqli_select_db($con,'hackathon') 
 		or die("Could not select examples");
 		/*$state = $_GET['state'];
 		echo $state;
 		require 'getQuery.php';*/
-		$sql="Select * from issue where 1 ";
 		$result=mysqli_query($con,$sql);
 		$no_of_results=mysqli_num_rows($result);
+		if($no_of_results == 0)
+		{
+			?>
+				<div class="alert alert-danger">
+                    No Results Found.
+                </div>
+			<?php
+		}
 		$results_per_page=5;
 		while($row= mysqli_fetch_array($result))
 		{
@@ -63,14 +78,12 @@
 		}
 
 
-		$sql="select * from issue LIMIT ".$start_limit.','.$results_per_page;
-
-		$result=mysqli_query($con,$sql);
+		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
+		$result=mysqli_query($con,$sql2);
 	?>
 
 	<div id="problem">
 		<?php
-		include('../functions/func_in.php');
 		$i = 1;
 		while($row=mysqli_fetch_array($result))
 		{
@@ -103,7 +116,6 @@
 			<hr>
 			<div id=<?php echo $row['issue_id'] ?> >
 			<?php
-				$email = $_SESSION['$email'];
 				userStatus($email,$row['issue_id']);
 				
 				
