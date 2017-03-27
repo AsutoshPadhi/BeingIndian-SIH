@@ -86,7 +86,7 @@
 		{
 			//return 1;//not upvoted
 			
-			echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=$issueid&userid=$userid\",$issueid)'> $issueid</button>";
+			echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=$issueid&userid=$userid\",$issueid)'>Upvote</button>";
 			
 		}
 		
@@ -117,5 +117,16 @@
         echo"<b> POSTED BY : </b>". $row['fname']. "  ".$row['lname'];
         
     }
+
+	function getInstId($cemail){
+        require('dataBaseConn.php');
+        $sql = "SELECT inst_id FROM institute WHERE inst_email = '$cemail'";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()){
+            $instid = $row['inst_id'];
+        }
+        return $instid;
+    }
+
 
 ?>

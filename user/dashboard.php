@@ -235,7 +235,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <form action="localhost/institute/login.php" methond="POST" role="form" class="form-horizontal">
+                            <form action="../institute/login.php" methond="POST" role="form" class="form-horizontal">
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">
                                         Email</label>
@@ -283,7 +283,7 @@
                                     User Login
                                 </div>
                                 <div style="margin: 15px 0px;" class="styleBox">
-                                    <a class="btn btn-block btn-social btn-google-plus" href='user/login.php'>
+                                    <a class="btn btn-block btn-social btn-google-plus" href='login.php'>
                                         <i class="fa fa-google-plus"></i> Sign in with Google
                                     </a>
                                 </div>

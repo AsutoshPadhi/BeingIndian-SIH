@@ -10,15 +10,39 @@
 <body>
 	<?php
 		session_start();
+		if(isset($_SESSION['$email']))
+		{
+			$login=true;
+			$email = $_SESSION['$email'];
+		}	
+		else
+		{
+			$login=False;
+		}
+		
+		require('../functions/func_in.php');
+		if(!isset($_GET['sql'])){
+			$sql = "SELECT * FROM issue WHERE 1";
+		}
+		else{
+			$sql = $_GET['sql'];
+		}
 		$con= mysqli_connect("localhost","root","");
 		$selected = mysqli_select_db($con,'hackathon') 
 		or die("Could not select examples");
 		/*$state = $_GET['state'];
 		echo $state;
 		require 'getQuery.php';*/
-		$sql="Select * from issue where 1 ";
 		$result=mysqli_query($con,$sql);
 		$no_of_results=mysqli_num_rows($result);
+		if($no_of_results == 0)
+		{
+			?>
+				<div class="alert alert-danger">
+                    No Results Found.
+                </div>
+			<?php
+		}
 		$results_per_page=5;
 		while($row= mysqli_fetch_array($result))
 		{
@@ -63,14 +87,12 @@
 		}
 
 
-		$sql="select * from issue LIMIT ".$start_limit.','.$results_per_page;
-
-		$result=mysqli_query($con,$sql);
+		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
+		$result=mysqli_query($con,$sql2);
 	?>
 
 	<div id="problem">
 		<?php
-		include('../functions/func_in.php');
 		$i = 1;
 		while($row=mysqli_fetch_array($result))
 		{
@@ -103,9 +125,19 @@
 			<hr>
 			<div id=<?php echo $row['issue_id'] ?> >
 			<?php
-				$email = $_SESSION['$email'];
-				userStatus($email,$row['issue_id']);
+			if($login)
+			{
+					userStatus($email,$row['issue_id']);
 				
+			}
+			else
+			{?>
+				<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
+				
+				<?php
+				
+			}
+			
 				
 				?>
 				</div>
@@ -174,6 +206,24 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal fade" id='confirmation' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-md " role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							×</button>
+						<h4 class="modal-title" id="myModalLabel">PLEASE LOGIN</h4>
+					</div>
+					<div class="modal-body">
+						<?php 
+						echo "<a href='#myModal2'  class='btn btn-primary' data-toggle='modal' data-dismiss='modal'  >Click here to login</a> ";
+						?>
+					</div>
+				</div>
+			</div>
+		</div
+		
 			<?php
 				$i++;
 		}
@@ -196,7 +246,10 @@
 			</ul>
 		</div>
 	</div>
+<?php
+//require "modal.php";
 
+?>
 	
 </body>
 </html>
