@@ -154,6 +154,7 @@
                         Your password has been reset
                     </div>
             <?php
+                unset($_SESSION['message']);
                 }
             ?>
             <div id="searchBar">
