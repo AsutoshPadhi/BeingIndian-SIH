@@ -13,6 +13,9 @@
 		$con= mysqli_connect("localhost","root","");
 		$selected = mysqli_select_db($con,'hackathon') 
 		or die("Could not select examples");
+		/*$state = $_GET['state'];
+		echo $state;
+		require 'getQuery.php';*/
 		$sql="Select * from issue where 1 ";
 		$result=mysqli_query($con,$sql);
 		$no_of_results=mysqli_num_rows($result);
