@@ -46,7 +46,7 @@
 		/*For notification and proceed to add button*/
 		?>
 
-		
+		<br>
 		<div class="alert alert-info alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             Please check if the solution already exists or else Proceed.
