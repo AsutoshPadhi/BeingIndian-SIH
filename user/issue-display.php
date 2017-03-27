@@ -228,6 +228,8 @@
 				$i++;
 		}
 		//display links to the pages
+		if($no_of_pages > 1 ){
+			
 		?>
 		<div class="container">
 			<ul class="pagination">
@@ -245,6 +247,7 @@
 				?>
 			</ul>
 		</div>
+		<?php } ?>
 	</div>
 <?php
 //require "modal.php";
