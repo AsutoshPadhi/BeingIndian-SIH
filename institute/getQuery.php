@@ -28,11 +28,55 @@
 
 		$cs = new CosineSimilarity();
 		
+		#Pagenation
+		$results_per_page=1;
+		$no_of_results=mysqli_num_rows($result);
+		//dtermine the number of pages in a page
+		$no_of_pages= ceil($no_of_results/$results_per_page);
+
+		//determine the number of results in one page
+		if(!isset($_GET['page']))
+		{
+			$page=1;
+		}
+		else
+		{
+			$page=$_GET['page'];
+		}
+		$curr_page = $page;
+		$start_limit = ($page-1) * $results_per_page;
+
+		if($page>1)
+		{
+			$pre=$page-1;
+			//$next=$page+1;
+		}
+		else
+		{
+			$pre=1;
+
+		}
+		if($page<$no_of_pages)
+		{
+			$next=$page+1;
+		//$next=$page+1;
+		}
+		else
+		{
+			$next=$no_of_pages;
+
+		}
+
+
+		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
+		$result=$conn->query($sql2);
+
 		include('../functions/func_in.php');
 		if(($result->num_rows>0) && $str!="")
 		{
 			$i=0;
 			$flag = 0;
+
 			while($i<$result->num_rows)
 			{
 				$row = $result->fetch_assoc();
@@ -79,6 +123,23 @@
 				$i++;
 			}
 		}
+		?>
+		<div class="container">
+			<ul class="pagination">
+				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=1\",\"field\")' class='button'>FIRST</a></li>"; ?>
+				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$pre."\",\"field\")' class='button'><<</a></li>"; ?>
 
+				<?php
+					for($page=1;$page<=$no_of_pages;$page++)
+					{	
+						$url = "issue-display.php?sql=".$sql."&page=".$page."";
+						echo "<li><a onclick='javascript:loadDoc(\"".$url."\",\"field\")'>".$page."</a></li>";
+					}
+					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$next."\",\"field\")' class='button'>>></a></li>";
+					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$no_of_pages."\",\"field\")' class='button'>LAST</a></li>";
+				?>
+			</ul>
+		</div>
+		<?php
 	}
 ?>
