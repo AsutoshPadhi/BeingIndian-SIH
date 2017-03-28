@@ -10,14 +10,59 @@
 
                 <div class="form-group col-xs-6 col-md-2">
                     <select class="form-control" id="state1" onchange="getDistrict((document.getElementById('state1').value),'district1')">
-                        <option disabled selected>State</option>
+                    <?php
+                        include '../functions/dataBaseConn.php';
+                        session_start();
+                        if(isset($_SESSION['district_id']))
+                        {
+                            $get_state = "SELECT * FROM state,district WHERE state.state_id = district.state_id AND district.district_id = ".$_SESSION['district_id']."";
+                            $result = $conn->query($get_state);
+                            $row = $result->fetch_assoc();
+                            $state = $row['state_name'];
+                            echo $state;
+                    ?>
+                            <option selected><?php echo $state; ?></option>
+                    <?php
+                        }
+
+                        else
+                        {
+
+                    ?>
+                            <option disabled selected>State</option>
+                    <?php
+                        }
+                    ?>
                         <?php include 'stateList.php'; ?>
                     </select>
                 </div>
 
                 <div class="form-group col-xs-6 col-md-2">
                     <select class="form-control" id="district1">             
-                        <option disabled selected>Districts</option>
+                    <?php
+                        include '../functions/dataBaseConn.php';
+                        session_start();
+                        if(isset($_SESSION['district_id']))
+                        {
+                            $get_district = "SELECT * FROM district WHERE district_id = ".$_SESSION['district_id']."";
+                            $result = $conn->query($get_state);
+                            $row = $result->fetch_assoc();
+                            $district = $row['district_name'];
+                            echo $district;
+                    ?>
+                        <option selected><?php echo $district; ?></option>
+                    <?php
+                        }
+
+                        else
+                        {
+
+                    ?>
+                            <option disabled selected>District</option>
+                    <?php
+                        }
+                    ?>
+                    <!-- <?php //include 'stateList.php'; ?> -->
                     </select>
                 </div>
                 <div class="col-xs-6 col-md-2">

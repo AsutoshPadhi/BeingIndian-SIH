@@ -141,7 +141,23 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <?php
+                                #results according to profile
                                 $sql = "SELECT * FROM issue WHERE 1";
+                                //$url = "issue-display.php?sql=".$sql."";
+                                $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
+                                $result = $conn->query($checkProfile);
+                                $row = $result->fetch_assoc();
+                                $district_id = $row['district_id'];
+                                $_SESSION['district_id'] = $district_id;
+                                if($district_id != "")
+                                {
+                                    $sql = "SELECT * FROM issue WHERE district_id = ".$district_id."";
+                                    
+                                }
+                                else
+                                {
+                                    //$sql = "SELECT * FROM issue WHERE 1";
+                                }
                                 $url = "issue-display.php?sql=".$sql."";
                             ?>
                             <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
