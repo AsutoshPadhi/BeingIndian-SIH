@@ -56,10 +56,10 @@
 			
 			if($percentage[$i]>0.3)
 			{
-				//var_dump($row);
+				var_dump($row);
 				if(is_array($row[$i]["issue_id"]))
 				{
-					$issue_id = $row[$i]["issue_id"];
+					$issue_id = implode($row[$i]["issue_id"]);
 				}
 				else
 				{
