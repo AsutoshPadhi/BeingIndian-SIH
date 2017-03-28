@@ -82,7 +82,7 @@
 					<div class="modal-body">
 						<?php 
 							$sql3="Select * from issue where issue_id='$id'";
-							$result3=mysqli_query($con,$sql3);
+							$result3=mysqli_query($conn,$sql3);
 							$no_of_results=mysqli_num_rows($result3);
 							$row= mysqli_fetch_array($result3);
 							echo "Code: #".$id;
