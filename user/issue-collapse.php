@@ -97,7 +97,7 @@
 								?>
 							<div id="like">
 							
-							 <a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php $email ?>",like)' class="btn btn-primary btn-sm">
+							 <a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php $email ?>","like")' class="btn btn-primary btn-sm">
           <span class="glyphicon glyphicon-thumbs-up"></span> 
         </a></div>
 							<?php

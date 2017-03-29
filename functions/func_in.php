@@ -63,27 +63,12 @@ define('LIKE_THRESHOLD',2);
 	function LikeCount($id,$email)
 	{
 		include '../functions/dataBaseConn.php';
-		 $userid = getUserId($email);
-		//$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id where issue_id='$id' ";
-		
-		  /*  $result = $conn->query($sql1);
-			if($result->num_rows!=0)
-			{
-	
-			while($row = $result->fetch_assoc())
-			{
-				 $val=$row['issue_id'];
-				 $val1=$row['solution_id'];
-			}
-		}*/
-		
+		$userid = getUserId($email);
 		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
-          $result1 = $conn->query($sql);
-		 
-		
-		  $sql2="Insert into solutionlikedetails (solution_id,user_id) values ('$id','$userid')";
-		  $result2=$conn->query($sql2);
-		  echo "YOU HAVE liked  FOR THIS ";
+		$result1 = $conn->query($sql);
+		$sql2="Insert into solutionlikedetails (solution_id,user_id) values ($id,$userid)";
+		$result2=$conn->query($sql2);
+		echo "YOU HAVE liked  FOR THIS ";
 	}
 
 	
