@@ -32,25 +32,67 @@
 				echo "<b id='code'>STATUS :</b>";
 			?>
 			<?php 
-			    echo status($row['issue_id']);
+			    $status =  status($row['issue_id']);
+			    switch($status){
+			    	case 0:
+			    		echo "Voting is on";
+			    		break;
+		    		case 1:
+			    		echo "Voting Closed & Solutions are awaited";
+			    		break;
+			    	case 2:
+			    		echo "Solutions are available";
+			    		break;
+			    	case 3:
+			    		echo "Solution approved";
+			    		break;
+			    	case 4:
+			    		echo "Repoted Bogus";
+			    		break;
+			    	case 5:
+			    		echo "Repoted Duplicate";
+			    		break;
+			    }
+
 			?>
 			<hr>
 			<div id=<?php echo $row['issue_id'] ?> >
 			<?php
+			if(isset($_SESSION['$email']))
+			{
+				$login = true;
+				$email = $_SESSION['$email'];
+			}
+			else
+				$login = false;
 			if($login)
 			{
-					userStatus($email,$row['issue_id']);
-				
+					if(!userStatus($email,$row['issue_id']))
+					{
+						if(status($row['issue_id']) == 0)
+							echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=".$row['issue_id']."&userid=".getUserId($email)."\",$issueid)'>Upvote</button>";
+						else
+						{
+							echo "Voting is closed!";
+						}
+					}
+					else
+					{
+						echo "You've Successfully upvoted this issue";
+					}
+					
 			}
 			else
 			{?>
-				<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
-				
-				<?php
-				
+			<?php 
+				if(status($row['issue_id']) == 0)
+				{
+			?>
+					<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
+			<?php
+				}
 			}
 			
-				
 				?>
 				</div>
 				<?php
@@ -78,7 +120,7 @@
 					<div class='modal-dialog'>
 						<div class='modal-content'>
 							<div class='modal-header'>
-								<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+								<button type='button' id='close' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
 								<h4 class='modal-title' id='myModalLabel'>Solutions </h4>
 							</div>
 							<div class='modal-body'>
@@ -119,16 +161,8 @@
 							
 							
 							?>
-							<script>
-    var youtubeFunc ='';
-    var outerDiv = document.getElementById("solution<?php echo $row['solution_id'];?>");
-    var youtubeIframe = outerDiv.getElementsByTagName("iframe")[0].contentWindow;
-    $('#solution<?php echo $row['solution_id'];?>').on('hidden.bs.modal', function (e) {
-    youtubeFunc = 'pauseVideo';
-    youtubeIframe.postMessage('{"event":"command","func":"' + youtubeFunc + '","args":""}', '*');
-    });
-    
-</script>
+							
+
 							
 								
 							</div>
@@ -155,7 +189,7 @@
 						<?php 
 						
 							$sql3="Select * from issue where issue_id='$id'";
-							$result3=mysqli_query($con,$sql3);
+							$result3=mysqli_query($conn,$sql3);
 							$no_of_results=mysqli_num_rows($result3);
 							$row= mysqli_fetch_array($result3);
 							echo "Code: #".$id;
