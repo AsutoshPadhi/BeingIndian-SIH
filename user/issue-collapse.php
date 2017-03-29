@@ -73,12 +73,12 @@
 							echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=".$row['issue_id']."&userid=".getUserId($email)."\",$issueid)'>Upvote</button>";
 						else
 						{
-							echo "You've Successfully upvoted this issue";
+							echo "Voting is closed!";
 						}
 					}
 					else
 					{
-						echo "Voting is closed!";
+						echo "You've Successfully upvoted this issue";
 					}
 					
 			}
