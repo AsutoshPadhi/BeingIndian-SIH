@@ -309,7 +309,7 @@
 						<div class='modal-content'>
 							<div class='modal-header'>
 								<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
-								<h4 class='modal-title' id='myModalLabel'>Solutions are available</h4>
+								<h4 class='modal-title' id='myModalLabel'>Solutions </h4>
 							</div>
 							<div class='modal-body'>
 							<!--<video src ="<?php echo $row['solution_url'];?>"></video>-->
@@ -331,6 +331,10 @@
           <span class="glyphicon glyphicon-thumbs-up"></span> 
         </a></div>
 							<?php
+								}
+								else
+								{
+									echo "Not upvoted this problem";
 								}
 								
 							}
