@@ -106,7 +106,7 @@
 			<br><hr>
 			
 			<?php
-
+				
 				echo  postedBy($row['issue_id']);
 			?>
 			<br><hr>
@@ -127,8 +127,7 @@
 				
 			}
 			else
-			{
-			?>
+			{?>
 				<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
 				
 				<?php
@@ -237,6 +236,7 @@
 		while($row=mysqli_fetch_array($result))
 		{
 			// output data of each row
+			$issueid=$row['issue_id'];
 
 			?>
 			<br>
@@ -319,7 +319,7 @@
 							if($login)
 							{
 								$userid=getUserId($email);
-								$sql="select * from issueupvote where user_id=$userid and issue_id=$row['issue_id'] ";
+								$sql="select * from issueupvote where user_id=$userid and issue_id=$issueid ";
 								$result=mysqli_query($con,$sql);
 								if($result==TRUE)
 								{
