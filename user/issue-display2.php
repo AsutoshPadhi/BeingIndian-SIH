@@ -26,15 +26,18 @@
 		<?php 
 		    echo status($row['issue_id']);
 		?>
-		<div id=<?php echo $row['issue_id'] ?> >
+		<div id=<?php echo $row['issue_id'] ?> ><hr>
 		<?php
-			//session_start();
-			if(isset($SESSION['email']))
+			session_start();
+			if(isset($_SESSION['$email']))
 			{
 				$email = $_SESSION['$email'];
 				userStatus($email,$row['issue_id']);
 			}
-			
+			else
+			{
+				echo "<br>Please Login to upvote";
+			}
 			
 			?>
 			</div>

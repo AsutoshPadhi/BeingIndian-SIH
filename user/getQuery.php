@@ -4,7 +4,7 @@
 </head>
 <?php
 	
-	session_start();
+	//session_start();
 
 
 	$callFunction = $_REQUEST['callFunction'];			//Receives 
@@ -16,16 +16,6 @@
 		include '../functions/dataBaseConn.php';
 		require_once 'CosineSimilarity.php';
 		/*For notification and proceed to add button*/
-		?>
-
-		<br>
-		<div class="alert alert-info alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            Please check if the solution already exists or else Proceed.
-        </div>
-
-		<?php
-
 		$str = $_GET['issue'];
 		$state = $_GET['state'];
 		$district = $_GET['district'];
@@ -34,6 +24,21 @@
 		$type = $_GET['type'];
 
 		$cs = new CosineSimilarity();
+		if($type == 'add')
+		{
+
+		?>
+
+			<br>
+			<div class="alert alert-info alert-dismissable">
+	            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	            Please check if the solution already exists or else Proceed.
+	        </div>
+
+		<?php
+		}
+
+		
 
 		$get_district_id = "SELECT *FROM district WHERE district_name = '".$district."'";
 		$result = $conn->query($get_district_id);
