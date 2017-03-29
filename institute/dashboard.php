@@ -2,6 +2,14 @@
     session_start();
     if(isset($_SESSION['$cemail'])){
         $cemail = $_SESSION['$cemail'];
+        require('../functions/dataBaseConn.php');
+        $sql = "SELECT * FROM institute WHERE inst_email = '$cemail'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $_SESSION['$inst_id'] = $row['inst_id'];
+        $_SESSION['$inst_name'] = $row['inst_name'];
+        $_SESSION['$district_id'] = $row['district_id'];
+        $districtid = $_SESSION['$district_id'];
         $loginCollege = true;
         //echo "yes";
     }
@@ -99,7 +107,7 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <?php
-                                $sql = "SELECT * FROM issue WHERE 1";
+                                $sql = "SELECT * FROM issue WHERE district_id = $districtid";
                                 $url = "issue-display.php?sql=".$sql."";
                             ?>
                             <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>

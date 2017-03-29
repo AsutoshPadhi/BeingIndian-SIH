@@ -60,11 +60,13 @@ define('LIKE_THRESHOLD',2);
 			return 0;
 		}
 	}
-	function LikeCount($id)
+	function LikeCount($id,$email)
 	{
 		include '../functions/dataBaseConn.php';
-		$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id where issue_id='$id' ";
-		    $result = $conn->query($sql1);
+		 $userid = getUserId($email);
+		//$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id where issue_id='$id' ";
+		
+		  /*  $result = $conn->query($sql1);
 			if($result->num_rows!=0)
 			{
 	
@@ -73,10 +75,42 @@ define('LIKE_THRESHOLD',2);
 				 $val=$row['issue_id'];
 				 $val1=$row['solution_id'];
 			}
-		}
-		$sql=" update solution set like_count=like_count+1 where solution_id='$val1'";
+		}*/
+		
+		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
           $result1 = $conn->query($sql);
+		 
+		
+		  $sql2="Insert into solutionlikedetails (solution_id,user_id) values ('$id','$userid')";
+		  $result2=$conn->query($sql2);
+		  echo "YOU HAVE liked  FOR THIS ";
 	}
+function numberOfLikes()
+	{
+		include '../functions/dataBaseConn.php';
+		$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id ";
+		    $result = $conn->query($sql1);
+			if($result->num_rows!=0)
+			{
+	
+			while($row = $result->fetch_assoc())
+			{
+				 $val=$row['title'];
+				 $val1=$row['solution_id'];
+			}
+			$sql="  select count(solution.solution_id)as like_count,issue.title from issue INNER JOIN solution on solution.issue_id=issue.issue_id group by issue.title having issue.title='$val'";
+             $result1 = $conn->query($sql);
+			if($result1->num_rows!=0)
+			{
+	
+			while($row = $result1->fetch_assoc())
+			{
+				 $val=$row['like_count'];
+			}
+			return $val;
+		}
+	}
+	
 
 	function getUserId($email){
 		include '../functions/dataBaseConn.php';
@@ -149,9 +183,9 @@ define('LIKE_THRESHOLD',2);
         }
         return $instid;
     }
-	function collegeStatus($cemail, $issueids)
+	function instStatus($cemail, $issueid)
 	{
-		// STATUS :- 0 - NONE, 1- Bogus, 2- Duplicate, 3- Solved
+		// STATUS : 0-> NONE, 1-> Bogus, 2-> Duplicate, 3-> Solved
 		include '../functions/dataBaseConn.php';
 		$instid = getInstId($cemail);
 		$sql = "SELECT * FROM issuebogusupvote WHERE inst_id = $instid AND issue_id = $issueid";
@@ -172,7 +206,34 @@ define('LIKE_THRESHOLD',2);
 		return 0;
 	}
 
+	function provideSolution($inst_id,$issue_id,$url){
+		include '../functions/dataBaseConn.php';
+		$sql = "SELECT * FROM solution";
+		$result = $conn->query($sql);
+		$count = $result->num_rows + 1;
+		$sql = "INSERT INTO solution(solution_id,issue_id,inst_id,solution_url,like_count) values($count,$issue_id,$inst_id,'$url',0)";
+        if($result = $conn->query($sql))
+			return true;
+		else
+			return false;
+	}
 
-
+	function reportBogus($inst_id,$issue_id){
+		include '../functions/dataBaseConn.php';
+		$sql = "INSERT INTO issuebogusupvote(issue_id,inst_id) values($issue_id,$inst_id)";
+		if($result = $conn->query($sql))
+			return true;
+		else
+			return false;
+	}
+	
+	function reportDuplicate($inst_id,$issue_id,$similar_to_issue){
+		include '../functions/dataBaseConn.php';
+		$sql = "INSERT INTO issueduplicateupvote(issue_id,inst_id,similar_to_issue) values($issue_id,$inst_id,$similar_to_issue)";
+        if($result = $conn->query($sql))
+			return true;
+		else
+			return false;
+	}
 
 ?>
