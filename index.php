@@ -194,7 +194,7 @@
                                     <label for="password" class="col-sm-2 control-label">
                                         Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Email" />
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -203,7 +203,7 @@
                                     <div class="col-sm-10">
                                         <button  type="submit" class="btn btn-primary btn-sm">
                                             Submit</button>
-                                        <a onClick="loadDoc('../institute/forgot-password.php','field')">Forgot your password?</a>
+                                        <a onClick="loadDoc('../institute/forgot-password.php','field');$('#myModal').modal('hide');">Forgot your password?</a>
                                     </div>
                                 </div>
                             </form>

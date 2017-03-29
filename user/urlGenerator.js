@@ -1,7 +1,8 @@
-function generateUrl(state,district,locality,pin,issueTitle,area)
+function generateUrl(state,district,locality,pin,issueTitle,area,type)
 {
     //alert("ys");
-    var url = "getQuery.php?issue="+issueTitle+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin+"&callFunction=get_query";
+    var url = "getQuery.php?issue="+issueTitle+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin+"&type="+type+"&callFunction=get_query";
+    //alert(url);
     loadDoc(url,area);
 }
 

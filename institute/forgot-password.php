@@ -42,16 +42,16 @@
                         <h3 class="panel-title">Forgot Password</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="../institute/change-password.php" method="POST">
+                        <form role="form" action="../institute/send_mail.php" method="POST">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email1" id="email1" type="email" autofocus required>
+                                    <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" autofocus required>
                                 </div>
                                 <div>
                                 	A mail will be sent to you containing a password. Please change the password later on.
                                 </div><br>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a class="btn btn-lg btn-success btn-block" onClick="javascript:var em=document.getElementById('email1').value;loadDoc('../institute/change-password.php?em='+em,'field')">Send Mail</a>
+                                <button type="submit" class="btn btn-lg btn-success btn-block">Send Mail</button>
                             </fieldset>
                         </form>
                     </div>

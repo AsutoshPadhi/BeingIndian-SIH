@@ -10,6 +10,12 @@
     <script src="../functions/ajax.js"></script>
     <script src="urlGenerator.js"></script>
     <script src="tabs.js"></script>
+    <script>
+        $(document).on('load',function ()
+        {
+            $("#dash").click();
+        });
+    </script>
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
@@ -30,7 +36,7 @@
     <![endif]-->
 
 </head>
-<body>
+<body onload="document.getElementById('dash').click();">
 
     <div id="wrapper">
 
@@ -40,11 +46,15 @@
                 <?php
                     session_start();
                     require('../functions/func_out.php');
+					require('../functions/dataBaseConn.php');
                     if(isset($_SESSION['$email'])){
                         $login = true;
                         $email = $_SESSION['$email'];
-                        $name = $_SESSION['$name'];
-                        $fname = $_SESSION['$fname'];
+                        $sql = "SELECT * from user WHERE user_email = '$email'";
+						$result = $conn->query($sql);
+						$row = $result->fetch_assoc();
+						$fname = $row['fname'];
+						$lname = $row['lname'];
                         if($fname == ""){
                             $fname  = 'Anonymous';
                         }
@@ -115,9 +125,9 @@
                             }
                             else{
                         ?>
-                        <li><a data-toggle="modal" data-target="#myModal2"><i class="fa fa-user fa-fw"></i> User Login</a>
+                        <li><a data-toggle="modal" data-target="#userLogin"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a data-toggle="modal" data-target="#myModal"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a data-toggle="modal" data-target="#instLogin"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
                             }
                         ?>
@@ -135,9 +145,25 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
+                        <li id="dash">
                             <?php
+                                #results according to profile
                                 $sql = "SELECT * FROM issue WHERE 1";
+                                //$url = "issue-display.php?sql=".$sql."";
+                                $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
+                                $result = $conn->query($checkProfile);
+                                $row = $result->fetch_assoc();
+                                $district_id = $row['district_id'];
+                                $_SESSION['district_id'] = $district_id;
+                                if($district_id != "")
+                                {
+                                    $sql = "SELECT * FROM issue WHERE district_id = ".$district_id."";
+                                    
+                                }
+                                else
+                                {
+                                    //$sql = "SELECT * FROM issue WHERE 1";
+                                }
                                 $url = "issue-display.php?sql=".$sql."";
                             ?>
                             <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
@@ -223,7 +249,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <div class="modal fade" id="instLogin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -235,7 +261,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <form action="localhost/institute/login.php" methond="POST" role="form" class="form-horizontal">
+                            <form action="../institute/login.php" methond="POST" role="form" class="form-horizontal">
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">
                                         Email</label>
@@ -266,7 +292,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <div class="modal fade" id="userLogin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -283,7 +309,7 @@
                                     User Login
                                 </div>
                                 <div style="margin: 15px 0px;" class="styleBox">
-                                    <a class="btn btn-block btn-social btn-google-plus" href='user/login.php'>
+                                    <a class="btn btn-block btn-social btn-google-plus" href='login.php'>
                                         <i class="fa fa-google-plus"></i> Sign in with Google
                                     </a>
                                 </div>
