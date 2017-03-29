@@ -4,7 +4,7 @@
 </head>
 <?php
 	
-	//session_start();
+	session_start();
 
 
 	$callFunction = $_REQUEST['callFunction'];			//Receives 

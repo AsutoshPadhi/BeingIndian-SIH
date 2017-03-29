@@ -28,7 +28,7 @@
 		?>
 		<div id=<?php echo $row['issue_id'] ?> ><hr>
 		<?php
-			session_start();
+			//session_start();
 			if(isset($_SESSION['$email']))
 			{
 				$email = $_SESSION['$email'];
