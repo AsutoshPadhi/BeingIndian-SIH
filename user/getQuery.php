@@ -55,7 +55,7 @@
 				while($i<$result->num_rows)
 				{
 					$row = $result->fetch_assoc();
-					require 'issue-display2.php';
+					require 'issue-collapse.php';
 					$i++;
 				}
 			}

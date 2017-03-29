@@ -19,21 +19,17 @@ define('LIKE_THRESHOLD',2);
 		{
 			if($row['bogus_count']>BOGUS_THRESHOLD)
 			{
-				
-				echo "Issue marked as BOGUS ISSUE by institutes";
 				return 5;
 			}
 			else
 			{
 				if($row['duplicate_count']>DUPLICATE_THRESHOLD)
 				{
-					echo "Issue marked as DUPLICATE ISSUE by institutes";
 					return 4;
 				}
 				else{
 					if($row['approved_solution']>LIKE_THRESHOLD)
 					{
-						echo "This issue has a Solution which is approved by upvoters";
 						return 3;
 					}
 					else
@@ -42,12 +38,10 @@ define('LIKE_THRESHOLD',2);
 
 						{
 							
-							echo "Voting Closed- Solutions Available";
 							return 2;
 						}
 						else
 						{
-							echo "Voting Closed- No solutions yet!";
 							return 1;
 						}
 					}
@@ -56,7 +50,6 @@ define('LIKE_THRESHOLD',2);
 		}
 		else
 		{
-			echo "You can vote this issue";
 			return 0;
 		}
 	}
@@ -95,15 +88,15 @@ define('LIKE_THRESHOLD',2);
 		
 		if($n>0)
 		{
-			echo "YOU HAVE ALREADY VOTED FOR THIS ";
+			//echo "YOU HAVE ALREADY VOTED FOR THIS ";
 			
-			//return 0;//already upvoted
+			return false;//already upvoted
 		}
 		else
 		{
-			//return 1;//not upvoted
+			return true;//not upvoted
 			
-			echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=$issueid&userid=$userid\",$issueid)'>Upvote</button>";
+			
 			
 		}
 		

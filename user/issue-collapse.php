@@ -32,25 +32,67 @@
 				echo "<b id='code'>STATUS :</b>";
 			?>
 			<?php 
-			    echo status($row['issue_id']);
+			    $status =  status($row['issue_id']);
+			    switch($status){
+			    	case 0:
+			    		echo "Voting is on";
+			    		break;
+		    		case 1:
+			    		echo "Voting Closed & Solutions are awaited";
+			    		break;
+			    	case 2:
+			    		echo "Solutions are available";
+			    		break;
+			    	case 3:
+			    		echo "Solution approved";
+			    		break;
+			    	case 4:
+			    		echo "Repoted Bogus";
+			    		break;
+			    	case 5:
+			    		echo "Repoted Duplicate";
+			    		break;
+			    }
+
 			?>
 			<hr>
 			<div id=<?php echo $row['issue_id'] ?> >
 			<?php
+			if(isset($_SESSION['$email']))
+			{
+				$login = true;
+				$email = $_SESSION['$email'];
+			}
+			else
+				$login = false;
 			if($login)
 			{
-					userStatus($email,$row['issue_id']);
-				
+					if(!userStatus($email,$row['issue_id']))
+					{
+						if(status($row['issue_id']) == 0)
+							echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=".$row['issue_id']."&userid=".getUserId($email)."\",$issueid)'>Upvote</button>";
+						else
+						{
+							echo "Voting is closed!";
+						}
+					}
+					else
+					{
+						echo "You've Successfully upvoted this issue";
+					}
+					
 			}
 			else
 			{?>
-				<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
-				
-				<?php
-				
+			<?php 
+				if(status($row['issue_id']) == 0)
+				{
+			?>
+					<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
+			<?php
+				}
 			}
 			
-				
 				?>
 				</div>
 				<?php
@@ -83,7 +125,7 @@
 							</div>
 							<div class='modal-body'>
 							<!--<video src ="<?php echo $row['solution_url'];?>"></video>-->
-							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/JGwWNGJdvx8" frameborder="0" allowfullscreen></iframe>
+							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/JGwWNGJdvx8/embed/<videoid>?rel=0&enablejsapi=1" frameborder="0" allowfullscreen></iframe>
 							<br>
 							<br>
 							<?php
@@ -119,10 +161,9 @@
 							
 							
 							?>
-							<script>
 							
 
-</script>
+							
 								
 							</div>
 						<!-- /.modal-content -->
@@ -148,7 +189,7 @@
 						<?php 
 						
 							$sql3="Select * from issue where issue_id='$id'";
-							$result3=mysqli_query($con,$sql3);
+							$result3=mysqli_query($conn,$sql3);
 							$no_of_results=mysqli_num_rows($result3);
 							$row= mysqli_fetch_array($result3);
 							echo "Code: #".$id;
