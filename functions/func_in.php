@@ -56,6 +56,24 @@
 
 		}
 	}
+	function LikeCount()
+	{
+		include '../functions/dataBaseConn.php';
+		$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id ";
+		    $result = $conn->query($sql1);
+			if($result->num_rows!=0)
+			{
+	
+			while($row = $result->fetch_assoc())
+			{
+				 $val=$row['issue_id'];
+				 $val1=$row['solution_id'];
+			}
+		}
+		$sql=" update solution set like_count=like_count+1 where solution_id='$val1'";
+          $result1 = $conn->query($sql);
+	}
+
 	function getUserId($email){
 		include '../functions/dataBaseConn.php';
 		$sql = "SELECT * FROM user where user_email = '$email'";
