@@ -78,7 +78,7 @@
 					<div class='modal-dialog'>
 						<div class='modal-content'>
 							<div class='modal-header'>
-								<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+								<button type='button' id='close' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
 								<h4 class='modal-title' id='myModalLabel'>Solutions </h4>
 							</div>
 							<div class='modal-body'>
@@ -119,16 +119,8 @@
 							
 							
 							?>
-							<script>
-    var youtubeFunc ='';
-    var outerDiv = document.getElementById("solution<?php echo $row['solution_id'];?>");
-    var youtubeIframe = outerDiv.getElementsByTagName("iframe")[0].contentWindow;
-    $('#solution<?php echo $row['solution_id'];?>').on('hidden.bs.modal', function (e) {
-    youtubeFunc = 'pauseVideo';
-    youtubeIframe.postMessage('{"event":"command","func":"' + youtubeFunc + '","args":""}', '*');
-    });
-    
-</script>
+							
+
 							
 								
 							</div>
