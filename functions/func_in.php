@@ -60,10 +60,10 @@ define('LIKE_THRESHOLD',2);
 			return 0;
 		}
 	}
-	function LikeCount()
+	function LikeCount($id)
 	{
 		include '../functions/dataBaseConn.php';
-		$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id ";
+		$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id where issue_id='$id' ";
 		    $result = $conn->query($sql1);
 			if($result->num_rows!=0)
 			{
