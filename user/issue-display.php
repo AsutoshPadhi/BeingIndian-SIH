@@ -116,22 +116,57 @@
 				echo "<b id='code'>STATUS :</b>";
 			?>
 			<?php 
-			    echo status($row['issue_id']);
+			    $status = status($row['issue_id']);
+			    switch($status){
+			    	case 0:
+			    		echo "Voting is on";
+			    		break;
+		    		case 1:
+			    		echo "Voting Closed & Solutions are awaited";
+			    		break;
+			    	case 2:
+			    		echo "Solutions are available";
+			    		break;
+			    	case 3:
+			    		echo "Solution approved";
+			    		break;
+			    	case 4:
+			    		echo "Repoted Bogus";
+			    		break;
+			    	case 5:
+			    		echo "Repoted Duplicate";
+			    		break;
+			    }
 			?>
 			<hr>
 			<div id=<?php echo $row['issue_id'] ?> >
 			<?php
 			if($login)
 			{
-					userStatus($email,$row['issue_id']);
-				
+					if(!userStatus($email,$row['issue_id']))
+					{
+						if(status($row['issue_id']) == 0)
+							echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=".$row['issue_id']."&userid=".getUserId($email)."\",$issueid)'>Upvote</button>";
+						else
+						{
+							echo "You've Successfully upvoted this issue";
+						}
+					}
+					else
+					{
+						echo "Voting is closed!";
+					}
+					
 			}
 			else
 			{?>
-				<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
-				
-				<?php
-				
+			<?php 
+				if(status($row['issue_id']) == 0)
+				{
+			?>
+					<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
+			<?php
+				}
 			}
 			
 				
