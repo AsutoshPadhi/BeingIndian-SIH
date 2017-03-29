@@ -10,6 +10,12 @@
     <script src="../functions/ajax.js"></script>
     <script src="urlGenerator.js"></script>
     <script src="tabs.js"></script>
+    <script>
+        $(document).on('load',function ()
+        {
+            $("#dash").click();
+        });
+    </script>
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
@@ -30,7 +36,7 @@
     <![endif]-->
 
 </head>
-<body>
+<body onload="document.getElementById('dash').click();">
 
     <div id="wrapper">
 
@@ -139,7 +145,7 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
+                        <li id="dash">
                             <?php
                                 #results according to profile
                                 $sql = "SELECT * FROM issue WHERE 1";
