@@ -42,7 +42,7 @@
 			$j++;
 		}
 	}
-	$issue_id = 100000+$j;
+	$issue_id = $j++;
 
 	//echo "district_id = ".$district_id."<br>";
 	#get region_id also

@@ -10,6 +10,13 @@
     <script src="../functions/ajax.js"></script>
     <script src="urlGenerator.js"></script>
     <script src="tabs.js"></script>
+    <script>
+        $(document).load(function()
+        {
+            $("#addIssue").click();
+            return false;
+        });
+    </script>
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
@@ -30,7 +37,7 @@
     <![endif]-->
 
 </head>
-<body>
+<body onload="document.getElementById('dash').click();">
 
     <div id="wrapper">
 
@@ -40,11 +47,15 @@
                 <?php
                     session_start();
                     require('../functions/func_out.php');
+					require('../functions/dataBaseConn.php');
                     if(isset($_SESSION['$email'])){
                         $login = true;
                         $email = $_SESSION['$email'];
-                        $name = $_SESSION['$name'];
-                        $fname = $_SESSION['$fname'];
+                        $sql = "SELECT * from user WHERE user_email = '$email'";
+						$result = $conn->query($sql);
+						$row = $result->fetch_assoc();
+						$fname = $row['fname'];
+						$lname = $row['lname'];
                         if($fname == ""){
                             $fname  = 'Anonymous';
                         }
@@ -115,9 +126,9 @@
                             }
                             else{
                         ?>
-                        <li><a data-toggle="modal" data-target="#myModal2"><i class="fa fa-user fa-fw"></i> User Login</a>
+                        <li><a data-toggle="modal" data-target="#userLogin"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a data-toggle="modal" data-target="#myModal"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a data-toggle="modal" data-target="#instLogin"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
                             }
                         ?>
@@ -135,12 +146,28 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
+                        <li id="dash">
                             <?php
+                                #results according to profile
                                 $sql = "SELECT * FROM issue WHERE 1";
+                                //$url = "issue-display.php?sql=".$sql."";
+                                $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
+                                $result = $conn->query($checkProfile);
+                                $row = $result->fetch_assoc();
+                                $district_id = $row['district_id'];
+                                $_SESSION['district_id'] = $district_id;
+                                if($district_id != "")
+                                {
+                                    $sql = "SELECT * FROM issue WHERE district_id = ".$district_id."";
+                                    
+                                }
+                                else
+                                {
+                                    //$sql = "SELECT * FROM issue WHERE 1";
+                                }
                                 $url = "issue-display.php?sql=".$sql."";
                             ?>
-                            <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a id="sb" onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
                         </li>
                         <!-- onclick="javascript:openField(event, 'addIssue')"-->
@@ -196,10 +223,61 @@
         <!-- /#page-wrapper -->
 
     </div>
-    <?php 
-        if(isset($_GET['toOpen'])){
-            $toOpen = $_GET['toOpen'];
+    <?php
+        //session_start();
+        if(isset($_SESSION['toOpen']))
+        {
+            if($_SESSION['toOpen'] == "search.php")
+            {
+                include '../functions/dataBaseConn.php';
+                $sql = "SELECT * FROM issue WHERE 1";
+                //$url = "issue-display.php?sql=".$sql."";
+                if($login)
+                {
+                    $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
+                    $result = $conn->query($checkProfile);
+                    $row = $result->fetch_assoc();
+                    $district_id = $row['district_id'];
+                    //$_SESSION['district_id'] = $district_id;
+                    if($district_id != "")
+                    {
+                        $sql = "SELECT * FROM issue WHERE district_id = ".$district_id."";
+                        
+                    }
+                }
+                $url = "issue-display.php?sql=".$sql."";
+                ?><script>loadDoc('<?php echo $url ?>','field');</script><?php
+                unset($_SESSION['toOpen']);
+            }
+
+            else if($_SESSION['toOpen'] == "add-issue.php")
+            {
+                ?><script>loadDoc('add-issue.php','field');</script><?php
+                unset($_SESSION['toOpen']);
+            }
         }
+        else{
+            include '../functions/dataBaseConn.php';
+            $sql = "SELECT * FROM issue WHERE 1";
+            //$url = "issue-display.php?sql=".$sql."";
+            if($login)
+            {
+                $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
+                $result = $conn->query($checkProfile);
+                $row = $result->fetch_assoc();
+                $district_id = $row['district_id'];
+                //$_SESSION['district_id'] = $district_id;
+                if($district_id != "")
+                {
+                    $sql = "SELECT * FROM issue WHERE district_id = ".$district_id."";
+                    
+                }
+            }
+            $url = "issue-display.php?sql=".$sql."";
+            ?><script>loadDoc('<?php echo $url; ?>','field');</script><?php
+            //session_unset($_SESSION['toOpen']);
+        }
+
     ?>
     <script>
         var login = <?php if($login){echo "true";}else{echo "false";}?>;
@@ -209,7 +287,10 @@
         else{
             document.getElementById("main").style.marginLeft = "0px";
         }
-        loadDoc('<?php echo $toOpen; ?>','field');
+        // if(toOpen == "add-issue.php")
+        // {
+        //     loadDoc('add-issue.php','field');
+        // }
     </script>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -223,7 +304,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <div class="modal fade" id="instLogin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -266,7 +347,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <div class="modal fade" id="userLogin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
