@@ -7,10 +7,12 @@
 
     if($callFunction == "get_query")
        get_query();
+
 	function get_query()
 	{
 		include '../functions/dataBaseConn.php';
 		require_once 'CosineSimilarity.php';
+		include('../functions/func_in.php');
 
 		$str = $_GET['issue'];
 		session_start();
@@ -23,7 +25,7 @@
 
 		$query_word_count =  array_count_values(str_word_count($str, 1));
 
-		$sql = "SELECT *FROM issue WHERE district_id = '".$district_id."'";
+		$sql = "SELECT *FROM issue WHERE district_id = $district_id AND upvote_count > ".UPVOTE_THRESHOLD;
 		$result = $conn->query($sql);
 
 		$cs = new CosineSimilarity();
@@ -71,7 +73,7 @@
 		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
 		$result=$conn->query($sql2);
 
-		include('../functions/func_in.php');
+		
 		if(($result->num_rows>0) && $str!="")
 		{
 			$i=0;
@@ -113,7 +115,8 @@
 		}
 		else if($str=="")
 		{
-			$sql = "SELECT *FROM issue WHERE district_id = '".$district_id."'";
+			$sql = "SELECT *FROM issue WHERE district_id = $district_id AND upvote_count > ".UPVOTE_THRESHOLD;
+			//echo $district_id;
 			$result = $conn->query($sql);
 			$i=0;
 			while($i<$result->num_rows)
@@ -122,6 +125,10 @@
 				require 'issue-list.php';
 				$i++;
 			}
+		}
+		else
+		{
+			echo "No results";
 		}
 		?>
 		<div class="container">
