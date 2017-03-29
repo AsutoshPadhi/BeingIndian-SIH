@@ -14,6 +14,7 @@
         $(document).on('load',function ()
         {
             $("#dash").click();
+            return false;
         });
     </script>
 
