@@ -39,7 +39,7 @@ define('LIKE_THRESHOLD',2);
 					else
 					{
 						if($row['solution_count']>0)
-
+						
 						{
 							
 							echo "Voting Closed- Solutions Available";
@@ -85,7 +85,6 @@ define('LIKE_THRESHOLD',2);
 		  $result2=$conn->query($sql2);
 		  echo "YOU HAVE liked  FOR THIS ";
 	}
-	
 
 	function getUserId($email){
 		include '../functions/dataBaseConn.php';
@@ -158,9 +157,9 @@ define('LIKE_THRESHOLD',2);
         }
         return $instid;
     }
-	function instStatus($cemail, $issueid)
+	function collegeStatus($cemail, $issueids)
 	{
-		// STATUS : 0-> NONE, 1-> Bogus, 2-> Duplicate, 3-> Solved
+		// STATUS :- 0 - NONE, 1- Bogus, 2- Duplicate, 3- Solved
 		include '../functions/dataBaseConn.php';
 		$instid = getInstId($cemail);
 		$sql = "SELECT * FROM issuebogusupvote WHERE inst_id = $instid AND issue_id = $issueid";
@@ -181,34 +180,7 @@ define('LIKE_THRESHOLD',2);
 		return 0;
 	}
 
-	function provideSolution($inst_id,$issue_id,$url){
-		include '../functions/dataBaseConn.php';
-		$sql = "SELECT * FROM solution";
-		$result = $conn->query($sql);
-		$count = $result->num_rows + 1;
-		$sql = "INSERT INTO solution(solution_id,issue_id,inst_id,solution_url,like_count) values($count,$issue_id,$inst_id,'$url',0)";
-        if($result = $conn->query($sql))
-			return true;
-		else
-			return false;
-	}
 
-	function reportBogus($inst_id,$issue_id){
-		include '../functions/dataBaseConn.php';
-		$sql = "INSERT INTO issuebogusupvote(issue_id,inst_id) values($issue_id,$inst_id)";
-		if($result = $conn->query($sql))
-			return true;
-		else
-			return false;
-	}
-	
-	function reportDuplicate($inst_id,$issue_id,$similar_to_issue){
-		include '../functions/dataBaseConn.php';
-		$sql = "INSERT INTO issueduplicateupvote(issue_id,inst_id,similar_to_issue) values($issue_id,$inst_id,$similar_to_issue)";
-        if($result = $conn->query($sql))
-			return true;
-		else
-			return false;
-	}
+
 
 ?>
