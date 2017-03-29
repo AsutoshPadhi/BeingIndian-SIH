@@ -60,11 +60,13 @@ define('LIKE_THRESHOLD',2);
 			return 0;
 		}
 	}
-	function LikeCount($id)
+	function LikeCount($id,$email)
 	{
 		include '../functions/dataBaseConn.php';
-		$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id where issue_id='$id' ";
-		    $result = $conn->query($sql1);
+		 $userid = getUserId($email);
+		//$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id where issue_id='$id' ";
+		
+		  /*  $result = $conn->query($sql1);
 			if($result->num_rows!=0)
 			{
 	
@@ -73,9 +75,15 @@ define('LIKE_THRESHOLD',2);
 				 $val=$row['issue_id'];
 				 $val1=$row['solution_id'];
 			}
-		}
-		$sql=" update solution set like_count=like_count+1 where solution_id='$val1'";
+		}*/
+		
+		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
           $result1 = $conn->query($sql);
+		 
+		
+		  $sql2="Insert into solutionlikedetails (solution_id,user_id) values ('$id','$userid')";
+		  $result2=$conn->query($sql2);
+		  echo "YOU HAVE liked  FOR THIS ";
 	}
 
 	function getUserId($email){
