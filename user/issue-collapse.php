@@ -83,7 +83,7 @@
 							</div>
 							<div class='modal-body'>
 							<!--<video src ="<?php echo $row['solution_url'];?>"></video>-->
-							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/JGwWNGJdvx8" frameborder="0" allowfullscreen></iframe>
+							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/JGwWNGJdvx8/embed/<videoid>?rel=0&enablejsapi=1" frameborder="0" allowfullscreen></iframe>
 							<br>
 							<br>
 							<?php
@@ -120,37 +120,16 @@
 							
 							?>
 							<script>
-							/*function autoPlayYouTubeModal(){
-  var trigger = $("body").find('[data-toggle="modal"]');
-  trigger.click(function() {
-    var theModal = $(this).data( "target" ),
-    videoSRC = $(this).attr( "data-theVideo" ), 
-    videoSRCauto = videoSRC+"?autoplay=1" ;
-    $(theModal+' iframe').attr('src', videoSRCauto);
-    $(theModal+' button.close').click(function () {
-        $(theModal+' iframe').attr('src', videoSRC);
-    });   
-  });
-}
-
-
-$(document).ready(function(){
-  autoPlayYouTubeModal();
-});*/
-$(document).ready(function() {
-  $('#video<?php echo $row['solution_id'] ?>').on('click', function(ev) {
- 
-    $("#video")[0].src += "&autoplay=1";
-    ev.preventDefault();
- 
-  });
-});
- 
- $("#solution<?php echo $row['solution_id'] ?>").on('hidden.bs.modal',function()
- {
-	  $('#video').get(0).stopVideo();
- });
+    var youtubeFunc ='';
+    var outerDiv = document.getElementById("solution<?php echo $row['solution_id'];?>");
+    var youtubeIframe = outerDiv.getElementsByTagName("iframe")[0].contentWindow;
+    $('#solution<?php echo $row['solution_id'];?>').on('hidden.bs.modal', function (e) {
+    youtubeFunc = 'pauseVideo';
+    youtubeIframe.postMessage('{"event":"command","func":"' + youtubeFunc + '","args":""}', '*');
+    });
+    
 </script>
+							
 								
 							</div>
 						<!-- /.modal-content -->
