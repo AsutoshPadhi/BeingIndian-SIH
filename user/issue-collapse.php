@@ -83,7 +83,7 @@
 							</div>
 							<div class='modal-body'>
 							<!--<video src ="<?php echo $row['solution_url'];?>"></video>-->
-							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/JGwWNGJdvx8" frameborder="0" allowfullscreen></iframe>
+							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/JGwWNGJdvx8/embed/<videoid>?rel=0&enablejsapi=1" frameborder="0" allowfullscreen></iframe>
 							<br>
 							<br>
 							<?php
@@ -119,10 +119,9 @@
 							
 							
 							?>
-							<script>
 							
 
-</script>
+							
 								
 							</div>
 						<!-- /.modal-content -->
