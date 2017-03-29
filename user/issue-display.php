@@ -106,7 +106,7 @@
 			<br><hr>
 			
 			<?php
-
+				
 				echo  postedBy($row['issue_id']);
 			?>
 			<br><hr>
@@ -127,8 +127,7 @@
 				
 			}
 			else
-			{
-			?>
+			{?>
 				<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
 				
 				<?php
