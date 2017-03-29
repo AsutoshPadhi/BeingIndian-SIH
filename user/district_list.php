@@ -3,7 +3,7 @@
 	include '../functions/dataBaseConn.php';
 
 	$state = $_GET['state'];
-	echo "stet = ".$state;
+	//echo "stet = ".$state;
 	//echo "<option>".$state."</option>";
 
 	$sql1 = "SELECT state_id FROM state WHERE state_name = '".$state."'";
@@ -20,7 +20,7 @@
 		}
 	}
 	else
-		echo "<option>Not Working</option>";
+		echo "<option disabled>Change the State First</option>";
 
 
 	$conn->close();

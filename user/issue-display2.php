@@ -6,38 +6,43 @@
 <body>
 
 	<button type="button" class="btn btn btn-primary btn-lg btn-block btn-social" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
-		<?php echo "<font style='font-size: 1em;'>#".$row[$i]["issue_id"]."</font>".$row[$i]["title"]; ?>
+		<?php echo "<font style='font-size: 1em;'>#".$row["issue_id"]."</font>".$row["title"]; ?>
 		</button>
 		<br>
 		<div id="demo<?php echo $i; ?>" class="collapse body">
-			<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo "#".$row[$i]["issue_id"]; ?>	
+			<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo "#".$row["issue_id"]; ?>	
 		<br><hr>
 		
 		<?php
 			
-			echo  postedBy($row[$i]['issue_id']);
+			echo  postedBy($row['issue_id']);
 		?>
 		<br><hr>
 			
 		<?php
-			$id = $row[$i]['issue_id'];
+			$id = $row['issue_id'];
 			echo "<b id='code'>STATUS :</b>";
 		?>
 		<?php 
-		    echo status($row[$i]['issue_id']);
+		    echo status($row['issue_id']);
 		?>
-		<hr>
-		<div id=<?php echo $row[$i]['issue_id'] ?> >
+		<div id=<?php echo $row['issue_id'] ?> ><hr>
 		<?php
-			session_start();
-			$email = $_SESSION['$email'];
-			userStatus($email,$row[$i]['issue_id']);
-			
+			//session_start();
+			if(isset($_SESSION['$email']))
+			{
+				$email = $_SESSION['$email'];
+				userStatus($email,$row['issue_id']);
+			}
+			else
+			{
+				echo "<br>Please Login to upvote";
+			}
 			
 			?>
 			</div>
 			<?php
-			if($row[$i]["solution_count"] >0)
+			if($row["solution_count"] >0)
 			{
 
 		?><hr>
@@ -53,12 +58,12 @@
 					<div class='modal-content'>
 						<div class='modal-header'>
 							<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
-							<h4 class='modal-title' id='myModalLabel'> <? echo $row[$i]["solution_count"]; ?>Solutions are available</h4>
+							<h4 class='modal-title' id='myModalLabel'> <? echo $row["solution_count"]; ?>Solutions are available</h4>
 						</div>
 						<div class='modal-body'>
 							<?php
 								//} 
-							$sql1="select solution_url from solution where issue_id=".$row[$i]['issue_id']."";
+							$sql1="select solution_url from solution where issue_id=".$row['issue_id']."";
 							$result1=mysqli_query($conn,$sql1);
 							while($row=mysqli_fetch_array($result1))
 							{
@@ -92,9 +97,9 @@
 						$no_of_results=mysqli_num_rows($result3);
 						$row= mysqli_fetch_array($result3);
 						echo "Code: #".$id;
-						echo "<br><br>Title: ".$row[$i]['title'];
+						echo "<br><br>Title: ".$row['title'];
 						echo "<br><br>Description:";
-						echo "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp".$row[$i]['description'];
+						echo "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp".$row['description'];
 
 					?>
 				</div>

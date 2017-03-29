@@ -26,3 +26,12 @@ function loadDoc(url,field)
     xhttp.open("GET", url, true);
     xhttp.send();
 }
+
+function getUrl(url,instid,issueid){
+    var finalUrl = "provideSolution.php?url="+url+"&inst="+instid+"&issue="+issueid;
+    loadDoc(finalUrl,'instButtons');
+}
+function getUrl2(url,instid,issueid){
+    var finalUrl = "reportDuplicate.php?url="+url+"&inst="+instid+"&issue="+issueid;
+    loadDoc(finalUrl,'instButtons');
+}
