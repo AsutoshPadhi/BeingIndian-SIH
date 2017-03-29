@@ -84,26 +84,21 @@
 				
 				$i++;
 			}
+			if($flag == 0)
+			{
+				?>
+					<br><br><br>
+					<div class="alert alert-danger alert-dismissable">
+		                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		                <p>No results.</p>
+		            </div>
+				<?php
+			}
 		}
-		// else
-		// {
-		// 	//echo "not working";
-		// }
-
-		
-
-		
-		//include('../functions/func_in.php');
-		// for($i=0;$i<$result->num_rows;$i++)
-		// {
-		// 	$percentage[$i] = $cs->similarity($query_word_count,$issue_word_count[$i]);
-		// 	//var_dump($percentage[$i]);
-			
-		// 	if($percentage[$i]>0.3)
-		// 	{
-		// 		require 'issue-display2.php';
-		// 	}
-		// }
+		else
+		{
+			echo "not working";
+		}
 
 		if($type == 'add')
 		{
