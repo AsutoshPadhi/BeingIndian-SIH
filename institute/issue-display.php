@@ -29,6 +29,7 @@
 	<?php
 		session_start();
 		$cemail = $_SESSION['$cemail'];
+		$inst_id = $_SESSION['$inst_id'];
 		require('../functions/func_in.php');
 		if(!isset($_GET['sql'])){
 			$sql = "SELECT * FROM issue WHERE 1";
@@ -123,51 +124,86 @@
 				echo "<b id='code'>STATUS :</b>";
 			?>
 			<?php 
-			    echo status($row['issue_id']);
+			    $status = status($row['issue_id']);
 			?>
 			<hr>
-				<input type="button" class="btn btn-primary btn-sm btn-block" value="Provide a Solution">
-				<input type="button" class="btn btn-primary btn-sm btn-block" value="Report as Bogus">
-				<input type="button" class="btn btn-primary btn-sm btn-block" value="Report as Duplicate">
 			<?php
+				require('../functions/dataBaseConn.php');
+				echo "<div id='instButtons'>";
+				if($status == 4){
+					$bogusNumber = "SELECT * FROM issuebogusupvote WHERE issue_id = $id";
+					$res = $conn->query($bogusNumber);
+					$rows = $res->num_rows;
+					echo "".$rows." institutes have reported it as bogus";
+					echo "<br>Thus, this issue is marked as 'Bogus Issue'";
+				}
+				else if($status == 5){
+					$getDuplicates = "SELECT * FROM issueduplicateupvote WHERE issue_id = $id";
+					$res = $conn->query($getDuplicates);
+					while($arr= $res->fetch_assoc()){
+						$getInstName = "SELECT * FROM institute WHERE inst_id = ".$arr['inst_id']."";
+						$res1 = $conn->query($getInstName);
+						$arr1 = $res1->fetch_assoc();
+						echo "<br>".$arr1['inst_name']."has reported this issue as bogus to ".$arr['similar_to_issue'];
+					}
+				}
+				else{
 
-				if($row["solution_count"] >0)
-				{
-
-			?><hr>
-			
-			<div class='panel-body'>
-				<!-- Button trigger modal -->
-				<button class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
-				See the solution
-				</button>
-				<!-- Modal -->
-				<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
-					<div class='modal-dialog'>
-						<div class='modal-content'>
-							<div class='modal-header'>
-								<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
-								<h4 class='modal-title' id='myModalLabel'> <? echo $row["solution_count"]; ?>Solutions are available</h4>
-							</div>
-							<div class='modal-body'>
-								<?php
-									} 
-								$sql1="select solution_url from solution where issue_id=".$row['issue_id']."";
-								$result1=mysqli_query($con,$sql1);
-								while($row=mysqli_fetch_array($result1))
-								{
-								echo "<a href=".$row["solution_url"].">".$row["solution_url"]."</a> </br>";
-								}
-
-								?>
-							</div>
-						<!-- /.modal-content -->
-						</div>
-					<!-- /.modal-dialog -->
-					</div>
-				<!-- /.modal -->
-				</div>
-			</div>
+				if(instStatus($cemail,$id) == 0){
+			?>					
+				<input type="button" onclick="loadDoc('provideSolution.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-primary btn-sm btn-sm" value="Provide a Solution">
+				<?php
+				if($status == 0 || $status == 1){
+				?>
+					<input type="button" onclick="loadDoc('reportBogus.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-primary btn-sm btn-sm" value="Report as Bogus">
+					<input type="button" onclick="loadDoc('reportDuplicate.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-primary btn-sm btn-sm" value="Report as Duplicate">
+				<?php
+				}
+				?>
+			<?php
+				}
+				else if(instStatus($cemail,$id) == 1){
+					echo "You ";
+					$bogusNumber = "SELECT * FROM issuebogusupvote WHERE issue_id = $id";
+					$res = $conn->query($bogusNumber);
+					$rows = $res->num_rows;
+					if($rows > 1){
+						echo "and ".($rows-1)." other institutes have reported it as bogus";
+					}
+					else{
+						echo "have reported it as bogus";
+					}
+				}
+				else if(instStatus($cemail,$id) == 2){
+					echo "You've reported this issue as duplicate to ";
+					$getDuplicate = "SELECT * FROM issueduplicateupvote WHERE inst_id = $inst_id AND issue_id = $id";
+					$res = $conn->query($getDuplicate);
+					$arr= $res->fetch_assoc();
+					echo $arr['similar_to_issue'];
+				}
+				else{
+					$getSoln = "SELECT * FROM solution WHERE inst_id = $inst_id AND issue_id = $id";
+					$res = $conn->query($getSoln);
+					if($res->num_rows == 1){
+						echo "You've already provided solution to this issue";
+					}
+					else{
+						echo "You've already provided ".$res->num_rows." solutions to this issue";
+					}
+					while($arr = $res->fetch_assoc()){
+						$url = $arr['solution_url'];
+						echo "<br><br>-<a href='".$url."'>".$url."</a>";
+						echo "<br>";
+					}
+					echo "<br>Provide Another Solution";
+				?>
+					<br>
+					<input type="button" onclick="loadDoc('provideSolution.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-primary btn-sm btn-sm" value="Provide a Solution">
+				<?php
+				}
+				}
+				echo "</div>";
+				?>
 		</div>
 		<div class="modal fade" id='myModal<?php echo $id; ?>' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 			aria-hidden="true">
