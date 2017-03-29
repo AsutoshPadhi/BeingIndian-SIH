@@ -53,42 +53,27 @@ define('LIKE_THRESHOLD',2);
 			return 0;
 		}
 	}
-	function LikeCount($id,$email)
-	{
-		include '../functions/dataBaseConn.php';
-		 $userid = getUserId($email);
-		//$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id where issue_id='$id' ";
-		
-		  /*  $result = $conn->query($sql1);
-			if($result->num_rows!=0)
-			{
-	
-			while($row = $result->fetch_assoc())
-			{
-				 $val=$row['issue_id'];
-				 $val1=$row['solution_id'];
-			}
-		}*/
-		
-		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
-          $result1 = $conn->query($sql);
-		 
-		
-		  $sql2="Insert into solutionlikedetails (solution_id,user_id) values ('$id','$userid')";
-		  $result2=$conn->query($sql2);
-		  echo "YOU HAVE liked  FOR THIS ";
-	}
-
-	
-
 	function getUserId($email){
 		include '../functions/dataBaseConn.php';
 		$sql = "SELECT * FROM user where user_email = '$email'";
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
-		
 		return $row['user_id'];
 	}
+	
+	function LikeCount($id,$email)
+	{
+		include '../functions/dataBaseConn.php';
+		$userid = getUserId($email);
+		$sql="UPDATE solution SET like_count=like_count+1 WHERE solution_id='$id'";
+		$result1 = $conn->query($sql);
+		
+		$sql2="INSERT INTO solutionlikedetails(solution_id,user_id) values($id,$userid)";
+		$result2=$conn->query($sql2);
+		echo "You have liked this solution!";
+	}
+
+
     function userStatus($email,$issueid)
 	{
 		

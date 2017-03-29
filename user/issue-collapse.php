@@ -131,19 +131,25 @@
 							<?php
 							if($login)
 							{
+								$solutionid=$row['solution_id'];
 								$userid=getUserId($email);
 								$sql="select * from issueupvote where user_id=$userid and issue_id=$issueid ";
 								$result=mysqli_query($con,$sql);
+								$sql1="select * from solutionlikedetails where user_id=$userid and solution_id=$solutionid";
+								$result1=mysqli_query($con,$sql1);
+								
 								if($result==TRUE)
 								{
+
 								?>
 							<div id="like">
 							
-							 <a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php $email ?>",like)' class="btn btn-primary btn-sm">
+							 <a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php echo $email; ?>","like")' class="btn btn-primary btn-sm">
           <span class="glyphicon glyphicon-thumbs-up"></span> 
         </a></div>
 							<?php
 								}
+								
 								else
 								{
 									echo "Not upvoted this problem";
