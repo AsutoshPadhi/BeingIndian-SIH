@@ -106,7 +106,7 @@
 			<br><hr>
 			
 			<?php
-				
+
 				echo  postedBy($row['issue_id']);
 			?>
 			<br><hr>
@@ -127,7 +127,8 @@
 				
 			}
 			else
-			{?>
+			{
+			?>
 				<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
 				
 				<?php
@@ -288,28 +289,72 @@
 			?><hr>
 			
 			<div class='panel-body'>
+
 				<!-- Button trigger modal -->
-				<button class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
-				See the solution
-				</button>
+				<?php
+				$sql1="select * from solution where issue_id=".$row['issue_id']."";
+								$result1=mysqli_query($con,$sql1);
+								while($row=mysqli_fetch_array($result1))
+								{?>
+								<a class='' id="video<?php echo $row['solution_id'];?>" data-toggle='modal' data-target='#solution<?php echo $row['solution_id'] ;?>'data-theVideo="<?php echo $row['solution_url'];?>">
+				<?php echo $row['solution_url'];?>
+				</a><br><hr>
+								<?php
+								?>
+				
 				<!-- Modal -->
-				<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+				<div class='modal fade' id='solution<?php echo $row['solution_id'];?>' tabindex='-1' role='dialog' aria-labelledby='videoModal' aria-hidden='true'>
 					<div class='modal-dialog'>
 						<div class='modal-content'>
 							<div class='modal-header'>
 								<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
-								<h4 class='modal-title' id='myModalLabel'> <? echo $row["solution_count"]; ?>Solutions are available</h4>
+								<h4 class='modal-title' id='myModalLabel'>Solutions are available</h4>
 							</div>
 							<div class='modal-body'>
+							<!--<video src ="<?php echo $row['solution_url'];?>"></video>-->
+							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/JGwWNGJdvx8" frameborder="0" allowfullscreen></iframe>
+							<br>
+							<br>
+							<!--<button onclick="LikeCount(<?php echo $row['solution_count']?>)">Like </button>-->
+							 <a onclick="LikeCount(<?php echo $row['solution_count']?>)" class="btn btn-primary btn-sm">
+          <span class="glyphicon glyphicon-thumbs-up"></span> 
+        </a>
+							<script>
+							/*function autoPlayYouTubeModal(){
+  var trigger = $("body").find('[data-toggle="modal"]');
+  trigger.click(function() {
+    var theModal = $(this).data( "target" ),
+    videoSRC = $(this).attr( "data-theVideo" ), 
+    videoSRCauto = videoSRC+"?autoplay=1" ;
+    $(theModal+' iframe').attr('src', videoSRCauto);
+    $(theModal+' button.close').click(function () {
+        $(theModal+' iframe').attr('src', videoSRC);
+    });   
+  });
+}
+
+
+$(document).ready(function(){
+  autoPlayYouTubeModal();
+});*/
+$(document).ready(function() {
+  $('#video<?php echo $row['solution_id'] ?>').on('click', function(ev) {
+ 
+    $("#video")[0].src += "&autoplay=1";
+    ev.preventDefault();
+ 
+  });
+});
+							</script>
 								<?php
 									//} 
-								$sql1="select solution_url from solution where issue_id=".$row['issue_id']."";
+								/*$sql1="select solution_url from solution where issue_id=".$row['issue_id']."";
 								$result1=mysqli_query($con,$sql1);
 								while($row=mysqli_fetch_array($result1))
 								{
 								echo "<a href=".$row["solution_url"].">".$row["solution_url"]."</a> </br>";
-								}
-				}
+								}*/
+				
 								?>
 							</div>
 						<!-- /.modal-content -->
@@ -318,6 +363,8 @@
 					</div>
 				<!-- /.modal -->
 				</div>
+			<?php	}
+		}?>
 			</div>
 		</div>
 		<div class="modal fade" id='myModal<?php echo $id; ?>' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -362,7 +409,7 @@
 					</div>
 				</div>
 			</div>
-		</div
+		</div>
 	</div>
 			<?php
 				$i++;
