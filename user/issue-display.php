@@ -233,6 +233,7 @@
 	<div id="problem">
 		<?php
 		$i = 1;
+		
 		while($row=mysqli_fetch_array($result))
 		{
 			// output data of each row
