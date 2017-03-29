@@ -85,6 +85,7 @@ define('LIKE_THRESHOLD',2);
 		  $result2=$conn->query($sql2);
 		  echo "YOU HAVE liked  FOR THIS ";
 	}
+
 	
 
 	function getUserId($email){
