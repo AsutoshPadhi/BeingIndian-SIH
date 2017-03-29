@@ -106,7 +106,7 @@
 			<br><hr>
 			
 			<?php
-
+				
 				echo  postedBy($row['issue_id']);
 			?>
 			<br><hr>
@@ -127,8 +127,7 @@
 				
 			}
 			else
-			{
-			?>
+			{?>
 				<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
 				
 				<?php
@@ -237,6 +236,7 @@
 		while($row=mysqli_fetch_array($result))
 		{
 			// output data of each row
+			$issueid=$row['issue_id'];
 
 			?>
 			<br>
@@ -315,10 +315,35 @@
 							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/JGwWNGJdvx8" frameborder="0" allowfullscreen></iframe>
 							<br>
 							<br>
-							<!--<button onclick="LikeCount(<?php echo $row['solution_count']?>)">Like </button>-->
-							 <a onclick="LikeCount(<?php echo $row['solution_count']?>)" class="btn btn-primary btn-sm">
+							<?php
+							if($login)
+							{
+								$userid=getUserId($email);
+								$sql="select * from issueupvote where user_id=$userid and issue_id=$issueid ";
+								$result=mysqli_query($con,$sql);
+								if($result==TRUE)
+								{
+								?>
+							<div id="like">
+							
+							 <a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php $email ?>",like)' class="btn btn-primary btn-sm">
           <span class="glyphicon glyphicon-thumbs-up"></span> 
-        </a>
+        </a></div>
+							<?php
+								}
+								
+							}
+							else
+							{
+								?> <a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#confirmation' data-dismiss='modal' >
+          <span class="glyphicon glyphicon-thumbs-up"></span> 
+        </a></div>
+							<?php	
+							}
+							
+							
+							
+							?>
 							<script>
 							/*function autoPlayYouTubeModal(){
   var trigger = $("body").find('[data-toggle="modal"]');
@@ -345,17 +370,8 @@ $(document).ready(function() {
  
   });
 });
-							</script>
-								<?php
-									//} 
-								/*$sql1="select solution_url from solution where issue_id=".$row['issue_id']."";
-								$result1=mysqli_query($con,$sql1);
-								while($row=mysqli_fetch_array($result1))
-								{
-								echo "<a href=".$row["solution_url"].">".$row["solution_url"]."</a> </br>";
-								}*/
-				
-								?>
+</script>
+								
 							</div>
 						<!-- /.modal-content -->
 						</div>
