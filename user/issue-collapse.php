@@ -120,12 +120,12 @@
 					<div class='modal-dialog'>
 						<div class='modal-content'>
 							<div class='modal-header'>
-								<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+								<button type='button' id='close' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
 								<h4 class='modal-title' id='myModalLabel'>Solutions </h4>
 							</div>
 							<div class='modal-body'>
 							<!--<video src ="<?php echo $row['solution_url'];?>"></video>-->
-							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/JGwWNGJdvx8" frameborder="0" allowfullscreen></iframe>
+							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/JGwWNGJdvx8/embed/<videoid>?rel=0&enablejsapi=1" frameborder="0" allowfullscreen></iframe>
 							<br>
 							<br>
 							<?php
@@ -161,38 +161,9 @@
 							
 							
 							?>
-							<script>
-							/*function autoPlayYouTubeModal(){
-  var trigger = $("body").find('[data-toggle="modal"]');
-  trigger.click(function() {
-    var theModal = $(this).data( "target" ),
-    videoSRC = $(this).attr( "data-theVideo" ), 
-    videoSRCauto = videoSRC+"?autoplay=1" ;
-    $(theModal+' iframe').attr('src', videoSRCauto);
-    $(theModal+' button.close').click(function () {
-        $(theModal+' iframe').attr('src', videoSRC);
-    });   
-  });
-}
+							
 
-
-$(document).ready(function(){
-  autoPlayYouTubeModal();
-});*/
-$(document).ready(function() {
-  $('#video<?php echo $row['solution_id'] ?>').on('click', function(ev) {
- 
-    $("#video")[0].src += "&autoplay=1";
-    ev.preventDefault();
- 
-  });
-});
- 
- $("#solution<?php echo $row['solution_id'] ?>").on('hidden.bs.modal',function()
- {
-	  $('#video').get(0).stopVideo();
- });
-</script>
+							
 								
 							</div>
 						<!-- /.modal-content -->
