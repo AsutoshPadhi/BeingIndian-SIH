@@ -26,12 +26,14 @@
 		<?php 
 		    echo status($row['issue_id']);
 		?>
-		<hr>
 		<div id=<?php echo $row['issue_id'] ?> >
 		<?php
-			session_start();
-			$email = $_SESSION['$email'];
-			userStatus($email,$row['issue_id']);
+			//session_start();
+			if(isset($SESSION['email']))
+			{
+				$email = $_SESSION['$email'];
+				userStatus($email,$row['issue_id']);
+			}
 			
 			
 			?>
