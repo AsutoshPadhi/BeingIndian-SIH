@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="form-group col-xs-6 col-md-2">
-                    <select class="form-control" id="district1">             
+                    <select class="form-control" id="district1" onfocus="getDistrict((document.getElementById('state1').value),'district1');return false;">             
                     <?php
                         include '../functions/dataBaseConn.php';
                         session_start();
@@ -62,7 +62,7 @@
                     <?php
                         }
                     ?>
-                    <!-- <?php //include 'stateList.php'; ?> -->
+                    <?php include 'district_list.php'; ?>
                     </select>
                 </div>
                 <div class="col-xs-6 col-md-2">
@@ -75,7 +75,7 @@
                     <input class="form-control" id="issue" type="text" placeholder="Keywords">
                 </div>
                 <input class="search btn btn-primary" type="submit" value="Search" 
-                onclick="generateUrl((document.getElementById('state1').value),(document.getElementById('district1').value),(document.getElementById('locality').value),(document.getElementById('pin').value),(document.getElementById('issue').value),'field','dashboard')">
+                onclick="generateUrl((document.getElementById('state1').value),(document.getElementById('district1').value),(document.getElementById('locality').value),(document.getElementById('pin').value),(document.getElementById('issue').value),'field','dashboard');return false;">
             </form>
         </div>
     </body>

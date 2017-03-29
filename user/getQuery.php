@@ -29,21 +29,25 @@
 		$pin = $_GET['pin'];
 		$type = $_GET['type'];
 
+		$cs = new CosineSimilarity();
+
 		$get_district_id = "SELECT *FROM district WHERE district_name = '".$district."'";
 		$result = $conn->query($get_district_id);
 		$row = $result->fetch_assoc();
 		
 		if($str == "")
 		{
-			echo "empty";
 			$sql = "SELECT *FROM issue WHERE district_id = '".$row['district_id']."'";
 			$result = $conn->query($sql);
 
 			if($result->num_rows > 0)
 			{
-				for($i=0;$i<$result->num_rows;$i++)
+				$i=0;
+				while($i<$result->num_rows)
 				{
+					$row = $result->fetch_assoc();
 					require 'issue-display2.php';
+					$i++;
 				}
 			}
 		}
@@ -55,39 +59,57 @@
 
 		if($result->num_rows > 0)
 		{
-			for($i=0;$i<$result->num_rows;$i++)
+			$i=0;
+			$flag = 0;
+
+			while($i<$result->num_rows)
 			{
-				$row[$i] = $result->fetch_assoc();
-				//echo "<a href='#'>".$row[$i]['description']."</a>";
-				$issue_word_count[$i] =  array_count_values(str_word_count($row[$i]['title'], 1));
-				//print_r( array_count_values(str_word_count($row[$i]['description'], 1)) );
+				$row = $result->fetch_assoc();
+				//echo "<a href='#'>".$row['description']."</a>";
+				$issue_word_count =  array_count_values(str_word_count($row['title'], 1));
+				//print_r( array_count_values(str_word_count($row['description'], 1)) );
+				
+				$percentage = $cs->similarity($query_word_count,$issue_word_count);
+				//var_dump($percentage);
+				
+			
+				if($percentage>0.3)
+				{
+					$flag=1;
+
+					#displays the problem list
+					require 'issue-display2.php';
+				
+				}
+				
+				$i++;
 			}
 		}
-		else
-		{
-			//echo "not working";
-		}
-
-		$cs = new CosineSimilarity();
+		// else
+		// {
+		// 	//echo "not working";
+		// }
 
 		
-		include('../functions/func_in.php');
-		for($i=0;$i<$result->num_rows;$i++)
-		{
-			$percentage[$i] = $cs->similarity($query_word_count,$issue_word_count[$i]);
-			//var_dump($percentage[$i]);
+
+		
+		//include('../functions/func_in.php');
+		// for($i=0;$i<$result->num_rows;$i++)
+		// {
+		// 	$percentage[$i] = $cs->similarity($query_word_count,$issue_word_count[$i]);
+		// 	//var_dump($percentage[$i]);
 			
-			if($percentage[$i]>0.3)
-			{
-				require 'issue-display2.php';
-			}
-		}
+		// 	if($percentage[$i]>0.3)
+		// 	{
+		// 		require 'issue-display2.php';
+		// 	}
+		// }
 
 		if($type == 'add')
 		{
 		?>		
 		<br><br><hr>
-		<button type="button" class="btn btn-primary btn-lg btn-block" onclick="loadDoc('add-issue-description.php?state=<?php echo $state ?>&district=<?php echo $district ?>&issue=<?php echo $str ?>&locality=<?php echo $locality ?>&pin=<?php echo $pin ?>','field')">Proceed to Add new Issue</button>		<!--Add the variable to be passed to the url-->
+		<button type="button" class="btn btn-primary btn-lg btn-block" onclick="loadDoc('add-issue-description.php?state=<?php echo $state ?>&district=<?php echo $district ?>&issue=<?php echo $str ?>&locality=<?php echo $locality ?>&pin=<?php echo $pin ?>','field');return false;">Proceed to Add new Issue</button>		<!--Add the variable to be passed to the url-->
 
 	<?php
 		}
