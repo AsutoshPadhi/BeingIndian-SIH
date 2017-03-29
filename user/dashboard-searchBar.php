@@ -72,10 +72,10 @@
                     <input class="form-control" id="pin" type="text" placeholder="pincode (optional)">
                 </div>
                 <div class="search col-xs-10 col-md-3">
-                    <input class="form-control" id="issue" type="text" placeholder="Keywords" required>
+                    <input class="form-control" id="issue" type="text" placeholder="Keywords">
                 </div>
                 <input class="search btn btn-primary" type="submit" value="Search" 
-                onclick="if(!(document.getElementById('issue').value)){alert('Enter the issue');}generateUrl((document.getElementById('state1').value),(document.getElementById('district1').value),(document.getElementById('locality').value),(document.getElementById('pin').value),(document.getElementById('issue').value),'field','dashboard')">
+                onclick="generateUrl((document.getElementById('state1').value),(document.getElementById('district1').value),(document.getElementById('locality').value),(document.getElementById('pin').value),(document.getElementById('issue').value),'field','dashboard')">
             </form>
         </div>
     </body>
