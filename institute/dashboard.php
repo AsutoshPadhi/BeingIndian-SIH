@@ -107,7 +107,7 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <?php
-                                $sql = "SELECT * FROM issue WHERE district_id = $districtid";
+                                $sql = "SELECT * FROM issue WHERE district_id = $districtid AND upvote_count > 5";
                                 $url = "issue-display.php?sql=".$sql."";
                             ?>
                             <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
