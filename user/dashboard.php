@@ -10,6 +10,13 @@
     <script src="../functions/ajax.js"></script>
     <script src="urlGenerator.js"></script>
     <script src="tabs.js"></script>
+    <script>
+        $(document).on('load',function ()
+        {
+            $("#dash").click();
+            return false;
+        });
+    </script>
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
@@ -30,7 +37,7 @@
     <![endif]-->
 
 </head>
-<body>
+<body onload="document.getElementById('dash').click();">
 
     <div id="wrapper">
 
@@ -139,9 +146,25 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
+                        <li id="dash">
                             <?php
+                                #results according to profile
                                 $sql = "SELECT * FROM issue WHERE 1";
+                                //$url = "issue-display.php?sql=".$sql."";
+                                $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
+                                $result = $conn->query($checkProfile);
+                                $row = $result->fetch_assoc();
+                                $district_id = $row['district_id'];
+                                $_SESSION['district_id'] = $district_id;
+                                if($district_id != "")
+                                {
+                                    $sql = "SELECT * FROM issue WHERE district_id = ".$district_id."";
+                                    
+                                }
+                                else
+                                {
+                                    //$sql = "SELECT * FROM issue WHERE 1";
+                                }
                                 $url = "issue-display.php?sql=".$sql."";
                             ?>
                             <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>

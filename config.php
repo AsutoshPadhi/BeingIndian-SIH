@@ -57,21 +57,23 @@ $user=$_POST['$username'];
 				$newvotes=$vote+1;
 				if(isset($_POST['vote']))
 			{
-				$pollbutton=$_POST['pollbutton'];
-				if($pollbutton=="")
+				$vote=$_POST['vote'];
+				//$pollbutton=$_POST['pollbutton'];
+				if($vote=="")
 				{
 					die("You didn't select any option..");
 				}
 				else
 				{
 					$user1=explode(",",$email);
+					
 					if(in_array($user,$user1))
 					{
 						die("YOU HAVE ALREADY VOTED");
 					}
 					else{
-						
-					mysqli_query($conn,"update problems set votes='$newvotes' where pollid='$pollbutton' and id='$id' ");
+						echo $vote;
+					mysqli_query($conn,"update problems set votes='$newvotes' where pollid='$vote' and id='$id' ");
 					mysqli_query($conn,"insert into poll(id,title,pollid,email) values('$id','$title','$pollid','$user')");
 					//mysqli_query($conn,"insert into poll(id,title,pollid,email) values(1,'waterPollution',100,'anusha')");
 					die("<p style='color:blue'>Voted successfully......Thankyou!!!!</p>");
@@ -79,14 +81,19 @@ $user=$_POST['$username'];
 				}
 			}
 				$problem=$row1['problems'];
-				echo "<tr><td><h4>".$problem.'</h4></td><td><input type="radio" name="pollbutton" value="'.$pollid.'"checked="checked"></td></tr>';
+				//echo "<tr><td><h4>".$problem.'</h4></td><td><input type="submit" name="vote"  value="'.$pollid.'"checked="checked"></td></tr>';
+				echo "<tr><td><h4>".$problem.'</h4></td><td><input type="submit" name="vote"  value="'.$pollid.'"checked="checked"></td></tr>';
+				//echo "<tr><td><h4>".$problem.'</h4></td><td><input type="radio" name="pollbutton" value="'.$pollid.'"checked="checked"></td></tr>';
 			}
 			
 			
 ?>
-<tr><td><input type="submit" name="vote" value="vote"></td></tr>
+<tr><td></td></tr>
 </table>
 </form>
 </div>
 </body>
 </html>
+
+
+

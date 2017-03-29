@@ -39,7 +39,7 @@
 
 </form> 
 
-<button type="button" class="btn btn-outline btn-primary btn-lg btn-block" onclick="generateUrlAdd((document.getElementById('state').value),(document.getElementById('district').value),(document.getElementById('locality').value),(document.getElementById('pin').value),(document.getElementById('issueTitle').value),(document.getElementById('description').value));return false;">Add the Issue</button>
+<button type="button" class="btn btn-outline btn-primary btn-lg btn-block" onclick="generateUrlAdd((document.getElementById('state').value),(document.getElementById('district').value),(document.getElementById('locality').value),(document.getElementById('pin').value),(document.getElementById('issueTitle').value),(document.getElementById('description').value))">Add the Issue</button>
 <br><hr>
 <div class="alert alert-warning alert-dismissable">
 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

@@ -20,160 +20,126 @@
 		$result = $conn->query($get_district_id);
 		$row = $result->fetch_assoc();
 		$district_id = $row['district_id'];
-		
+
 		$query_word_count =  array_count_values(str_word_count($str, 1));
 
 		$sql = "SELECT *FROM issue WHERE district_id = '".$district_id."'";
-
 		$result = $conn->query($sql);
-		if($result->num_rows > 0)
+
+		$cs = new CosineSimilarity();
+		
+		#Pagenation
+		$results_per_page=1;
+		$no_of_results=mysqli_num_rows($result);
+		//dtermine the number of pages in a page
+		$no_of_pages= ceil($no_of_results/$results_per_page);
+
+		//determine the number of results in one page
+		if(!isset($_GET['page']))
 		{
-			for($i=0;$i<$result->num_rows;$i++)
-			{
-				$row[$i] = $result->fetch_assoc();
-				//echo "<a href='#'>".$row[$i]['description']."</a>";
-				$issue_word_count[$i] =  array_count_values(str_word_count($row[$i]['title'], 1));
-				//print_r( array_count_values(str_word_count($row[$i]['description'], 1)) );
-			}
+			$page=1;
 		}
 		else
 		{
-			//echo "not working";
+			$page=$_GET['page'];
+		}
+		$curr_page = $page;
+		$start_limit = ($page-1) * $results_per_page;
+
+		if($page>1)
+		{
+			$pre=$page-1;
+			//$next=$page+1;
+		}
+		else
+		{
+			$pre=1;
+
+		}
+		if($page<$no_of_pages)
+		{
+			$next=$page+1;
+		//$next=$page+1;
+		}
+		else
+		{
+			$next=$no_of_pages;
+
 		}
 
-		$cs = new CosineSimilarity();
 
-		/*For notification and proceed to add button*/
-		?>
+		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
+		$result=$conn->query($sql2);
 
-		
-		<?php
 		include('../functions/func_in.php');
-		for($i=0;$i<$result->num_rows;$i++)
+		if(($result->num_rows>0) && $str!="")
 		{
-			$percentage[$i] = $cs->similarity($query_word_count,$issue_word_count[$i]);
-			//var_dump($percentage[$i]);
-			
-			if($percentage[$i]>0.3)
+			$i=0;
+			$flag = 0;
+
+			while($i<$result->num_rows)
 			{
-				//echo "<a href='#'>".$row[$i]['title']."</a>";
+				$row = $result->fetch_assoc();
+				//echo "<a href='#'>".$row['description']."</a>";
+				$issue_word_count =  array_count_values(str_word_count($row['title'], 1));
+				//print_r( array_count_values(str_word_count($row['description'], 1)) );
 				
-			?>
+				$percentage = $cs->similarity($query_word_count,$issue_word_count);
+				//var_dump($percentage);
 				
-			<!-- Issue display -->
-
 			
-			<button type="button" class="btn btn btn-primary btn-lg btn-block btn-social" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
-			<?php echo "<font style='font-size: 1em;'>#".$row[$i]['issue_id']."</font>".$row[$i]["title"]; ?>
-			</button>
-			<br>
-			<div id="demo<?php echo $i; ?>" class="collapse body">
-				<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo "#".$row[$i]["issue_id"]; ?>	
-			<br><hr>
-			
-			<?php
-				
-				echo  postedBy($row[$i]['issue_id']);
-			?>
-			<br><hr>
-				
-			<?php
-				$id = $row[$i]['issue_id'];
-				echo "<b id='code'>STATUS :</b>";
-			?>
-			<?php 
-			    echo status($row[$i]['issue_id']);
-			?>
-			<hr>
-			<div id=<?php echo $row[$i]['issue_id'] ?> >
-			<?php
-				/*session_start();
-				$email = $_SESSION['$email'];
-				userStatus($email,$row[$i]['issue_id']);*/
-				
-				
-				?>
-				</div>
-				<?php
-				if($row[$i]["solution_count"] >0)
+				if($percentage>0.3)
 				{
+					$flag=1;
 
-			?><hr>
-			
-			<div class='panel-body'>
-				<!-- Button trigger modal -->
-				<button class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
-				See the solution
-				</button>
-				<!-- Modal -->
-				<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
-					<div class='modal-dialog'>
-						<div class='modal-content'>
-							<div class='modal-header'>
-								<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
-								<h4 class='modal-title' id='myModalLabel'> <? echo $row[$i]["solution_count"]; ?>Solutions are available</h4>
-							</div>
-							<div class='modal-body'>
-								<?php
-									//} 
-								$sql1="select solution_url from solution where issue_id=".$row[$i]['issue_id']."";
-								$result1=mysqli_query($conn,$sql1);
-								while($row=mysqli_fetch_array($result1))
-								{
-								echo "<a href='".$row['solution_url']."'>".$row['solution_url']."</a> </br>";
-								}
+					#displays the problem list
+					require 'issue-list.php';
+				
 				}
-								?>
-							</div>
-						<!-- /.modal-content -->
-						</div>
-					<!-- /.modal-dialog -->
-					</div>
-				<!-- /.modal -->
-				</div>
-			</div>
-		</div>
-		<div class="modal fade" id='myModal<?php echo $id; ?>' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog modal-md " role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-							×</button>
-						<h4 class="modal-title" id="myModalLabel">Issue<?php echo " #".$id; ?></h4>
-					</div>
-					<div class="modal-body">
-						<?php 
-						
-							$sql3="Select * from issue where issue_id='$id'";
-							$result3=mysqli_query($conn,$sql3);
-							$no_of_results=mysqli_num_rows($result3);
-							$row= mysqli_fetch_array($result3);
-							echo "Code: #".$id;
-							echo "<br><br>Title: ".$row[$i]['title'];
-							echo "<br><br>Description:";
-							echo "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp".$row[$i]['description'];
+				
+				$i++;
+			}
 
-						?>
-					</div>
-				</div>
-			</div>
-		</div>
-
-			  	<!-- Issue Display End -->
-
-	  		<?php
+			if($flag == 0)
+			{
+				?>
+					<br><br><br>
+					<div class="alert alert-danger alert-dismissable">
+		                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		                <p>No results.</p>
+		            </div>
+				<?php
 			}
 		}
-
-		if($type == 'add')
+		else if($str=="")
 		{
-		?>		
-		<br><br><hr>
-		<button type="button" class="btn btn-primary btn-lg btn-block" onclick="loadDoc('add-issue-description.php?state=<?php echo $state ?>&district=<?php echo $district ?>&issue=<?php echo $str ?>&locality=<?php echo $locality ?>&pin=<?php echo $pin ?>','field')">Proceed to Add new Issue</button>		<!--Add the variable to be passed to the url-->
-
-	<?php
+			$sql = "SELECT *FROM issue WHERE district_id = '".$district_id."'";
+			$result = $conn->query($sql);
+			$i=0;
+			while($i<$result->num_rows)
+			{
+				$row = $result->fetch_assoc();
+				require 'issue-list.php';
+				$i++;
+			}
 		}
-	}
+		?>
+		<div class="container">
+			<ul class="pagination">
+				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=1\",\"field\")' class='button'>FIRST</a></li>"; ?>
+				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$pre."\",\"field\")' class='button'><<</a></li>"; ?>
 
+				<?php
+					for($page=1;$page<=$no_of_pages;$page++)
+					{	
+						$url = "issue-display.php?sql=".$sql."&page=".$page."";
+						echo "<li><a onclick='javascript:loadDoc(\"".$url."\",\"field\")'>".$page."</a></li>";
+					}
+					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$next."\",\"field\")' class='button'>>></a></li>";
+					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$no_of_pages."\",\"field\")' class='button'>LAST</a></li>";
+				?>
+			</ul>
+		</div>
+		<?php
+	}
 ?>
