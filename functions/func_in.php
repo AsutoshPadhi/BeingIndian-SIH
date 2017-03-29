@@ -85,6 +85,7 @@ define('LIKE_THRESHOLD',2);
 		  $result2=$conn->query($sql2);
 		  echo "YOU HAVE liked  FOR THIS ";
 	}
+
 	
 
 	function getUserId($email){
@@ -148,7 +149,14 @@ define('LIKE_THRESHOLD',2);
         echo"<b> POSTED BY : </b>". $row['fname']. "  ".$row['lname'];
         
     }
-
+function NumberOfLikes($solutionid)
+{
+		include '../functions/dataBaseConn.php';
+	    $sql = "SELECT * FROM solution WHERE solution_id = '$solutionid' ";
+        $result = $conn->query($sql);
+        echo $row['like_count'];
+		
+}
 	function getInstId($cemail){
         require('dataBaseConn.php');
         $sql = "SELECT inst_id FROM institute WHERE inst_email = '$cemail'";
