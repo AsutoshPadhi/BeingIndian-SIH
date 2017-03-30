@@ -53,27 +53,27 @@ define('LIKE_THRESHOLD',2);
 			return 0;
 		}
 	}
+	function LikeCount($id,$email)
+	{
+		include '../functions/dataBaseConn.php';
+		$userid = getUserId($email);
+		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
+		$result1 = $conn->query($sql);
+		$sql2="Insert into solutionlikedetails (solution_id,user_id) values ($id,$userid)";
+		$result2=$conn->query($sql2);
+		echo "YOU HAVE liked  FOR THIS ";
+	}
+
+	
+
 	function getUserId($email){
 		include '../functions/dataBaseConn.php';
 		$sql = "SELECT * FROM user where user_email = '$email'";
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
+		
 		return $row['user_id'];
 	}
-	
-	function LikeCount($id,$email)
-	{
-		include '../functions/dataBaseConn.php';
-		$userid = getUserId($email);
-		$sql="UPDATE solution SET like_count=like_count+1 WHERE solution_id='$id'";
-		$result1 = $conn->query($sql);
-		
-		$sql2="INSERT INTO solutionlikedetails(solution_id,user_id) values($id,$userid)";
-		$result2=$conn->query($sql2);
-		echo "You have liked this solution!";
-	}
-
-
     function userStatus($email,$issueid)
 	{
 		
@@ -90,11 +90,11 @@ define('LIKE_THRESHOLD',2);
 		{
 			//echo "YOU HAVE ALREADY VOTED FOR THIS ";
 			
-			return true;//already upvoted
+			return false;//already upvoted
 		}
 		else
 		{
-			return false;//not upvoted
+			return true;//not upvoted
 			
 			
 			
