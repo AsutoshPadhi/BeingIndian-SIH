@@ -1,3 +1,3 @@
-<?php
-    echo "Added by you!";
+<?php 
+    require('issue-display.php') 
 ?>

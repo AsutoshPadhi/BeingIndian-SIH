@@ -1,29 +1,26 @@
-function generateUrl(state,district,locality,pin,issueTitle)
+function generateUrl(state,district,locality,pin,issueTitle,area,type)
 {
-	var url = "getQuery.php?issue="+issueTitle+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin+"&callFunction=get_query";
-	loadDoc(url);
+    //alert("ys");
+    var url = "getQuery.php?issue="+issueTitle+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin+"&type="+type+"&callFunction=get_query";
+    //alert(url);
+    loadDoc(url,area);
 }
 
-function loadDoc(url)               //tab doesn't work after removing this
-{   
-    if (window.XMLHttpRequest)
-    {
-        // code for modern browsers
-        xhttp = new XMLHttpRequest();
-    }
-    else
-    {
-        // code for IE6, IE5
-        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    
-    xhttp.onreadystatechange = function()
-    {
-        if (this.readyState == 4 && this.status == 200)
-        {
-            document.getElementById("field").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", url, true);
-    xhttp.send();
+function generateUrlAdd(state,district,locality,pin,issueTitle,description)
+{
+    var url = "insertIssue.php?issueTitle="+issueTitle+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin+"&description="+description+"&callFunction=get_query";
+    loadDoc(url,"field");
+}
+
+function getDistrict(state,field)
+{
+    var url = "district_list.php?state="+state+"&callFunction=get_query";
+    //alert(url);
+    loadDoc(url,field);
+}
+
+function hideSearchBar()
+{
+    alert("yes");
+    $('#searchBar').hide();
 }

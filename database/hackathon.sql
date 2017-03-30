@@ -1,21 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Mar 21, 2017 at 01:04 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `hackathon`
 --
@@ -64,16 +46,16 @@ CREATE TABLE `districtsinregion` (
 --
 
 INSERT INTO `districtsinregion` (`region_id`, `district_id`) VALUES
-(501, 3),
-(502, 4),
-(501, 2),
-(505, 6),
-(503, 8),
-(501, 3),
-(509, 4),
-(504, 7),
-(504, 6),
-(501, 8);
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 4),
+(2, 5),
+(3, 6),
+(3, 7),
+(3, 8),
+(3, 9),
+(3, 10);
 
 -- --------------------------------------------------------
 
@@ -96,15 +78,15 @@ CREATE TABLE `institute` (
 --
 
 INSERT INTO `institute` (`inst_id`, `district_id`, `inst_email`, `inst_password`, `reset_password`, `inst_name`, `inst_address`) VALUES
-(1, 1, '2015adheesh.juvekar@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'RAIT', 'Ramrao Adik Institute of Technology, Sector 7, Phase I, Pad. Dr. D. Y. Patil Vidyapeeth, Nerul, Navi Mumbai, Maharashtra 400706'),
-(2, 2, 'amit.singh@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'VESIT', 'Vivekanand Education Society\'s Institute of Technology, 495/497, Hashu Advani Memorial Complex, Collectors Colony, Chembur, Mumbai, Maharashtra 400074'),
+(1, 1, '2015adheesh.juvekar@ves.ac.in', '0192023a7bbd73250516f069df18b500', 0, 'RAIT', 'Ramrao Adik Institute of Technology, Sector 7, Phase I, Pad. Dr. D. Y. Patil Vidyapeeth, Nerul, Navi Mumbai, Maharashtra 400706'),
+(2, 2, 'amit.singh@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 0, 'VESIT', 'Vivekanand Education Society''s Institute of Technology, 495/497, Hashu Advani Memorial Complex, Collectors Colony, Chembur, Mumbai, Maharashtra 400074'),
 (3, 3, '2015asutosh.padhi@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'VIT', 'Vidyalankar campus,Vidyalankar College Marg, Wadala East, Mumbai, Maharashtra 400037'),
 (4, 4, '2015sneha.roundhal@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'MIT', 'Maharashtra Institute of Technology, S.No. 124, Paud Road, Kothrud, Pune, Maharashtra 411038'),
 (5, 5, '2015shreya.jangale@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'Pravara', 'Pravara Institute of Medical Sciences, Loni Bk, Tal., Rahata, Maharashtra 423107'),
-(6, 6, '2015isha.shetty@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'Bhandarkars\' Arts & Science College', 'Bhandarkars\' Arts & Science College, Kundapura, Udupi, Karnataka 576201'),
+(6, 6, '2015isha.shetty@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'Bhandarkars'' Arts & Science College', 'Bhandarkars'' Arts & Science College, Kundapura, Udupi, Karnataka 576201'),
 (7, 7, '2015dipshi.shetty@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'AITCKM', 'Adichunchanagiri Institute of Technology, KM Road, Chickmagaluru, Karnataka 577102'),
 (8, 8, 'ashutosh_padhi1@yahoo.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'NITK', 'National Institute of Technology, Karnataka, NH 66, Srinivas Nagar, Surathkal, Mangaluru, Karnataka 575025'),
-(9, 9, 'learnthingby@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 1, 'RIT', 'Rajeev Institute of Technology, Plot 1-D, Growth Center, Industrial Area, B-M Bypass Road, Hassan, Karnataka 573201'),
+(9, 9, 'learnthingby@gmail.com', '22af645d1859cb5ca6da0c484f1f37ea', 0, 'RIT', 'Rajeev Institute of Technology, Plot 1-D, Growth Center, Industrial Area, B-M Bypass Road, Hassan, Karnataka 573201'),
 (10, 10, 'marathimandalee@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 1, 'VTU', 'Visvesvaraya Technological University, Jnana Sangama, Machhe, Belagavi, Karnataka 590018');
 
 -- --------------------------------------------------------
@@ -135,14 +117,16 @@ CREATE TABLE `issue` (
 --
 
 INSERT INTO `issue` (`issue_id`, `user_id`, `added_on`, `district_id`, `region_id`, `locality`, `pincode`, `title`, `description`, `upvote_count`, `bogus_count`, `duplicate_count`, `solution_count`, `approved_solution`) VALUES
-(100000, 2003, '2017-03-15 18:30:00', 6, 503, '', '', 'Noise  Polution', 'Facing prolem since one year', 1, 0, 0, 0, 0),
-(100001, 2002, '2017-03-14 22:30:00', 3, 500, '', '', 'Water pollution', 'Facing this problem since 2 year', 1, 0, 0, 0, 0),
-(100002, 2003, '2017-03-15 18:30:00', 6, 503, '', '', 'Noise  Polution', 'Facing prolem since one year', 1, 0, 1, 0, 0),
-(100003, 2002, '2017-03-14 22:30:00', 3, 500, '', '', 'Water pollution', 'Facing this problem since 2 year', 1, 0, 0, 0, 0),
-(100004, 2003, '2017-03-15 18:30:00', 1, 502, 'Dombivli', '421202', 'Air Polltion', 'Severe Air Pollution', 1, 0, 0, 1, 1),
-(100005, 2004, '2017-03-07 18:30:00', 6, 504, '', '', 'Sanitation', 'Lack of Sanitation', 1, 5, 0, 0, 0),
-(100006, 2004, '2017-03-15 18:30:00', 6, 503, '', '', 'Street Hawkers', 'Creating menance on streets', 500, 0, 0, 0, 0),
-(100007, 2005, '2017-03-07 18:30:00', 7, 505, '', '', 'Health Issues', 'Old to young ratio is too high', 505, 0, 0, 3, 1);
+(1, 1, NULL, 1, 1, 'Castle Mill', '400601', 'There is so much garbage on the streets', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
+(2, 1, NULL, 2, 1, 'kurla station', '', 'No garbage management, so much garbage on the streets', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
+(3, 1, NULL, 3, 1, 'chembur', '400071', 'Nobody follows the traffic rules, it is dangerous for citizens.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
+(4, 1, NULL, 4, 2, 'M.G. Road', '', 'There is so much traffic on the road.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat', 1, 0, 0, 0, 0),
+(5, 1, NULL, 5, 2, 'Nampur', '', 'We are not getting good drinking water', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
+(6, 1, NULL, 6, 3, '', '', 'There no playground to play, for our children.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
+(7, 1, NULL, 7, 3, '', '', 'There is no safe place to ride bicycle in this town.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
+(8, 1, NULL, 8, 3, '', '', 'There is a group of boys performing bike stunts on the local streets.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
+(9, 1, NULL, 9, 3, '', '', 'Public transport facilities are very less.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
+(10, 1, NULL, 10, 3, 'chirampur', '', 'So much noise pollution due to Dhol Tasha practice', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -155,14 +139,6 @@ CREATE TABLE `issuebogusupvote` (
   `issue_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `issuebogusupvote`
---
-
-INSERT INTO `issuebogusupvote` (`inst_id`, `issue_id`) VALUES
-(6, 100005),
-(6, 100005);
-
 -- --------------------------------------------------------
 
 --
@@ -174,14 +150,6 @@ CREATE TABLE `issueduplicateupvote` (
   `issue_id` int(11) NOT NULL,
   `similar_to_issue` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `issueduplicateupvote`
---
-
-INSERT INTO `issueduplicateupvote` (`inst_id`, `issue_id`, `similar_to_issue`) VALUES
-(4, 100002, 100000),
-(4, 100002, 100000);
 
 -- --------------------------------------------------------
 
@@ -199,14 +167,16 @@ CREATE TABLE `issueupvote` (
 --
 
 INSERT INTO `issueupvote` (`user_id`, `issue_id`) VALUES
-(2003, 100000),
-(2002, 100001),
-(2003, 100002),
-(2002, 100003),
-(2003, 100004),
-(2004, 100005),
-(2004, 100006),
-(2005, 100007);
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8),
+(1, 9),
+(1, 10);
 
 -- --------------------------------------------------------
 
@@ -224,16 +194,9 @@ CREATE TABLE `region` (
 --
 
 INSERT INTO `region` (`region_id`, `region_name`) VALUES
-(500, 'Mumbai'),
-(501, 'Navi-Mumbai'),
-(502, 'konkan'),
-(503, 'kapu'),
-(504, 'malhar'),
-(505, 'majur'),
-(506, 'bola'),
-(507, 'kunjur'),
-(508, 'nagpur'),
-(509, 'nashik');
+(1, 'Mumbai'),
+(2, 'Pune'),
+(3, 'Karnataka');
 
 -- --------------------------------------------------------
 
@@ -250,14 +213,6 @@ CREATE TABLE `solution` (
   `added_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `solution`
---
-
-INSERT INTO `solution` (`solution_id`, `issue_id`, `inst_id`, `solution_url`, `like_count`, `added_on`) VALUES
-(9000, 100004, 5, 'https://www.youtube.com/watch?v=G62HrubdD6o', 900, '2017-03-23 18:30:00'),
-(90001, 100007, 5, 'https://www.youtube.com/watch?v=G62HrubdD6o\r\nhttps://www.youtube.com/watch?v=G62HrubdD6o\r\nhttps://www.youtube.com/watch?v=G62HrubdD6o', 3, '2017-03-28 18:30:00');
-
 -- --------------------------------------------------------
 
 --
@@ -268,20 +223,6 @@ CREATE TABLE `solutionlikedetails` (
   `solution_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `solutionlikedetails`
---
-
-INSERT INTO `solutionlikedetails` (`solution_id`, `user_id`) VALUES
-(9000, 2001),
-(9000, 2002),
-(90001, 2003),
-(9000, 2006),
-(9000, 2003),
-(90001, 2000),
-(9000, 2008),
-(90001, 2002);
 
 -- --------------------------------------------------------
 
@@ -311,10 +252,10 @@ INSERT INTO `state` (`state_id`, `state_name`) VALUES
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `user_email` varchar(30) NOT NULL,
-  `fname` varchar(20) NOT NULL,
-  `lname` varchar(20) NOT NULL,
-  `mobile_number` varchar(13) NOT NULL,
-  `district_id` int(11) NOT NULL
+  `fname` varchar(20) DEFAULT NULL,
+  `lname` varchar(20) DEFAULT NULL,
+  `mobile_number` varchar(13) DEFAULT NULL,
+  `district_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -322,16 +263,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_email`, `fname`, `lname`, `mobile_number`, `district_id`) VALUES
-(2000, 'dipshishetty@gmail.com', 'dipshi', 'shetty', '6648658779695', 4),
-(2001, 'isha.shetty@gmail.com', '', '', '8454077267', 1),
-(2002, 'sneharoundhal@gmail.com', 'sneha', 'shetty', '7775648568', 5),
-(2003, 'shreyajangale@gmail.com', 'shreya', 'jangale', '564574543745', 3),
-(2004, 'simranbhojwani@gmail.com', 'simran', 'bhojwani', '6746648684', 5),
-(2005, 'hiran@gmail.com', '', '', '9768751341', 6),
-(2006, 'bhavika@gmail.com', 'bhavika', '', '8654620544', 10),
-(2007, 'kitty@gmail.com', '', '', '663547547', 7),
-(2008, 'jaya@gmail.com', 'jaya', 'shetty', '756483568', 4),
-(2009, 'murli@gmail.com', '', '', '527576864957', 7);
+(1, '2015adheesh.juvekar@ves.ac.in', 'Adheesh', 'Juvekar', '9829182847', 1),
+(2, 'juvekaradheesh@gmail.com', 'Adheesh', 'Juvekar', '', 1),
+(3, 'marathimandalee@gmail.com', '', '', NULL, NULL),
+(4, 'learnthingsby@gmail.com', 'Learn', 'Things', '9757322862', 1),
+(5, 'learnthingsby1@gmail.com', '', '', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -371,6 +307,7 @@ ALTER TABLE `issue`
 -- Indexes for table `issuebogusupvote`
 --
 ALTER TABLE `issuebogusupvote`
+  ADD PRIMARY KEY (`inst_id`,`issue_id`),
   ADD KEY `FOREIGN1` (`inst_id`),
   ADD KEY `FOREIGN2` (`issue_id`);
 
@@ -378,6 +315,7 @@ ALTER TABLE `issuebogusupvote`
 -- Indexes for table `issueduplicateupvote`
 --
 ALTER TABLE `issueduplicateupvote`
+  ADD PRIMARY KEY (`inst_id`,`issue_id`),
   ADD KEY `FOREIGN1` (`inst_id`),
   ADD KEY `FOREIGN2` (`issue_id`),
   ADD KEY `FOREIGN3` (`similar_to_issue`);
@@ -386,6 +324,7 @@ ALTER TABLE `issueduplicateupvote`
 -- Indexes for table `issueupvote`
 --
 ALTER TABLE `issueupvote`
+  ADD PRIMARY KEY (`user_id`,`issue_id`),
   ADD KEY `FOREIGN1` (`user_id`),
   ADD KEY `FOREIGN2` (`issue_id`);
 
@@ -407,6 +346,7 @@ ALTER TABLE `solution`
 -- Indexes for table `solutionlikedetails`
 --
 ALTER TABLE `solutionlikedetails`
+  ADD PRIMARY KEY (`solution_id`,`user_id`),
   ADD KEY `FOREIGN1` (`solution_id`),
   ADD KEY `FOREIGN2` (`user_id`);
 

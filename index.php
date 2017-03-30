@@ -43,27 +43,23 @@
 
                     if(isset($_SESSION['$email'])){
                         $login = true;
+                        $loginCollege = false;
                         $email = $_SESSION['$email'];
                         $name = $_SESSION['$name'];
                         $fname = $_SESSION['$fname'];
                         $lname = $_SESSION['$lname'];
                         
                     }
-                    else{
+                    else if(isset($_SESSION['$cemail'])){
+                        $loginCollege = true;
                         $login = false;
                     }
-
-                    if($login){
-
-                ?>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <?php
+                    else{
+                        $login = false;
+                        $loginCollege = false;
                     }
+
+                    
                 ?>
                 <a class="navbar-brand" href="index.php"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
             </div>
@@ -78,14 +74,14 @@
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
-                            <a>
+                            <a onClick="MyWindow=window.open('userguide.php','MyWindow',width=300,height=150)">
                                 <div>
                                     <i class="fa fa-info-circle fa-fw"></i> User guide
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="loginpage.php">
+                            <a onClick="MyWindow=window.open('instituteguide.php','MyWindow',width=300,height=150)">
                                 <div>
                                     <i class="fa fa-institution fa-fw"></i> Institute guide
                                 </div>
@@ -103,7 +99,7 @@
 
                         <?php
                             
-                            if($login){
+                            if($login || $loginCollege){
                         ?>
                             </li>
                             <li><a href="user/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -112,9 +108,9 @@
                             }
                             else{
                         ?>
-                        <li><a onClick="javascript:loadDoc('user/login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
+                        <li><a data-toggle="modal" data-target="#myModal2"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a href="institute/loginpage.php"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a data-toggle="modal" data-target="#myModal"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
                             }
                         ?>
@@ -132,13 +128,24 @@
         
             <div class="container-fluid" id="field">
                 <div class="container">
-                <div class="tagline panel-body"><h1>Ask questions for a better tomorrow</h1></div>
-                <div class="aboutUs lead">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis ornare risus. Quisque sit amet pharetra quam. Curabitur fermentum justo eu est sagittis tincidunt. Cras eu massa nunc. Integer imperdiet molestie tempus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis arcu lorem, bibendum eget commodo quis, fringilla non nibh. </div>
-                <div class="buttons">
-                    <button type="button" onclick="location.href='user/dashboard.php';" class="btn btn-outline btn-primary btn-lg" id="search">Search an Issue</button>
-                    <button type="button" onclick="location.href='user/<?php if($login)echo 'dashboard.php'; else echo "login.php";?>';" class="btn btn-outline btn-primary btn-lg" id="add">Add an Issue</button>
+                    <div class="tagline panel-body"><h1>Ask questions for a better tomorrow</h1></div>
+                    <div class="aboutUs lead">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis ornare risus. Quisque sit amet pharetra quam. Curabitur fermentum justo eu est sagittis tincidunt. Cras eu massa nunc. Integer imperdiet molestie tempus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis arcu lorem, bibendum eget commodo quis, fringilla non nibh. </div>
+                    <div class="buttons">
+                        <button type="button" onclick="location.href='user/pageRedirect.php?toOpen=search';return false;" class="btn btn-outline btn-primary btn-lg" id="search">Search an Issue</button>
+                        <?php 
+                            if($login){
+                        ?>
+                        <button type="button" onclick="location.href='user/pageRedirect.php?toOpen=add'<?php $_SESSION['toOpen2']='add-issue.php' ?>;" class="btn btn-outline btn-primary btn-lg" id="add">Add an Issue</button>
+                        <?php
+                            }
+                            else{
+                        ?>
+                        <button type="button" class="btn btn-outline btn-primary btn-lg" id="add" data-toggle="modal" data-target="#myModal2">Add an Issue</button>
+                        <?php
+                            }
+                        ?>
+                    </div>
                 </div>
-            </div>
             </div>
             <!-- /.container-fluid -->
         
@@ -161,6 +168,80 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+
+    <!-- Large modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×</button>
+                    <h4 class="modal-title" id="myModalLabel">Institute Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <form action="institute/login.php" method="POST" role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="cemail" class="col-sm-2 control-label">
+                                        Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" name="cemail" id="cemail" placeholder="Email" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-sm-2 control-label">
+                                        Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <button  type="submit" class="btn btn-primary btn-sm">
+                                            Submit</button>
+                                        <a onClick="loadDoc('../institute/forgot-password.php','field');$('#myModal').modal('hide');">Forgot your password?</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×</button>
+                    <h4 class="modal-title" id="myModalLabel">User Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mainBox">
+                                <div class="loginText">
+                                    User Login
+                                </div>
+                                <div style="margin: 15px 0px;" class="styleBox">
+                                    <a class="btn btn-block btn-social btn-google-plus" href='user/login.php'>
+                                        <i class="fa fa-google-plus"></i> Sign in with Google
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </body>
 

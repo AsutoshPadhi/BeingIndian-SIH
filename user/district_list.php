@@ -1,18 +1,15 @@
 <?php
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$db = "hackathon";
+	include '../functions/dataBaseConn.php';
 
-	$conn = new mysqli($servername, $username, $password, $db);
+	$state = $_GET['state'];
+	//echo "stet = ".$state;
+	//echo "<option>".$state."</option>";
 
-	if($conn->connect_error)
-	{
-		die("Connection Failed".$conn->connect_error);
-	}
-
-	$sql = "SELECT district_name FROM district WHERE state_id = "."SELECT state_id FROM state WHERE state =";
+	$sql1 = "SELECT state_id FROM state WHERE state_name = '".$state."'";
+	$sid = $conn->query($sql1);
+	$row1 = $sid->fetch_assoc();
+	$sql = "SELECT district_name FROM district WHERE state_id = '".$row1['state_id']."'";
 	$result = $conn->query($sql);
 	if($result->num_rows>0)
 	{
@@ -23,7 +20,7 @@
 		}
 	}
 	else
-		echo "<option>Not Working</option>";
+		echo "<option disabled>Change the State First</option>";
 
 
 	$conn->close();

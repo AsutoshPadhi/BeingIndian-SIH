@@ -1,3 +1,4 @@
 <?php
-    echo "Solutions Provided";
+    $sql = "";
+    require('issue-display.php');
 ?>

@@ -6,9 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <script src="functions/ajax.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="../functions/ajax.js"></script>
     <script src="urlGenerator.js"></script>
     <script src="tabs.js"></script>
+    <script>
+        $(document).load(function()
+        {
+            $("#addIssue").click();
+            return false;
+        });
+    </script>
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
@@ -27,9 +35,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-</head>
-<body>
 
+</head>
+<body onload="document.getElementById('dash').click();">
 
     <div id="wrapper">
 
@@ -38,29 +46,26 @@
             <div class="navbar-header">
                 <?php
                     session_start();
-
+                    require('../functions/func_out.php');
+					require('../functions/dataBaseConn.php');
                     if(isset($_SESSION['$email'])){
                         $login = true;
                         $email = $_SESSION['$email'];
-                        $name = $_SESSION['$name'];
-                        $fname = $_SESSION['$fname'];
+                        $sql = "SELECT * from user WHERE user_email = '$email'";
+						$result = $conn->query($sql);
+						$row = $result->fetch_assoc();
+						$fname = $row['fname'];
+						$lname = $row['lname'];
+                        if($fname == ""){
+                            $fname  = 'Anonymous';
+                        }
                         $lname = $_SESSION['$lname'];
 
                     }
                     else{
                         $login = false;
                     }
-                ?>
-                <script>
-                    var login = <?php if($login){echo "true";}else{echo "false";}?>;
-                    if(login){
-                        document.getElementById("main").style.marginLeft = "0px";
-                    }
-                    else{
-                        document.getElementById("main").style.marginLeft = "250px";
-                    }
-                </script>
-                <?php
+
                     if($login){
 
                 ?>
@@ -106,7 +111,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i><?php if($login)echo "Welcome, ".$fname;else echo "Welcome User"; ?> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
 
@@ -121,9 +126,9 @@
                             }
                             else{
                         ?>
-                        <li><a onClick="javascript:loadDoc('login.php')"><i class="fa fa-user fa-fw"></i> User Login</a>
+                        <li><a data-toggle="modal" data-target="#userLogin"><i class="fa fa-user fa-fw"></i> User Login</a>
                         </li>
-                        <li><a href="javascript:loadDoc('../institute/loginpage.php')"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
+                        <li><a data-toggle="modal" data-target="#instLogin"><i class="fa fa-institution fa-fw"></i> Institute Login</a>
                         <?php
                             }
                         ?>
@@ -141,29 +146,55 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
-
-                            <a onClick="javascript:loadDoc('search.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <li id="dash">
+                            <?php
+                                #results according to profile
+                                $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
+                                $result = $conn->query($checkProfile);
+                                $row = $result->fetch_assoc();
+                                $district_id = $row['district_id'];
+                                $_SESSION['district_id'] = $district_id;
+                                if($district_id != "")
+                                {
+                                    $sql = "SELECT * FROM issue WHERE district_id = ".$district_id."";
+                                    
+                                }
+                                else
+                                {
+                                    $sql = "SELECT * FROM issue WHERE 1";
+                                }
+                                $url = "issue-display.php?sql=".$sql."";
+                            ?>
+                            <a id="sb" onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
                         </li>
                         <!-- onclick="javascript:openField(event, 'addIssue')"-->
                         <li id="addIssue">
-                            <a onClick="javascript:loadDoc('add-issue.php')"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
+                            <a onclick="javascript:loadDoc('add-issue.php','field');$('#searchBar').hide();" 
+                            onload="hideSearchBar()"><i class="fa fa-plus fa-fw"></i> Add Issue</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a onClick="javascript:loadDoc('added-by-you.php')">Added by you</a>
+                                    <?php
+                                        $sql = historyAdded($email);
+                                        $url = "issue-display.php?sql=".$sql."";
+                                    ?>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Added by <?php echo $fname; ?></a>
                                 </li>
                                 <li>
-                                    <a onClick="javascript:loadDoc('upvoted-by-you.php')">Upvoted by you</a>
+                                    <?php
+                                        $sql = historyUpvoted($email);
+                                        $url = "issue-display.php?sql=".$sql."";
+                                    ?>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Upvoted by <?php echo $fname; ?></a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="javascript:loadDoc('profile.php')"><i class="fa fa-user fa-fw"></i> Profile</a>
+                            <a onClick="javascript:loadDoc('profile.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Profile</a>
                         </li>
 
                     </ul>
@@ -179,6 +210,9 @@
         <!-- Page Content -->
 
         <div class="main-content" id="main">
+            <div class="searchBar" id="searchBar">
+                <?php require('dashboard-searchBar.php'); ?>
+            </div>
             <div class="container-fluid" id="field">
 
             </div>
@@ -187,8 +221,75 @@
         <!-- /#page-wrapper -->
 
     </div>
+    <?php
+        //session_start();
+        if(isset($_SESSION['toOpen']))
+        {
+            if($_SESSION['toOpen'] == "search.php")
+            {
+                include '../functions/dataBaseConn.php';
+                $sql = "SELECT * FROM issue WHERE 1";
+                //$url = "issue-display.php?sql=".$sql."";
+                if($login)
+                {
+                    $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
+                    $result = $conn->query($checkProfile);
+                    $row = $result->fetch_assoc();
+                    $district_id = $row['district_id'];
+                    //$_SESSION['district_id'] = $district_id;
+                    if($district_id != "")
+                    {
+                        $sql = "SELECT * FROM issue WHERE district_id = ".$district_id."";
+                        
+                    }
+                }
+                $url = "issue-display.php?sql=".$sql."";
+                ?><script>loadDoc('<?php echo $url ?>','field');</script><?php
+                unset($_SESSION['toOpen']);
+            }
 
+            else if($_SESSION['toOpen'] == "add-issue.php")
+            {
+                ?><script>loadDoc('add-issue.php','field');</script><?php
+                unset($_SESSION['toOpen']);
+            }
+        }
+        else{
+            include '../functions/dataBaseConn.php';
+            $sql = "SELECT * FROM issue WHERE 1";
+            //$url = "issue-display.php?sql=".$sql."";
+            if($login)
+            {
+                $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
+                $result = $conn->query($checkProfile);
+                $row = $result->fetch_assoc();
+                $district_id = $row['district_id'];
+                //$_SESSION['district_id'] = $district_id;
+                if($district_id != "")
+                {
+                    $sql = "SELECT * FROM issue WHERE district_id = ".$district_id."";
+                    
+                }
+            }
+            $url = "issue-display.php?sql=".$sql."";
+            ?><script>loadDoc('<?php echo $url; ?>','field');</script><?php
+            //session_unset($_SESSION['toOpen']);
+        }
 
+    ?>
+    <script>
+        var login = <?php if($login){echo "true";}else{echo "false";}?>;
+        if(login){
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+        else{
+            document.getElementById("main").style.marginLeft = "0px";
+        }
+        // if(toOpen == "add-issue.php")
+        // {
+        //     loadDoc('add-issue.php','field');
+        // }
+    </script>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -200,6 +301,78 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <div class="modal fade" id="instLogin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×</button>
+                    <h4 class="modal-title" id="myModalLabel">Institute Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <form action="../institute/login.php" methond="POST" role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">
+                                        Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="email1" placeholder="Email" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1" class="col-sm-2 control-label">
+                                        Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Email" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            Submit</button>
+                                        <a href="javascript:;">Forgot your password?</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="userLogin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×</button>
+                    <h4 class="modal-title" id="myModalLabel">User Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mainBox">
+                                <div class="loginText">
+                                    User Login
+                                </div>
+                                <div style="margin: 15px 0px;" class="styleBox">
+                                    <a class="btn btn-block btn-social btn-google-plus" href='login.php'>
+                                        <i class="fa fa-google-plus"></i> Sign in with Google
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

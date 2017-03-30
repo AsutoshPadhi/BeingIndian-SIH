@@ -1,3 +1,3 @@
-<div style="width:100%;">
-    <?php require('dashboard-searchBar.php'); ?>
-</div>
+<?php
+	require('issue-display.php');
+?>
