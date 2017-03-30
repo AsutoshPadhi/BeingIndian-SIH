@@ -4,8 +4,9 @@
 
 	session_start();
 	$state = $_GET['state'];
-	//echo "state = ".$state;
+	echo "state = ".$state;
 	$district = $_GET['district'];
+	echo "district = ".$district;
 	$locality = $_GET['locality'];
 	$pin = $_GET['pin'];
 	$title = $_GET['issueTitle'];
@@ -20,16 +21,18 @@
 	$get_user_id = $conn->query($get_user_id_sql);
 	$get_user_id_res = $get_user_id->fetch_assoc();
 	$user_id = $get_user_id_res['user_id'];
-	//echo "<br>user id = ".$user_id;
 
-	//$district_id = 2;
-	//$user_id = 2000;
+	/*$get_state_id = "SELECT * FROM state WHERE state_name = '".$state."'";	
+	$state1 = $conn->query($get_state_id);
+	$get_state = $state1->fetch_assoc();
+	$state_id = $get_dist['state_id'];
+	echo "".$state_id;*/
 
-	$get_district_id = "SELECT district_id FROM district, state WHERE state.state_id = district.district_id";	
+	$get_district_id = "SELECT district_id FROM district WHERE district_name = '".$district."'";	
 	$dist = $conn->query($get_district_id);
 	$get_dist = $dist->fetch_assoc();
 	$district_id = $get_dist['district_id'];
-	//echo "".$district_id;
+	echo "".$district_id;
 
 
 	$get_last_issue_id = "SELECT issue_id FROM issue";
