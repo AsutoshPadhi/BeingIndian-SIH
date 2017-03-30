@@ -100,16 +100,16 @@ define('LIKE_THRESHOLD',2);
 		//$num_rows = mysql_num_rows($result);
 		
 		$n=mysqli_num_rows (  $result );
-		
-		if($n>0)
+		$row = $result->fetch_assoc();
+		if($row['issue_id']!=0)
 		{
 			//echo "YOU HAVE ALREADY VOTED FOR THIS ";
 			
-			return false;//already upvoted
+			return true;//already upvoted
 		}
 		else
 		{
-			return true;//not upvoted
+			return false;//not upvoted
 			
 			
 			
