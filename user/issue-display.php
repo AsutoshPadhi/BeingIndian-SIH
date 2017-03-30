@@ -212,7 +212,7 @@
 					</div>
 				<!-- /.modal -->
 				</div>
-			</div>
+			</div>---------------------------------------------------------------
 			<div class="modal fade" id='myModal<?php echo $id; ?>' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 			aria-hidden="true">
 			<div class="modal-dialog modal-md " role="document">
