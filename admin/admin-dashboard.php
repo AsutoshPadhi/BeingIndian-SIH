@@ -72,7 +72,7 @@ function exportToCSV($sql){
             <div class="form-group col-md-3 col-sm-8 col-lg-3" style="margin: 20px 0;">
                 <input class="form-control" name="college" placeholder="Enter College">
             </div>
-            <button type="button" class="btn btn-primary col-md-2 col-sm-3 col-lg-2 col-xs-8" style="margin: 20px 15px;">Download Report</button>
+            <button type="submit" class="btn btn-primary col-md-2 col-sm-3 col-lg-2 col-xs-8" style="margin: 20px 15px;">Download Report</button>
         </form>
     </body>
     <?php
