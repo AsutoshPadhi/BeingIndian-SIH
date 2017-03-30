@@ -182,7 +182,6 @@
             if($_SESSION['toOpen'] == "toOpen")
             {
                 include '../functions/dataBaseConn.php';
-                echo "working";
                 $sql = "SELECT * FROM issue WHERE district_id = $districtid AND upvote_count > 5";
                 $url = "issue-display.php?sql=".$sql."";
                 ?><script>loadDoc('javascript:alert("s");loadDoc("<?php echo $url?>","field");$("#searchBar").show();','field');</script><?php
