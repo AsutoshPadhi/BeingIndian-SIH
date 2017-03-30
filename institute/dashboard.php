@@ -176,7 +176,30 @@
             <!-- /.container-fluid -->
         
         <!-- /#page-wrapper -->
+    <?php
+        if(isset($_SESSION['toOpen']))
+        {
+            if($_SESSION['toOpen'] == "toOpen")
+            {
+                include '../functions/dataBaseConn.php';
+                echo "working";
+                $sql = "SELECT * FROM issue WHERE district_id = $districtid AND upvote_count > 5";
+                $url = "issue-display.php?sql=".$sql."";
+                ?><script>loadDoc('javascript:alert("s");loadDoc("<?php echo $url?>","field");$("#searchBar").show();','field');</script><?php
+                unset($_SESSION['toOpen']);
+            }
 
+            /*else if($_SESSION['toOpen'] == "add-issue.php")
+            {
+                ?><script>loadDoc('add-issue.php','field');</script><?php
+                unset($_SESSION['toOpen']);
+            }*/
+        }
+        else
+        {
+            //echo "Not working";
+        }
+    ?>
         
     </div>
     
