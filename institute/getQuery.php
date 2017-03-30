@@ -122,7 +122,7 @@
 			while($i<$result->num_rows)
 			{
 				$row = $result->fetch_assoc();
-				require 'issue-list.php';
+				require 'issue-collapse.php';
 				$i++;
 			}
 		}
