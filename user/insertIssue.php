@@ -9,7 +9,9 @@
 	$locality = $_GET['locality'];
 	$pin = $_GET['pin'];
 	$title = $_GET['issueTitle'];
+	$title = strtolower($title);
 	$description = $_GET['description'];
+	$description = strtolower($description);
 
 	#To get user_id from email
 	$user_email = $_SESSION['$email'];
@@ -42,7 +44,7 @@
 			$j++;
 		}
 	}
-	$issue_id = $j++;
+	$issue_id = $j+1;
 
 	//echo "district_id = ".$district_id."<br>";
 	#get region_id also
@@ -62,11 +64,11 @@
 	{
 		if($pin != "")
 		{
-			$sql = "INSERT INTO issue(issue_id, user_id, district_id, region_id, locality, pin, title, description)VALUES()";
+			$sql = "INSERT INTO issue(issue_id, user_id, district_id, region_id, locality, pin, title, description)VALUES('$issue_id','$user_id','$district_id', '$region_id', '$locality', '$pin', '$title','$description')";
 		}
 		else
 		{
-			$sql = "INSERT INTO issue(issue_id, user_id, district_id, region_id, locality, title, description)VALUES()";
+			$sql = "INSERT INTO issue(issue_id, user_id, district_id, region_id, locality, title, description)VALUES('$issue_id','$user_id','$district_id', '$region_id', '$locality', '$title','$description')";
 		}
 	}
 	else
