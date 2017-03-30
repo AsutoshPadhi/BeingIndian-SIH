@@ -78,8 +78,8 @@ CREATE TABLE `institute` (
 --
 
 INSERT INTO `institute` (`inst_id`, `district_id`, `inst_email`, `inst_password`, `reset_password`, `inst_name`, `inst_address`) VALUES
-(1, 1, '2015adheesh.juvekar@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 0, 'RAIT', 'Ramrao Adik Institute of Technology, Sector 7, Phase I, Pad. Dr. D. Y. Patil Vidyapeeth, Nerul, Navi Mumbai, Maharashtra 400706'),
-(2, 2, 'amit.singh@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'VESIT', 'Vivekanand Education Society''s Institute of Technology, 495/497, Hashu Advani Memorial Complex, Collectors Colony, Chembur, Mumbai, Maharashtra 400074'),
+(1, 1, '2015adheesh.juvekar@ves.ac.in', '0192023a7bbd73250516f069df18b500', 0, 'RAIT', 'Ramrao Adik Institute of Technology, Sector 7, Phase I, Pad. Dr. D. Y. Patil Vidyapeeth, Nerul, Navi Mumbai, Maharashtra 400706'),
+(2, 2, 'amit.singh@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 0, 'VESIT', 'Vivekanand Education Society''s Institute of Technology, 495/497, Hashu Advani Memorial Complex, Collectors Colony, Chembur, Mumbai, Maharashtra 400074'),
 (3, 3, '2015asutosh.padhi@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'VIT', 'Vidyalankar campus,Vidyalankar College Marg, Wadala East, Mumbai, Maharashtra 400037'),
 (4, 4, '2015sneha.roundhal@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'MIT', 'Maharashtra Institute of Technology, S.No. 124, Paud Road, Kothrud, Pune, Maharashtra 411038'),
 (5, 5, '2015shreya.jangale@ves.ac.in', '21232f297a57a5a743894a0e4a801fc3', 1, 'Pravara', 'Pravara Institute of Medical Sciences, Loni Bk, Tal., Rahata, Maharashtra 423107'),
@@ -117,12 +117,12 @@ CREATE TABLE `issue` (
 --
 
 INSERT INTO `issue` (`issue_id`, `user_id`, `added_on`, `district_id`, `region_id`, `locality`, `pincode`, `title`, `description`, `upvote_count`, `bogus_count`, `duplicate_count`, `solution_count`, `approved_solution`) VALUES
-(1, 1, NULL, 1, 1, 'Castle Mill', '400601', 'There is so much garbage on the streets', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 10, 0, 0, 0, 0),
-(2, 1, NULL, 2, 1, 'kurla station', '', 'No garbage management, so much garbage on the streets', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 9, 0, 0, 0, 0),
-(3, 1, NULL, 3, 1, 'chembur', '400071', 'Nobody follows the traffic rules, it is dangerous for citizens.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 10, 0, 0, 0, 0),
-(4, 1, NULL, 4, 2, 'M.G. Road', '', 'There is so much traffic on the road.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat', 9, 0, 0, 0, 0),
-(5, 1, NULL, 5, 2, 'Nampur', '', 'We are not getting good drinking water', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 9, 0, 0, 0, 0),
-(6, 1, NULL, 6, 3, '', '', 'There no playground to play, for our children.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 6, 0, 0, 0, 0),
+(1, 1, NULL, 1, 1, 'Castle Mill', '400601', 'There is so much garbage on the streets', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
+(2, 1, NULL, 2, 1, 'kurla station', '', 'No garbage management, so much garbage on the streets', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
+(3, 1, NULL, 3, 1, 'chembur', '400071', 'Nobody follows the traffic rules, it is dangerous for citizens.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
+(4, 1, NULL, 4, 2, 'M.G. Road', '', 'There is so much traffic on the road.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat', 1, 0, 0, 0, 0),
+(5, 1, NULL, 5, 2, 'Nampur', '', 'We are not getting good drinking water', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
+(6, 1, NULL, 6, 3, '', '', 'There no playground to play, for our children.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
 (7, 1, NULL, 7, 3, '', '', 'There is no safe place to ride bicycle in this town.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
 (8, 1, NULL, 8, 3, '', '', 'There is a group of boys performing bike stunts on the local streets.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
 (9, 1, NULL, 9, 3, '', '', 'Public transport facilities are very less.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ', 1, 0, 0, 0, 0),
@@ -138,14 +138,6 @@ CREATE TABLE `issuebogusupvote` (
   `inst_id` int(11) NOT NULL,
   `issue_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `issuebogusupvote`
---
-
-INSERT INTO `issuebogusupvote` (`inst_id`, `issue_id`) VALUES
-(1, 1),
-(1, 2);
 
 -- --------------------------------------------------------
 
@@ -184,10 +176,7 @@ INSERT INTO `issueupvote` (`user_id`, `issue_id`) VALUES
 (1, 7),
 (1, 8),
 (1, 9),
-(1, 10),
-(3, 1),
-(3, 2),
-(3, 3);
+(1, 10);
 
 -- --------------------------------------------------------
 
@@ -275,7 +264,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `user_email`, `fname`, `lname`, `mobile_number`, `district_id`) VALUES
 (1, '2015adheesh.juvekar@ves.ac.in', 'Adheesh', 'Juvekar', '9829182847', 1),
-(2, 'juvekaradheesh@gmail.com', 'Adheesh', 'Juvekar', '', NULL),
+(2, 'juvekaradheesh@gmail.com', 'Adheesh', 'Juvekar', '', 1),
 (3, 'marathimandalee@gmail.com', '', '', NULL, NULL),
 (4, 'learnthingsby@gmail.com', 'Learn', 'Things', '9757322862', 1),
 (5, 'learnthingsby1@gmail.com', '', '', NULL, NULL);
@@ -318,6 +307,7 @@ ALTER TABLE `issue`
 -- Indexes for table `issuebogusupvote`
 --
 ALTER TABLE `issuebogusupvote`
+  ADD PRIMARY KEY (`inst_id`,`issue_id`),
   ADD KEY `FOREIGN1` (`inst_id`),
   ADD KEY `FOREIGN2` (`issue_id`);
 
@@ -325,6 +315,7 @@ ALTER TABLE `issuebogusupvote`
 -- Indexes for table `issueduplicateupvote`
 --
 ALTER TABLE `issueduplicateupvote`
+  ADD PRIMARY KEY (`inst_id`,`issue_id`),
   ADD KEY `FOREIGN1` (`inst_id`),
   ADD KEY `FOREIGN2` (`issue_id`),
   ADD KEY `FOREIGN3` (`similar_to_issue`);
@@ -355,6 +346,7 @@ ALTER TABLE `solution`
 -- Indexes for table `solutionlikedetails`
 --
 ALTER TABLE `solutionlikedetails`
+  ADD PRIMARY KEY (`solution_id`,`user_id`),
   ADD KEY `FOREIGN1` (`solution_id`),
   ADD KEY `FOREIGN2` (`user_id`);
 

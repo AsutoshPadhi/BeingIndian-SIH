@@ -108,7 +108,7 @@
             }
             echo "<br>Provide Another Solution";
         ?>
-            <br>
+            <br><br><br>
             <input type="button" onclick="loadDoc('provideSolution.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-primary btn-sm btn-sm" value="Provide a Solution">
         <?php
         }

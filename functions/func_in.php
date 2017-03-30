@@ -37,7 +37,7 @@ define('LIKE_THRESHOLD',2);
 						if($row['solution_count']>0)
 
 						{
-							
+
 							return 2;
 						}
 						else
@@ -161,7 +161,7 @@ function NumberOfLikes($solutionid)
 		}
 		$sql = "SELECT * FROM solution WHERE inst_id = $instid AND issue_id = $issueid";
 		$result =$conn->query($sql);
-		if($result->num_rows == 1){
+		if($result->num_rows >= 1){
 			return 3;
 		}
 		return 0;
