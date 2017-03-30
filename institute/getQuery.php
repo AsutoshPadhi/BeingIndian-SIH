@@ -103,7 +103,7 @@
 					$flag=1;
 
 					#displays the problem list
-					require 'issue-list.php';
+					require 'issue-collapse.php';
 				
 				}
 				
