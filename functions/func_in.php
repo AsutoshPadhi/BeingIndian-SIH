@@ -19,21 +19,17 @@ define('LIKE_THRESHOLD',2);
 		{
 			if($row['bogus_count']>BOGUS_THRESHOLD)
 			{
-				
-				echo "Issue marked as BOGUS ISSUE by institutes";
 				return 5;
 			}
 			else
 			{
 				if($row['duplicate_count']>DUPLICATE_THRESHOLD)
 				{
-					echo "Issue marked as DUPLICATE ISSUE by institutes";
 					return 4;
 				}
 				else{
 					if($row['approved_solution']>LIKE_THRESHOLD)
 					{
-						echo "This issue has a Solution which is approved by upvoters";
 						return 3;
 					}
 					else
@@ -42,12 +38,10 @@ define('LIKE_THRESHOLD',2);
 
 						{
 							
-							echo "Voting Closed- Solutions Available";
 							return 2;
 						}
 						else
 						{
-							echo "Voting Closed- No solutions yet!";
 							return 1;
 						}
 					}
@@ -56,34 +50,18 @@ define('LIKE_THRESHOLD',2);
 		}
 		else
 		{
-			echo "You can vote this issue";
 			return 0;
 		}
 	}
 	function LikeCount($id,$email)
 	{
 		include '../functions/dataBaseConn.php';
-		 $userid = getUserId($email);
-		//$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id where issue_id='$id' ";
-		
-		  /*  $result = $conn->query($sql1);
-			if($result->num_rows!=0)
-			{
-	
-			while($row = $result->fetch_assoc())
-			{
-				 $val=$row['issue_id'];
-				 $val1=$row['solution_id'];
-			}
-		}*/
-		
+		$userid = getUserId($email);
 		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
-          $result1 = $conn->query($sql);
-		 
-		
-		  $sql2="Insert into solutionlikedetails (solution_id,user_id) values ('$id','$userid')";
-		  $result2=$conn->query($sql2);
-		  echo "YOU HAVE liked  FOR THIS ";
+		$result1 = $conn->query($sql);
+		$sql2="Insert into solutionlikedetails (solution_id,user_id) values ($id,$userid)";
+		$result2=$conn->query($sql2);
+		echo "YOU HAVE liked  FOR THIS ";
 	}
 
 	
@@ -110,15 +88,15 @@ define('LIKE_THRESHOLD',2);
 		
 		if($n>0)
 		{
-			echo "YOU HAVE ALREADY VOTED FOR THIS ";
+			//echo "YOU HAVE ALREADY VOTED FOR THIS ";
 			
-			//return 0;//already upvoted
+			return false;//already upvoted
 		}
 		else
 		{
-			//return 1;//not upvoted
+			return true;//not upvoted
 			
-			echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=$issueid&userid=$userid\",$issueid)'>Upvote</button>";
+			
 			
 		}
 		
