@@ -1,13 +1,22 @@
-	<?php
-		$issueid=$row['issue_id'];
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+
+
+
+
+	<?php		$issueid=$row['issue_id'];
+
 			?>
 			<br>
 
-			<button type="button" class="btn btn btn-primary btn-lg btn-block btn-social "  data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
-			<?php echo "<font style='font-size: 0.8em;'>#".$row["issue_id"]."</font><font style='font-size: 0.8em;'> ".$row["title"]."</font>"; ?>
+			<button type="button" class="btn btn btn-primary btn-lg btn-block btn-social" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
+			<?php echo "<font style='font-size: 1em;'>#".$row["issue_id"]."</font>".$row["title"]; ?>
 			</button>
 			<br>
-			<div id="demo<?php echo $i; ?>" class="<?php if($result->num_rows > 1)echo "collapse body";else echo "panel-collapse collapse-in body"; ?>" >
+			<div id="demo<?php echo $i; ?>" class="collapse body">
 				<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo "#".$row["issue_id"]; ?>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >(Click here to see the description)</a> 	
 			<br><hr>
@@ -23,133 +32,74 @@
 				echo "<b id='code'>STATUS :</b>";
 			?>
 			<?php 
-			    $status =  status($row['issue_id']);
-			    switch($status){
-			    	case 0:
-			    		echo "Voting is on";
-			    		break;
-		    		case 1:
-			    		echo "Voting Closed & Solutions are awaited";
-			    		break;
-			    	case 2:
-			    		echo "Solutions are available";
-			    		break;
-			    	case 3:
-			    		echo "Solution approved";
-			    		break;
-			    	case 4:
-			    		echo "Repoted Bogus";
-			    		break;
-			    	case 5:
-			    		echo "Repoted Duplicate";
-			    		break;
-			    }
-
+			    echo status($row['issue_id']);
 			?>
 			<hr>
 			<div id=<?php echo $row['issue_id'] ?> >
 			<?php
-			if(isset($_SESSION['$email']))
-			{
-				$login = true;
-				$email = $_SESSION['$email'];
-			}
-			else
-				$login = false;
 			if($login)
 			{
-					if(!userStatus($email,$row['issue_id']))
-					{
-						if(status($row['issue_id']) == 0)
-							echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=".$row['issue_id']."&userid=".getUserId($email)."\",$issueid)'>Upvote</button>";
-						else
-						{
-							echo "Voting is closed!";
-						}
-					}
-					else
-					{
-						echo "You've Successfully upvoted this issue";
-					}
-					
+					userStatus($email,$row['issue_id']);
+				
 			}
 			else
 			{?>
-			<?php 
-				if(status($row['issue_id']) == 0)
-				{
-			?>
-					<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
-			<?php
-				}
+				<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
+				
+				<?php
+				
 			}
 			
+				
 				?>
 				</div>
 				<?php
-				if($row['solution_count'] >0)
-				{ 
-					
+				if($row["solution_count"] >0)
+				{
 
-			?>
-			<hr>
+			?><hr>
 			
 			<div class='panel-body'>
 
 				<!-- Button trigger modal -->
 				<?php
-				echo"<b id='code'><u>Solutions</u> </b><br><hr>";
-				
-				$viewsoln="select * from solution where issue_id=".$row['issue_id']."";
-								$resultsoln=mysqli_query($conn,$viewsoln);
-								while($row=mysqli_fetch_array($resultsoln))
+				$sql1="select * from solution where issue_id=".$row['issue_id']."";
+								$result1=mysqli_query($con,$sql1);
+								while($row=mysqli_fetch_array($result1))
 								{?>
 								<a class='' id="video<?php echo $row['solution_id'];?>" data-toggle='modal' data-target='#solution<?php echo $row['solution_id'] ;?>'data-theVideo="<?php echo $row['solution_url'];?>">
-									<?php echo $row['solution_url'];?>
-								</a><br><hr>
+				<?php echo $row['solution_url'];
+				//$var=$row['solution_url'];?>
+				</a><br><hr>
 								<?php
-								?>
+					            ?>
 				
 				<!-- Modal -->
 				<div class='modal fade' id='solution<?php echo $row['solution_id'];?>' tabindex='-1' role='dialog' aria-labelledby='videoModal' aria-hidden='true'>
 					<div class='modal-dialog'>
 						<div class='modal-content'>
 							<div class='modal-header'>
-								<button type='button' id='close' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+								<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
 								<h4 class='modal-title' id='myModalLabel'>Solutions </h4>
 							</div>
 							<div class='modal-body'>
-							<?php
-								$solnurl = $row['solution_url'];
-								$code = substr($solnurl, (strpos($solnurl, "=") + 1), (strlen($solnurl) - 1) );
-							?>
-							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/<?php echo $code; ?>" frameborder="0" allowfullscreen></iframe>
-							<br>
+					          <iframe width="560" height="315" src="<?php echo $row['solution_url']?>" frameborder="0" allowfullscreen></iframe>				<br>
 							<br>
 							<?php
 							if($login)
 							{
 								$userid=getUserId($email);
-								$issueupvote="select * from issueupvote where user_id=$userid and issue_id=$issueid ";
-								
-								$resultupvote=mysqli_query($conn,$issueupvote);
-								$solnlikedetails = "SELECT * FROM solutionlikedetails WHERE user_id = $userid AND solution_id = ".$row['solution_id']."";
-								$resultsolnlikedetails = $conn->query($solnlikedetails);
-								if($resultupvote->num_rows!=0)
+								$sql="select * from issueupvote where user_id=$userid and issue_id=$issueid ";
+								$result=mysqli_query($con,$sql);
+								if($result==TRUE)
 								{
-									
-									if($resultsolnlikedetails->num_rows != 1){
-									
 								?>
-									<div id="like">
-									<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php echo $email; ?>","like")' class="btn btn-primary btn-sm">
-										<span class="glyphicon glyphicon-thumbs-up"></span> 
-									</a></div>
-								<?php
-									}
-									else{
-										echo "You've already liked this solution!";
-									}
+							<div id="like">
+							
+							 <a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php $email ?>","like")' class="btn btn-primary btn-sm">
+          <span class="glyphicon glyphicon-thumbs-up"></span> 
+        </a></div>
+							<?php
 								}
 								else
 								{
@@ -159,16 +109,25 @@
 							}
 							else
 							{
-								?> 
-								<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#confirmation' data-dismiss='modal' >
-									<span class="glyphicon glyphicon-thumbs-up"></span> 
-								</a></div>
+								?> <a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#confirmation' data-dismiss='modal' >
+          <span class="glyphicon glyphicon-thumbs-up"></span> 
+        </a></div>
 							<?php	
 							}
 							
-							?>
 							
-
+							
+							?>
+							<script>
+    var youtubeFunc ='';
+    var outerDiv = document.getElementById("solution<?php echo $row['solution_id'];?>");
+    var youtubeIframe = outerDiv.getElementsByTagName("iframe")[0].contentWindow;
+    $('#solution<?php echo $row['solution_id'];?>').on('hidden.bs.modal', function (e) {
+    youtubeFunc = 'pauseVideo';
+    youtubeIframe.postMessage('{"event":"command","func":"' + youtubeFunc + '","args":""}', '*');
+    });
+    
+</script>
 							
 								
 							</div>
@@ -194,8 +153,8 @@
 					<div class="modal-body">
 						<?php 
 						
-							$issue="Select * from issue where issue_id='$id'";
-							$result3=mysqli_query($conn,$issue);
+							$sql3="Select * from issue where issue_id='$id'";
+							$result3=mysqli_query($con,$sql3);
 							$no_of_results=mysqli_num_rows($result3);
 							$row= mysqli_fetch_array($result3);
 							echo "Code: #".$id;
@@ -226,3 +185,7 @@
 			</div>
 		</div>
 	</div>
+			
+</body>
+</html>			
+			

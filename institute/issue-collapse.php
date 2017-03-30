@@ -107,8 +107,8 @@
 				<br>
                <a class='' id="video<?php echo $arr['solution_id'];?>" data-toggle='modal' data-target='#solution<?php echo $arr['solution_id'] ;?>'data-theVideo="<?php echo $arr['solution_url'];?>">
 									<?php echo $arr['solution_url'];?>
-								</a><br><hr>
-                <br>
+								</a><hr>
+                
 				<div class='modal fade' id='solution<?php echo $arr['solution_id'];?>' tabindex='-1' role='dialog' aria-labelledby='videoModal' aria-hidden='true'>
 					<div class='modal-dialog'>
 						<div class='modal-content'>
@@ -122,7 +122,7 @@
 								$code = substr($solnurl, (strpos($solnurl, "=") + 1), (strlen($solnurl) - 1) );
 							?>
 							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/<?php echo $code; ?>" frameborder="0" allowfullscreen></iframe>
-							<br>
+							
 								</div>
 							</div>
 						<!-- /.modal-content -->
@@ -130,7 +130,7 @@
 					<!-- /.modal-dialog -->
 					</div>
         <?php   }
-            echo "<br>Provide Another Solution";
+            echo "Provide Another Solution";
         ?>
             <br>
 			<br>
