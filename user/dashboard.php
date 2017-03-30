@@ -149,8 +149,6 @@
                         <li id="dash">
                             <?php
                                 #results according to profile
-                                $sql = "SELECT * FROM issue WHERE 1";
-                                //$url = "issue-display.php?sql=".$sql."";
                                 $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
                                 $result = $conn->query($checkProfile);
                                 $row = $result->fetch_assoc();
@@ -163,7 +161,7 @@
                                 }
                                 else
                                 {
-                                    //$sql = "SELECT * FROM issue WHERE 1";
+                                    $sql = "SELECT * FROM issue WHERE 1";
                                 }
                                 $url = "issue-display.php?sql=".$sql."";
                             ?>
