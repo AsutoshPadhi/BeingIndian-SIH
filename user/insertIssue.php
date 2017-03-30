@@ -4,9 +4,7 @@
 
 	session_start();
 	$state = $_GET['state'];
-	echo "state = ".$state;
 	$district = $_GET['district'];
-	echo "district = ".$district;
 	$locality = $_GET['locality'];
 	$pin = $_GET['pin'];
 	$title = $_GET['issueTitle'];
@@ -32,9 +30,7 @@
 	$dist = $conn->query($get_district_id);
 	$get_dist = $dist->fetch_assoc();
 	$district_id = $get_dist['district_id'];
-	echo "".$district_id;
-
-
+	
 	$get_last_issue_id = "SELECT issue_id FROM issue";
 
 	#to get the last issue_id
