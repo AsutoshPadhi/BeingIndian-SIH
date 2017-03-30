@@ -57,11 +57,11 @@ define('LIKE_THRESHOLD',2);
 	{
 		include '../functions/dataBaseConn.php';
 		$userid = getUserId($email);
-		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
+		$sql="update solution set like_count=like_count+1 where solution_id='$id'";
 		$result1 = $conn->query($sql);
 		$sql2="Insert into solutionlikedetails (solution_id,user_id) values ($id,$userid)";
 		$result2=$conn->query($sql2);
-		echo "YOU HAVE liked  FOR THIS ";
+		echo "You have successfully liked this solution!";
 	}
 
 	

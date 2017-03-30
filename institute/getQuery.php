@@ -16,6 +16,7 @@
 
 		$str = $_GET['issue'];
 		session_start();
+		$inst_id = $_SSESSION['$inst_id'];
 		$cemail = $_SESSION['$cemail'];
 		
 		$get_district_id = "SELECT *FROM institute WHERE inst_email = '".$cemail."'";
@@ -122,7 +123,7 @@
 			while($i<$result->num_rows)
 			{
 				$row = $result->fetch_assoc();
-				require 'issue-list.php';
+				require 'issue-collapse.php';
 				$i++;
 			}
 		}
