@@ -3,8 +3,8 @@
 			?>
 			<br>
 
-			<button type="button" class="btn btn btn-primary btn-lg btn-block btn-social" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
-			<?php echo "<font style='font-size: 1em;'>#".$row["issue_id"]."</font>".$row["title"]; ?>
+			<button type="button" class="btn btn btn-primary btn-lg btn-block btn-social "  data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
+			<?php echo "<font style='font-size: 0.8em;'>#".$row["issue_id"]."</font><font style='font-size: 0.8em;'> ".$row["title"]."</font>"; ?>
 			</button>
 			<br>
 			<div id="demo<?php echo $i; ?>" class="<?php if($result->num_rows > 1)echo "collapse body";else echo "panel-collapse collapse-in body"; ?>" >
@@ -88,14 +88,18 @@
 				</div>
 				<?php
 				if($row['solution_count'] >0)
-				{
+				{ 
+					
 
-			?><hr>
+			?>
+			<hr>
 			
 			<div class='panel-body'>
 
 				<!-- Button trigger modal -->
 				<?php
+				echo"<b id='code'><u>Solutions</u> </b><br><hr>";
+				
 				$viewsoln="select * from solution where issue_id=".$row['issue_id']."";
 								$resultsoln=mysqli_query($conn,$viewsoln);
 								while($row=mysqli_fetch_array($resultsoln))
@@ -127,11 +131,13 @@
 							{
 								$userid=getUserId($email);
 								$issueupvote="select * from issueupvote where user_id=$userid and issue_id=$issueid ";
+								
 								$resultupvote=mysqli_query($conn,$issueupvote);
 								$solnlikedetails = "SELECT * FROM solutionlikedetails WHERE user_id = $userid AND solution_id = ".$row['solution_id']."";
 								$resultsolnlikedetails = $conn->query($solnlikedetails);
-								if($resultupvote)
+								if($resultupvote->num_rows!=0)
 								{
+									
 									if($resultsolnlikedetails->num_rows != 1){
 									
 								?>
