@@ -79,6 +79,8 @@
 	if ($conn->query($sql) === TRUE)
 	{
 	    echo "New record created successfully";
+	    $solutionLikeAfterAdd = "INSERT INTO issueupvote(user_id,issue_id) VALUES('$user_id','$issue_id')";
+	    $result = $conn->query($solutionLikeAfterAdd);
 	}
 	else
 	{
