@@ -20,6 +20,7 @@
 				else
 				{
 					$_SESSION['$cemail']=$cemail;
+					$_SESSION['toOpen']="toOpen";
 					header("Location: dashboard.php");
 				}
         }
