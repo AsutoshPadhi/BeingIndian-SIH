@@ -16,7 +16,7 @@
 
 		$str = $_GET['issue'];
 		session_start();
-		$inst_id = $_SSESSION['$inst_id'];
+		$inst_id = $_SESSION['$inst_id'];
 		$cemail = $_SESSION['$cemail'];
 		
 		$get_district_id = "SELECT *FROM institute WHERE inst_email = '".$cemail."'";
@@ -38,6 +38,17 @@
 		$no_of_pages= ceil($no_of_results/$results_per_page);
 
 		//determine the number of results in one page
+		$results_per_page=5;
+		while($row= mysqli_fetch_array($result))
+		{
+			$row=$row['issue_id'].''.$row['title'].''.'<br>';
+		}
+
+		//dtermine the number of pages in a page
+		$no_of_pages= ceil($no_of_results/$results_per_page);
+
+		//determine the number of results in one page
+
 		if(!isset($_GET['page']))
 		{
 			$page=1;
@@ -46,8 +57,8 @@
 		{
 			$page=$_GET['page'];
 		}
-		$curr_page = $page;
-		$start_limit = ($page-1) * $results_per_page;
+
+		$start_limit=($page-1)*$results_per_page;
 
 		if($page>1)
 		{
@@ -72,7 +83,7 @@
 
 
 		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
-		$result=$conn->query($sql2);
+		$result=mysqli_query($conn,$sql2);
 
 		
 		if(($result->num_rows>0) && $str!="")
@@ -83,14 +94,10 @@
 			while($i<$result->num_rows)
 			{
 				$row = $result->fetch_assoc();
-				//echo "<a href='#'>".$row['description']."</a>";
 				$issue_word_count =  array_count_values(str_word_count($row['title'], 1));
-				//print_r( array_count_values(str_word_count($row['description'], 1)) );
 				
 				$percentage = $cs->similarity($query_word_count,$issue_word_count);
-				//var_dump($percentage);
 				
-			
 				if($percentage>0.3)
 				{
 					$flag=1;
@@ -131,6 +138,8 @@
 		{
 			echo "No results";
 		}
+		
+		if($no_of_pages > 1){
 		?>
 		<div class="container">
 			<ul class="pagination">
@@ -149,5 +158,6 @@
 			</ul>
 		</div>
 		<?php
+		}
 	}
 ?>
