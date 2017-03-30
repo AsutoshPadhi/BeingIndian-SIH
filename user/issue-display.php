@@ -178,30 +178,88 @@
 
 			?><hr>
 			
-			<div class='panel-body panel-default '>
+			
+			<div class='panel-body'>
+
 				<!-- Button trigger modal -->
-				<button class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
-				See the solution
-				</button>
+				<?php
+				$sql1="select * from solution where issue_id=".$row['issue_id']."";
+								$result3=mysqli_query($con,$sql1);
+								while($row=mysqli_fetch_array($result3))
+								{?>
+								<a class='' id="video<?php echo $row['solution_id'];?>" data-toggle='modal' data-target='#solution<?php echo $row['solution_id'] ;?>'data-theVideo="<?php echo $row['solution_url'];?>">
+				<?php echo $row['solution_url'];?>
+				</a><br><hr>
+								<?php
+								?>
+				
 				<!-- Modal -->
-				<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+				<div class='modal fade' id='solution<?php echo $row['solution_id'];?>' tabindex='-1' role='dialog' aria-labelledby='videoModal' aria-hidden='true'>
 					<div class='modal-dialog'>
 						<div class='modal-content'>
 							<div class='modal-header'>
-								<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
-								<h4 class='modal-title' id='myModalLabel'> <? echo $row["solution_count"]; ?>Solutions are available</h4>
+								<button type='button' id='close' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+								<h4 class='modal-title' id='myModalLabel'>Solutions </h4>
 							</div>
 							<div class='modal-body'>
-								<?php
-									//} 
-								$sql1="select solution_url from solution where issue_id=".$row['issue_id']."";
+							<!--<video src ="<?php echo $row['solution_url'];?>"></video>-->
+							<iframe id="video" width="560" height="315" src="<?php echo $row['solution_url'];?>" frameborder="0" allowfullscreen></iframe>
+							<br>
+							<br>
+							<?php
+							if($login)
+							{
+								$issueid=$row['issue_id'];
+								$solutionid=$row['solution_id'];
+								$userid=getUserId($email);
+								$sql="select * from issueupvote where user_id=$userid and issue_id=$issueid ";
+								$result=mysqli_query($con,$sql);
+								$sql1="SELECT * from solutionlikedetails where userid=$userid and solution_id=$solutionid";
 								$result1=mysqli_query($con,$sql1);
-								while($row=mysqli_fetch_array($result1))
+								if($result1==TRUE)
 								{
-								echo "<a href=".$row["solution_url"].">".$row["solution_url"]."</a> </br>";
+									
+								
+									if($result==TRUE)
+									{
+									?>
+								<div id="like">
+								
+								 <a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php echo $email ;?>","like")' class="btn btn-primary btn-sm">
+			  <span class="glyphicon glyphicon-thumbs-up"></span> 
+			</a></div>
+								<?php
+									}
+									
+								
+									
+									
+									else
+									{
+										echo "Not upvoted this problem";
+									}
 								}
-				}
-								?>
+								else
+								{
+									echo "Already liked";
+								}
+								
+							}
+							else
+							{
+								?> <a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#confirmation' data-dismiss='modal' >
+          <span class="glyphicon glyphicon-thumbs-up"></span> 
+        </a></div>
+							<?php	
+							}
+							
+							
+							
+							?>
+							
+
+							
+								
 							</div>
 						<!-- /.modal-content -->
 						</div>
@@ -209,7 +267,6 @@
 					</div>
 				<!-- /.modal -->
 				</div>
-			</div>
 			<div class="modal fade" id='myModal<?php echo $id; ?>' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 			aria-hidden="true">
 			<div class="modal-dialog modal-md " role="document">
@@ -258,6 +315,9 @@
 
 			
 	<?php	}
+				}
+				
+		}
 		else
 		{
 		
