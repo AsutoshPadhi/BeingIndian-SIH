@@ -1,17 +1,5 @@
-<!doctype html>
-<html>
-<head>
-</head>
-<body>
-
-
-
-
 	<?php
-	require('../functions/dataBaseConn.php');
-
-	$issueid=$row['issue_id'];
-
+		$issueid=$row['issue_id'];
 			?>
 			<br>
 
@@ -19,7 +7,7 @@
 			<?php echo "<font style='font-size: 1em;'>#".$row["issue_id"]."</font>".$row["title"]; ?>
 			</button>
 			<br>
-			<div id="demo<?php echo $i; ?>" class="collapse body">
+			<div id="demo<?php echo $i; ?>" class="<?php if($result->num_rows > 1)echo "collapse body";else echo "panel-collapse collapse-in body"; ?>" >
 				<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo "#".$row["issue_id"]; ?>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >(Click here to see the description)</a> 	
 			<br><hr>
@@ -99,7 +87,7 @@
 				?>
 				</div>
 				<?php
-				if($row["solution_count"] >0)
+				if($row['solution_count'] >0)
 				{
 
 			?><hr>
@@ -108,13 +96,13 @@
 
 				<!-- Button trigger modal -->
 				<?php
-				$sql1="select * from solution where issue_id=".$row['issue_id']."";
-								$result1=mysqli_query($con,$sql1);
-								while($row=mysqli_fetch_array($result1))
+				$viewsoln="select * from solution where issue_id=".$row['issue_id']."";
+								$resultsoln=mysqli_query($conn,$viewsoln);
+								while($row=mysqli_fetch_array($resultsoln))
 								{?>
 								<a class='' id="video<?php echo $row['solution_id'];?>" data-toggle='modal' data-target='#solution<?php echo $row['solution_id'] ;?>'data-theVideo="<?php echo $row['solution_url'];?>">
-				<?php echo $row['solution_url'];?>
-				</a><br><hr>
+									<?php echo $row['solution_url'];?>
+								</a><br><hr>
 								<?php
 								?>
 				
@@ -127,25 +115,35 @@
 								<h4 class='modal-title' id='myModalLabel'>Solutions </h4>
 							</div>
 							<div class='modal-body'>
-							<!--<video src ="<?php echo $row['solution_url'];?>"></video>-->
-							<iframe id="video" width="560" height="315" src="<?php echo $row['solution_url'];?>" frameborder="0" allowfullscreen></iframe>
+							<?php
+								$solnurl = $row['solution_url'];
+								$code = substr($solnurl, (strpos($solnurl, "=") + 1), (strlen($solnurl) - 1) );
+							?>
+							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/<?php echo $code; ?>" frameborder="0" allowfullscreen></iframe>
 							<br>
 							<br>
 							<?php
 							if($login)
 							{
 								$userid=getUserId($email);
-								$sql="select * from issueupvote where user_id=$userid and issue_id=$issueid ";
-								$result=mysqli_query($con,$sql);
-								if($result==TRUE)
+								$issueupvote="select * from issueupvote where user_id=$userid and issue_id=$issueid ";
+								$resultupvote=mysqli_query($conn,$issueupvote);
+								$solnlikedetails = "SELECT * FROM solutionlikedetails WHERE user_id = $userid AND solution_id = ".$row['solution_id']."";
+								$resultsolnlikedetails = $conn->query($solnlikedetails);
+								if($resultupvote)
 								{
+									if($resultsolnlikedetails->num_rows != 1){
+									
 								?>
-							<div id="like">
-							
-							 <a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php $email ?>","like")' class="btn btn-primary btn-sm">
-          <span class="glyphicon glyphicon-thumbs-up"></span> 
-        </a></div>
-							<?php
+									<div id="like">
+									<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php echo $email; ?>","like")' class="btn btn-primary btn-sm">
+										<span class="glyphicon glyphicon-thumbs-up"></span> 
+									</a></div>
+								<?php
+									}
+									else{
+										echo "You've already liked this solution!";
+									}
 								}
 								else
 								{
@@ -155,13 +153,12 @@
 							}
 							else
 							{
-								?> <a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#confirmation' data-dismiss='modal' >
-          <span class="glyphicon glyphicon-thumbs-up"></span> 
-        </a></div>
+								?> 
+								<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#confirmation' data-dismiss='modal' >
+									<span class="glyphicon glyphicon-thumbs-up"></span> 
+								</a></div>
 							<?php	
 							}
-							
-							
 							
 							?>
 							
@@ -191,8 +188,8 @@
 					<div class="modal-body">
 						<?php 
 						
-							$sql3="Select * from issue where issue_id='$id'";
-							$result3=mysqli_query($conn,$sql3);
+							$issue="Select * from issue where issue_id='$id'";
+							$result3=mysqli_query($conn,$issue);
 							$no_of_results=mysqli_num_rows($result3);
 							$row= mysqli_fetch_array($result3);
 							echo "Code: #".$id;
@@ -223,7 +220,3 @@
 			</div>
 		</div>
 	</div>
-			
-</body>
-</html>			
-			
