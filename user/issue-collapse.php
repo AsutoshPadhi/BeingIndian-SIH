@@ -32,67 +32,25 @@
 				echo "<b id='code'>STATUS :</b>";
 			?>
 			<?php 
-			    $status =  status($row['issue_id']);
-			    switch($status){
-			    	case 0:
-			    		echo "Voting is on";
-			    		break;
-		    		case 1:
-			    		echo "Voting Closed & Solutions are awaited";
-			    		break;
-			    	case 2:
-			    		echo "Solutions are available";
-			    		break;
-			    	case 3:
-			    		echo "Solution approved";
-			    		break;
-			    	case 4:
-			    		echo "Repoted Bogus";
-			    		break;
-			    	case 5:
-			    		echo "Repoted Duplicate";
-			    		break;
-			    }
-
+			    echo status($row['issue_id']);
 			?>
 			<hr>
 			<div id=<?php echo $row['issue_id'] ?> >
 			<?php
-			if(isset($_SESSION['$email']))
-			{
-				$login = true;
-				$email = $_SESSION['$email'];
-			}
-			else
-				$login = false;
 			if($login)
 			{
-					if(!userStatus($email,$row['issue_id']))
-					{
-						if(status($row['issue_id']) == 0)
-							echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=".$row['issue_id']."&userid=".getUserId($email)."\",$issueid)'>Upvote</button>";
-						else
-						{
-							echo "Voting is closed!";
-						}
-					}
-					else
-					{
-						echo "You've Successfully upvoted this issue";
-					}
-					
+					userStatus($email,$row['issue_id']);
+				
 			}
 			else
 			{?>
-			<?php 
-				if(status($row['issue_id']) == 0)
-				{
-			?>
-					<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
-			<?php
-				}
+				<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
+				
+				<?php
+				
 			}
 			
+				
 				?>
 				</div>
 				<?php
@@ -110,23 +68,22 @@
 								while($row=mysqli_fetch_array($result1))
 								{?>
 								<a class='' id="video<?php echo $row['solution_id'];?>" data-toggle='modal' data-target='#solution<?php echo $row['solution_id'] ;?>'data-theVideo="<?php echo $row['solution_url'];?>">
-				<?php echo $row['solution_url'];?>
+				<?php echo $row['solution_url'];
+				//$var=$row['solution_url'];?>
 				</a><br><hr>
 								<?php
-								?>
+					            ?>
 				
 				<!-- Modal -->
 				<div class='modal fade' id='solution<?php echo $row['solution_id'];?>' tabindex='-1' role='dialog' aria-labelledby='videoModal' aria-hidden='true'>
 					<div class='modal-dialog'>
 						<div class='modal-content'>
 							<div class='modal-header'>
-								<button type='button' id='close' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+								<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
 								<h4 class='modal-title' id='myModalLabel'>Solutions </h4>
 							</div>
 							<div class='modal-body'>
-							<!--<video src ="<?php echo $row['solution_url'];?>"></video>-->
-							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/JGwWNGJdvx8/embed/<videoid>?rel=0&enablejsapi=1" frameborder="0" allowfullscreen></iframe>
-							<br>
+					          <iframe width="560" height="315" src="<?php echo $row['solution_url']?>" frameborder="0" allowfullscreen></iframe>				<br>
 							<br>
 							<?php
 							if($login)
@@ -139,7 +96,7 @@
 								?>
 							<div id="like">
 							
-							 <a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php $email ?>",like)' class="btn btn-primary btn-sm">
+							 <a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php $email ?>","like")' class="btn btn-primary btn-sm">
           <span class="glyphicon glyphicon-thumbs-up"></span> 
         </a></div>
 							<?php
@@ -161,8 +118,16 @@
 							
 							
 							?>
-							
-
+							<script>
+    var youtubeFunc ='';
+    var outerDiv = document.getElementById("solution<?php echo $row['solution_id'];?>");
+    var youtubeIframe = outerDiv.getElementsByTagName("iframe")[0].contentWindow;
+    $('#solution<?php echo $row['solution_id'];?>').on('hidden.bs.modal', function (e) {
+    youtubeFunc = 'pauseVideo';
+    youtubeIframe.postMessage('{"event":"command","func":"' + youtubeFunc + '","args":""}', '*');
+    });
+    
+</script>
 							
 								
 							</div>
@@ -189,7 +154,7 @@
 						<?php 
 						
 							$sql3="Select * from issue where issue_id='$id'";
-							$result3=mysqli_query($conn,$sql3);
+							$result3=mysqli_query($con,$sql3);
 							$no_of_results=mysqli_num_rows($result3);
 							$row= mysqli_fetch_array($result3);
 							echo "Code: #".$id;

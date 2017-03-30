@@ -85,8 +85,6 @@
 			$next=$no_of_pages;
 
 		}
-
-
 		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
 		$result=mysqli_query($con,$sql2);
 		
@@ -131,10 +129,10 @@
 			    		echo "Solution approved";
 			    		break;
 			    	case 4:
-			    		echo "Repoted Bogus";
+			    		echo "Reported Bogus";
 			    		break;
 			    	case 5:
-			    		echo "Repoted Duplicate";
+			    		echo "Reported Duplicate";
 			    		break;
 			    }
 			?>
@@ -143,10 +141,13 @@
 			<?php
 			if($login)
 			{
-					if(!userStatus($email,$row['issue_id']))
+					if(userStatus($email,$row['issue_id'])==true)
 					{
-						if(status($row['issue_id']) == 0)
-							echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=".$row['issue_id']."&userid=".getUserId($email)."\",$issueid)'>Upvote</button>";
+						if(status($row['issue_id']) == 0){
+							$issueid= $row['issue_id'];
+							
+							echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=".$issueid."&userid=".getUserId($email)."\",$issueid)'>Upvote</button>";
+						}
 						else
 						{
 							echo "Voting is closed!";
@@ -154,6 +155,7 @@
 					}
 					else
 					{
+						
 						echo "You've Successfully upvoted this issue";
 					}
 					
@@ -173,6 +175,7 @@
 				?>
 				</div>
 				<?php
+				echo $row["solution_count"];
 				if($row["solution_count"] >0)
 				{
 
