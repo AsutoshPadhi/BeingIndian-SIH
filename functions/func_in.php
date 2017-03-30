@@ -90,11 +90,11 @@ define('LIKE_THRESHOLD',2);
 		{
 			//echo "YOU HAVE ALREADY VOTED FOR THIS ";
 			
-			return false;//already upvoted
+			return true;//already upvoted
 		}
 		else
 		{
-			return true;//not upvoted
+			return false;//not upvoted
 			
 			
 			
