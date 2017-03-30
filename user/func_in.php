@@ -19,29 +19,35 @@ define('LIKE_THRESHOLD',2);
 		{
 			if($row['bogus_count']>BOGUS_THRESHOLD)
 			{
+				
+				echo "Issue marked as BOGUS ISSUE by institutes";
 				return 5;
 			}
 			else
 			{
 				if($row['duplicate_count']>DUPLICATE_THRESHOLD)
 				{
+					echo "Issue marked as DUPLICATE ISSUE by institutes";
 					return 4;
 				}
 				else{
 					if($row['approved_solution']>LIKE_THRESHOLD)
 					{
+						echo "This issue has a Solution which is approved by upvoters";
 						return 3;
 					}
 					else
 					{
 						if($row['solution_count']>0)
-
+						
 						{
 							
+							echo "Voting Closed- Solutions Available";
 							return 2;
 						}
 						else
 						{
+							echo "Voting Closed- No solutions yet!";
 							return 1;
 						}
 					}
@@ -50,6 +56,7 @@ define('LIKE_THRESHOLD',2);
 		}
 		else
 		{
+			echo "You can vote this issue";
 			return 0;
 		}
 	}
@@ -57,14 +64,14 @@ define('LIKE_THRESHOLD',2);
 	{
 		include '../functions/dataBaseConn.php';
 		$userid = getUserId($email);
+		echo $userid;
+		echo "apple";
 		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
 		$result1 = $conn->query($sql);
-		$sql2="Insert into solutionlikedetails (solution_id,user_id) values ($id,$userid)";
+		$sql2="INSERT INTO solutionlikedetails(solution_id,user_id)VALUES($id,$userid)";
 		$result2=$conn->query($sql2);
 		echo "YOU HAVE liked  FOR THIS ";
 	}
-
-	
 
 	function getUserId($email){
 		include '../functions/dataBaseConn.php';
@@ -88,15 +95,15 @@ define('LIKE_THRESHOLD',2);
 		
 		if($n>0)
 		{
-			//echo "YOU HAVE ALREADY VOTED FOR THIS ";
+			echo "YOU HAVE ALREADY VOTED FOR THIS ";
 			
-			return true;//already upvoted
+			//return 0;//already upvoted
 		}
 		else
 		{
-			return false;//not upvoted
+			//return 1;//not upvoted
 			
-			
+			echo "<button style='margin-left: 15px' class='btn btn-primary' onclick='javascript:loadDoc(\"dip.php?issueid=$issueid&userid=$userid\",$issueid)'>Upvote</button>";
 			
 		}
 		
@@ -127,14 +134,7 @@ define('LIKE_THRESHOLD',2);
         echo"<b> POSTED BY : </b>". $row['fname']. "  ".$row['lname'];
         
     }
-function NumberOfLikes($solutionid)
-{
-		include '../functions/dataBaseConn.php';
-	    $sql = "SELECT * FROM solution WHERE solution_id = '$solutionid' ";
-        $result = $conn->query($sql);
-        echo $row['like_count'];
-		
-}
+
 	function getInstId($cemail){
         require('dataBaseConn.php');
         $sql = "SELECT inst_id FROM institute WHERE inst_email = '$cemail'";
@@ -144,9 +144,9 @@ function NumberOfLikes($solutionid)
         }
         return $instid;
     }
-	function instStatus($cemail, $issueid)
+	function collegeStatus($cemail, $issueids)
 	{
-		// STATUS : 0-> NONE, 1-> Bogus, 2-> Duplicate, 3-> Solved
+		// STATUS :- 0 - NONE, 1- Bogus, 2- Duplicate, 3- Solved
 		include '../functions/dataBaseConn.php';
 		$instid = getInstId($cemail);
 		$sql = "SELECT * FROM issuebogusupvote WHERE inst_id = $instid AND issue_id = $issueid";
@@ -167,34 +167,7 @@ function NumberOfLikes($solutionid)
 		return 0;
 	}
 
-	function provideSolution($inst_id,$issue_id,$url){
-		include '../functions/dataBaseConn.php';
-		$sql = "SELECT * FROM solution";
-		$result = $conn->query($sql);
-		$count = $result->num_rows + 1;
-		$sql = "INSERT INTO solution(solution_id,issue_id,inst_id,solution_url,like_count) values($count,$issue_id,$inst_id,'$url',0)";
-        if($result = $conn->query($sql))
-			return true;
-		else
-			return false;
-	}
 
-	function reportBogus($inst_id,$issue_id){
-		include '../functions/dataBaseConn.php';
-		$sql = "INSERT INTO issuebogusupvote(issue_id,inst_id) values($issue_id,$inst_id)";
-		if($result = $conn->query($sql))
-			return true;
-		else
-			return false;
-	}
-	
-	function reportDuplicate($inst_id,$issue_id,$similar_to_issue){
-		include '../functions/dataBaseConn.php';
-		$sql = "INSERT INTO issueduplicateupvote(issue_id,inst_id,similar_to_issue) values($issue_id,$inst_id,$similar_to_issue)";
-        if($result = $conn->query($sql))
-			return true;
-		else
-			return false;
-	}
+
 
 ?>
