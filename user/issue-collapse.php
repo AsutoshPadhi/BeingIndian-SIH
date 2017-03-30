@@ -7,7 +7,10 @@
 
 
 
-	<?php		$issueid=$row['issue_id'];
+	<?php
+	require('../functions/dataBaseConn.php');
+
+	$issueid=$row['issue_id'];
 
 			?>
 			<br>
@@ -125,7 +128,7 @@
 							</div>
 							<div class='modal-body'>
 							<!--<video src ="<?php echo $row['solution_url'];?>"></video>-->
-							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/JGwWNGJdvx8/embed/<videoid>?rel=0&enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+							<iframe id="video" width="560" height="315" src="<?php echo $row['solution_url'];?>" frameborder="0" allowfullscreen></iframe>
 							<br>
 							<br>
 							<?php
@@ -139,7 +142,7 @@
 								?>
 							<div id="like">
 							
-							 <a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php $email ?>",like)' class="btn btn-primary btn-sm">
+							 <a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php $email ?>","like")' class="btn btn-primary btn-sm">
           <span class="glyphicon glyphicon-thumbs-up"></span> 
         </a></div>
 							<?php
