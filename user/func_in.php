@@ -65,6 +65,7 @@ define('LIKE_THRESHOLD',2);
 		include '../functions/dataBaseConn.php';
 		$userid = getUserId($email);
 		echo $userid;
+		echo "apple";
 		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
 		$result1 = $conn->query($sql);
 		$sql2="INSERT INTO solutionlikedetails(solution_id,user_id)VALUES($id,$userid)";
