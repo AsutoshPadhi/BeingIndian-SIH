@@ -6,7 +6,8 @@
 		require '../functions/func_in.php';
 		include '../functions/dataBaseConn.php';
 		//$issueid=a();
-
+echo $solutionid."".$email;
+		
 		LikeCount($solutionid,$email);
 		
 		

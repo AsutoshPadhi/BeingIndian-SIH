@@ -55,12 +55,16 @@ define('LIKE_THRESHOLD',2);
 	function LikeCount($id,$email)
 	{
 		include '../functions/dataBaseConn.php';
-		$userid = getUserId($email);
-		$sql="update solution set like_count=like_count+1 where solution_id='$id'";
-		$result1 = $conn->query($sql);
-		$sql2="Insert into solutionlikedetails (solution_id,user_id) values ($id,$userid)";
-		$result2=$conn->query($sql2);
-		echo "You have successfully liked this solution!";
+		 $userid = getUserId($email);
+		echo $id."".$userid;
+		
+		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
+          $result1 = $conn->query($sql);
+		 
+		
+		  $sql2="Insert into solutionlikedetails(solution_id,user_id) values($id,$userid)";
+		  $result2=$conn->query($sql2);
+		  echo "YOU HAVE liked  FOR THIS ";
 	}
 
 	
@@ -78,6 +82,8 @@ define('LIKE_THRESHOLD',2);
 		
 		include '../functions/dataBaseConn.php';
 		$userid = getUserId($email);
+					//echo $issueid;
+
 		//$issueid=getIssueId($issueid);
 		$sql="select * from issueupvote where user_id='$userid' And issue_id='$issueid ' ";//user session
 		$result = $conn->query($sql);
@@ -88,12 +94,11 @@ define('LIKE_THRESHOLD',2);
 		if($n>0)
 		{
 			//echo "YOU HAVE ALREADY VOTED FOR THIS ";
-			
-			return true;//already upvoted
+			return false;//already upvoted
 		}
 		else
 		{
-			return false;//not upvoted
+			return true;//not upvoted
 			
 			
 			
