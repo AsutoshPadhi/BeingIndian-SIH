@@ -23,9 +23,14 @@
         function search()
         {
             var issue =(document.getElementById('new2').value);
+            //alert(issue);
             if(isNaN(issue))        //Return false if an input is a number
             {
-                loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field');                
+                loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field');
+            }
+            else if(issue.length == 0)
+            {
+                loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field');
             }
             else
             {
