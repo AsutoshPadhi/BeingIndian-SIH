@@ -42,13 +42,13 @@
 		<?php
 		#for district
 		$district_id = $row['district_id'];
-		$sql = "SELECT * FROM district where district_id = '".$district_id."'";
+		$sql = "SELECT * FROM districts where district_id = '".$district_id."'";
 		$result = $conn->query($sql);
 		$row2 = $result->fetch_assoc();
 		$district = $row2['district_name'];
 		$state_id = $row2['state_id'];
 		#for state
-		$sql = "SELECT * FROM state where state_id = '".$state_id."'";
+		$sql = "SELECT * FROM states where state_id = '".$state_id."'";
 		$result = $conn->query($sql);
 		$row3 = $result->fetch_assoc();
 		$state = $row3['state_name'];
