@@ -14,15 +14,24 @@
 
     <body>
         <div class="form-group col-md-8">
-            <input id="new2" type="text" name="issue3" class="form-control" placeholder="Keywords">
+            <input id="new2" type="text" name="issue3" class="form-control" placeholder="Search by issue Number or issue Title">
         </div>
-        <!-- <input type="submit" onClick="var issue =(document.getElementById('new2').value);
-                                        var sql='SELECT * FROM issue WHERE title LIKE \'%'+issue+'%\'';
-                                        loadDoc('issue-display.php?sql='+sql,'field')"
-                                        class="btn btn-primary col-md-3" value="Search"> -->
-        <input type="submit" onClick="var issue =(document.getElementById('new2').value);
-                                        loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field')"
-                                        class="btn btn-primary col-md-3" value="Search">
+        <input type="submit" onClick="search()" class="btn btn-primary col-md-3" value="Search">
     </body>
+
+    <script type="text/javascript">
+        function search()
+        {
+            var issue =(document.getElementById('new2').value);
+            if(isNaN(issue))        //Return false if an input is a number
+            {
+                loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field');                
+            }
+            else
+            {
+                loadDoc('searchByIssueNumber.php?issueNumber='+issue,'field');
+            }
+        }
+    </script>
 
 </html>
