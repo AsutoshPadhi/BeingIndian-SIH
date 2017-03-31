@@ -20,7 +20,24 @@
 				<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo "#".$row["issue_id"]; ?>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >(Click here to see the description)</a> 	
 			<br><hr>
-			
+				<b>Location : </b>
+			<?php
+
+				$district_issue = $row['district_id'];
+				$getdistname = "SELECT * FROM district WHERE district_id = $district_issue";
+				$resultdistname = $conn->query($getdistname);
+				$arr = $resultdistname->fetch_assoc();
+				$distname_issue = $arr['district_name'];
+				echo $distname_issue.", ";
+				$state_issue = $arr['state_id'];
+				$getstatename = "SELECT * FROM state WHERE state_id = $state_issue";
+				$resultstatename = $conn->query($getstatename);
+				$arr = $resultstatename->fetch_assoc();
+				$statename_issue = $arr['state_name'];
+				echo $statename_issue;
+
+			?>
+			<br><hr>
 			<?php
 				
 				echo  postedBy($row['issue_id']);
@@ -29,7 +46,7 @@
 				
 			<?php
 				$id = $row['issue_id'];
-				echo "<b id='code'>STATUS :</b>";
+				echo "<b id='code'>Status : </b>";
 			?>
 			<?php 
 			    echo status($row['issue_id']);
