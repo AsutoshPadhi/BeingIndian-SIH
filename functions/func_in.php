@@ -200,6 +200,20 @@ function NumberOfLikes($solutionid)
 			return true;
 		else
 			return false;
+	
 	}
+	function reportDuplicate1($inst_id,$issue_id,$similar_to_issue){
+		include '../functions/dataBaseConn.php';
+		$sql = "Select * from issueduplicateupvote group by issue_id,similar_to_issue  having count(inst_id)>5";
+        $result = $conn->query($sql);
+		$row = $result->fetch_assoc();
+		while($row>0)
+		{
+			$count=$row[issue_id];
+			$sql1="update issue set duplicate_count=duplicate_count+1 where issue_id=$count";
+			$result1= $conn->query($sql1);
+		}
+	}
+
 
 ?>
