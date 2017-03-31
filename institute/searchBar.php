@@ -14,7 +14,7 @@
 
     <body>
         <div class="form-group col-md-8">
-            <input id="new2" type="text" name="issue3" class="form-control" placeholder="Search by issue Number or issue Title">
+            <input id="new2" type="text" name="issue3" class="form-control" placeholder="Search by issue Number or Issue Title">
         </div>
         <input type="submit" onClick="search()" class="btn btn-primary col-md-3" value="Search">
     </body>
