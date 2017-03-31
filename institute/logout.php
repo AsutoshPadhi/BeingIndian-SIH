@@ -147,7 +147,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    <div class="text-center" style="margin-top: 30vh;">
+    <div class="text-right">
         <img src="../logincallout.png" alt="Successfully Logged out!">
         <!--<h1>Successfully Logged out</h1>-->
     </div>

@@ -16,7 +16,7 @@
     else{
         $loginCollege = false;
         //echo "no";
-        header("Location: index.php");
+        header("Location: ../index.php");
     }
     require('../functions/func_out.php');
 ?>
