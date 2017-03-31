@@ -5,12 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel='stylesheet' id='bbp-default-css'  href='style.css' type='text/css'/>
         <link rel='stylesheet' id='bbp-default-css'  href='styleHowTo.css' type='text/css'/>
-        <title>How To? User</title>
+        <title>How To? Institute</title>
     </head>
 
     <body>
         <div class="headMain">
-            User functionalities
+            <h1>Institute Guide</h1>
         </div>
         <div class="index">
             <a href="#deny">Deny an Issue</a>
