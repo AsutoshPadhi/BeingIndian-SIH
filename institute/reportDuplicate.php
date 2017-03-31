@@ -11,10 +11,12 @@
         if(reportDuplicate($inst_id,$issue_id,$_GET['url'])){
             echo "You've reported this issue as duplicate to ".$_GET['url']."";
         }
+
         else{
             echo "Some error occured!";
         }
     }
+
     else{
 ?>
         <label for="solutionUrl">Duplicate Issue ID</label>

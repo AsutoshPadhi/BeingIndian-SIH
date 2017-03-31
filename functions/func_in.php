@@ -1,5 +1,4 @@
 <script src="ajax.js"></script>
-	
 <?php
 define('BOGUS_THRESHOLD',5);
 define('UPVOTE_THRESHOLD',5);
