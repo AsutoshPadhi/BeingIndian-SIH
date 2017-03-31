@@ -1,3 +1,7 @@
+<?php
+require '../globalVariables.php';
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +19,7 @@
                         session_start();
                         if(isset($_SESSION['district_id']))
                         {
-                            $get_state = "SELECT * FROM state,district WHERE state.state_id = district.state_id AND district.district_id = ".$_SESSION['district_id']."";
+                            $get_state = "SELECT * FROM states,districts WHERE states.state_id = districts.state_id AND districts.district_id = ".$_SESSION['district_id']."";
                             $result = $conn->query($get_state);
                             $row = $result->fetch_assoc();
                             $state = $row['state_name'];
@@ -44,7 +48,7 @@
                         session_start();
                         if(isset($_SESSION['district_id']))
                         {
-                            $get_district = "SELECT * FROM district WHERE district_id = ".$_SESSION['district_id']."";
+                            $get_district = "SELECT * FROM districts WHERE district_id = ".$_SESSION['district_id']."";
                             $result = $conn->query($get_state);
                             $row = $result->fetch_assoc();
                             $district = $row['district_name'];
@@ -72,7 +76,7 @@
                     <input class="form-control" id="pin" type="text" placeholder="pincode (optional)">
                 </div>
                 <div class="search col-xs-10 col-md-3">
-                    <input class="form-control" id="issue" type="text" placeholder="Keywords">
+                    <input class="form-control" id="issue" type="text" placeholder="Keywords" maxlength="<?php echo MAX_CHARACTER_TITLE ?>">
                 </div>
                 <input class="search btn btn-primary" type="submit" value="Search" 
                 onclick="generateUrl((document.getElementById('state1').value),(document.getElementById('district1').value),(document.getElementById('locality').value),(document.getElementById('pin').value),(document.getElementById('issue').value),'field','dashboard');return false;">
