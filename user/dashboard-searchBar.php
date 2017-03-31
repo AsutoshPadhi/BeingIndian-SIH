@@ -19,7 +19,7 @@ require '../globalVariables.php';
                         session_start();
                         if(isset($_SESSION['district_id']))
                         {
-                            $get_state = "SELECT * FROM states,districts WHERE states.state_id = districts.state_id AND districts.district_id = ".$_SESSION['district_id']."";
+                            $get_state = "SELECT * FROM state,district WHERE state.state_id = district.state_id AND district.district_id = ".$_SESSION['district_id']."";
                             $result = $conn->query($get_state);
                             $row = $result->fetch_assoc();
                             $state = $row['state_name'];
@@ -48,7 +48,7 @@ require '../globalVariables.php';
                         session_start();
                         if(isset($_SESSION['district_id']))
                         {
-                            $get_district = "SELECT * FROM districts WHERE district_id = ".$_SESSION['district_id']."";
+                            $get_district = "SELECT * FROM district WHERE district_id = ".$_SESSION['district_id']."";
                             $result = $conn->query($get_state);
                             $row = $result->fetch_assoc();
                             $district = $row['district_name'];

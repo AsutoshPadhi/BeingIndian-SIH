@@ -18,7 +18,7 @@
 		die("Connection Failed".$conn->connect_error);
 	}
 
-	$sql = "SELECT state_name FROM states";
+	$sql = "SELECT state_name FROM state";
 	$result = $conn->query($sql);
 	if($result->num_rows>0)
 	{
