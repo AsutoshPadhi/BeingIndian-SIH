@@ -90,6 +90,19 @@
 		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
 		$result=mysqli_query($conn,$sql2);
 	?>
+	<?php
+		if(!isset($_SESSION['district_id'])){
+	?>
+			<br>
+			<div class="alert alert-danger text-center">
+				Add state, district and other details to get relevent results!
+			</div>
+			<div class="alert alert-info text-center">
+				Following are the recently added issue from all over India.
+			</div>
+	<?php
+		}
+	?>
 	
 
 	<div id="problem">
