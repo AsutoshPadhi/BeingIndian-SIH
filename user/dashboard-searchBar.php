@@ -1,3 +1,7 @@
+<?php
+require '../globalVariables.php';
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -72,7 +76,7 @@
                     <input class="form-control" id="pin" type="text" placeholder="pincode (optional)">
                 </div>
                 <div class="search col-xs-10 col-md-3">
-                    <input class="form-control" id="issue" type="text" placeholder="Keywords">
+                    <input class="form-control" id="issue" type="text" placeholder="Keywords" maxlength="<?php echo MAX_CHARACTER_TITLE ?>">
                 </div>
                 <input class="search btn btn-primary" type="submit" value="Search" 
                 onclick="generateUrl((document.getElementById('state1').value),(document.getElementById('district1').value),(document.getElementById('locality').value),(document.getElementById('pin').value),(document.getElementById('issue').value),'field','dashboard');return false;">
