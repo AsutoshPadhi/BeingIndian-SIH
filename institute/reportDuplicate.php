@@ -22,9 +22,12 @@
         <div class="col-md-6">
         <input class="form-control" id="solutionUrl" name="solutionUrl" type="text" placeholder="Enter issue id of similar issue">
         </div>
-        <button type="submit" onclick="getUrl2(getElementById('solutionUrl').value,<?php echo $inst_id.",".$issue_id;?>)" class="btn btn-primary">Submit Solution</button></div>
+        <button type="submit"  class="btn btn-primary">Submit Solution</button></div>
 <?php
 //var finalUrl= provideSolution.php?url=document.getElementById('solutionUrl').value; loadDoc(finalUrl,'instButtons');
     }
 ?>
 </html>
+
+
+onclick="getUrl2(getElementById('solutionUrl').value,<?php echo $inst_id.",".$issue_id;?>)"
