@@ -60,7 +60,7 @@ require '../globalVariables.php';
 
                         else
                         {
-
+                            
                     ?>
                             <option disabled selected>District</option>
                     <?php
