@@ -10,7 +10,7 @@
 
     <body>
         <div class="headMain">
-            User functionalities
+            <h1>User Guide</h1>
         </div>
         <div class="index">
             <a href="#search">Search an Issue</a>

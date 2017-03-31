@@ -15,7 +15,7 @@
                     session_start();
                     if(isset($_SESSION['district_id']))
                     {
-                        $get_state = "SELECT * FROM state,district WHERE state.state_id = district.state_id AND district.district_id = ".$_SESSION['district_id']."";
+                        $get_state = "SELECT * FROM states,districts WHERE states.state_id = districts.state_id AND districts.district_id = ".$_SESSION['district_id']."";
                         $result = $conn->query($get_state);
                         $row = $result->fetch_assoc();
                         $state = $row['state_name'];
@@ -44,7 +44,7 @@
                         session_start();
                         if(isset($_SESSION['district_id']))
                         {
-                            $get_district = "SELECT * FROM district WHERE district_id = ".$_SESSION['district_id']."";
+                            $get_district = "SELECT * FROM districts WHERE district_id = ".$_SESSION['district_id']."";
                             $result = $conn->query($get_state);
                             $row = $result->fetch_assoc();
                             $district = $row['district_name'];
@@ -77,7 +77,7 @@
 				<input class="form-control" name="issueTitle" id="issueTitle" placeholder="What Issue are you facing?" required/>
 				</div>
 				<div class="form-group col-xs-6 col-md-3">
-				<button type="button" class="btn btn-primary" onclick="alert((document.getElementById('district2').value));generateUrl((document.getElementById('state2').value),(document.getElementById('district2').value),(document.getElementById('locality2').value),(document.getElementById('pin2').value),(document.getElementById('issueTitle').value),'field','add')">Next</button>
+				<button type="button" class="btn btn-primary" onclick="generateUrl((document.getElementById('state2').value),(document.getElementById('district2').value),(document.getElementById('locality2').value),(document.getElementById('pin2').value),(document.getElementById('issueTitle').value),'field','add')">Next</button>
 				</div>
 			</div>
 

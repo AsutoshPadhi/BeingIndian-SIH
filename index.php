@@ -128,19 +128,19 @@
         
             <div class="container-fluid" id="field">
                 <div class="container">
-                    <div class="tagline panel-body"><h1>Ask questions for a better tomorrow</h1></div>
-                    <div class="aboutUs lead">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis ornare risus. Quisque sit amet pharetra quam. Curabitur fermentum justo eu est sagittis tincidunt. Cras eu massa nunc. Integer imperdiet molestie tempus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis arcu lorem, bibendum eget commodo quis, fringilla non nibh. </div>
+                    <div class="tagline panel-body text-center"><h1>Raise issues for a better India!</h1></div>
+                    <div class="aboutUs lead text-center">Better India is an effort to provide citizens of India a platform, <br>to notify their issues or upvote issues notified by others, <br>so as to bring it to the notice of the authorities, <br>in order to get a solution for the same.<br><br><h3>5 issues solved so far!</h3> </div>
                     <div class="buttons">
-                        <button type="button" onclick="location.href='user/pageRedirect.php?toOpen=search';return false;" class="btn btn-outline btn-primary btn-lg" id="search">Search an Issue</button>
+                        <button type="button" onclick="location.href='user/pageRedirect.php?toOpen=search';return false;" class="btn btn-outline btn-default btn-lg" id="search">Search an Issue</button>
                         <?php 
                             if($login){
                         ?>
-                        <button type="button" onclick="location.href='user/pageRedirect.php?toOpen=add'<?php $_SESSION['toOpen2']='add-issue.php' ?>;" class="btn btn-outline btn-primary btn-lg" id="add">Add an Issue</button>
+                        <button type="button" onclick="location.href='user/pageRedirect.php?toOpen=add'<?php $_SESSION['toOpen2']='add-issue.php' ?>;" class="btn btn-outline btn-default btn-lg" id="add">Add an Issue</button>
                         <?php
                             }
                             else{
                         ?>
-                        <button type="button" class="btn btn-outline btn-primary btn-lg" id="add" data-toggle="modal" data-target="#myModal2">Add an Issue</button>
+                        <button type="button" class="btn btn-outline btn-default btn-lg" id="add" data-toggle="modal" data-target="#myModal2">Add an Issue</button>
                         <?php
                             }
                         ?>
