@@ -128,7 +128,7 @@ define('LIKE_THRESHOLD',2);
         $sql="select *from issue  inner join user on issue.user_id=user.user_id where issue.issue_id=$id";
         $result=$conn->query($sql);
         $row = $result->fetch_assoc();
-        echo"<b> POSTED BY : </b>". $row['fname']. "  ".$row['lname'];
+        echo"<b> Posted by : </b>". $row['fname']. "  ".$row['lname'];
         
     }
 function NumberOfLikes($solutionid)
