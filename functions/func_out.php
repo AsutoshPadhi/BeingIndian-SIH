@@ -52,8 +52,8 @@
     function historyUpvoted($email){
         require('dataBaseConn.php');
         $userId = getUserId($email);
-        $sql = "SELECT * FROM issue, issueupvote WHERE issueupvote.user_id = $userId AND issueupvote.issue_id = issue.issue_id";
-        return $sql;
+        $sql = "SELECT * FROM issue, issueupvote WHERE issueupvote.user_id = $userId AND issueupvote.issue_id = issue.issue_id order by issue.issue_id desc";
+		return $sql;
     }
 
     function historyAdded($email){
