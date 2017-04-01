@@ -78,25 +78,25 @@ require '../globalVariables.php';
                 <div class="search col-xs-10 col-md-3">
                     <input class="form-control" id="issue" type="text" placeholder="#IssueCode or Keywords" maxlength="<?php echo MAX_CHARACTER_TITLE ?>">
                 </div>
-                <input class="search btn btn-default" type="submit" value="Search" onclick="foobar()">
+                <input class="search btn btn-default" type="submit" value="Search" onclick="foobar();return false;">
             </form>
         </div>
         <script type="text/javascript">
             function foobar()
             {
                 var issue =(document.getElementById('issue').value);
-                alert(issue);
+                //alert(issue);
                 if(isNaN(issue) || (issue.length == 0) && !(issue.includes("#")))        //Return false if an input is a number
                 {
                     generateUrl((document.getElementById('state1').value),(document.getElementById('district1').value),(document.getElementById('locality').value),(document.getElementById('pin').value),(document.getElementById('issue').value),'field','dashboard');
                 }
                 if(issue.includes("#"))
                 {
-                    alert("number ahe");
+                    //alert("number ahe");
                     if( issue.charAt( 0 ) === '#' )
                     {
                         issue = issue.substring(1);
-                        alert(issue);
+                        //alert(issue);
                     }
                     loadDoc('searchIssueById.php?issueNumber='+issue+'&district='+(document.getElementById('district1').value),'field');
                 }
