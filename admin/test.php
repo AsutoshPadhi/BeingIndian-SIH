@@ -7,9 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <script src="../functions/ajax.js"></script>
+        <script src="functions/ajax.js"></script>
 		<script src="urlGenerator.js"></script>
-
 
         <title>Better India!</title>
         <!-- Bootstrap Core CSS -->
@@ -39,15 +38,59 @@
             <form>
 
                 <div class="form-group col-xs-6 col-md-2">
-                    <select class="form-control" id="state1" onchange="func()">
-                    <option disabled selected>State</option>
+                    <select class="form-control" id="state1" onchange="getDistrict((document.getElementById('state1').value),'district1')">
+                    <?php
+                        include '../functions/dataBaseConn.php';
+                        session_start();
+                        if(isset($_SESSION['district_id']))
+                        {
+                            $get_state = "SELECT * FROM state,district WHERE state.state_id = district.state_id AND district.district_id = ".$_SESSION['district_id']."";
+                            $result = $conn->query($get_state);
+                            $row = $result->fetch_assoc();
+                            $state = $row['state_name'];
+                            echo $state;
+                    ?>
+                            <option selected><?php echo $state; ?></option>
+                    <?php
+                        }
+
+                        else
+                        {
+
+                    ?>
+                            <option disabled selected>State</option>
+                    <?php
+                        }
+                    ?>
                         <?php include 'stateList.php'; ?>
                     </select>
                 </div>
 
                 <div class="form-group col-xs-6 col-md-2">
-                    <select class="form-control" id="district1">             
-                    <option disabled selected>District</option>
+                    <select class="form-control" id="district1" onfocus="getDistrict((document.getElementById('state1').value),'district1');return false;">             
+                    <?php
+                        include '../functions/dataBaseConn.php';
+                        session_start();
+                        if(isset($_SESSION['district_id']))
+                        {
+                            $get_district = "SELECT * FROM district WHERE district_id = ".$_SESSION['district_id']."";
+                            $result = $conn->query($get_state);
+                            $row = $result->fetch_assoc();
+                            $district = $row['district_name'];
+                            echo $district;
+                    ?>
+                        <option selected><?php echo $district; ?></option>
+                    <?php
+                        }
+
+                        else
+                        {
+
+                    ?>
+                            <option disabled selected>District</option>
+                    <?php
+                        }
+                    ?>
                     <?php include 'district_list.php'; ?>
                     </select>
                 </div>
@@ -66,12 +109,4 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
-    <script type="text/javascript">
-        function func()
-        {
-            getDistrict((document.getElementById('state1').value),'district1');
-        }
-    </script>
-
 </html>
