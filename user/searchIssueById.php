@@ -24,11 +24,6 @@
 		$instlogin = false;
 	}
 
-	// $get_district_id = "SELECT *FROM institute WHERE inst_email = '".$email."'";
-	// $result = $conn->query($get_district_id);
-	// $row = $result->fetch_assoc();
-	// $district_id = $row['district_id'];
-
 	$issue_id = $_GET['issueNumber'];
 	$district = $_GET['district'];
 
@@ -45,7 +40,7 @@
 		$i=0;
 		while($i<$result->num_rows)
 		{
-			require 'issue-collapse.php';
+			require '../issue-collapse.php';
 			$i++;
 		}
 	}
