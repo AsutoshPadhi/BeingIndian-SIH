@@ -53,12 +53,9 @@
 		else{
 			$sql = $_GET['sql'];
 		}
-		$sqlDisplay = $sql." ORDER BY issue_id desc";
+		$sqlDisplay = $sql." ORDER BY issue.issue_id desc";
 		require('functions/dataBaseConn.php');
 		$result = $conn->query($sqlDisplay);
-		/*$state = $_GET['state'];
-		echo $state;
-		require 'getQuery.php';*/
 		$no_of_results = $result->num_rows;
 		if($no_of_results == 0)
 		{

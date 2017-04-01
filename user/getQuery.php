@@ -64,7 +64,7 @@
 		{
 			$sql = "SELECT *FROM issue WHERE district_id = '".$row['district_id']."'";
 			$result = $conn->query($sql);
-
+			$no_of_results = $result->num_rows;
 			if($result->num_rows > 0)
 			{
 				$i=0;
@@ -82,7 +82,7 @@
 
 			$sql = "SELECT *FROM issue WHERE district_id = '".$row['district_id']."'";
 			$result = $conn->query($sql);
-
+			$no_of_results = 2;
 			if($result->num_rows > 0)
 			{
 				$i=0;

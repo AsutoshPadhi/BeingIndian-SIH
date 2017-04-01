@@ -59,12 +59,13 @@
             else{
                 echo "You've already provided ".$res->num_rows." solutions to this issue";
             }
+        ?>
+            <br>
+            <br>
+        <?php
             while($arr = $res->fetch_assoc()){
-                require('soln-display.php');
                 $url = $arr['solution_url'];
         ?>
-                <br>
-                <br>
                 <a class='' id="video<?php echo $arr['solution_id'];?>" data-toggle='modal' data-target='#solution<?php echo $arr['solution_id'] ;?>'data-theVideo="<?php echo $arr['solution_url'];?>">
                     <?php echo $arr['solution_url'];?>
                 </a><hr>            
@@ -97,6 +98,9 @@
         <br>
 <?php
         }
+?>
+        </div>
+<?php
     }
 ?>
 </div>
