@@ -163,7 +163,7 @@
                                 {
                                     $sql = "SELECT * FROM issue WHERE 1";
                                 }
-                                $url = "issue-display.php?sql=".$sql."";
+                                $url = "../issue-display.php?sql=".$sql."";
                             ?>
                             <a id="sb" onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 
@@ -179,14 +179,14 @@
                                 <li>
                                     <?php
                                         $sql = historyAdded($email);
-                                        $url = "issue-display.php?sql=".$sql."";
+                                        $url = "../issue-display.php?sql=".$sql."";
                                     ?>
                                     <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Added by <?php echo $fname; ?></a>
                                 </li>
                                 <li>
                                     <?php
                                         $sql = historyUpvoted($email);
-                                        $url = "issue-display.php?sql=".$sql."";
+                                        $url = "../issue-display.php?sql=".$sql."";
                                     ?>
                                     <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Upvoted by <?php echo $fname; ?></a>
                                 </li>
@@ -229,7 +229,7 @@
             {
                 include '../functions/dataBaseConn.php';
                 $sql = "SELECT * FROM issue WHERE 1";
-                //$url = "issue-display.php?sql=".$sql."";
+                //$url = "../issue-display.php?sql=".$sql."";
                 if($login)
                 {
                     $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
@@ -243,7 +243,7 @@
                         
                     }
                 }
-                $url = "issue-display.php?sql=".$sql."";
+                $url = "../issue-display.php?sql=".$sql."";
                 ?><script>loadDoc('<?php echo $url ?>','field');</script><?php
                 unset($_SESSION['toOpen']);
             }
@@ -257,7 +257,7 @@
         else{
             include '../functions/dataBaseConn.php';
             $sql = "SELECT * FROM issue WHERE 1";
-            //$url = "issue-display.php?sql=".$sql."";
+            //$url = "../issue-display.php?sql=".$sql."";
             if($login)
             {
                 $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
@@ -271,7 +271,7 @@
                     
                 }
             }
-            $url = "issue-display.php?sql=".$sql."";
+            $url = "../issue-display.php?sql=".$sql."";
             ?><script>loadDoc('<?php echo $url; ?>','field');</script><?php
             //session_unset($_SESSION['toOpen']);
         }

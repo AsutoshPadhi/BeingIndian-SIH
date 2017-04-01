@@ -166,7 +166,7 @@
 				if(status($row['issue_id']) == 0)
 				{
 			?>
-					<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
+					<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#userLogin'  >Upvote</button>
 			<?php
 				}
 			}
@@ -241,7 +241,7 @@
 		</div>
 		
 		</div>
-		<div class="modal fade" id='confirmation' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+		<!--<div class="modal fade" id='confirmation' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 			aria-hidden="true">
 			<div class="modal-dialog modal-md " role="document">
 				<div class="modal-content">
@@ -252,12 +252,12 @@
 					</div>
 					<div class="modal-body">
 						<?php 
-						echo "<a href='#userLogin'  class='btn btn-primary' data-toggle='modal' data-dismiss='modal'  >Click here to login</a> ";
+						//echo "<a href='#userLogin'  class='btn btn-primary' data-toggle='modal' data-dismiss='modal'  >Click here to login</a> ";
 						?>
 					</div>
 				</div>
 			</div>
-			</div>
+			</div>-->
 
 			
 	<?php	}

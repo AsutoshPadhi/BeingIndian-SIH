@@ -11,7 +11,6 @@
         <!-- Custom Fonts -->
         <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     </head>
-
     <body>
         <div class="form-group col-md-8">
             <input id="new2" type="text" name="issue3" class="form-control" placeholder="Search by issue Number or Issue Title">
