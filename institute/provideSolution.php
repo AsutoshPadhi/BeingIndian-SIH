@@ -11,8 +11,21 @@
     if(isset($_GET['url'])){
         if(provideSolution($inst_id,$issue_id,$_GET['url'])){
             echo "You've successfully provided solution to this issue!";
+            $solution = $_GET['url'];
             $issue_id = $_GET['issue'];
-            $user_idOfUsersWhoUpvoted = "";
+            $user_idOfUsersWhoUpvoted = "SELECT * FROM issueupvote WHERE issue_id = '".$issue_id."'";
+            $result = $conn->query($user_idOfUsersWhoUpvoted);
+            if($result->num_rows > 0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                    $getUserEmail = "SELECT * FROM user WHERE user_id = '".$row['user_id']."'";
+                    $res_getUserEmail = $conn->query($getUserEmail);
+                    $user_details = $res_getUserEmail->fetch_assoc();
+                    $user_email = $user_details['user_email'];
+                    require 'notifyUsers.php';
+                }
+            }
         }
         else{
             echo "Some error occured!";

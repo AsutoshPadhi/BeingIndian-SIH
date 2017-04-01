@@ -108,7 +108,7 @@
 	?>
 			<br>
 			<div class="alert alert-success text-center">
-				Update your profile to get relevant results.
+				<a onclick="loadDoc('profile.php','field'); $('#searchBar').hide();">Update your profile</a> to get relevant results.
 			</div>
 			<div class="alert alert-warning text-center">
 				Following are the recently added issue from all over India.
@@ -116,7 +116,7 @@
 	<?php
 		}
 	}
-	else{
+	else if(!$instlogin){
 	?>
 		<br>
 		<div class="alert alert-success text-center">
@@ -134,11 +134,14 @@
 		<?php
 		$i = 1;
 		
-		while($row=mysqli_fetch_array($result))
+		while($row=$result->fetch_assoc())
 		{
 			require("issue-collapse.php");
-				$i++;
+			$i++;
 		}
+		?>
+	</div>
+		<?php
 		//display links to the pages
 		if($no_of_pages > 1 ){	
 		?>
@@ -159,6 +162,5 @@
 			</ul>
 		</div>
 		<?php } ?>
-	</div>
 </body>
 </html>
