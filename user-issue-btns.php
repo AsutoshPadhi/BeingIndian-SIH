@@ -33,7 +33,9 @@
 <hr>
 
 <?php
+
 	require('soln-display.php');
+
 ?>
 <?php
 	require('issue-desc.php');
