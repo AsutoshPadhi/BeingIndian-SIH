@@ -17,7 +17,7 @@
 	else
 	{
 	?>
-		<button style='margin-left: 15px' class='btn btn-default' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
+		<button style='margin-left: 15px' class='btn btn-default' data-toggle='modal' data-target='#userLogin'  >Upvote </button><i> &nbsp;(Requires login)</i>
 	<?php	
 	}	
 	?>
@@ -66,7 +66,7 @@
 									}
 									else
 									{
-										echo "Not upvoted this problem";
+										echo "You didn't promoted this issue .Only promoters can lije the solution ";
 									}
 									
 								}
