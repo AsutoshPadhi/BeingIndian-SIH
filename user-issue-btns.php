@@ -89,6 +89,7 @@
 										<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $rowsolution['solution_id'] ?>&useremail=<?php $email ?>","like")' class="btn btn-primary btn-sm">
 											<span class="glyphicon glyphicon-thumbs-up"></span> 
 										</a>
+										<i> <?php NumberOfLikes($rowsolution['solution_id'] )?></i>
 									</div>
 								<?php
 									}
@@ -102,8 +103,10 @@
 								{
 								?>
 									<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#confirmation' data-dismiss='modal' >
-										<span class="glyphicon glyphicon-thumbs-up"></span><i> <?php NumberOfLikes($row['solution_id'] )?></i>
-									</a></div>
+										<span class="glyphicon glyphicon-thumbs-up">
+									</a>
+									</span><i> <?php NumberOfLikes($rowsolution['solution_id'] )?></i>
+									</div>
 								<?php	
 								}
 								?>
