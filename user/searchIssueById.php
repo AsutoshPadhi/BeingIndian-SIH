@@ -1,3 +1,6 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="problemdescription.css">
+</head>
 <?php
 
 	include '../functions/dataBaseConn.php';
