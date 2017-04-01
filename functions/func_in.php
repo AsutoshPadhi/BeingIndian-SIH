@@ -1,7 +1,13 @@
 <script src="ajax.js"></script>
 	
 <?php
-	require_once('globalVariables.php');
+	define('BOGUS_THRESHOLD',5);
+	define('UPVOTE_THRESHOLD',5);
+	define('DUPLICATE_THRESHOLD',5);
+	define('LIKE_THRESHOLD',2);
+	define('MAX_CHARACTER_TITLE',100);
+	define('MAX_CHARACTER_DESCRIPTION',1500);
+	define('MIN_STRING_MATCH_PERCENTAGE',0.3);
 
     function status($issueid)
 	{
@@ -50,17 +56,16 @@
 	}
 	function LikeCount($id,$email)
 	{
-		include 'functions/dataBaseConn.php';
-		 $userid = getUserId($email);
-		echo $id."".$userid;
-		
+		include 'dataBaseConn.php';
+		$userid = getUserId($email);
+
 		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
-          $result1 = $conn->query($sql);
-		 
-		
-		  $sql2="Insert into solutionlikedetails(solution_id,user_id) values($id,$userid)";
-		  $result2=$conn->query($sql2);
-		  echo "YOU HAVE liked  FOR THIS ";
+		$result1 = $conn->query($sql);
+
+
+		$sql2="Insert into solutionlikedetails(solution_id,user_id) values($id,$userid)";
+		$result2=$conn->query($sql2);
+		echo "You've Liked this issue!";
 	}
 
 	
@@ -123,11 +128,22 @@
         echo"<b> Posted by : </b>". $row['fname']. "  ".$row['lname'];
         
     }
+	function NumberOfCounts($issueid)
+	{
+		include 'functions/dataBaseConn.php';
+		//echo $issueid;
+		$sql1 = "SELECT * FROM issue WHERE issue_id = $issueid ";
+		$result1 = $conn->query($sql1);
+		$row=$result1->fetch_assoc();
+		echo "<b>".$row['upvote_count']. "  users have upvoted</b>";
+			
+	}
 	function NumberOfLikes($solutionid)
 	{
 		include 'functions/dataBaseConn.php';
 			$sql = "SELECT * FROM solution WHERE solution_id = '$solutionid' ";
 			$result = $conn->query($sql);
+			$row=$result->fetch_assoc();
 			echo $row['like_count'];
 			
 	}
@@ -191,6 +207,9 @@
 			return true;
 		else
 			return false;
+	
 	}
+
+
 
 ?>

@@ -3,6 +3,7 @@
 <?php
     session_start();
     require('../functions/func_in.php');
+    require('../functions/dataBaseConn.php');
     if(isset($_GET['inst'])&&$_GET['issue']){
         $inst_id = $_GET['inst'];
         $issue_id = $_GET['issue'];
@@ -10,6 +11,8 @@
     if(isset($_GET['url'])){
         if(provideSolution($inst_id,$issue_id,$_GET['url'])){
             echo "You've successfully provided solution to this issue!";
+            $issue_id = $_GET['issue'];
+            $user_idOfUsersWhoUpvoted = "";
         }
         else{
             echo "Some error occured!";

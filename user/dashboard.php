@@ -181,14 +181,14 @@
                                         $sql = historyAdded($email);
                                         $url = "../issue-display.php?sql=".$sql."";
                                     ?>
-                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Added by <?php echo $fname; ?></a>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Added by you</a>
                                 </li>
                                 <li>
                                     <?php
                                         $sql = historyUpvoted($email);
                                         $url = "../issue-display.php?sql=".$sql."";
                                     ?>
-                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Upvoted by <?php echo $fname; ?></a>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Upvoted by you</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
