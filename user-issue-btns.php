@@ -31,7 +31,7 @@
 				<br>
 				<br>
 				<div id="url">
-				<button style='margin-left: 15px' class='btn btn-primary' onclick="javascript:loadDoc('midshare.php?issueid=<?php echo $issue?>&titleid=<?php echo $title?>','url')">Share</button>
+				<button style='margin-left: 15px' class='btn btn-default' onclick="javascript:loadDoc('midshare.php?issueid=<?php echo $issue?>&titleid=<?php echo $title?>','url')">Share</button>
 				</div>
 
 </div>
