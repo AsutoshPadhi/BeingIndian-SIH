@@ -66,8 +66,10 @@
 								}
 								else
 								{
+									
 								?>
-									<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#confirmation' data-dismiss='modal' >
+								
+									<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#userLogin' data-dismiss='modal' >
 										<span class="glyphicon glyphicon-thumbs-up"></span> 
 									</a>
 									<i><?php NumberOfLikes($rowsolution['solution_id'])?></i>
