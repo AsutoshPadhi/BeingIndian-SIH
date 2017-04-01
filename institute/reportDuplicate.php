@@ -15,7 +15,7 @@
 	{
         if(reportDuplicate($inst_id,$issue_id,$_GET['url'])){
             echo "You've reported this issue as duplicate to ".$_GET['url']."";
-           updateDuplicate($inst_id,$issue_id,$_GET['url'])
+            updateDuplicate($inst_id,$issue_id,$_GET['url']);
         }
         else{
             echo "Some error occured!";
@@ -26,6 +26,15 @@
         <label for="solutionUrl">Duplicate Issue ID</label>
         <br>
         <div class="col-md-6">
+		<?php
+		$sql="SELECT *,count(inst_id)as colleges  FROM `issueduplicateupvote` group by issue_id,similar_to_issue having issue_id=$issue_id";
+		$result=$conn->query($sql);
+		if($result)
+		{
+			$var=$row['colleges'];
+			echo $var;
+		}
+		?>
         <input class="form-control" id="solutionUrl" name="solutionUrl" type="text" placeholder="Enter issue id of similar issue">
         </div>
         <button type="submit" onclick="getUrl2(getElementById('solutionUrl').value,<?php echo $inst_id.",".$issue_id;?>)" class="btn btn-default">Report as Duplicate</button></div>

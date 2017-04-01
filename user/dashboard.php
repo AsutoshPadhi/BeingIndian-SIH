@@ -46,7 +46,7 @@
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <?php
-					require_once("globalVariables.php");
+					// require_once("../globalVariables.php");
                     session_start();
                     require('../functions/func_out.php');
 					require('../functions/dataBaseConn.php');
