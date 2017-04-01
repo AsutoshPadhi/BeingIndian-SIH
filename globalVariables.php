@@ -1,4 +1,5 @@
 <?php
+//page on global variables used in our files
 	define('BOGUS_THRESHOLD',5);
 	define('UPVOTE_THRESHOLD',5);
 	define('DUPLICATE_THRESHOLD',5);
