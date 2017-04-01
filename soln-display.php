@@ -47,35 +47,47 @@
 									$userid=getUserId($email);
 									$sqlsoln="select * from issueupvote where user_id=$userid and issue_id=".$rowsolution['issue_id']."";
 									$resultsoln=mysqli_query($conn,$sqlsoln);
-									if($result==TRUE)
+									$solution=$rowsolution['solution_id'];
+									$sqlbutton="select * from solutionlikedetails where user_id=$userid and solution_id=$solution";
+									$resultbutton=mysqli_query($conn,$sqlbutton); 
+									if($resultsoln==TRUE)
 									{
-									?>
-									<div id="like">
-										<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $rowsolution['solution_id'] ?>&useremail=<?php echo $email; ?>","like")' class="btn btn-primary btn-sm">
-											<span class="glyphicon glyphicon-thumbs-up"></span> 
-										</a>
-										<i><?php NumberOfLikes($rowsolution['solution_id'])?></i>
-									</div>
-								<?php
+											if($resultbutton->num_rows==0)
+											{
+											
+												?>
+												<div id="like">
+													<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $rowsolution['solution_id'] ?>&useremail= <?php echo $email; ?>","like")' class="btn btn-primary btn-sm">
+														<span class="glyphicon glyphicon-thumbs-up"></span> 
+													</a>
+													<i><?php NumberOfLikes($rowsolution['solution_id'])?></i>
+												</div>
+									<?php
+											}
+											else
+											{
+												echo "You have already liked this solution ";
+											}
+										
+									
 									}
 									else
+										{
+											echo "You didn't promoted this issue .Only promoters can like the solution ";
+										}
+								}
+									else
 									{
-										echo "You didn't promoted this issue .Only promoters can like the solution ";
+										
+									?>
+									
+										<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#userLogin' data-dismiss='modal' >
+											<span class="glyphicon glyphicon-thumbs-up"></span> 
+										</a>
+										<i><?php NumberOfLikes($rowsolution['solution_id'])?></i><br>
+										</div>
+									<?php	
 									}
-									
-								}
-								else
-								{
-									
-								?>
-								
-									<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#userLogin' data-dismiss='modal' >
-										<span class="glyphicon glyphicon-thumbs-up"></span> 
-									</a>
-									<i><?php NumberOfLikes($rowsolution['solution_id'])?></i>
-									</div>
-								<?php	
-								}
 								?>
 								<script>
 									var youtubeFunc ='';
