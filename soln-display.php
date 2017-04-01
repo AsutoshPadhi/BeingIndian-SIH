@@ -16,9 +16,21 @@
 					<br>
 					<a class='' id="video<?php echo $rowsolution['solution_id'];?>" data-toggle='modal' data-target='#solution<?php echo $rowsolution['solution_id'] ;?>'data-theVideo="<?php echo $rowsolution['solution_url'];?>">
 						<?php echo $rowsolution['solution_url'];?>
-					</a>
+					</a>&nbsp;&nbsp;&nbsp;
+					<?php
+					$likes =NumberOfLikes($rowsolution['solution_id']);
+					//condition to display whether the solution is aproved or not
+					if($likes>=LIKE_THRESHOLD)
+					{
+						?>
+						<i class="text-success"style="color:green">(approved solution)</i>
+						<?php
+						
+					}
+					?>
 					</div><br>
 					<?php
+					//code to display solution by which college 
 					$instid=$rowsolution['inst_id'];				
 					$sqlinstname="SELECT * from institute where inst_id=$instid";
 					$result3=mysqli_query($conn,$sqlinstname);
@@ -60,7 +72,7 @@
 													<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $rowsolution['solution_id'] ?>&useremail= <?php echo $email; ?>","like")' class="btn btn-primary btn-sm">
 														<span class="glyphicon glyphicon-thumbs-up"></span> 
 													</a>
-													<i><?php NumberOfLikes($rowsolution['solution_id'])?></i>
+													<i><?php echo $likes; ?>&nbsp;&nbsp;people have liked this </i>
 												</div>
 									<?php
 											}
@@ -84,7 +96,7 @@
 										<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#userLogin' data-dismiss='modal' >
 											<span class="glyphicon glyphicon-thumbs-up"></span> 
 										</a>
-										<i><?php NumberOfLikes($rowsolution['solution_id'])?></i><br>
+										<i>$nbsp;<?php NumberOfLikes($rowsolution['solution_id']);?></i><br>
 										</div>
 									<?php	
 									}

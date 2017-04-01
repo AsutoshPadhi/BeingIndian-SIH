@@ -131,7 +131,7 @@ else{
                 <div class="container">
                     <div class="tagline panel-body text-center"><h1>Raise issues for a better India!</h1></div>
                     <div class="aboutUs lead text-center">Better India is an effort to provide citizens of India a platform, <br>to notify their issues or upvote issues notified by others, <br>so as to bring it to the notice of the authorities, <br>in order to get a solution for the same.<br><br>
-                    <h3><?php echo no_of_users('user'); ?> Users&nbsp; &nbsp;| &nbsp;&nbsp;<?php echo no_of_users('issue'); ?> Issues Raised&nbsp;&nbsp; | &nbsp;&nbsp;<?php echo no_of_users('solution'); ?> Issues resolved</h3>
+                    <h3><?php echo no_of_users('user'); ?> Users&nbsp; &nbsp;| &nbsp;&nbsp;<?php echo no_of_users('issue'); ?> Issues Raised&nbsp;&nbsp; | &nbsp;&nbsp;<?php echo no_of_users('solution'); ?> Solutions Provided</h3>
                     </div>
                     <div class="buttons">
                         <button type="button" onclick="location.href='user/pageRedirect.php?toOpen=search';return false;" class="btn btn-outline btn-default btn-lg" id="search">Search an Issue</button>

@@ -144,7 +144,7 @@
 			$sql = "SELECT * FROM solution WHERE solution_id = '$solutionid' ";
 			$result = $conn->query($sql);
 			$row=$result->fetch_assoc();
-			echo $row['like_count'];
+			return $row['like_count'];
 			
 	}
 	function getInstId($cemail){
