@@ -130,7 +130,7 @@
     }
 	function NumberOfCounts($issueid)
 	{
-		include 'functions/dataBaseConn.php';
+		include 'dataBaseConn.php';
 		//echo $issueid;
 		$sql1 = "SELECT * FROM issue WHERE issue_id = $issueid ";
 		$result1 = $conn->query($sql1);
@@ -140,7 +140,7 @@
 	}
 	function NumberOfLikes($solutionid)
 	{
-		include 'functions/dataBaseConn.php';
+		include 'dataBaseConn.php';
 			$sql = "SELECT * FROM solution WHERE solution_id = '$solutionid' ";
 			$result = $conn->query($sql);
 			$row=$result->fetch_assoc();
