@@ -4,8 +4,23 @@
 	include('../functions/func_in.php');
 
 	session_start();
-	$inst_id = $_SESSION['$inst_id'];
-	$cemail = $_SESSION['$cemail'];
+	if(isset($_SESSION['$email']))
+	{
+		$instlogin = false;
+		$login=true;
+		$email = $_SESSION['$email'];
+	}
+	else if(isset($_SESSION['$cemail'])){
+		$cemail = $_SESSION['$cemail'];
+		$inst_id = $_SESSION['$inst_id'];
+		$instlogin = true;
+		$login = false;
+	}	
+	else
+	{
+		$login=false;
+		$instlogin = false;
+	}
 	
 	$get_district_id = "SELECT *FROM institute WHERE inst_email = '".$cemail."'";
 	$result = $conn->query($get_district_id);
@@ -21,7 +36,7 @@
 		$i=0;
 		while($i<$result->num_rows)
 		{
-			require 'issue-collapse.php';
+			require '../issue-collapse.php';
 			$i++;
 		}
 	}

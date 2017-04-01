@@ -23,18 +23,21 @@
         {
             var issue =(document.getElementById('new2').value);
             //alert(issue);
-            if(isNaN(issue))        //Return false if an input is a number
+            if(isNaN(issue) || (issue.length == 0))        //Return false if an input is a number
             {
                 loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field');
             }
-            else if(issue.length == 0)
+            if(issue.includes("#"))
             {
-                loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field');
-            }
-            else
-            {
+                alert("number ahe");
+                if( issue.charAt( 0 ) === '#' )
+                {
+                    issue = issue.substring(1);
+                    alert(issue);
+                }
                 loadDoc('searchByIssueNumber.php?issueNumber='+issue,'field');
             }
+            
         }
     </script>
 
