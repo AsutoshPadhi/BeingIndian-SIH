@@ -6,11 +6,12 @@ require '../globalVariables.php';
 <!DOCTYPE html>
 <html>
     <head>
-
+    	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+		<script type="text/javascript" src="minlength.js"></script>
     </head>
 
     <body>
-		<form action="#">
+		<form id="formAddIssue" name="formAddIssue" action="#">
 
 			<div class="form-group col-xs-6 col-md-2">
 		        <select required class="form-control" id="state2" onchange="getDistrict((document.getElementById('state2').value),'district2')">
@@ -78,13 +79,15 @@ require '../globalVariables.php';
 
 			<div style="position: relative;top: 50%;">
 				<div class="form-group col-xs-6 col-md-9">
-				<input class="form-control" name="issueTitle" id="issueTitle" placeholder="What Issue are you facing?" maxlength="<?php echo MAX_CHARACTER_TITLE ?>" required/>
+				<input class="form-control" name="issueTitle" id="issueTitle" placeholder="What Issue are you facing?" maxlength="<?php echo MAX_CHARACTER_TITLE ?>" />
 				</div>
 				<div class="form-group col-xs-6 col-md-3">
-				<button type="button" class="btn btn-primary" onclick="generateUrl((document.getElementById('state2').value),(document.getElementById('district2').value),(document.getElementById('locality2').value),(document.getElementById('pin2').value),(document.getElementById('issueTitle').value),'field','add')">Next</button>
+				<button type="submit" class="btn btn-primary" onclick="generateUrl((document.getElementById('state2').value),(document.getElementById('district2').value),(document.getElementById('locality2').value),(document.getElementById('pin2').value),(document.getElementById('issueTitle').value),'field','add');return false;">Next</button>
 				</div>
-			</div>
 
+			</div>
+			
 		</form>
+		<div id="msg"></div>
 	</body>
 </html>
