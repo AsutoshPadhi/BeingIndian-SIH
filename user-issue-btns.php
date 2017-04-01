@@ -22,7 +22,8 @@
     
 	?>
 		<button style='margin-left: 15px' class='btn btn-default' data-toggle='modal' data-target='#userLogin'  >Upvote </button><i> &nbsp;(Requires login)</i>
-		<br><br><?php NumberOfCounts($issueid)?>
+		<br><br>
+		<?php NumberOfCounts($issueid)?>
 	<?php	
 	}	$issue=$row['issue_id'];
 			$title=$row['title'];
@@ -30,8 +31,9 @@
 				?>
 				<br>
 				<br>
+				<hr>
 				<div id="url">
-				<button style='margin-left: 15px' class='btn btn-primary' onclick="javascript:loadDoc('midshare.php?issueid=<?php echo $issue?>&titleid=<?php echo $title?>','url')">Share</button>
+				<button style='margin-left: 15px' id="<?php echo $row['issue_id']; ?> class='btn btn-primary' onclick="javascript:loadDoc('midshare.php?issueid=<?php echo $issue?>&titleid=<?php echo $title?>','url')">Share</button>
 				</div>
 
 </div>
