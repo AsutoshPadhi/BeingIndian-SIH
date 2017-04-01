@@ -1,9 +1,12 @@
 <script src="ajax.js"></script>
 <?php
-define('BOGUS_THRESHOLD',5);
-define('UPVOTE_THRESHOLD',5);
-define('DUPLICATE_THRESHOLD',5);
-define('LIKE_THRESHOLD',2);
+	define('BOGUS_THRESHOLD',5);
+	define('UPVOTE_THRESHOLD',5);
+	define('DUPLICATE_THRESHOLD',5);
+	define('LIKE_THRESHOLD',2);
+	define('MAX_CHARACTER_TITLE',100);
+	define('MAX_CHARACTER_DESCRIPTION',1500);
+	define('MIN_STRING_MATCH_PERCENTAGE',0.3);
 
     function status($issueid)
 	{
@@ -52,17 +55,16 @@ define('LIKE_THRESHOLD',2);
 	}
 	function LikeCount($id,$email)
 	{
-		include 'functions/dataBaseConn.php';
-		 $userid = getUserId($email);
-		echo $id."".$userid;
-		
+		include 'dataBaseConn.php';
+		$userid = getUserId($email);
+
 		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
-          $result1 = $conn->query($sql);
-		 
-		
-		  $sql2="Insert into solutionlikedetails(solution_id,user_id) values($id,$userid)";
-		  $result2=$conn->query($sql2);
-		  echo "YOU HAVE liked  FOR THIS ";
+		$result1 = $conn->query($sql);
+
+
+		$sql2="Insert into solutionlikedetails(solution_id,user_id) values($id,$userid)";
+		$result2=$conn->query($sql2);
+		echo "You've Liked this issue!";
 	}
 
 	
@@ -125,12 +127,23 @@ define('LIKE_THRESHOLD',2);
         echo"<b> Posted by : </b>". $row['fname']. "  ".$row['lname'];
         
     }
+	function NumberOfCounts($issueid)
+	{
+		include 'dataBaseConn.php';
+		//echo $issueid;
+		$sql1 = "SELECT * FROM issue WHERE issue_id = $issueid ";
+		$result1 = $conn->query($sql1);
+		$row=$result1->fetch_assoc();
+		echo "<b>".$row['upvote_count']. "  users have upvoted</b>";
+			
+	}
 	function NumberOfLikes($solutionid)
 	{
-		include 'functions/dataBaseConn.php';
+		include 'dataBaseConn.php';
 			$sql = "SELECT * FROM solution WHERE solution_id = '$solutionid' ";
 			$result = $conn->query($sql);
-			echo $row['like_count'];
+			$row=$result->fetch_assoc();
+			return $row['like_count'];
 			
 	}
 	function getInstId($cemail){
@@ -193,6 +206,24 @@ define('LIKE_THRESHOLD',2);
 			return true;
 		else
 			return false;
+	
 	}
+	
+function updateDuplicate($inst_id,$issue_id,$similar_to_issue){
+		include '../functions/dataBaseConn.php';
+		//instid1=$instid1;
+		echo $issue_id;
+		$sql = "Select * from issueduplicateupvote group by issue_id,similar_to_issue  having count(inst_id)>5 and similar_to_issue=$similar_to_issue";
+        $result = $conn->query($sql);
+		
+		if($result)
+		{
+			//$count=$row[issue_id];
+			$sql1="update issue set duplicate_count=duplicate_count+1 where issue_id=$issue_id";
+			$result1= $conn->query($sql1);
+		}
+
+}
+
 
 ?>

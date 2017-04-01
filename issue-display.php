@@ -52,8 +52,9 @@
 		else{
 			$sql = $_GET['sql'];
 		}
+		$sqlDisplay = $sql." ORDER BY issue_id desc";
 		require('functions/dataBaseConn.php');
-		$result = $conn->query($sql);
+		$result = $conn->query($sqlDisplay);
 		/*$state = $_GET['state'];
 		echo $state;
 		require 'getQuery.php';*/
@@ -99,7 +100,7 @@
 			$next=$no_of_pages;
 
 		}
-		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
+		$sql2= $sqlDisplay." LIMIT ".$start_limit.','.$results_per_page;
 		$result=$conn->query($sql2);
 	?>
 	<?php
@@ -107,14 +108,25 @@
 		if(!isset($_SESSION['district_id'])){
 	?>
 			<br>
-			<div class="alert alert-warning text-center">
-				Add state, district and other details to get relevent results!
+			<div class="alert alert-success text-center">
+				<a onclick="loadDoc('profile.php','field'); $('#searchBar').hide();">Update your profile</a> to get relevant results.
 			</div>
-			<div class="alert alert-info text-center">
+			<div class="alert alert-warning text-center">
 				Following are the recently added issue from all over India.
 			</div>
 	<?php
 		}
+	}
+	else if(!$instlogin){
+	?>
+		<br>
+		<div class="alert alert-success text-center">
+			Add state, district and other details to get relevant results!
+		</div>
+		<div class="alert alert-warning text-center">
+			Following are the recently added issue from all over India.
+		</div>
+	<?php
 	}
 	?>
 	
@@ -123,31 +135,33 @@
 		<?php
 		$i = 1;
 		
-		while($row=mysqli_fetch_array($result))
+		while($row=$result->fetch_assoc())
 		{
 			require("issue-collapse.php");
-				$i++;
+			$i++;
 		}
+		?>
+	</div>
+		<?php
 		//display links to the pages
 		if($no_of_pages > 1 ){	
 		?>
 		<div class="container">
 			<ul class="pagination">
-				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=1\",\"field\")' class='button'>FIRST</a></li>"; ?>
-				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$pre."\",\"field\")' class='button'><<</a></li>"; ?>
+				<?php echo "<li><a onclick='javascript:loadDoc(\"../issue-display.php?sql=".$sql."&page=1\",\"field\")' class='button'>FIRST</a></li>"; ?>
+				<?php echo "<li><a onclick='javascript:loadDoc(\"../issue-display.php?sql=".$sql."&page=".$pre."\",\"field\")' class='button'><<</a></li>"; ?>
 
 				<?php
 					for($page=1;$page<=$no_of_pages;$page++)
-					{	
-						$url = "issue-display.php?sql=".$sql."&page=".$page."";
+					{
+						$url = "../issue-display.php?sql=".$sql."&page=".$page."";
 						echo "<li><a onclick='javascript:loadDoc(\"".$url."\",\"field\")'>".$page."</a></li>";
 					}
-					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$next."\",\"field\")' class='button'>>></a></li>";
-					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$no_of_pages."\",\"field\")' class='button'>LAST</a></li>";
+					echo "<li><a onclick='javascript:loadDoc(\"../issue-display.php?sql=".$sql."&page=".$next."\",\"field\")' class='button'>>></a></li>";
+					echo "<li><a onclick='javascript:loadDoc(\"../issue-display.php?sql=".$sql."&page=".$no_of_pages."\",\"field\")' class='button'>LAST</a></li>";
 				?>
 			</ul>
 		</div>
 		<?php } ?>
-	</div>
 </body>
 </html>

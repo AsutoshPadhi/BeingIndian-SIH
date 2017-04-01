@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+include 'functions/indexFunctions.php';
+
+if(isset($_SESSION['$email'])){
+    $login = true;
+    $loginCollege = false;
+    $email = $_SESSION['$email'];
+    $name = $_SESSION['$name'];
+    $fname = $_SESSION['$fname'];
+    $lname = $_SESSION['$lname'];
+    
+}
+else if(isset($_SESSION['$cemail'])){
+    $loginCollege = true;
+    $login = false;
+}
+else{
+    $login = false;
+    $loginCollege = false;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,29 +62,6 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <?php
-                    session_start();
-
-                    if(isset($_SESSION['$email'])){
-                        $login = true;
-                        $loginCollege = false;
-                        $email = $_SESSION['$email'];
-                        $name = $_SESSION['$name'];
-                        $fname = $_SESSION['$fname'];
-                        $lname = $_SESSION['$lname'];
-                        
-                    }
-                    else if(isset($_SESSION['$cemail'])){
-                        $loginCollege = true;
-                        $login = false;
-                    }
-                    else{
-                        $login = false;
-                        $loginCollege = false;
-                    }
-
-                    
-                ?>
                 <a class="navbar-brand" href="index.php"><font color=#E77607>Better</font><font color=#138808>India!</font></a>
             </div>
             <!-- /.navbar-header -->
@@ -129,7 +130,9 @@
             <div class="container-fluid" id="field">
                 <div class="container">
                     <div class="tagline panel-body text-center"><h1>Raise issues for a better India!</h1></div>
-                    <div class="aboutUs lead text-center">Better India is an effort to provide citizens of India a platform, <br>to notify their issues or upvote issues notified by others, <br>so as to bring it to the notice of the authorities, <br>in order to get a solution for the same.<br><br><h3>5 issues solved so far!</h3> </div>
+                    <div class="aboutUs lead text-center">Better India is an effort to provide citizens of India a platform, <br>to notify their issues or upvote issues notified by others, <br>so as to bring it to the notice of the authorities, <br>in order to get a solution for the same.<br><br>
+                    <h3><?php echo no_of_users('user'); ?> Users&nbsp; &nbsp;| &nbsp;&nbsp;<?php echo no_of_users('issue'); ?> Issues Raised&nbsp;&nbsp; | &nbsp;&nbsp;<?php echo no_of_users('solution'); ?> Solutions Provided</h3>
+                    </div>
                     <div class="buttons">
                         <button type="button" onclick="location.href='user/pageRedirect.php?toOpen=search';return false;" class="btn btn-outline btn-default btn-lg" id="search">Search an Issue</button>
                         <?php 
@@ -232,6 +235,18 @@
                                 <div style="margin: 15px 0px;" class="styleBox">
                                     <a class="btn btn-block btn-social btn-google-plus" href='user/login.php'>
                                         <i class="fa fa-google-plus"></i> Sign in with Google
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-facebook disabled">
+                                        <i class="fa fa-facebook"></i> Sign in with Facebook
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-twitter disabled">
+                                        <i class="fa fa-twitter"></i> Sign in with Twitter
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-linkedin disabled">
+                                        <i class="fa fa-linkedin"></i> Sign in with LinkedIn
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-github disabled">
+                                        <i class="fa fa-github"></i> Sign in with GitHub
                                     </a>
                                 </div>
                             </div>

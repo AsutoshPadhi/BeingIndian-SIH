@@ -181,14 +181,14 @@
                                         $sql = historyAdded($email);
                                         $url = "../issue-display.php?sql=".$sql."";
                                     ?>
-                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Added by <?php echo $fname; ?></a>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Added by you</a>
                                 </li>
                                 <li>
                                     <?php
                                         $sql = historyUpvoted($email);
                                         $url = "../issue-display.php?sql=".$sql."";
                                     ?>
-                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Upvoted by <?php echo $fname; ?></a>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Upvoted by you</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -302,7 +302,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    <div class="modal fade" id="instLogin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -333,9 +333,9 @@
                                     <div class="col-sm-2">
                                     </div>
                                     <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary btn-sm">
+                                        <button  type="submit" class="btn btn-primary btn-sm">
                                             Submit</button>
-                                        <a href="javascript:;">Forgot your password?</a>
+                                        <a onClick="loadDoc('../institute/forgot-password.php','field');$('#myModal').modal('hide');">Forgot your password?</a>
                                     </div>
                                 </div>
                             </form>
@@ -362,8 +362,20 @@
                                     User Login
                                 </div>
                                 <div style="margin: 15px 0px;" class="styleBox">
-                                    <a class="btn btn-block btn-social btn-google-plus" href='login.php'>
+                                    <a class="btn btn-block btn-social btn-google-plus" href='../user/login.php'>
                                         <i class="fa fa-google-plus"></i> Sign in with Google
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-facebook disabled">
+                                        <i class="fa fa-facebook"></i> Sign in with Facebook
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-twitter disabled">
+                                        <i class="fa fa-twitter"></i> Sign in with Twitter
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-linkedin disabled">
+                                        <i class="fa fa-linkedin"></i> Sign in with LinkedIn
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-github disabled">
+                                        <i class="fa fa-github"></i> Sign in with GitHub
                                     </a>
                                 </div>
                             </div>
