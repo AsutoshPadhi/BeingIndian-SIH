@@ -14,8 +14,8 @@ function generateUrlAdd(state,district,locality,pin,issueTitle,description)
 
 function getDistrict(state,field)
 {
-    //alert("yes");
-    var url = "district_list.php?state="+state+"&callFunction=get_query";
+    alert("working");
+	var url = "district_list.php?state="+state+"&callFunction=get_query";
     alert(url);
     loadDoc(url,field);
 }
