@@ -1,10 +1,7 @@
 <script src="ajax.js"></script>
 	
 <?php
-define('BOGUS_THRESHOLD',5);
-define('UPVOTE_THRESHOLD',5);
-define('DUPLICATE_THRESHOLD',5);
-define('LIKE_THRESHOLD',2);
+	require_once('globalVariables.php');
 
     function status($issueid)
 	{
@@ -140,6 +137,7 @@ define('LIKE_THRESHOLD',2);
 		include 'functions/dataBaseConn.php';
 			$sql = "SELECT * FROM solution WHERE solution_id = '$solutionid' ";
 			$result = $conn->query($sql);
+			$row=$result->fetch_assoc();
 			echo $row['like_count'];
 			
 	}
