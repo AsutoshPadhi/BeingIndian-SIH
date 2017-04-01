@@ -1,3 +1,4 @@
+<!--Forgot password page for institutes-->
 <!DOCTYPE html>
 <html lang="en">
 
