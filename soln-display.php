@@ -73,7 +73,7 @@
 									}
 									else
 										{
-											echo "You didn't promoted this issue .Only promoters can like the solution ";
+											echo "Only the users who upvoted this issue may like the Solution. ";
 										}
 								}
 									else
