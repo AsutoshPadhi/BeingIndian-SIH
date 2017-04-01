@@ -1,6 +1,8 @@
+<!--report duplicate option for institute-->
 <!DOCTYPE html>
 <html>
 <?php
+//duplicate issues
     session_start();
     require('../functions/func_in.php');
     //require("issue-collapse.php");
@@ -28,7 +30,7 @@
         </div>
         <button type="submit" onclick="getUrl2(getElementById('solutionUrl').value,<?php echo $inst_id.",".$issue_id;?>)" class="btn btn-default">Report as Duplicate</button></div>
 <?php
-//var finalUrl= provideSolution.php?url=document.getElementById('solutionUrl').value; loadDoc(finalUrl,'instButtons');
+
     }
 ?>
 </html>

@@ -1,3 +1,4 @@
+<!--buttons for upvote and like-->
 <div id=upvote<?php echo $row['issue_id'] ?> >
 	<?php
 	$issueid=$row['issue_id'];
