@@ -362,7 +362,7 @@
                                     User Login
                                 </div>
                                 <div style="margin: 15px 0px;" class="styleBox">
-                                    <a class="btn btn-block btn-social btn-google-plus" href='user/login.php'>
+                                    <a class="btn btn-block btn-social btn-google-plus" href='../user/login.php'>
                                         <i class="fa fa-google-plus"></i> Sign in with Google
                                     </a>
                                 </div>
