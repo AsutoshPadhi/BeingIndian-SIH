@@ -149,7 +149,8 @@
                         <li id="dash">
                             <?php
                                 #results according to profile
-                                $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
+                                $checkProfile = "SE
+                                LECT * FROM user where user_email = '".$email."'";
                                 $result = $conn->query($checkProfile);
                                 $row = $result->fetch_assoc();
                                 $district_id = $row['district_id'];
