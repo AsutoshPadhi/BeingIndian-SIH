@@ -1,4 +1,5 @@
 <?php
+//session connecting page to dashboard of institute
 	session_start();
 	if(isset($_SESSION['$cemail']))
 	{

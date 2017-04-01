@@ -1,3 +1,4 @@
+<!-- This class imlements the searching algo and returns the percetage match -->
 <?php
 
 class CosineSimilarity 
