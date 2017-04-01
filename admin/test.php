@@ -1,37 +1,3 @@
-<?php
-function exportToCSV($sql){
-    // output headers so that the file is downloaded rather than displayed
-    header('Content-Type: text/csv; charset=utf-8');
-    header('Content-Disposition: attachment; filename=data.csv');
-
-    // create a file pointer connected to the output stream
-    $output = fopen('php://output', 'w');
-
-    // output the column headings
-    fputcsv($output, array('issue_id', 'title'));
-
-    define('DB_SERVER', 'localhost');
-    define('DB_USERNAME', 'root');
-    define('DB_PASSWORD', '');
-    define('DB_DATABASE', 'hackathon');
-
-    $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
-
-    // $sql = "SELECT issue_id,title FROM issue";
-    $result= mysqli_query($db,$sql);
-    if(!$result){
-        echo mysqli_error($result);
-    }
-    else{
-        while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
-            fputcsv($output, $row);
-        }
-    }
-}
-
-?>
-
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -129,37 +95,8 @@ function exportToCSV($sql){
                     </select>
                 </div>
                 
-                <input class="search btn btn-primary" type="submit" value="Search" 
-                onclick="generateUrl((document.getElementById('state1').value),(document.getElementById('district1').value),(document.getElementById('locality').value),(document.getElementById('pin').value),(document.getElementById('issue').value),'field','dashboard');return false;">
-            </form>
+			</form>
         </div>
-                
-		
-        <!--<form method="GET" action="admin-dashboard.php">
-            <div class="form-group col-md-3 col-sm-6 col-lg-3" style="margin: 20px 0;">
-                <input class="form-control" name="state" placeholder="Enter State">
-            </div>
-            <div class="form-group col-md-3 col-sm-6 col-lg-3" style="margin: 20px 0;">
-                <input class="form-control" name="district" placeholder="Enter District">
-            </div>
-            <div class="form-group col-md-3 col-sm-8 col-lg-3" style="margin: 20px 0;">
-                <input class="form-control" name="college" placeholder="Enter College">
-            </div>
-            <button type="submit" class="btn btn-primary col-md-2 col-sm-3 col-lg-2 col-xs-8" style="margin: 20px 15px;">Download Report</button>
-        </form>
-    </body>-->
-    <?php
-        if(isset($_GET['state'])){
-            $state = $_GET['state']; 
-        }
-        if(isset($_GET['district'])){
-            $district = $_GET['district'];
-        }
-        if(isset($_GET['college'])){
-            $college = $_GET['college'];
-        }
-    ?>
-
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>

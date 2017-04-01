@@ -166,6 +166,33 @@ define('LIKE_THRESHOLD',2);
 		}
 		return 0;
 	}
+	
+	function numberOfLikes()
+	{
+		include '../functions/dataBaseConn.php';
+		$sql1="select * from solution inner join solutionlikedetails on solution.solution_id=solutionlikedetails.solution_id ";
+		    $result = $conn->query($sql1);
+			if($result->num_rows!=0)
+			{
+	
+			while($row = $result->fetch_assoc())
+			{
+				 $val=$row['title'];
+				 $val1=$row['solution_id'];
+			}
+			$sql="  select count(solution.solution_id)as like_count,issue.title from issue INNER JOIN solution on solution.issue_id=issue.issue_id group by issue.title having issue.title='$val'";
+             $result1 = $conn->query($sql);
+			if($result1->num_rows!=0)
+			{
+	
+			while($row = $result1->fetch_assoc())
+			{
+				 $val=$row['like_count'];
+			}
+			return $val;
+			}
+			}
+	}
 
 
 

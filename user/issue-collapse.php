@@ -1,4 +1,4 @@
-	<?php
+<?php
 		$issueid=$row['issue_id'];
 			?>
 			<br>
@@ -79,12 +79,19 @@
 				if(status($row['issue_id']) == 0)
 				{
 			?>
-					<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#confirmation'  >Upvote</button>
+					<button style='margin-left: 15px' class='btn btn-primary' data-toggle='modal' data-target='#userLogin'  >Upvote</button><i>&nbsp;   (Login in required)</i>
 			<?php
 				}
 			}
-			
+			$issue=$row['issue_id'];
+			$title=$row['title'];
+				$url="issue-collapse.php?issueid=$issue&title=$title";
 				?>
+				<br>
+				<br>
+				<div id="url">
+				<button style='margin-left: 15px' class='btn btn-primary' onclick="javascript:loadDoc('midshare.php?issueid=<?php echo $issue?>&titleid=<?php echo $title?>','url')">Share</button>
+				</div>
 				</div>
 				<?php
 				if($row['solution_count'] >0)
@@ -202,7 +209,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id='confirmation' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+		<!--<div class="modal fade" id='confirmation' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 			aria-hidden="true">
 			<div class="modal-dialog modal-md " role="document">
 				<div class="modal-content">
@@ -213,10 +220,10 @@
 					</div>
 					<div class="modal-body">
 						<?php 
-						echo "<a href='#userLogin'  class='btn btn-primary' data-toggle='modal' data-dismiss='modal'  >Click here to login</a> ";
+						//echo "<a href='#userLogin'  class='btn btn-primary' data-toggle='modal' data-dismiss='modal'  >Click here to login</a> ";
 						?>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>-->
 	</div>
