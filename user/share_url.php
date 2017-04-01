@@ -1,4 +1,3 @@
-<!--To share on different platfroms-->
 <?php
 function generateUrl($url)
 {

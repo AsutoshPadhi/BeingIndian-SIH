@@ -1,3 +1,4 @@
+<!-- This gives the district list according to the state list -->
 <?php
 
 	include '../functions/dataBaseConn.php';

@@ -1,5 +1,8 @@
+//fills a html div dynamically with a php page
 function loadDoc(url,field) 
 {   
+    // url - url of php page
+    // field - id of div to be filled dynamically
     if(url == 'add-issue.php')      //to hide the searchBar when user clicks Add an issue in home page
     {
         $('#searchBar').hide();
@@ -20,18 +23,19 @@ function loadDoc(url,field)
         if (this.readyState == 4 && this.status == 200)
         {
 			
-            document.getElementById(field).innerHTML = this.responseText;
+            document.getElementById(field).innerHTML = this.responseText; 
         }
     };
     xhttp.open("GET", url, true);
     xhttp.send();
 }
-
+// used when inst is providing solution
 function getUrl(url,instid,issueid){
     var finalUrl = "provideSolution.php?url="+url+"&inst="+instid+"&issue="+issueid;
     var divid = "instButtons"+issueid; 
     loadDoc(finalUrl,divid);
 }
+// used when inst is reporting duplicate
 function getUrl2(url,instid,issueid){
     var finalUrl = "reportDuplicate.php?url="+url+"&inst="+instid+"&issue="+issueid;
     var divid = "instButtons"+issueid; 

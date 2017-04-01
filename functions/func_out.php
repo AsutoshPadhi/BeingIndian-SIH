@@ -1,5 +1,6 @@
 <?php
-
+    // ALL THE FUNCTION RETURNS QUERY TO DIFFERENT PAGES ON DASHBOARD
+    // EXCEPT getInstId() and getUserId() WHICH RETURN inst_id and user_id RESPECTIVELY
     function historyUpvotedByMe(){
         $sql = "SELECT user_id FROM user WHERE user_email = $email";
         $result = $conn->query($sql);
