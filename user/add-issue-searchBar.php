@@ -1,15 +1,8 @@
-<!-- Test for github -->
-
 <?php
 require '../globalVariables.php';
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-    	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
-		<script type="text/javascript" src="minlength.js"></script>
-    </head>
-
     <body>
 		<form id="formAddIssue" name="formAddIssue" action="#">
 
