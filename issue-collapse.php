@@ -1,15 +1,20 @@
+<!--button and collapse body for issues ,posted by  ,status -->
 <?php
+	require_once('globalVariables.php');
 	require_once('functions/func_in.php');
 ?>
+<!-- accordian button  -->
 <button type="button" class="btn btn btn-default btn-lg btn-block btn-social" data-toggle="collapse" data-target="#demo<?php echo $i; ?>">
 	<?php echo "<font style='font-size: 1em;'>#".$row["issue_id"]."</font>".$row["title"]; ?>
 </button>
 <br>
+<!--accordian body-->
 <div id="demo<?php echo $i; ?>" class="<?php if($no_of_results == 1) echo"panel-collapse collapse-in body"; else echo "collapse body"; ?>">
 	<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo "#".$row["issue_id"]; ?>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >(Click here to see the description)</a> 	
 	<br><hr>
 	<b>Location : </b>
+	<!-- display location in collapse body-->
 	<?php
 
 		$district_issue = $row['district_id'];
@@ -26,13 +31,13 @@
 	?>
 	<br><hr>
 	<?php
-		echo  postedBy($row['issue_id']);
+		echo  postedBy($row['issue_id']);//display posted by which user 
 	?>
 	<br><hr>
 	<?php
 		$id = $row['issue_id'];
 		echo "<b id='code'>Status : </b>";
-
+//code for checking status and display it 
 		$status = status($row['issue_id']);
 		switch($status){
 			case 0:

@@ -1,3 +1,4 @@
+<!--solution part -->
 <?php
 	if($row["solution_count"] >0)
 	{
@@ -5,6 +6,7 @@
 		<div class='panel-body'>
 			<!-- Button trigger modal -->
 			<?php
+			//sql to display solution 
 				$sql1="select * from solution where issue_id=".$row['issue_id']."";
 				$resultsolution=mysqli_query($conn,$sql1);
 				while($rowsolution=mysqli_fetch_array($resultsolution))
@@ -38,7 +40,7 @@
 					
 					
 					?>
-					<!-- Modal -->
+					<!--you tube Modal -->
 					<div class='modal fade' id='solution<?php echo $rowsolution['solution_id'];?>' tabindex='-1' role='dialog' aria-labelledby='videoModal' aria-hidden='true'>
 						<div class='modal-dialog'>
 							<div class='modal-content'>
@@ -57,14 +59,14 @@
 								if($login)
 								{
 									$userid=getUserId($email);
-									$sqlsoln="select * from issueupvote where user_id=$userid and issue_id=".$rowsolution['issue_id']."";
+									$sqlsoln="select * from issueupvote where user_id=$userid and issue_id=".$rowsolution['issue_id']."";//not upvoted user
 									$resultsoln=mysqli_query($conn,$sqlsoln);
 									$solution=$rowsolution['solution_id'];
-									$sqlbutton="select * from solutionlikedetails where user_id=$userid and solution_id=$solution";
+									$sqlbutton="select * from solutionlikedetails where user_id=$userid and solution_id=$solution";//already liked 
 									$resultbutton=mysqli_query($conn,$sqlbutton); 
-									if($resultsoln==TRUE)
+									if($resultsoln==TRUE)//condition to check whether the user has upvoted the issue or not 
 									{
-											if($resultbutton->num_rows==0)
+											if($resultbutton->num_rows==0)//condition to check whether user has already liked this solution
 											{
 											
 												?>
@@ -72,20 +74,21 @@
 													<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $rowsolution['solution_id'] ?>&useremail= <?php echo $email; ?>","like")' class="btn btn-primary btn-sm">
 														<span class="glyphicon glyphicon-thumbs-up"></span> 
 													</a>
+													<!--display like count -->
 													<i><?php echo $likes; ?>&nbsp;&nbsp;people have liked this </i>
 												</div>
 									<?php
 											}
 											else
 											{
-												echo "You have already liked this solution ";
+												echo "You have already liked this solution ";//msg for already liked users 
 											}
 										
 									
 									}
 									else
 										{
-											echo "Only the users who upvoted this issue may like the Solution. ";
+											echo "Only the users who upvoted this issue may like the Solution. ";//msg for not upvoted users 
 										}
 								}
 									else
@@ -96,7 +99,7 @@
 										<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#userLogin' data-dismiss='modal' >
 											<span class="glyphicon glyphicon-thumbs-up"></span> 
 										</a>
-										<i>$nbsp;<?php NumberOfLikes($rowsolution['solution_id']);?></i><br>
+										<i><?php echo $likes; ?>&nbsp;&nbsp;people have liked this </i><br><!--like button without login-->
 										</div>
 									<?php	
 									}
