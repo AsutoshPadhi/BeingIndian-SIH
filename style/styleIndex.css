@@ -108,6 +108,10 @@ video
 		position: relative;
 		top: 10px;
 	}
+	.container-fluid
+	{
+		background-color: white;
+	}
 	.container .aboutUs
 	{
 		position: relative;
@@ -125,6 +129,9 @@ video
 	.buttons button
 	{
 		margin-bottom: 20px;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 	.container
 	{
@@ -146,6 +153,10 @@ video
 		font-size: 20px;
 		position: relative;
 		top: 3%;
+	}
+	.container-fluid
+	{
+		background-color: white;
 	}
 	.container .aboutUs
 	{
