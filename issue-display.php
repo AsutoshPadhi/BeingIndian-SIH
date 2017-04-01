@@ -134,11 +134,14 @@
 		<?php
 		$i = 1;
 		
-		while($row=mysqli_fetch_array($result))
+		while($row=$result->fetch_assoc())
 		{
 			require("issue-collapse.php");
-				$i++;
+			$i++;
 		}
+		?>
+	</div>
+		<?php
 		//display links to the pages
 		if($no_of_pages > 1 ){	
 		?>
@@ -159,6 +162,5 @@
 			</ul>
 		</div>
 		<?php } ?>
-	</div>
 </body>
 </html>

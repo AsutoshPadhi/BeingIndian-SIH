@@ -45,13 +45,13 @@
 								if($login)
 								{
 									$userid=getUserId($email);
-									$sql="select * from issueupvote where user_id=$userid and issue_id=".$rowsolution['issue_id']."";
-									$result=mysqli_query($conn,$sql);
+									$sqlsoln="select * from issueupvote where user_id=$userid and issue_id=".$rowsolution['issue_id']."";
+									$resultsoln=mysqli_query($conn,$sqlsoln);
 									if($result==TRUE)
 									{
 									?>
 									<div id="like">
-										<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $rowsolution['solution_id'] ?>&useremail=<?phpecho $email; ?>","like")' class="btn btn-primary btn-sm">
+										<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $rowsolution['solution_id'] ?>&useremail=<?php echo $email; ?>","like")' class="btn btn-primary btn-sm">
 											<span class="glyphicon glyphicon-thumbs-up"></span> 
 										</a>
 										<i><?php NumberOfLikes($rowsolution['solution_id'])?></i>
@@ -97,7 +97,7 @@
 			<?php	
 				}
 			?>
-		
+		</div>
 <?php
 	}
 ?>
