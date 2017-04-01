@@ -1,3 +1,4 @@
+<!--generates url for sharing-->
 <?php
 
  $issueid=$_GET['issueid'];
