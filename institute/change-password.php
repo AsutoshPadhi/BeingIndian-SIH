@@ -6,13 +6,12 @@ session_start();
 if(isset($_SESSION['$cemail'])){
     if(isset($_POST['old'])){
         $cemail = $_SESSION['$cemail'];
-        //echo $cemail;
         $old = $_POST['old'];
-        //echo $old;
+        //encrytion of password
         $old = md5($old);
         $new = $_POST['new'];
         $new = md5($new);
-
+		//Create connection
         $conn=mysqli_connect("localhost","root","","hackathon");
         $sql =  "SELECT * from institute WHERE inst_password = '".$old."' AND inst_email = '".$cemail."'";
         $result =$conn->query($sql);
@@ -27,7 +26,7 @@ if(isset($_SESSION['$cemail'])){
         }
         else{
             $_SESSION['$cemail']=$cemail;
-            //header('Location: dashboard.php');
+            
         }
 
     }

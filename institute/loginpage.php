@@ -5,13 +5,7 @@
 <link rel="stylesheet" href="//..style/styleLogin.css" >
 </head>
 <body>
-<!--<div>
-<button>REGISTRATION</button>
-<br>
-<br>
-<button onclick="f1()">LOGIN</button>
-</div>
--->
+
 
   <div class="fullpage" id="i1">
   <form action="login3.php" method="post">
@@ -37,9 +31,10 @@
 
 <script>
 var x=document.getElementById('i1');
+//function declaration
 function f1()
 {
-document.getElementById('i1').style.display="block";
+	document.getElementById('i1').style.display="block";
 }
 window.onclick=function(event)
 {
