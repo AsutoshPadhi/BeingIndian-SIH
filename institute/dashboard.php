@@ -1,5 +1,6 @@
 <?php
     session_start();
+	require_once("globalVariables.php");
     if(isset($_SESSION['$cemail'])){
         $cemail = $_SESSION['$cemail'];
         require('../functions/dataBaseConn.php');
@@ -92,7 +93,7 @@
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i><?php echo "Welcome,  ".$instname?><i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i><?php echo "Welcome,O  ".$instname?><i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                             </li>
