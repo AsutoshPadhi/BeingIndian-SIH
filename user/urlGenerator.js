@@ -1,11 +1,14 @@
-<?php include '../globalVariables.php'; />
 //This function makes an ajax call
 function generateUrl(state,district,locality,pin,issueTitle,area,type)
 {
     //alert("ys");
     var url = "getQuery.php?issue="+issueTitle+"&state="+state+"&district="+district+"&locality="+locality+"&pin="+pin+"&type="+type+"&callFunction=get_query";
     //alert(url);
-    if(issueTitle.length < 50)  //hardcoded
+    if(issueTitle.length==0)
+    {
+        loadDoc(url,area);
+    }
+    else if(issueTitle.length < 50)  //hardcoded
     {
         alert("Issue Title is expected to be of minimum 50 characters");
     }

@@ -4,6 +4,7 @@
 </head>
 <?php
 	session_start();
+	require_once('../globalVariables.php');
 	$callFunction = $_REQUEST['callFunction'];			//Receives 
 
     if($callFunction == "get_query")

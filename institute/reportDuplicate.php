@@ -15,7 +15,7 @@
 	{
         if(reportDuplicate($inst_id,$issue_id,$_GET['url'])){
             echo "You've reported this issue as duplicate to ".$_GET['url']."";
-           updateDuplicate($inst_id,$issue_id,$_GET['url'])
+            updateDuplicate($inst_id,$issue_id,$_GET['url']);
         }
         else{
             echo "Some error occured!";
