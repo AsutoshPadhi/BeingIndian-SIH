@@ -129,11 +129,21 @@
         echo"<b> Posted by : </b>". $row['fname']. "  ".$row['lname'];
         
     }
+	function NumberOfCounts($issueid)
+	{
+		include 'functions/dataBaseConn.php';
+		$sql = "SELECT * FROM issue WHERE issue_id = '$issueid' ";
+		$result = $conn->query($sql);
+		$row=$result->fetch_asssoc();
+		echo $row['upvote_count'];
+			
+	}
 	function NumberOfLikes($solutionid)
 	{
 		include 'functions/dataBaseConn.php';
 			$sql = "SELECT * FROM solution WHERE solution_id = '$solutionid' ";
 			$result = $conn->query($sql);
+			$row=$result->fetch_assoc();
 			echo $row['like_count'];
 			
 	}
@@ -197,6 +207,10 @@
 			return true;
 		else
 			return false;
+	
 	}
+	
+	}
+
 
 ?>

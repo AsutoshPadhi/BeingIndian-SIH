@@ -39,7 +39,20 @@
 		$row = $result->fetch_assoc();
 		$district_id = $row['district_id'];
 
-		$query_word_count =  array_count_values(str_word_count($str, 1));
+		// if (strpos($str, '#') !== false) 
+		// {
+		//     echo 'true';
+		// }
+		// if(str.includes("#"))
+  //       {
+  //           alert("number ahe");
+  //           if( str.charAt( 0 ) === '#' )
+  //           {
+  //               str = str.substring(1);
+  //               alert(str);
+  //           }
+            
+  //       }
 
 		$sql = "SELECT *FROM issue WHERE district_id = $district_id AND upvote_count > ".UPVOTE_THRESHOLD;
 		$result = $conn->query($sql);
@@ -100,6 +113,7 @@
 		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
 		$result=mysqli_query($conn,$sql2);
 
+		$query_word_count =  array_count_values(str_word_count($str, 1));
 		
 		if(($result->num_rows>0) && $str!="")
 		{
