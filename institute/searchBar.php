@@ -14,7 +14,7 @@
 
     <body>
         <div class="form-group col-md-8">
-            <input id="new2" type="text" name="issue3" class="form-control" placeholder="Search by issue Number or issue Title">
+            <input id="new2" type="text" name="issue3" class="form-control" placeholder="Search by issue Number or Issue Title">
         </div>
         <input type="submit" onClick="search()" class="btn btn-primary col-md-3" value="Search">
     </body>
@@ -23,9 +23,14 @@
         function search()
         {
             var issue =(document.getElementById('new2').value);
+            //alert(issue);
             if(isNaN(issue))        //Return false if an input is a number
             {
-                loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field');                
+                loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field');
+            }
+            else if(issue.length == 0)
+            {
+                loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field');
             }
             else
             {
