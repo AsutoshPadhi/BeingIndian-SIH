@@ -210,19 +210,21 @@
 	
 	}
 	
-function updateDuplicate($inst_id,$issue_id,$similar_to_issue,$instid1){
+function updateDuplicate($inst_id,$issue_id,$similar_to_issue){
 		include '../functions/dataBaseConn.php';
 		//instid1=$instid1;
-		$sql = "Select * from issueduplicateupvote group by issue_id,similar_to_issue  having count(inst_id)>5 and inst_id=$inst_id and similar_to_issue=$instid1";
+		echo $issue_id;
+		$sql = "Select * from issueduplicateupvote group by issue_id,similar_to_issue  having count(inst_id)>5 and similar_to_issue=$similar_to_issue";
         $result = $conn->query($sql);
-		if($result->num_rows>0)
+		
+		if($result)
 		{
 			//$count=$row[issue_id];
 			$sql1="update issue set duplicate_count=duplicate_count+1 where issue_id=$issue_id";
 			$result1= $conn->query($sql1);
 		}
 
-
+}
 
 
 ?>
