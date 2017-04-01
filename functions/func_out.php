@@ -22,21 +22,21 @@
 
     function historyReportedBogus($cemail){
         $instid = getInstId($cemail);
-        $sql = "SELECT * FROM issue, issuebogusupvote WHERE issuebogusupvote.inst_id = $instid AND issuebogusupvote.issue_id = issue.issue_id";
+        $sql = "SELECT * FROM issue, issuebogusupvote WHERE issuebogusupvote.inst_id = $instid AND issuebogusupvote.issue_id = issue.issue_id order by issue.issue_id desc";
         return $sql;
     }
 
     function historyReportedDuplicate($cemail){
         require('dataBaseConn.php');
         $instid = getInstId($cemail);
-        $sql = "SELECT * FROM issue, issueduplicateupvote WHERE issueduplicateupvote.inst_id = $instid AND issueduplicateupvote.issue_id = issue.issue_id";
+        $sql = "SELECT * FROM issue, issueduplicateupvote WHERE issueduplicateupvote.inst_id = $instid AND issueduplicateupvote.issue_id = issue.issue_id  order by issue.issue_id desc";
         return $sql;
     }
 
     function historySolutionProvided($cemail){
         require('dataBaseConn.php');
         $instid = getInstId($cemail);
-        $sql = "SELECT * FROM issue, solution WHERE solution.inst_id = $instid AND solution.issue_id = issue.issue_id";
+        $sql = "SELECT * FROM issue, solution WHERE solution.inst_id = $instid AND solution.issue_id = issue.issue_id order by issue.issue_id desc";
         return $sql;
     }
 
@@ -52,8 +52,8 @@
     function historyUpvoted($email){
         require('dataBaseConn.php');
         $userId = getUserId($email);
-        $sql = "SELECT * FROM issue, issueupvote WHERE issueupvote.user_id = $userId AND issueupvote.issue_id = issue.issue_id";
-        return $sql;
+        $sql = "SELECT * FROM issue, issueupvote WHERE issueupvote.user_id = $userId AND issueupvote.issue_id = issue.issue_id order by issue.issue_id desc";
+		return $sql;
     }
 
     function historyAdded($email){

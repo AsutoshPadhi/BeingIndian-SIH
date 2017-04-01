@@ -3,18 +3,36 @@
 	<link rel="stylesheet" href="problemdescription.css">
 </head>
 <?php
+	session_start();
 	$callFunction = $_REQUEST['callFunction'];			//Receives 
 
     if($callFunction == "get_query")
        get_query();
+
 	function get_query()
 	{
 		include '../functions/dataBaseConn.php';
 		require_once 'CosineSimilarity.php';
+		include('../functions/func_in.php');
+		if(isset($_SESSION['$email']))
+		{
+			$instlogin = false;
+			$login=true;
+			$email = $_SESSION['$email'];
+		}
+		else if(isset($_SESSION['$cemail'])){
+			$cemail = $_SESSION['$cemail'];
+			$inst_id = $_SESSION['$inst_id'];
+			$instlogin = true;
+			$login = false;
+		}	
+		else
+		{
+			$login=false;
+			$instlogin = false;
+		}
 
 		$str = $_GET['issue'];
-		session_start();
-		$cemail = $_SESSION['$cemail'];
 		
 		$get_district_id = "SELECT *FROM institute WHERE inst_email = '".$cemail."'";
 		$result = $conn->query($get_district_id);
@@ -23,7 +41,7 @@
 
 		$query_word_count =  array_count_values(str_word_count($str, 1));
 
-		$sql = "SELECT *FROM issue WHERE district_id = '".$district_id."'";
+		$sql = "SELECT *FROM issue WHERE district_id = $district_id AND upvote_count > ".UPVOTE_THRESHOLD;
 		$result = $conn->query($sql);
 
 		$cs = new CosineSimilarity();
@@ -35,6 +53,17 @@
 		$no_of_pages= ceil($no_of_results/$results_per_page);
 
 		//determine the number of results in one page
+		$results_per_page=5;
+		while($row= mysqli_fetch_array($result))
+		{
+			$row=$row['issue_id'].''.$row['title'].''.'<br>';
+		}
+
+		//dtermine the number of pages in a page
+		$no_of_pages= ceil($no_of_results/$results_per_page);
+
+		//determine the number of results in one page
+
 		if(!isset($_GET['page']))
 		{
 			$page=1;
@@ -43,8 +72,8 @@
 		{
 			$page=$_GET['page'];
 		}
-		$curr_page = $page;
-		$start_limit = ($page-1) * $results_per_page;
+
+		$start_limit=($page-1)*$results_per_page;
 
 		if($page>1)
 		{
@@ -69,9 +98,9 @@
 
 
 		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
-		$result=$conn->query($sql2);
+		$result=mysqli_query($conn,$sql2);
 
-		include('../functions/func_in.php');
+		
 		if(($result->num_rows>0) && $str!="")
 		{
 			$i=0;
@@ -80,20 +109,15 @@
 			while($i<$result->num_rows)
 			{
 				$row = $result->fetch_assoc();
-				//echo "<a href='#'>".$row['description']."</a>";
 				$issue_word_count =  array_count_values(str_word_count($row['title'], 1));
-				//print_r( array_count_values(str_word_count($row['description'], 1)) );
 				
 				$percentage = $cs->similarity($query_word_count,$issue_word_count);
-				//var_dump($percentage);
 				
-			
 				if($percentage>0.3)
 				{
 					$flag=1;
 
-					#displays the problem list
-					require 'issue-list.php';
+					require '../issue-collapse.php';
 				
 				}
 				
@@ -113,16 +137,23 @@
 		}
 		else if($str=="")
 		{
-			$sql = "SELECT *FROM issue WHERE district_id = '".$district_id."'";
+			$sql = "SELECT *FROM issue WHERE district_id = $district_id AND upvote_count > ".UPVOTE_THRESHOLD;
+			//echo $district_id;
 			$result = $conn->query($sql);
 			$i=0;
 			while($i<$result->num_rows)
 			{
 				$row = $result->fetch_assoc();
-				require 'issue-list.php';
+				require '../issue-collapse.php';
 				$i++;
 			}
 		}
+		else
+		{
+			echo "No results";
+		}
+		
+		if($no_of_pages > 1){
 		?>
 		<div class="container">
 			<ul class="pagination">
@@ -141,5 +172,6 @@
 			</ul>
 		</div>
 		<?php
+		}
 	}
 ?>
