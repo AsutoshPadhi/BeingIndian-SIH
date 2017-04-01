@@ -19,8 +19,16 @@
 	?>
 		<button style='margin-left: 15px' class='btn btn-default' data-toggle='modal' data-target='#userLogin'  >Upvote </button><i> &nbsp;(Requires login)</i>
 	<?php	
-	}	
-	?>
+	}	$issue=$row['issue_id'];
+			$title=$row['title'];
+				$url="issue-collapse.php?issueid=$issue&title=$title";
+				?>
+				<br>
+				<br>
+				<div id="url">
+				<button style='margin-left: 15px' class='btn btn-primary' onclick="javascript:loadDoc('midshare.php?issueid=<?php echo $issue?>&titleid=<?php echo $title?>','url')">Share</button>
+				</div>
+
 </div>
 <?php
 	if($row["solution_count"] >0)
@@ -30,7 +38,7 @@
 			<!-- Button trigger modal -->
 			<?php
 				$sql1="select * from solution where issue_id=".$row['issue_id']."";
-				$result1=mysqli_query($con,$sql1);
+				$result1=mysqli_query($conn,$sql1);
 				while($row=mysqli_fetch_array($result1))
 				{
 			?>
