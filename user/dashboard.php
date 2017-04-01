@@ -149,7 +149,8 @@
                         <li id="dash">
                             <?php
                                 #results according to profile
-                                $checkProfile = "SELECT * FROM user where user_email = '".$email."'";
+                                $checkProfile = "SE
+                                LECT * FROM user where user_email = '".$email."'";
                                 $result = $conn->query($checkProfile);
                                 $row = $result->fetch_assoc();
                                 $district_id = $row['district_id'];
@@ -181,14 +182,14 @@
                                         $sql = historyAdded($email);
                                         $url = "../issue-display.php?sql=".$sql."";
                                     ?>
-                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Added by <?php echo $fname; ?></a>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Added by you</a>
                                 </li>
                                 <li>
                                     <?php
                                         $sql = historyUpvoted($email);
                                         $url = "../issue-display.php?sql=".$sql."";
                                     ?>
-                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Upvoted by <?php echo $fname; ?></a>
+                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Upvoted by you</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
