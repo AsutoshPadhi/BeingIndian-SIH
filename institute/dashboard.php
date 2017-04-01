@@ -10,6 +10,8 @@
         $_SESSION['$inst_name'] = $row['inst_name'];
         $_SESSION['$district_id'] = $row['district_id'];
         $districtid = $_SESSION['$district_id'];
+		$_SESSION['$inst_name'] = $row['inst_name'];
+		$instname= $_SESSION['$inst_name'];
         $loginCollege = true;
         //echo "yes";
     }
@@ -90,7 +92,7 @@
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i><?php echo "Welcome,  ".$instname?><i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                             </li>
