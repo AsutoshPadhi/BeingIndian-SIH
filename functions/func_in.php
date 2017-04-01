@@ -130,16 +130,17 @@
     }
 	function NumberOfCounts($issueid)
 	{
-		include 'functions/dataBaseConn.php';
-		$sql = "SELECT * FROM issue WHERE issue_id = '$issueid' ";
-		$result = $conn->query($sql);
-		$row=$result->fetch_asssoc();
-		echo $row['upvote_count'];
+		include 'dataBaseConn.php';
+		//echo $issueid;
+		$sql1 = "SELECT * FROM issue WHERE issue_id = $issueid ";
+		$result1 = $conn->query($sql1);
+		$row=$result1->fetch_assoc();
+		echo "<b>".$row['upvote_count']. "  users have upvoted</b>";
 			
 	}
 	function NumberOfLikes($solutionid)
 	{
-		include 'functions/dataBaseConn.php';
+		include 'dataBaseConn.php';
 			$sql = "SELECT * FROM solution WHERE solution_id = '$solutionid' ";
 			$result = $conn->query($sql);
 			$row=$result->fetch_assoc();

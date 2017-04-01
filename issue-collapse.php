@@ -57,26 +57,11 @@
 	?>
 	<hr>
 	<?php
-		if($instlogin)
+		if($instlogin){
 			require('inst-issue-btns.php');
-		else
+		}
+		else{
 			require('user-issue-btns.php');
+		}
 	?>
-	<div class="modal fade" id='confirmation' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog modal-md " role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						×</button>
-					<h4 class="modal-title" id="myModalLabel">PLEASE LOGIN</h4>
-				</div>
-				<div class="modal-body">
-					<?php 
-					echo "<a href='#userLogin'  class='btn btn-primary' data-toggle='modal' data-dismiss='modal'  >Click here to login</a> ";
-					?>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
