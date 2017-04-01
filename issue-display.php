@@ -107,14 +107,25 @@
 		if(!isset($_SESSION['district_id'])){
 	?>
 			<br>
-			<div class="alert alert-warning text-center">
-				Add state, district and other details to get relevent results!
+			<div class="alert alert-success text-center">
+				Update your profile to get relevant results.
 			</div>
-			<div class="alert alert-info text-center">
+			<div class="alert alert-warning text-center">
 				Following are the recently added issue from all over India.
 			</div>
 	<?php
 		}
+	}
+	else{
+	?>
+		<br>
+		<div class="alert alert-success text-center">
+			Add state, district and other details to get relevant results!
+		</div>
+		<div class="alert alert-warning text-center">
+			Following are the recently added issue from all over India.
+		</div>
+	<?php
 	}
 	?>
 	
@@ -133,17 +144,17 @@
 		?>
 		<div class="container">
 			<ul class="pagination">
-				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=1\",\"field\")' class='button'>FIRST</a></li>"; ?>
-				<?php echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$pre."\",\"field\")' class='button'><<</a></li>"; ?>
+				<?php echo "<li><a onclick='javascript:loadDoc(\"../issue-display.php?sql=".$sql."&page=1\",\"field\")' class='button'>FIRST</a></li>"; ?>
+				<?php echo "<li><a onclick='javascript:loadDoc(\"../issue-display.php?sql=".$sql."&page=".$pre."\",\"field\")' class='button'><<</a></li>"; ?>
 
 				<?php
 					for($page=1;$page<=$no_of_pages;$page++)
 					{
-						$url = "issue-display.php?sql=".$sql."&page=".$page."";
+						$url = "../issue-display.php?sql=".$sql."&page=".$page."";
 						echo "<li><a onclick='javascript:loadDoc(\"".$url."\",\"field\")'>".$page."</a></li>";
 					}
-					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$next."\",\"field\")' class='button'>>></a></li>";
-					echo "<li><a onclick='javascript:loadDoc(\"issue-display.php?sql=".$sql."&page=".$no_of_pages."\",\"field\")' class='button'>LAST</a></li>";
+					echo "<li><a onclick='javascript:loadDoc(\"../issue-display.php?sql=".$sql."&page=".$next."\",\"field\")' class='button'>>></a></li>";
+					echo "<li><a onclick='javascript:loadDoc(\"../issue-display.php?sql=".$sql."&page=".$no_of_pages."\",\"field\")' class='button'>LAST</a></li>";
 				?>
 			</ul>
 		</div>
