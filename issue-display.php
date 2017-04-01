@@ -52,8 +52,9 @@
 		else{
 			$sql = $_GET['sql'];
 		}
+		$sqlDisplay = $sql." ORDER BY issue_id desc";
 		require('functions/dataBaseConn.php');
-		$result = $conn->query($sql);
+		$result = $conn->query($sqlDisplay);
 		/*$state = $_GET['state'];
 		echo $state;
 		require 'getQuery.php';*/
@@ -99,7 +100,7 @@
 			$next=$no_of_pages;
 
 		}
-		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
+		$sql2= $sqlDisplay." LIMIT ".$start_limit.','.$results_per_page;
 		$result=$conn->query($sql2);
 	?>
 	<?php
