@@ -138,7 +138,7 @@
 
 				<?php
 					for($page=1;$page<=$no_of_pages;$page++)
-					{	
+					{
 						$url = "issue-display.php?sql=".$sql."&page=".$page."";
 						echo "<li><a onclick='javascript:loadDoc(\"".$url."\",\"field\")'>".$page."</a></li>";
 					}

@@ -1,10 +1,13 @@
 <script src="ajax.js"></script>
 	
 <?php
-define('BOGUS_THRESHOLD',5);
-define('UPVOTE_THRESHOLD',5);
-define('DUPLICATE_THRESHOLD',5);
-define('LIKE_THRESHOLD',2);
+	define('BOGUS_THRESHOLD',5);
+	define('UPVOTE_THRESHOLD',5);
+	define('DUPLICATE_THRESHOLD',5);
+	define('LIKE_THRESHOLD',2);
+	define('MAX_CHARACTER_TITLE',100);
+	define('MAX_CHARACTER_DESCRIPTION',1500);
+	define('MIN_STRING_MATCH_PERCENTAGE',0.3);
 
     function status($issueid)
 	{
@@ -126,11 +129,21 @@ define('LIKE_THRESHOLD',2);
         echo"<b> Posted by : </b>". $row['fname']. "  ".$row['lname'];
         
     }
+	function NumberOfCounts($issueid)
+	{
+		include 'functions/dataBaseConn.php';
+		$sql = "SELECT * FROM issue WHERE issue_id = '$issueid' ";
+		$result = $conn->query($sql);
+		$row=$result->fetch_asssoc();
+		echo $row['upvote_count'];
+			
+	}
 	function NumberOfLikes($solutionid)
 	{
 		include 'functions/dataBaseConn.php';
 			$sql = "SELECT * FROM solution WHERE solution_id = '$solutionid' ";
 			$result = $conn->query($sql);
+			$row=$result->fetch_assoc();
 			echo $row['like_count'];
 			
 	}
@@ -194,6 +207,10 @@ define('LIKE_THRESHOLD',2);
 			return true;
 		else
 			return false;
+	
 	}
+	
+	
+
 
 ?>
