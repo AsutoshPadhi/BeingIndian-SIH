@@ -56,17 +56,16 @@
 	}
 	function LikeCount($id,$email)
 	{
-		include 'functions/dataBaseConn.php';
-		 $userid = getUserId($email);
-		echo $id."".$userid;
-		
+		include 'dataBaseConn.php';
+		$userid = getUserId($email);
+
 		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
-          $result1 = $conn->query($sql);
-		 
-		
-		  $sql2="Insert into solutionlikedetails(solution_id,user_id) values($id,$userid)";
-		  $result2=$conn->query($sql2);
-		  echo "YOU HAVE liked  FOR THIS ";
+		$result1 = $conn->query($sql);
+
+
+		$sql2="Insert into solutionlikedetails(solution_id,user_id) values($id,$userid)";
+		$result2=$conn->query($sql2);
+		echo "You've Liked this issue!";
 	}
 
 	
@@ -209,8 +208,7 @@
 			return false;
 	
 	}
-	
-	
+
 
 
 ?>

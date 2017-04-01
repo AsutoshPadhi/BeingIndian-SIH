@@ -1,3 +1,4 @@
+
 <?php
 	if($row["solution_count"] >0)
 	{
@@ -68,7 +69,9 @@
 								?>
 									<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#confirmation' data-dismiss='modal' >
 										<span class="glyphicon glyphicon-thumbs-up"></span> 
-									</a></div>
+									</a>
+                  <i><?phpNumberOfLikes($rowsolution['solution_id'])?></i>
+                </div>
 								<?php	
 								}
 								?>
