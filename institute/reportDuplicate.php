@@ -3,13 +3,16 @@
 <?php
     session_start();
     require('../functions/func_in.php');
+    //require("issue-collapse.php");
+    $inst_id1=$_GET['inst'];//id of current problem
     if(isset($_GET['inst'])&&$_GET['issue']){
-        $inst_id = $_GET['inst'];
+        $inst_id = $_GET['inst'];//one of which is being passed through get method
         $issue_id = $_GET['issue'];
     }
     if(isset($_GET['url'])){
         if(reportDuplicate($inst_id,$issue_id,$_GET['url'])){
             echo "You've reported this issue as duplicate to ".$_GET['url']."";
+            reportDuplicate1($inst_id,$issue_id,$_GET['url'],$inst_id1)
         }
         else{
             echo "Some error occured!";
