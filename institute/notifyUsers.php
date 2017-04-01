@@ -7,11 +7,11 @@
 
 	$swift = Swift_Mailer::newInstance($transport);
 
-	$content = "Solution -  ".$otp;
-
+	$content = "Solution -  ".$solution;
+	echo $user_email;
 	$message = \Swift_Message::newInstance("Test Mail")
 			->setFrom(['asutosh.padhi123@gmail.com'=>'Support'])
-			->setTo([$cemail=>'Support'])
+			->setTo([$user_email=>'Support'])
 			->setBody($content,'text/html')
 			->addPart(strip_tags($content),"text/plain");
 

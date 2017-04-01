@@ -116,7 +116,7 @@
 	<?php
 		}
 	}
-	else{
+	else if(!$instlogin){
 	?>
 		<br>
 		<div class="alert alert-success text-center">
