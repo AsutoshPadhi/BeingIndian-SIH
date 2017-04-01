@@ -6,7 +6,7 @@
 	//echo "stet = ".$state;
 	//echo "<option>".$state."</option>";
 
-	$sql1 = "SELECT state_id FROM states WHERE state_name = '".$state."'";
+	$sql1 = "SELECT state_id FROM state WHERE state_name = '".$state."'";
 	$sid = $conn->query($sql1);
 	$row1 = $sid->fetch_assoc();
 	$sql = "SELECT district_name FROM district WHERE state_id = '".$row1['state_id']."'";

@@ -108,7 +108,7 @@
                         <li>
                             <?php
                                 $sql = "SELECT * FROM issue WHERE district_id = $districtid AND upvote_count > 5";
-                                $url = "issue-display.php?sql=".$sql."";
+                                $url = "../issue-display.php?sql=".$sql."";
                             ?>
                             <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
@@ -118,21 +118,21 @@
                                 <li>
                                     <?php
                                         $sql = historySolutionProvided($cemail);
-                                        $url = "issue-display.php?sql=".$sql."";
+                                        $url = "../issue-display.php?sql=".$sql."";
                                     ?>
                                     <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Solutions Provided</a>
                                 </li>
                                 <li>
                                     <?php
                                         $sql = historyReportedBogus($cemail);
-                                        $url = "issue-display.php?sql=".$sql."";
+                                        $url = "../issue-display.php?sql=".$sql."";
                                     ?>
                                     <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Reported as bogus</a>
                                 </li>
                                 <li>
                                     <?php
                                         $sql = historyReportedDuplicate($cemail);
-                                        $url = "issue-display.php?sql=".$sql."";
+                                        $url = "../issue-display.php?sql=".$sql."";
                                     ?>
                                     <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Reported as duplicate</a>
                                 </li>
@@ -183,7 +183,7 @@
             {
                 include '../functions/dataBaseConn.php';
                 $sql = "SELECT * FROM issue WHERE district_id = $districtid AND upvote_count > 5";
-                $url = "issue-display.php?sql=".$sql."";
+                $url = "../issue-display.php?sql=".$sql."";
                 ?><script>loadDoc('javascript:alert("s");loadDoc("<?php echo $url?>","field");$("#searchBar").show();','field');</script><?php
                 unset($_SESSION['toOpen']);
             }
