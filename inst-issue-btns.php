@@ -1,5 +1,5 @@
 <?php
-    echo "<div id='instButtons'>";
+    echo "<div id='instButtons".$row['issue_id']."'>";
     if($status == 4){
         $bogusNumber = "SELECT * FROM issuebogusupvote WHERE issue_id = $id";
         $res = $conn->query($bogusNumber);
@@ -20,12 +20,12 @@
     else{
         if(instStatus($cemail,$id) == 0){
 ?>					
-            <input type="button" onclick="loadDoc('provideSolution.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-default btn-sm btn-sm" value="Provide a Solution">
+            <input type="button" onclick="loadDoc('provideSolution.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons<?php echo $row['issue_id']; ?>')" class="btn btn-default btn-sm btn-sm" value="Provide a Solution">
             <?php
                 if($status == 0 || $status == 1){
             ?>
-                    <input type="button" onclick="loadDoc('reportBogus.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-default btn-sm btn-sm" value="Report as Bogus">
-                    <input type="button" onclick="loadDoc('reportDuplicate.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-default btn-sm btn-sm" value="Report as Duplicate">
+                    <input type="button" onclick="loadDoc('reportBogus.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons<?php echo $row['issue_id']; ?>')" class="btn btn-default btn-sm btn-sm" value="Report as Bogus">
+                    <input type="button" onclick="loadDoc('reportDuplicate.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons<?php echo $row['issue_id']; ?>')" class="btn btn-default btn-sm btn-sm" value="Report as Duplicate">
             <?php
                 }
             ?>
@@ -92,7 +92,7 @@
         ?>
         <br>
         <br>
-        <input type="button" onclick="loadDoc('provideSolution.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-default btn-sm btn-sm" value="Provide a Solution">
+        <input type="button" onclick="loadDoc('provideSolution.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons<?php echo $row['issue_id']; ?>')" class="btn btn-default btn-sm btn-sm" value="Provide a Solution">
         <br>
 <?php
         }

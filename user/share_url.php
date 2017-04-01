@@ -32,8 +32,6 @@ function generateUrl($url)
         <img src="https://simplesharebuttons.com/images/somacro/twitter.png" width=25px height=25px alt="Twitter" />
     </a>
 	
-	<!--Whatsapp-->
-	<a href="whatsapp://send?text=Better%20India!" data-action="share/whatsapp/share">Share via Whatsapp</a>
     
 </div>
 <?php

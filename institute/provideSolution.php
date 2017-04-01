@@ -22,7 +22,7 @@
         <div class="col-md-6">
         <input class="form-control" id="solutionUrl" name="solutionUrl" type="url" placeholder="Enter solution url">
         </div>
-        <button type="submit" onclick="getUrl(getElementById('solutionUrl').value,<?php echo $inst_id.",".$issue_id;?>)" class="btn btn-primary">Submit Solution</button></div>
+        <button type="submit" onclick="getUrl(getElementById('solutionUrl').value,<?php echo $inst_id.",".$issue_id;?>)" class="btn btn-default">Submit Solution</button></div>
 <?php
 //var finalUrl= provideSolution.php?url=document.getElementById('solutionUrl').value; loadDoc(finalUrl,'instButtons');
     }
