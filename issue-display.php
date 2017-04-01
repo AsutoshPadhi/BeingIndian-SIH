@@ -52,8 +52,9 @@
 		else{
 			$sql = $_GET['sql'];
 		}
+		$sqlDisplay = $sql." ORDER BY issue_id desc";
 		require('functions/dataBaseConn.php');
-		$result = $conn->query($sql);
+		$result = $conn->query($sqlDisplay);
 		/*$state = $_GET['state'];
 		echo $state;
 		require 'getQuery.php';*/
@@ -99,7 +100,7 @@
 			$next=$no_of_pages;
 
 		}
-		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
+		$sql2= $sqlDisplay." LIMIT ".$start_limit.','.$results_per_page;
 		$result=$conn->query($sql2);
 	?>
 	<?php
@@ -108,7 +109,7 @@
 	?>
 			<br>
 			<div class="alert alert-success text-center">
-				Update your profile to get relevant results.
+				<a onclick="loadDoc('profile.php','field'); $('#searchBar').hide();">Update your profile</a> to get relevant results.
 			</div>
 			<div class="alert alert-warning text-center">
 				Following are the recently added issue from all over India.
@@ -116,7 +117,7 @@
 	<?php
 		}
 	}
-	else{
+	else if(!$instlogin){
 	?>
 		<br>
 		<div class="alert alert-success text-center">
@@ -134,11 +135,14 @@
 		<?php
 		$i = 1;
 		
-		while($row=mysqli_fetch_array($result))
+		while($row=$result->fetch_assoc())
 		{
 			require("issue-collapse.php");
-				$i++;
+			$i++;
 		}
+		?>
+	</div>
+		<?php
 		//display links to the pages
 		if($no_of_pages > 1 ){	
 		?>
@@ -159,6 +163,5 @@
 			</ul>
 		</div>
 		<?php } ?>
-	</div>
 </body>
 </html>

@@ -314,7 +314,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <form action="institute/login.php" method="POST" role="form" class="form-horizontal">
+                            <form action="../institute/login.php" method="POST" role="form" class="form-horizontal">
                                 <div class="form-group">
                                     <label for="cemail" class="col-sm-2 control-label">
                                         Email</label>
@@ -364,6 +364,18 @@
                                 <div style="margin: 15px 0px;" class="styleBox">
                                     <a class="btn btn-block btn-social btn-google-plus" href='../user/login.php'>
                                         <i class="fa fa-google-plus"></i> Sign in with Google
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-facebook disabled">
+                                        <i class="fa fa-facebook"></i> Sign in with Facebook
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-twitter disabled">
+                                        <i class="fa fa-twitter"></i> Sign in with Twitter
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-linkedin disabled">
+                                        <i class="fa fa-linkedin"></i> Sign in with LinkedIn
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-github disabled">
+                                        <i class="fa fa-github"></i> Sign in with GitHub
                                     </a>
                                 </div>
                             </div>

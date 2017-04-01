@@ -5,6 +5,7 @@
 		<div class='panel-body'>
 			<!-- Button trigger modal -->
 			<?php
+			//sql to display solution 
 				$sql1="select * from solution where issue_id=".$row['issue_id']."";
 				$resultsolution=mysqli_query($conn,$sql1);
 				while($rowsolution=mysqli_fetch_array($resultsolution))
@@ -16,9 +17,21 @@
 					<br>
 					<a class='' id="video<?php echo $rowsolution['solution_id'];?>" data-toggle='modal' data-target='#solution<?php echo $rowsolution['solution_id'] ;?>'data-theVideo="<?php echo $rowsolution['solution_url'];?>">
 						<?php echo $rowsolution['solution_url'];?>
-					</a>
+					</a>&nbsp;&nbsp;&nbsp;
+					<?php
+					$likes =NumberOfLikes($rowsolution['solution_id']);
+					//condition to display whether the solution is aproved or not
+					if($likes>=LIKE_THRESHOLD)
+					{
+						?>
+						<i class="text-success"style="color:green">(approved solution)</i>
+						<?php
+						
+					}
+					?>
 					</div><br>
 					<?php
+					//code to display solution by which college 
 					$instid=$rowsolution['inst_id'];				
 					$sqlinstname="SELECT * from institute where inst_id=$instid";
 					$result3=mysqli_query($conn,$sqlinstname);
@@ -45,37 +58,50 @@
 								if($login)
 								{
 									$userid=getUserId($email);
-									$sql="select * from issueupvote where user_id=$userid and issue_id=".$rowsolution['issue_id']."";
-									$result=mysqli_query($conn,$sql);
-									if($result==TRUE)
+									$sqlsoln="select * from issueupvote where user_id=$userid and issue_id=".$rowsolution['issue_id']."";
+									$resultsoln=mysqli_query($conn,$sqlsoln);
+									$solution=$rowsolution['solution_id'];
+									$sqlbutton="select * from solutionlikedetails where user_id=$userid and solution_id=$solution";
+									$resultbutton=mysqli_query($conn,$sqlbutton); 
+									if($resultsoln==TRUE)//condition to check whether the user has upvoted the issue or not 
 									{
-									?>
-									<div id="like">
-										<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $rowsolution['solution_id'] ?>&useremail=<?phpecho $email; ?>","like")' class="btn btn-primary btn-sm">
-											<span class="glyphicon glyphicon-thumbs-up"></span> 
-										</a>
-										<i><?php NumberOfLikes($rowsolution['solution_id'])?></i>
-									</div>
-								<?php
+											if($resultbutton->num_rows==0)//condition to check whether user has already liked this solution
+											{
+											
+												?>
+												<div id="like">
+													<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $rowsolution['solution_id'] ?>&useremail= <?php echo $email; ?>","like")' class="btn btn-primary btn-sm">
+														<span class="glyphicon glyphicon-thumbs-up"></span> 
+													</a>
+													<!--display like count -->
+													<i><?php echo $likes; ?>&nbsp;&nbsp;people have liked this </i>
+												</div>
+									<?php
+											}
+											else
+											{
+												echo "You have already liked this solution ";
+											}
+										
+									
 									}
 									else
+										{
+											echo "Only the users who upvoted this issue may like the Solution. ";
+										}
+								}
+									else
 									{
-										echo "You didn't promoted this issue .Only promoters can like the solution ";
+										
+									?>
+									
+										<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#userLogin' data-dismiss='modal' >
+											<span class="glyphicon glyphicon-thumbs-up"></span> 
+										</a>
+										<i><?php echo $likes; ?>&nbsp;&nbsp;people have liked this </i><br><!--like button without login-->
+										</div>
+									<?php	
 									}
-									
-								}
-								else
-								{
-									
-								?>
-								
-									<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#userLogin' data-dismiss='modal' >
-										<span class="glyphicon glyphicon-thumbs-up"></span> 
-									</a>
-									<i><?php NumberOfLikes($rowsolution['solution_id'])?></i>
-									</div>
-								<?php	
-								}
 								?>
 								<script>
 									var youtubeFunc ='';
@@ -97,7 +123,7 @@
 			<?php	
 				}
 			?>
-		
+		</div>
 <?php
 	}
 ?>
