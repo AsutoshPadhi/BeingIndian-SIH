@@ -29,9 +29,11 @@ function loadDoc(url,field)
 
 function getUrl(url,instid,issueid){
     var finalUrl = "provideSolution.php?url="+url+"&inst="+instid+"&issue="+issueid;
-    loadDoc(finalUrl,'instButtons');
+    var divid = "instButtons"+issueid; 
+    loadDoc(finalUrl,divid);
 }
 function getUrl2(url,instid,issueid){
     var finalUrl = "reportDuplicate.php?url="+url+"&inst="+instid+"&issue="+issueid;
-    loadDoc(finalUrl,'instButtons');
+    var divid = "instButtons"+issueid; 
+    loadDoc(finalUrl,divid);
 }
