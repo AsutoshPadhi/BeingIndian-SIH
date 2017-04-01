@@ -1,5 +1,5 @@
 <?php
-    echo "<div id='instButtons'>";
+    echo "<div id='instButtons".$row['issue_id']."'>";
     if($status == 4){
         $bogusNumber = "SELECT * FROM issuebogusupvote WHERE issue_id = $id";
         $res = $conn->query($bogusNumber);
@@ -20,12 +20,12 @@
     else{
         if(instStatus($cemail,$id) == 0){
 ?>					
-            <input type="button" onclick="loadDoc('provideSolution.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-primary btn-sm btn-sm" value="Provide a Solution">
+            <input type="button" onclick="loadDoc('provideSolution.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons<?php echo $row['issue_id']; ?>')" class="btn btn-default btn-sm btn-sm" value="Provide a Solution">
             <?php
                 if($status == 0 || $status == 1){
             ?>
-                    <input type="button" onclick="loadDoc('reportBogus.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-primary btn-sm btn-sm" value="Report as Bogus">
-                    <input type="button" onclick="loadDoc('reportDuplicate.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-primary btn-sm btn-sm" value="Report as Duplicate">
+                    <input type="button" onclick="loadDoc('reportBogus.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons<?php echo $row['issue_id']; ?>')" class="btn btn-default btn-sm btn-sm" value="Report as Bogus">
+                    <input type="button" onclick="loadDoc('reportDuplicate.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons<?php echo $row['issue_id']; ?>')" class="btn btn-default btn-sm btn-sm" value="Report as Duplicate">
             <?php
                 }
             ?>
@@ -92,36 +92,13 @@
         ?>
         <br>
         <br>
-        <input type="button" onclick="loadDoc('provideSolution.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-primary btn-sm btn-sm" value="Provide a Solution">
+        <input type="button" onclick="loadDoc('provideSolution.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons<?php echo $row['issue_id']; ?>')" class="btn btn-default btn-sm btn-sm" value="Provide a Solution">
         <br>
 <?php
         }
     }
 ?>
 </div>
-
-<div class="modal fade" id='myModal<?php echo $id; ?>' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-	aria-hidden="true">
-	<div class="modal-dialog modal-md " role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					×</button>
-				<h4 class="modal-title" id="myModalLabel">Issue<?php echo " #".$id; ?></h4>
-			</div>
-			<div class="modal-body">
-				<?php 
-				
-					$sql3="Select * from issue where issue_id='$id'";
-					$result3=$conn->query($sql3);
-					$row= mysqli_fetch_array($result3);
-					echo "Code: #".$id;
-					echo "<br><br>Title: ".$row['title'];
-					echo "<br><br>Description:";
-					echo "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp".$row['description'];
-
-				?>
-			</div>
-		</div>
-	</div>
-</div>
+<?php
+    require('issue-desc.php');
+?>
