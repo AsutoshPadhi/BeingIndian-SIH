@@ -40,20 +40,20 @@
 			<!-- Button trigger modal -->
 			<?php
 				$sql1="select * from solution where issue_id=".$row['issue_id']."";
-				$result1=mysqli_query($conn,$sql1);
-				while($row=mysqli_fetch_array($result1))
+				$resultsolution=mysqli_query($conn,$sql1);
+				while($rowsolution=mysqli_fetch_array($resultsolution))
 				{
 			?>		
 					<div>
 					<b id="code">Solutions:</b>
 					<br>
 					<br>
-					<a class='' id="video<?php echo $row['solution_id'];?>" data-toggle='modal' data-target='#solution<?php echo $row['solution_id'] ;?>'data-theVideo="<?php echo $row['solution_url'];?>">
-						<?php echo $row['solution_url'];?>
+					<a class='' id="video<?php echo $rowsolution['solution_id'];?>" data-toggle='modal' data-target='#solution<?php echo $rowsolution['solution_id'] ;?>'data-theVideo="<?php echo $rowsolution['solution_url'];?>">
+						<?php echo $rowsolution['solution_url'];?>
 					</a>
 					</div><br><hr>
 					<?php
-					$instid=$row['inst_id'];				
+					$instid=$rowsolution['inst_id'];				
 					$sqlinstname="SELECT * from institute where inst_id=$instid";
 					$result3=mysqli_query($conn,$sqlinstname);
 					$rowinst=mysqli_fetch_array($result3);
@@ -61,7 +61,7 @@
 					
 					?>
 					<!-- Modal -->
-					<div class='modal fade' id='solution<?php echo $row['solution_id'];?>' tabindex='-1' role='dialog' aria-labelledby='videoModal' aria-hidden='true'>
+					<div class='modal fade' id='solution<?php echo $rowsolution['solution_id'];?>' tabindex='-1' role='dialog' aria-labelledby='videoModal' aria-hidden='true'>
 						<div class='modal-dialog'>
 							<div class='modal-content'>
 								<div class='modal-header'>
@@ -70,7 +70,7 @@
 								</div>
 								<div class='modal-body'>
 								<?php
-								$solnurl = $row['solution_url'];
+								$solnurl = $rowsolution['solution_url'];
 								$code = substr($solnurl, (strpos($solnurl, "=") + 1), (strlen($solnurl) - 1) );
 								?>
 								<iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $code?>" frameborder="0" allowfullscreen></iframe>				<br>
@@ -79,14 +79,15 @@
 								if($login)
 								{
 									$userid=getUserId($email);
-									$sql="select * from issueupvote where user_id=$userid and issue_id=".$row['issue_id']."";
+
+									$sql="select * from issueupvote where user_id=$userid and issue_id=".$rowsolution['issue_id']."";
 									$result=mysqli_query($conn,$sql);
 									if($result==TRUE)
 									{
 									?>
 									<div id="like">
-										<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php $email ?>","like")' class="btn btn-primary btn-sm">
-											<span class="glyphicon glyphicon-thumbs-up"></span> <i><?php NumberOfLikes($row['solution_id'] )?></i>
+										<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $rowsolution['solution_id'] ?>&useremail=<?php $email ?>","like")' class="btn btn-primary btn-sm">
+											<span class="glyphicon glyphicon-thumbs-up"></span> 
 										</a>
 									</div>
 								<?php
@@ -108,9 +109,9 @@
 								?>
 								<script>
 									var youtubeFunc ='';
-									var outerDiv = document.getElementById("solution<?php echo $row['solution_id'];?>");
+									var outerDiv = document.getElementById("solution<?php echo $rowsolution['solution_id'];?>");
 									var youtubeIframe = outerDiv.getElementsByTagName("iframe")[0].contentWindow;
-									$('#solution<?php echo $row['solution_id'];?>').on('hidden.bs.modal', function (e) {
+									$('#solution<?php echo $rowsolution['solution_id'];?>').on('hidden.bs.modal', function (e) {
 									youtubeFunc = 'pauseVideo';
 									youtubeIframe.postMessage('{"event":"command","func":"' + youtubeFunc + '","args":""}', '*');
 									});
