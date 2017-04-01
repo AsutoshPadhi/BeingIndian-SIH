@@ -8,13 +8,29 @@
 
 
 	$callFunction = $_REQUEST['callFunction'];			//Receives 
-	require_once '../functions/func_in.php';
     if($callFunction == "get_query")
        get_query();
 	function get_query()
 	{
 		include '../functions/dataBaseConn.php';
 		require_once 'CosineSimilarity.php';
+		if(isset($_SESSION['$email']))
+		{
+			$instlogin = false;
+			$login=true;
+			$email = $_SESSION['$email'];
+		}
+		else if(isset($_SESSION['$cemail'])){
+			$cemail = $_SESSION['$cemail'];
+			$inst_id = $_SESSION['$inst_id'];
+			$instlogin = true;
+			$login = false;
+		}	
+		else
+		{
+			$login=false;
+			$instlogin = false;
+		}
 		/*For notification and proceed to add button*/
 		$str = $_GET['issue'];
 		$state = $_GET['state'];
@@ -55,7 +71,7 @@
 				while($i<$result->num_rows)
 				{
 					$row = $result->fetch_assoc();
-					require 'issue-collapse.php';
+					require '../issue-collapse.php';
 					$i++;
 				}
 			}
@@ -87,8 +103,7 @@
 					{
 						$flag=1;
 
-						#displays the problem list
-						require 'issue-display2.php';
+						require '../issue-collapse.php';
 					
 					}
 					

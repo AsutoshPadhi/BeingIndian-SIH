@@ -11,7 +11,6 @@
         <!-- Custom Fonts -->
         <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     </head>
-
     <body>
         <div class="form-group col-md-8">
             <input id="new2" type="text" name="issue3" class="form-control" placeholder="Search by issue Number or Issue Title">
@@ -23,9 +22,14 @@
         function search()
         {
             var issue =(document.getElementById('new2').value);
+            //alert(issue);
             if(isNaN(issue))        //Return false if an input is a number
             {
-                loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field');                
+                loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field');
+            }
+            else if(issue.length == 0)
+            {
+                loadDoc('getQuery.php?issue='+issue+'&callFunction=get_query','field');
             }
             else
             {
