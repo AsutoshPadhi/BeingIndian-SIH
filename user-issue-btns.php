@@ -1,6 +1,4 @@
-<!--buttons for upvote and like -->
-
-
+<!--buttons for upvote and like-->
 <div id=upvote<?php echo $row['issue_id'] ?> >
 	<?php
 	$issueid=$row['issue_id'];
@@ -8,7 +6,7 @@
 	if($login)
 	{
 		if($row['user_id'] == getUserId($email)){
-			echo "You've added this issue!";//msg if user have added the issue 
+			echo "You've added this issue!";
 		}
 		else{
 			if(userStatus($email,$row['issue_id'])){
@@ -25,22 +23,17 @@
     
 	?>
 		<button style='margin-left: 15px' class='btn btn-default' data-toggle='modal' data-target='#userLogin'  >Upvote </button><i> &nbsp;(Requires login)</i>
-		<br>
-		<br>
-		<!--display number of upvotes -->
-		<?php NumberOfCounts($issueid)?>
+		<br><br><?php NumberOfCounts($issueid)?>
 	<?php	
-	}
-	$issue=$row['issue_id'];
-	$title=$row['title'];	
-	?>
-	<br>
-	<br>
-	<hr>
-	<!--Share -->
-	<div id="url">
-		<button style='margin-left: 15px' class='btn btn-default' id="<?php echo $issue;?>" onclick="javascript:loadDoc('midshare.php?issueid=<?php echo $issue;?>&titleid=<?php echo $title;?>','url')">Share</button>
-	</div>
+	}	$issue=$row['issue_id'];
+			$title=$row['title'];
+				$url="issue-collapse.php?issueid=$issue&title=$title";
+				?>
+				<br>
+				<br>
+				<div id="url">
+				<button style='margin-left: 15px' class='btn btn-default' onclick="javascript:loadDoc('midshare.php?issueid=<?php echo $issue?>&titleid=<?php echo $title?>','url')">Share</button>
+				</div>
 
 </div>
 <hr>
