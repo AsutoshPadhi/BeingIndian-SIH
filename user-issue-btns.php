@@ -30,7 +30,7 @@
 			<!-- Button trigger modal -->
 			<?php
 				$sql1="select * from solution where issue_id=".$row['issue_id']."";
-				$result1=mysqli_query($con,$sql1);
+				$result1=mysqli_query($conn,$sql1);
 				while($row=mysqli_fetch_array($result1))
 				{
 			?>
