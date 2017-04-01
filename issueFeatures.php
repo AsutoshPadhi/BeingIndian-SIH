@@ -31,6 +31,8 @@
 			return 0;//solution Awaited
 		}
 	}
+	
+	//checks the status 
 	function collegeStatus($variable)
 	{
 		$sql="select * from issuebogusupvote where inst_id=' ' And isuue_id=  ";
