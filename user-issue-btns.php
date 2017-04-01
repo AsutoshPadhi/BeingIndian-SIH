@@ -103,32 +103,9 @@
 <?php
 	}
 ?>
-
-<div class="modal fade" id='myModal<?php echo $id; ?>' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-	aria-hidden="true">
-	<div class="modal-dialog modal-md " role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					×</button>
-				<h4 class="modal-title" id="myModalLabel">Issue<?php echo " #".$id; ?></h4>
-			</div>
-			<div class="modal-body">
-				<?php 
-				
-					$sql3="Select * from issue where issue_id='$id'";
-					$result3=$conn->query($sql3);
-					$row= $result3->fetch_assoc();
-					echo "Code: #".$id;
-					echo "<br><br>Title: ".$row['title'];
-					echo "<br><br>Description:";
-					echo "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp".$row['description'];
-
-				?>
-			</div>
-		</div>
-	</div>
-</div>
+<?php
+	require('issue-desc.php');
+?>
 <div class="modal fade" id='confirmation' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 	aria-hidden="true">
 	<div class="modal-dialog modal-md " role="document">
