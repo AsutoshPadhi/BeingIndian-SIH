@@ -108,7 +108,7 @@
 	?>
 			<br>
 			<div class="alert alert-success text-center">
-				Update your profile to get relevant results.
+				<a onclick="loadDoc('profile.php','field'); $('#searchBar').hide();">Update your profile</a> to get relevant results.
 			</div>
 			<div class="alert alert-warning text-center">
 				Following are the recently added issue from all over India.
