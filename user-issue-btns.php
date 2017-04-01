@@ -79,6 +79,7 @@
 								if($login)
 								{
 									$userid=getUserId($email);
+
 									$sql="select * from issueupvote where user_id=$userid and issue_id=".$rowsolution['issue_id']."";
 									$result=mysqli_query($conn,$sql);
 									if($result==TRUE)
@@ -101,7 +102,7 @@
 								{
 								?>
 									<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#confirmation' data-dismiss='modal' >
-										<span class="glyphicon glyphicon-thumbs-up"></span> 
+										<span class="glyphicon glyphicon-thumbs-up"></span><i> <?php NumberOfLikes($row['solution_id'] )?></i>
 									</a></div>
 								<?php	
 								}
