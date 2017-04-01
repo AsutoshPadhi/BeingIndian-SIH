@@ -1,4 +1,3 @@
-
 <?php
 	if($row["solution_count"] >0)
 	{
@@ -52,7 +51,7 @@
 									{
 									?>
 									<div id="like">
-										<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $rowsolution['solution_id'] ?>&useremail=<?php $email ?>","like")' class="btn btn-primary btn-sm">
+										<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $rowsolution['solution_id'] ?>&useremail=<?phpecho $email; ?>","like")' class="btn btn-primary btn-sm">
 											<span class="glyphicon glyphicon-thumbs-up"></span> 
 										</a>
 									</div>
@@ -69,9 +68,7 @@
 								?>
 									<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#confirmation' data-dismiss='modal' >
 										<span class="glyphicon glyphicon-thumbs-up"></span> 
-									</a>
-                  <i><?phpNumberOfLikes($rowsolution['solution_id'])?></i>
-                </div>
+									</a></div>
 								<?php	
 								}
 								?>
