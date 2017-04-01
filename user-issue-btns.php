@@ -80,13 +80,13 @@
 								{
 									$userid=getUserId($email);
 									$sql="select * from issueupvote where user_id=$userid and issue_id=".$row['issue_id']."";
-									$result=mysqli_query($con,$sql);
+									$result=mysqli_query($conn,$sql);
 									if($result==TRUE)
 									{
 									?>
 									<div id="like">
 										<a onclick='javascript:loadDoc("likecount.php?solutionid=<?php echo $row['solution_id'] ?>&useremail=<?php $email ?>","like")' class="btn btn-primary btn-sm">
-											<span class="glyphicon glyphicon-thumbs-up"></span> 
+											<span class="glyphicon glyphicon-thumbs-up"></span> <i><?php NumberOfLikes($row['solution_id'] )?></i>
 										</a>
 									</div>
 								<?php
@@ -101,7 +101,7 @@
 								{
 								?>
 									<a  class="btn btn-primary btn-sm" data-toggle='modal' data-target='#confirmation' data-dismiss='modal' >
-										<span class="glyphicon glyphicon-thumbs-up"></span> 
+										<span class="glyphicon glyphicon-thumbs-up"></span><i> <?php NumberOfLikes($row['solution_id'] )?></i>
 									</a></div>
 								<?php	
 								}
