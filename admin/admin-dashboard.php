@@ -28,7 +28,10 @@ function exportToCSV($sql){
         }
     }
 }
+
 ?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,6 +42,7 @@ function exportToCSV($sql){
         <meta name="description" content="">
         <meta name="author" content="">
         <script src="functions/ajax.js"></script>
+		<script src="urlGenerator.js"></script>
 
         <title>Better India!</title>
         <!-- Bootstrap Core CSS -->
@@ -60,9 +64,78 @@ function exportToCSV($sql){
         <![endif]-->
 
     </head>
+	
 
     <body>
-        <form method="GET" action="admin-dashboard.php">
+
+		<div>
+            <form>
+
+                <div class="form-group col-xs-6 col-md-2">
+                    <select class="form-control" id="state1" onchange="getDistrict((document.getElementById('state1').value),'district1')">
+                    <?php
+                        include '../functions/dataBaseConn.php';
+                        session_start();
+                        if(isset($_SESSION['district_id']))
+                        {
+                            $get_state = "SELECT * FROM state,district WHERE state.state_id = district.state_id AND district.district_id = ".$_SESSION['district_id']."";
+                            $result = $conn->query($get_state);
+                            $row = $result->fetch_assoc();
+                            $state = $row['state_name'];
+                            echo $state;
+                    ?>
+                            <option selected><?php echo $state; ?></option>
+                    <?php
+                        }
+
+                        else
+                        {
+
+                    ?>
+                            <option disabled selected>State</option>
+                    <?php
+                        }
+                    ?>
+                        <?php include 'stateList.php'; ?>
+                    </select>
+                </div>
+
+                <div class="form-group col-xs-6 col-md-2">
+                    <select class="form-control" id="district1" onfocus="getDistrict((document.getElementById('state1').value),'district1');return false;">             
+                    <?php
+                        include '../functions/dataBaseConn.php';
+                        session_start();
+                        if(isset($_SESSION['district_id']))
+                        {
+                            $get_district = "SELECT * FROM district WHERE district_id = ".$_SESSION['district_id']."";
+                            $result = $conn->query($get_state);
+                            $row = $result->fetch_assoc();
+                            $district = $row['district_name'];
+                            echo $district;
+                    ?>
+                        <option selected><?php echo $district; ?></option>
+                    <?php
+                        }
+
+                        else
+                        {
+
+                    ?>
+                            <option disabled selected>District</option>
+                    <?php
+                        }
+                    ?>
+                    <?php include 'district_list.php'; ?>
+                    </select>
+                </div>
+                
+                <input class="search btn btn-primary" type="submit" value="Search" 
+                onclick="generateUrl((document.getElementById('state1').value),(document.getElementById('district1').value),(document.getElementById('locality').value),(document.getElementById('pin').value),(document.getElementById('issue').value),'field','dashboard');return false;">
+            </form>
+        </div>
+                
+		
+        <!--<form method="GET" action="admin-dashboard.php">
             <div class="form-group col-md-3 col-sm-6 col-lg-3" style="margin: 20px 0;">
                 <input class="form-control" name="state" placeholder="Enter State">
             </div>
@@ -74,16 +147,16 @@ function exportToCSV($sql){
             </div>
             <button type="submit" class="btn btn-primary col-md-2 col-sm-3 col-lg-2 col-xs-8" style="margin: 20px 15px;">Download Report</button>
         </form>
-    </body>
+    </body>-->
     <?php
         if(isset($_GET['state'])){
             $state = $_GET['state']; 
         }
         if(isset($_GET['district'])){
-            $district = $GET['district'];
+            $district = $_GET['district'];
         }
         if(isset($_GET['college'])){
-            $college = $GET['college'];
+            $college = $_GET['college'];
         }
     ?>
 
