@@ -1,3 +1,4 @@
+<!--solution part -->
 <?php
 	if($row["solution_count"] >0)
 	{
@@ -39,7 +40,7 @@
 					
 					
 					?>
-					<!-- Modal -->
+					<!--you tube Modal -->
 					<div class='modal fade' id='solution<?php echo $rowsolution['solution_id'];?>' tabindex='-1' role='dialog' aria-labelledby='videoModal' aria-hidden='true'>
 						<div class='modal-dialog'>
 							<div class='modal-content'>
@@ -58,10 +59,10 @@
 								if($login)
 								{
 									$userid=getUserId($email);
-									$sqlsoln="select * from issueupvote where user_id=$userid and issue_id=".$rowsolution['issue_id']."";
+									$sqlsoln="select * from issueupvote where user_id=$userid and issue_id=".$rowsolution['issue_id']."";//not upvoted user
 									$resultsoln=mysqli_query($conn,$sqlsoln);
 									$solution=$rowsolution['solution_id'];
-									$sqlbutton="select * from solutionlikedetails where user_id=$userid and solution_id=$solution";
+									$sqlbutton="select * from solutionlikedetails where user_id=$userid and solution_id=$solution";//already liked 
 									$resultbutton=mysqli_query($conn,$sqlbutton); 
 									if($resultsoln==TRUE)//condition to check whether the user has upvoted the issue or not 
 									{
@@ -80,14 +81,14 @@
 											}
 											else
 											{
-												echo "You have already liked this solution ";
+												echo "You have already liked this solution ";//msg for already liked users 
 											}
 										
 									
 									}
 									else
 										{
-											echo "Only the users who upvoted this issue may like the Solution. ";
+											echo "Only the users who upvoted this issue may like the Solution. ";//msg for not upvoted users 
 										}
 								}
 									else

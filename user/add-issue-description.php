@@ -1,3 +1,4 @@
+<!-- This page is reached after the user clicks Proceed to add the issue -->
 <div class="alert alert-info alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     Fill the details and proceed to add.

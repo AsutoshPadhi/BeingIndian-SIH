@@ -1,4 +1,4 @@
-<!-- Hello World-->
+<!-- This page is used to search and display search results  -->
 <head>
 	<link rel="stylesheet" href="problemdescription.css">
 </head>

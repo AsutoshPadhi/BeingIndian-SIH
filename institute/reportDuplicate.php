@@ -1,18 +1,21 @@
+<!--report duplicate option for institute-->
 <!DOCTYPE html>
 <html>
 <?php
+//duplicate issues
     session_start();
     require('../functions/func_in.php');
     //require("issue-collapse.php");
-    $inst_id1=$_GET['inst'];//id of current problem
+    
     if(isset($_GET['inst'])&&$_GET['issue']){
-        $inst_id = $_GET['inst'];//one of which is being passed through get method
+        $inst_id = $_GET['inst'];
         $issue_id = $_GET['issue'];
     }
-    if(isset($_GET['url'])){
+    if(isset($_GET['url']))//one of which is being passed through get method
+	{
         if(reportDuplicate($inst_id,$issue_id,$_GET['url'])){
             echo "You've reported this issue as duplicate to ".$_GET['url']."";
-            reportDuplicate1($inst_id,$issue_id,$_GET['url'],$inst_id1)
+           updateDuplicate($inst_id,$issue_id,$_GET['url'])
         }
         else{
             echo "Some error occured!";
@@ -27,7 +30,7 @@
         </div>
         <button type="submit" onclick="getUrl2(getElementById('solutionUrl').value,<?php echo $inst_id.",".$issue_id;?>)" class="btn btn-default">Report as Duplicate</button></div>
 <?php
-//var finalUrl= provideSolution.php?url=document.getElementById('solutionUrl').value; loadDoc(finalUrl,'instButtons');
+
     }
 ?>
 </html>

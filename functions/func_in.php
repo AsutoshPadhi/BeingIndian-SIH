@@ -1,17 +1,12 @@
 <script src="ajax.js"></script>
 	
 <?php
-	define('BOGUS_THRESHOLD',5);
-	define('UPVOTE_THRESHOLD',5);
-	define('DUPLICATE_THRESHOLD',5);
-	define('LIKE_THRESHOLD',2);
-	define('MAX_CHARACTER_TITLE',100);
-	define('MAX_CHARACTER_DESCRIPTION',1500);
-	define('MIN_STRING_MATCH_PERCENTAGE',0.3);
 
+	// THIS FUNCTION RETURNS THE STATUS OF ISSUES
+	// STATUSES ARE
+	// STATUS 0- VOTING ON, 1- Solutions Awaited, 2- Solutions Available, 3-Solution Approved, 4- Reported Bogus, 5- Reported duplicate
     function status($issueid)
 	{
-		// STATUS 0- VOTING ON, 1- Solutions Awaited, 2- Solutions Available, 3-Solution Approved, 4- Reported Bogus, 5- Reported duplicate
 		include 'dataBaseConn.php';
 		$sql= "SELECT *FROM issue WHERE issue_id =$issueid";
 		$result = $conn->query($sql);
@@ -54,6 +49,9 @@
 			return 0;
 		}
 	}
+
+	// FUNCTION TO LIKE A SOLUTION
+	// THIS FUNCTION UPDATES LIKE COUNT & INSERT USER&SOLN TO solutionlikedetails
 	function LikeCount($id,$email)
 	{
 		include 'dataBaseConn.php';
@@ -68,8 +66,7 @@
 		echo "You've Liked this issue!";
 	}
 
-	
-
+	// RETURNS user_id WHEN email IS PROVIDED
 	function getUserId($email){
 		include 'dataBaseConn.php';
 		$sql = "SELECT * FROM user where user_email = '$email'";
@@ -78,6 +75,10 @@
 		
 		return $row['user_id'];
 	}
+
+	// CHECKS IF USER HAS ALREADY UPVOTED AN ISSUE OR NOT
+	//	RETURNS FALSE IF ALREADY UPVOTED
+	// RETURNS TRUE IF NOT
     function userStatus($email,$issueid)
 	{
 		include 'dataBaseConn.php';
@@ -103,6 +104,9 @@
 		
 		
 	}
+
+	// FUNCTION TO UPVOTE A SOLUTION
+	// THIS FUNCTION UPDATES UPVOTE COUNT & INSERT USER&ISSUE TO issueupvote
 	function upvotecount($issueid,$userid)
 	{
 		include 'dataBaseConn.php';
@@ -111,14 +115,12 @@
 		
 		$sql2 = "INSERT INTO issueupvote(issue_id,user_id) values($issueid,$userid)";
 		$result2=$conn->query($sql2);
-		//echo "hello";
-		//$row=mysqli_fetch_assoc($result2);
-		//echo $row['upvote_count'];
 		
-		echo "YOU HAVE VOTED FOR THIS ";
-		
+		echo "You've successfully upvoted this issue!";
 	}
 	
+
+	// RETURNS WHICH user_id OF USER WHO HAS POSTED THIS ISSUE
 	function postedBy($id)
 	{
 		include 'dataBaseConn.php';
@@ -128,16 +130,18 @@
         echo"<b> Posted by : </b>". $row['fname']. "  ".$row['lname'];
         
     }
+
+	// RETURNS UPVOTE COUNT
 	function NumberOfCounts($issueid)
 	{
 		include 'dataBaseConn.php';
-		//echo $issueid;
 		$sql1 = "SELECT * FROM issue WHERE issue_id = $issueid ";
 		$result1 = $conn->query($sql1);
 		$row=$result1->fetch_assoc();
-		echo "<b>".$row['upvote_count']. "  users have upvoted</b>";
-			
+		echo "<b>".$row['upvote_count']. "  users have upvoted</b>";	
 	}
+
+	// RETURN LIKE COUNT
 	function NumberOfLikes($solutionid)
 	{
 		include 'dataBaseConn.php';
@@ -145,8 +149,9 @@
 			$result = $conn->query($sql);
 			$row=$result->fetch_assoc();
 			return $row['like_count'];
-			
 	}
+
+	// RETURN inst_id WHEN inst_email IS PROVIDED
 	function getInstId($cemail){
         include 'dataBaseConn.php';
         $sql = "SELECT inst_id FROM institute WHERE inst_email = '$cemail'";
@@ -156,9 +161,12 @@
         }
         return $instid;
     }
+
+	// RETURNS STATUS OF INSTITUTE
+	// STATUSES ARE
+	// STATUS : 0-> Institute has done nothing, 1-> It has reported it as bogus, 2-> It has reported is , 3-> Solved
 	function instStatus($cemail, $issueid)
 	{
-		// STATUS : 0-> NONE, 1-> Bogus, 2-> Duplicate, 3-> Solved
 		include 'dataBaseConn.php';
 		$instid = getInstId($cemail);
 		$sql = "SELECT * FROM issuebogusupvote WHERE inst_id = $instid AND issue_id = $issueid";
@@ -179,6 +187,8 @@
 		return 0;
 	}
 
+	// ADDS SOLUTION 
+	// 	INSERTS SOLUTION DETAILS TO solution
 	function provideSolution($inst_id,$issue_id,$url){
 		include '../functions/dataBaseConn.php';
 		$sql = "SELECT * FROM solution";
@@ -191,6 +201,8 @@
 			return false;
 	}
 
+	// REPORTS ISSUE AS BOGUS
+	// INSERTS issue_id and inst_id TO issuebogusupvote
 	function reportBogus($inst_id,$issue_id){
 		include '../functions/dataBaseConn.php';
 		$sql = "INSERT INTO issuebogusupvote(issue_id,inst_id) values($issue_id,$inst_id)";
@@ -200,6 +212,8 @@
 			return false;
 	}
 	
+	// REPORT ISSUE AS DUPLICATE
+	// INSERTS issue_id, inst_id, similar_to_issue to issueduplicateupvote
 	function reportDuplicate($inst_id,$issue_id,$similar_to_issue){
 		include '../functions/dataBaseConn.php';
 		$sql = "INSERT INTO issueduplicateupvote(issue_id,inst_id,similar_to_issue) values($issue_id,$inst_id,$similar_to_issue)";
@@ -209,7 +223,22 @@
 			return false;
 	
 	}
+	
+function updateDuplicate($inst_id,$issue_id,$similar_to_issue){
+		include '../functions/dataBaseConn.php';
+		//instid1=$instid1;
+		echo $issue_id;
+		$sql = "Select * from issueduplicateupvote group by issue_id,similar_to_issue  having count(inst_id)>5 and similar_to_issue=$similar_to_issue";
+        $result = $conn->query($sql);
+		
+		if($result)
+		{
+			//$count=$row[issue_id];
+			$sql1="update issue set duplicate_count=duplicate_count+1 where issue_id=$issue_id";
+			$result1= $conn->query($sql1);
+		}
 
+}
 
 
 ?>
