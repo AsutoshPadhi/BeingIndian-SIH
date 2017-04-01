@@ -205,7 +205,7 @@
 					<input id="name" name="username" placeholder="username" type="text">
 					<label>Password :</label>
 					<input id="password" name="password" placeholder="**********" type="password">
-					<input name="submit" type="submit" value=" Login " onclick="javascript:loadDoc('inst_dashboard.php')">
+					<input name="submit" type="submit" value=" Login " >
 
 					</form>
 					</div>
