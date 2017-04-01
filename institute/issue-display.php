@@ -23,7 +23,7 @@
 				});
 		});
 	</script>
-	<!--<script src="../dist/js/sb-admin-2.js"></script>-->
+	<script src="../dist/js/sb-admin-2.js"></script>
 </head>
 <body>
 	<?php
@@ -47,8 +47,8 @@
 		if($no_of_results == 0)
 		{
 			?>
-				<br><br><br>
-				<div class="alert alert-danger">
+				<br><br>
+				<div class="alert alert-success">
                     No Results Found.
                 </div>
 			<?php
@@ -73,17 +73,14 @@
 		if($page>1)
 		{
 			$pre=$page-1;
-			//$next=$page+1;
 		}
 		else
 		{
 			$pre=1;
-
 		}
 		if($page<$no_of_pages)
 		{
 			$next=$page+1;
-		//$next=$page+1;
 		}
 		else
 		{

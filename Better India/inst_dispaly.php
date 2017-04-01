@@ -20,9 +20,9 @@
 
 
 <?php
-include "login.php";
+
 include "function.php";
-$email='dipshishetty@gmail.com';
+$email='$user';
 $con=mysqli_connect("localhost","root","");
 $select=mysqli_select_db($con,"hackathon");
 $location=getlocation($email);

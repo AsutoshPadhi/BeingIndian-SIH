@@ -1,6 +1,8 @@
 <script src="ajax.js"></script>
-	
+
+
 <?php
+include 'dataBaseConn.php';
 define('BOGUS_THRESHOLD',5);
 define('UPVOTE_THRESHOLD',5);
 define('DUPLICATE_THRESHOLD',5);
@@ -8,7 +10,6 @@ define('LIKE_THRESHOLD',2);
 
     function status($issueid)
 	{
-		include '../functions/dataBaseConn.php';
 		// STATUS 0- VOTING ON, 1- Solutions Awaited, 2- Solutions Available, 3-Solution Approved, 4- Reported Bogus, 5- Reported duplicate
 
 		$sql= "SELECT *FROM issue WHERE issue_id =$issueid";

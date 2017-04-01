@@ -8,11 +8,9 @@ define('LIKE_THRESHOLD',2);
 
     function status($issueid)
 	{
-		include '../functions/dataBaseConn.php';
 		// STATUS 0- VOTING ON, 1- Solutions Awaited, 2- Solutions Available, 3-Solution Approved, 4- Reported Bogus, 5- Reported duplicate
-
+		include 'dataBaseConn.php';
 		$sql= "SELECT *FROM issue WHERE issue_id =$issueid";
-
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
 		if($row['upvote_count']>=UPVOTE_THRESHOLD)
@@ -37,7 +35,7 @@ define('LIKE_THRESHOLD',2);
 						if($row['solution_count']>0)
 
 						{
-							
+
 							return 2;
 						}
 						else
@@ -55,19 +53,23 @@ define('LIKE_THRESHOLD',2);
 	}
 	function LikeCount($id,$email)
 	{
-		include '../functions/dataBaseConn.php';
-		$userid = getUserId($email);
-		$sql="update solution set like_count=like_count+1 where solution_id='$id'";
-		$result1 = $conn->query($sql);
-		$sql2="Insert into solutionlikedetails (solution_id,user_id) values ($id,$userid)";
-		$result2=$conn->query($sql2);
-		echo "You have successfully liked this solution!";
+		include 'functions/dataBaseConn.php';
+		 $userid = getUserId($email);
+		echo $id."".$userid;
+		
+		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
+          $result1 = $conn->query($sql);
+		 
+		
+		  $sql2="Insert into solutionlikedetails(solution_id,user_id) values($id,$userid)";
+		  $result2=$conn->query($sql2);
+		  echo "YOU HAVE liked  FOR THIS ";
 	}
 
 	
 
 	function getUserId($email){
-		include '../functions/dataBaseConn.php';
+		include 'dataBaseConn.php';
 		$sql = "SELECT * FROM user where user_email = '$email'";
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
@@ -76,35 +78,32 @@ define('LIKE_THRESHOLD',2);
 	}
     function userStatus($email,$issueid)
 	{
-		
-		include '../functions/dataBaseConn.php';
+		include 'dataBaseConn.php';
 		$userid = getUserId($email);
+					//echo $issueid;
+
 		//$issueid=getIssueId($issueid);
 		$sql="select * from issueupvote where user_id='$userid' And issue_id='$issueid ' ";//user session
 		$result = $conn->query($sql);
 		//$num_rows = mysql_num_rows($result);
 		
-		$n=mysqli_num_rows (  $result );
+		$n=mysqli_num_rows($result);
 		
 		if($n>0)
 		{
 			//echo "YOU HAVE ALREADY VOTED FOR THIS ";
-			
-			return true;//already upvoted
+			return false;//already upvoted
 		}
 		else
 		{
-			return false;//not upvoted
-			
-			
-			
+			return true;
 		}
 		
 		
 	}
 	function upvotecount($issueid,$userid)
 	{
-		include '../functions/dataBaseConn.php';
+		include 'dataBaseConn.php';
 		$sql="update issue set upvote_count=upvote_count+1 where issue_id=$issueid";
 		$result=$conn->query($sql);
 		
@@ -120,23 +119,23 @@ define('LIKE_THRESHOLD',2);
 	
 	function postedBy($id)
 	{
-        include '../functions/dataBaseConn.php';
+		include 'dataBaseConn.php';
         $sql="select *from issue  inner join user on issue.user_id=user.user_id where issue.issue_id=$id";
         $result=$conn->query($sql);
         $row = $result->fetch_assoc();
-        echo"<b> POSTED BY : </b>". $row['fname']. "  ".$row['lname'];
+        echo"<b> Posted by : </b>". $row['fname']. "  ".$row['lname'];
         
     }
-function NumberOfLikes($solutionid)
-{
-		include '../functions/dataBaseConn.php';
-	    $sql = "SELECT * FROM solution WHERE solution_id = '$solutionid' ";
-        $result = $conn->query($sql);
-        echo $row['like_count'];
-		
-}
+	function NumberOfLikes($solutionid)
+	{
+		include 'functions/dataBaseConn.php';
+			$sql = "SELECT * FROM solution WHERE solution_id = '$solutionid' ";
+			$result = $conn->query($sql);
+			echo $row['like_count'];
+			
+	}
 	function getInstId($cemail){
-        require('dataBaseConn.php');
+        include 'dataBaseConn.php';
         $sql = "SELECT inst_id FROM institute WHERE inst_email = '$cemail'";
         $result = $conn->query($sql);
         while($row = $result->fetch_assoc()){
@@ -147,7 +146,7 @@ function NumberOfLikes($solutionid)
 	function instStatus($cemail, $issueid)
 	{
 		// STATUS : 0-> NONE, 1-> Bogus, 2-> Duplicate, 3-> Solved
-		include '../functions/dataBaseConn.php';
+		include 'dataBaseConn.php';
 		$instid = getInstId($cemail);
 		$sql = "SELECT * FROM issuebogusupvote WHERE inst_id = $instid AND issue_id = $issueid";
 		$result = $conn->query($sql);
@@ -161,7 +160,7 @@ function NumberOfLikes($solutionid)
 		}
 		$sql = "SELECT * FROM solution WHERE inst_id = $instid AND issue_id = $issueid";
 		$result =$conn->query($sql);
-		if($result->num_rows == 1){
+		if($result->num_rows >= 1){
 			return 3;
 		}
 		return 0;

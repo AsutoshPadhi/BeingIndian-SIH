@@ -5,55 +5,73 @@
 	<link rel="stylesheet" href="problemdescription.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="../functions/ajax.js"></script>
-	
+	<script>
+		$(document).ready(function() 
+		{
+			$('#myModal3').on('show.bs.modal', function (e) 
+				{
+				var rowid = $(e.relatedTarget).data('id');                                                                                                 
+				$.ajax({
+							type : 'POST',
+							url : 'fetch.php', //Here you will fetch records 
+							data :  'rowid='+ rowid + '', //Pass rowid
+							success : function(data)
+							{
+								$('#data').html(data);//Show fetched data
+							}
+						});
+				});
+		});
+	</script>
+	<script src="../dist/js/sb-admin-2.js"></script>	
 </head>
 <body>
 	<?php
 		session_start();
 		if(isset($_SESSION['$email']))
 		{
+			$instlogin = false;
 			$login=true;
 			$email = $_SESSION['$email'];
+		}
+		else if(isset($_SESSION['$cemail'])){
+			$cemail = $_SESSION['$cemail'];
+			$inst_id = $_SESSION['$inst_id'];
+			$instlogin = true;
+			$login = false;
 		}	
 		else
 		{
-			$login=False;
+			$login=false;
+			$instlogin = false;
 		}
 		
-		require('../functions/func_in.php');
+		require('functions/func_in.php');
 		if(!isset($_GET['sql'])){
 			$sql = "SELECT * FROM issue WHERE 1";
 		}
 		else{
 			$sql = $_GET['sql'];
 		}
-		$conn= mysqli_connect("localhost","root","");
-		$selected = mysqli_select_db($conn,'hackathon') 
-		or die("Could not select examples");
+		require('functions/dataBaseConn.php');
+		$result = $conn->query($sql);
 		/*$state = $_GET['state'];
 		echo $state;
 		require 'getQuery.php';*/
-		$result=mysqli_query($conn,$sql);
-		$no_of_results=mysqli_num_rows($result);
+		$no_of_results = $result->num_rows;
 		if($no_of_results == 0)
 		{
-			?>
-				<div class="alert alert-danger">
+			?>	<br><br>
+				<div class="alert alert-success">
                     No Results Found.
                 </div>
 			<?php
 		}
 		$results_per_page=5;
-		while($row= mysqli_fetch_array($result))
-		{
-			$row=$row['issue_id'].''.$row['title'].''.'<br>';
-		}
-
-		//dtermine the number of pages in a page
+		//determine the number of pages in a page
 		$no_of_pages= ceil($no_of_results/$results_per_page);
 
 		//determine the number of results in one page
-
 		if(!isset($_GET['page']))
 		{
 			$page=1;
@@ -68,27 +86,37 @@
 		if($page>1)
 		{
 			$pre=$page-1;
-			//$next=$page+1;
 		}
 		else
 		{
 			$pre=1;
-
 		}
 		if($page<$no_of_pages)
 		{
 			$next=$page+1;
-		//$next=$page+1;
 		}
 		else
 		{
 			$next=$no_of_pages;
 
 		}
-
-
 		$sql2= $sql." LIMIT ".$start_limit.','.$results_per_page;
-		$result=mysqli_query($conn,$sql2);
+		$result=$conn->query($con,$sql2);
+	?>
+	<?php
+	if($login){
+		if(!isset($_SESSION['district_id'])){
+	?>
+			<br>
+			<div class="alert alert-warning text-center">
+				Add state, district and other details to get relevent results!
+			</div>
+			<div class="alert alert-info text-center">
+				Following are the recently added issue from all over India.
+			</div>
+	<?php
+		}
+	}
 	?>
 	
 
@@ -101,10 +129,8 @@
 			require("issue-collapse.php");
 				$i++;
 		}
-		
 		//display links to the pages
-		if($no_of_pages > 1 ){
-			
+		if($no_of_pages > 1 ){	
 		?>
 		<div class="container">
 			<ul class="pagination">
@@ -124,10 +150,5 @@
 		</div>
 		<?php } ?>
 	</div>
-<?php
-//require "modal.php";
-
-?>
-	
 </body>
 </html>

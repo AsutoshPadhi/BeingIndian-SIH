@@ -102,15 +102,41 @@
                 echo "You've already provided ".$res->num_rows." solutions to this issue";
             }
             while($arr = $res->fetch_assoc()){
-                $url = $arr['solution_url'];
-                echo "<br><br>-<a href='".$url."'>".$url."</a>";
-                echo "<br>";
-            }
-            echo "<br>Provide Another Solution";
+                $url = $arr['solution_url'];?>
+				<br>
+				<br>
+               <a class='' id="video<?php echo $arr['solution_id'];?>" data-toggle='modal' data-target='#solution<?php echo $arr['solution_id'] ;?>'data-theVideo="<?php echo $arr['solution_url'];?>">
+									<?php echo $arr['solution_url'];?>
+								</a><hr>
+                
+				<div class='modal fade' id='solution<?php echo $arr['solution_id'];?>' tabindex='-1' role='dialog' aria-labelledby='videoModal' aria-hidden='true'>
+					<div class='modal-dialog'>
+						<div class='modal-content'>
+							<div class='modal-header'>
+								<button type='button' id='close' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+								<h4 class='modal-title' id='myModalLabel'>Solutions </h4>
+							</div>
+							<div class='modal-body'>
+							<?php
+								$solnurl = $arr['solution_url'];
+								$code = substr($solnurl, (strpos($solnurl, "=") + 1), (strlen($solnurl) - 1) );
+							?>
+							<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/<?php echo $code; ?>" frameborder="0" allowfullscreen></iframe>
+							
+								</div>
+							</div>
+						<!-- /.modal-content -->
+						</div>
+					<!-- /.modal-dialog -->
+					</div>
+        <?php   }
+            echo "Provide Another Solution";
         ?>
             <br>
+			<br>
             <input type="button" onclick="loadDoc('provideSolution.php?inst=<?php echo $inst_id."&issue=".$id; ?>','instButtons')" class="btn btn-primary btn-sm btn-sm" value="Provide a Solution">
-        <?php
+        <br>
+		<?php
         }
         }
         echo "</div>";

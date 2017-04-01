@@ -3,6 +3,7 @@
 	<link rel="stylesheet" href="problemdescription.css">
 </head>
 <?php
+	session_start();
 	$callFunction = $_REQUEST['callFunction'];			//Receives 
 
     if($callFunction == "get_query")
@@ -13,11 +14,25 @@
 		include '../functions/dataBaseConn.php';
 		require_once 'CosineSimilarity.php';
 		include('../functions/func_in.php');
+		if(isset($_SESSION['$email']))
+		{
+			$instlogin = false;
+			$login=true;
+			$email = $_SESSION['$email'];
+		}
+		else if(isset($_SESSION['$cemail'])){
+			$cemail = $_SESSION['$cemail'];
+			$inst_id = $_SESSION['$inst_id'];
+			$instlogin = true;
+			$login = false;
+		}	
+		else
+		{
+			$login=false;
+			$instlogin = false;
+		}
 
 		$str = $_GET['issue'];
-		session_start();
-		$inst_id = $_SESSION['$inst_id'];
-		$cemail = $_SESSION['$cemail'];
 		
 		$get_district_id = "SELECT *FROM institute WHERE inst_email = '".$cemail."'";
 		$result = $conn->query($get_district_id);
@@ -102,8 +117,7 @@
 				{
 					$flag=1;
 
-					#displays the problem list
-					require 'issue-list.php';
+					require '../issue-collapse.php';
 				
 				}
 				
@@ -130,7 +144,7 @@
 			while($i<$result->num_rows)
 			{
 				$row = $result->fetch_assoc();
-				require 'issue-collapse.php';
+				require '../issue-collapse.php';
 				$i++;
 			}
 		}

@@ -1,4 +1,8 @@
 <!-- Test for github -->
+
+<?php
+require '../globalVariables.php';
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -74,10 +78,10 @@
 
 			<div style="position: relative;top: 50%;">
 				<div class="form-group col-xs-6 col-md-9">
-				<input class="form-control" name="issueTitle" id="issueTitle" placeholder="What Issue are you facing?" required/>
+				<input class="form-control" name="issueTitle" id="issueTitle" placeholder="What Issue are you facing?" maxlength="<?php echo MAX_CHARACTER_TITLE ?>" required/>
 				</div>
 				<div class="form-group col-xs-6 col-md-3">
-				<button type="button" class="btn btn-primary" onclick="alert((document.getElementById('district2').value));generateUrl((document.getElementById('state2').value),(document.getElementById('district2').value),(document.getElementById('locality2').value),(document.getElementById('pin2').value),(document.getElementById('issueTitle').value),'field','add')">Next</button>
+				<button type="button" class="btn btn-primary" onclick="generateUrl((document.getElementById('state2').value),(document.getElementById('district2').value),(document.getElementById('locality2').value),(document.getElementById('pin2').value),(document.getElementById('issueTitle').value),'field','add')">Next</button>
 				</div>
 			</div>
 
