@@ -1,27 +1,15 @@
 <?php
     session_start();
 	// require_once("globalVariables.php");
-    if(isset($_SESSION['$cemail'])){
-        $cemail = $_SESSION['$cemail'];
-        require('../functions/dataBaseConn.php');
-        $sql = "SELECT * FROM institute WHERE inst_email = '$cemail'";
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-        $_SESSION['$inst_id'] = $row['inst_id'];
-        $_SESSION['$inst_name'] = $row['inst_name'];
-        $_SESSION['$district_id'] = $row['district_id'];
-        $districtid = $_SESSION['$district_id'];
-		$_SESSION['$inst_name'] = $row['inst_name'];
-		$instname= $_SESSION['$inst_name'];
-        $loginCollege = true;
-        //echo "yes";
+    if(isset($_SESSION['$username'])){
+        $login = true;
     }
     else{
-        $loginCollege = false;
-        //echo "no";
+        $login = false;
         header("Location: ../index.php");
     }
     require('../functions/func_out.php');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,6 +19,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <script src="../functions/ajax.js"></script>
+    <script src="../user/urlGenerator.js"></script>
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
@@ -93,11 +82,11 @@
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i><?php echo "Welcome, ".$instname?><i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i><?php echo "Welcome, ".$_SESSION['$username']. " "; ?><i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         </li>
-                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="../user/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -109,44 +98,16 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <?php
-                                $sql = "SELECT * FROM issue WHERE district_id = $districtid AND upvote_count > 5";
-                                $url = "../issue-display.php?sql=".$sql."";
-                            ?>
-                            <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").show();'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a onClick='javascript:loadDoc("unsolved_issues.php","field");$("#searchBar").show();'><i class="fa fa-question fa-fw"></i> Pending Issues</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <?php
-                                        $sql = historySolutionProvided($cemail);
-                                        $url = "../issue-display.php?sql=".$sql."";
-                                    ?>
-                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Solutions Provided</a>
-                                </li>
-                                <li>
-                                    <?php
-                                        $sql = historyReportedBogus($cemail);
-                                        $url = "../issue-display.php?sql=".$sql."";
-                                    ?>
-                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Reported as bogus</a>
-                                </li>
-                                <li>
-                                    <?php
-                                        $sql = historyReportedDuplicate($cemail);
-                                        $url = "../issue-display.php?sql=".$sql."";
-                                    ?>
-                                    <a onClick='javascript:loadDoc("<?php echo $url?>","field");$("#searchBar").hide();'>Reported as duplicate</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a onClick="javascript:loadDoc('trending_issues.php','field');$('#searchBar').hide();"><i class="fa fa-angle-double-up fa-fw"></i> Trending Issues</a>
                         </li>
                         <li>
-                            <a onClick="javascript:loadDoc('add-ad-expert.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Add an Expert</a>
+                            <a onClick="javascript:loadDoc('collaborative.php','field');$('#searchBar').hide();"><i class="fa fa-gear fa-fw"></i> Collaborative Work</a>
                         </li>
                         <li>
-                            <a onClick="javascript:loadDoc('change-password.php','field');$('#searchBar').hide();"><i class="fa fa-gear fa-fw"></i> Change Password</a>
+                            <a onClick="javascript:loadDoc('top_experts.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Top Performing Experts</a>
                         </li>
                         
                     </ul>
@@ -159,21 +120,7 @@
         <!-- Page Content -->
         
         <div class="main-content" id="main">
-            <?php
-            if(isset($_SESSION['$message']) && $_SESSION['$message'] == true)
-                {
-            ?>
-                    <div class="alert alert-success alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        Your password has been reset
-                    </div>
-            <?php
-                unset($_SESSION['message']);
-                }
-            ?>
-            <div id="searchBar">
-                <?php require("searchBar.php"); ?>
-            </div>
+
             <div class="container-fluid" id="field">
                 
             </div>
@@ -182,29 +129,6 @@
             <!-- /.container-fluid -->
         
         <!-- /#page-wrapper -->
-    <?php
-        if(isset($_SESSION['toOpen']))
-        {
-            if($_SESSION['toOpen'] == "toOpen")
-            {
-                include '../functions/dataBaseConn.php';
-                $sql = "SELECT * FROM issue WHERE district_id = $districtid AND upvote_count > 5";
-                $url = "../issue-display.php?sql=".$sql."";
-                ?><script>loadDoc('javascript:alert("s");loadDoc("<?php echo $url?>","field");$("#searchBar").show();','field');</script><?php
-                unset($_SESSION['toOpen']);
-            }
-
-            /*else if($_SESSION['toOpen'] == "add-issue.php")
-            {
-                ?><script>loadDoc('add-issue.php','field');</script><?php
-                unset($_SESSION['toOpen']);
-            }*/
-        }
-        else
-        {
-            //echo "Not working";
-        }
-    ?>
         
     </div>
     

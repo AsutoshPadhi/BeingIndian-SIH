@@ -5,6 +5,7 @@
 	$issueid=$_GET['issueid'];
 	require '../functions/func_in.php';
 	include '../functions/dataBaseConn.php';
+	
 	upvotecount($issueid,$userid);
 	
 ?>
