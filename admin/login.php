@@ -69,11 +69,11 @@
                 <form method="POST" action="login.php">
                     <div class="form-group col-md-4">
                         <label>Username</label>
-                        <input class="form-control" name="username" placeholder="Enter username">
+                        <input type="text" id="username" class="form-control" name="username" placeholder="Enter username">
                     </div>
                     <div class="form-group col-md-4">
                         <label>Password</label>
-                        <input class="form-control" name="password" placeholder="Enter password">
+                        <input type="password" id="password" class="form-control" name="password" placeholder="Enter password">
                     </div>
                     <input class="col-md-4 search btn btn-primary" type="submit" value="Login">
                 </form>
