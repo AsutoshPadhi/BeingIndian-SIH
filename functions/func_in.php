@@ -56,11 +56,8 @@
 	{
 		include 'dataBaseConn.php';
 		$userid = getUserId($email);
-
 		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
 		$result1 = $conn->query($sql);
-
-
 		$sql2="Insert into solutionlikedetails(solution_id,user_id) values($id,$userid)";
 		$result2=$conn->query($sql2);
 		echo "You've Liked this issue!";
@@ -109,13 +106,13 @@
 	// THIS FUNCTION UPDATES UPVOTE COUNT & INSERT USER&ISSUE TO issueupvote
 	function upvotecount($issueid,$userid)
 	{
-		echo "i-".$issueid."u-".$userid;
+		
 		include 'dataBaseConn.php';
 		$sql="update issue set upvote_count=upvote_count+1 where issue_id=$issueid";
 		$result=$conn->query($sql);
 		
-		$sql2 = "INSERT INTO issueupvote(issue_id,user_id) values($issueid,$userid)";
-		$result2=$conn->query($sql2);
+		$sqlinsert = "INSERT INTO issueupvote(user_id,issue_id) values('$userid','$issueid')";
+		$result2=$conn->query($sqlinsert);
 		
 		echo "You've successfully upvoted this issue!";
 	}
@@ -192,6 +189,8 @@
 	// 	INSERTS SOLUTION DETAILS TO solution
 	function provideSolution($inst_id,$issue_id,$url){
 		include '../functions/dataBaseConn.php';
+		$sql = "UPDATE issue SET solution_count = solution_count + 1 WHERE issue_id = $issue_id";
+		$result = $conn->query($sql);
 		$sql = "SELECT * FROM solution";
 		$result = $conn->query($sql);
 		$count = $result->num_rows + 1;
@@ -206,6 +205,8 @@
 	// INSERTS issue_id and inst_id TO issuebogusupvote
 	function reportBogus($inst_id,$issue_id){
 		include '../functions/dataBaseConn.php';
+		$sql = "UPDATE issue SET bogus_count = bogus_count + 1 WHERE issue_id = $issue_id";
+		$result = $conn->query($sql);
 		$sql = "INSERT INTO issuebogusupvote(issue_id,inst_id) values($issue_id,$inst_id)";
 		if($result = $conn->query($sql))
 			return true;
@@ -217,6 +218,8 @@
 	// INSERTS issue_id, inst_id, similar_to_issue to issueduplicateupvote
 	function reportDuplicate($inst_id,$issue_id,$similar_to_issue){
 		include '../functions/dataBaseConn.php';
+		$sql = "UPDATE issue SET duplicate_count = duplicate_count + 1 WHERE issue_id = $issue_id";
+		$result = $conn->query($sql);
 		$sql = "INSERT INTO issueduplicateupvote(issue_id,inst_id,similar_to_issue) values($issue_id,$inst_id,$similar_to_issue)";
         if($result = $conn->query($sql))
 			return true;
@@ -228,7 +231,7 @@
 function updateDuplicate($inst_id,$issue_id,$similar_to_issue){
 		include '../functions/dataBaseConn.php';
 		//instid1=$instid1;
-		echo $issue_id;
+		//echo $issue_id;
 		$sql = "Select * from issueduplicateupvote group by issue_id,similar_to_issue  having count(inst_id)>5 and similar_to_issue=$similar_to_issue";
         $result = $conn->query($sql);
 		
@@ -240,6 +243,7 @@ function updateDuplicate($inst_id,$issue_id,$similar_to_issue){
 		}
 
 }
+
 
 
 ?>

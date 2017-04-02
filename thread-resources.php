@@ -22,10 +22,12 @@
             </fieldset>
         </div>
 
+
         <div id="display-resources">
         <?php
             include 'resource-display.php'    
         ?>
+
         </div>
 
         
