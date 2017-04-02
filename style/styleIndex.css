@@ -66,6 +66,7 @@ video
 .container .buttons button
 {
 	width: 200px;
+	border: 1px solid grey;
 }
 
 @media (max-width: 1100px)
