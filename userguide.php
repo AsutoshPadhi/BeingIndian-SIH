@@ -75,22 +75,27 @@
 
 		<button class="accordion">Upvoting an Issue</button>
 		<div class="panel">
-		  <p>To upvote an issue, you may click on the upvote button and your vote will be counted. You have to sign up and log in to upvote an issue.</p>
+		  <p>To upvote an issue, the user may click on the upvote button and their vote will be counted. The user has to sign up and log in to upvote an issue. Once the number of votes reach our threshold, they are displayed to the institutes and experts in that area. </p>
 		</div>
 
 		<button class="accordion">Adding an Issue</button>
 		<div class="panel">
-		  <p></p>
+		  <p>To add an issue, user has to sign up and login. The new issue added goes in the pool of existing issues, and can now be upvoted by the users. </p>
 		</div>
 		
 		<button class="accordion">Updating User Profile</button>
 		<div class="panel">
-		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		  <p>Once the user has logged in using their email id, they can now update and add details to their profile, including the locality where they live. After this, they are shown the issues in their area, However, they may choose to view and upvote issues of different areas as well.</p>
 		</div>
 		
 		<button class="accordion">Checking User History</button>
 		<div class="panel">
-		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		  <p>To simplify the process for the user, he can view the history for: </p>
+		  <ul>
+		  <li>  The issues added by the user. </li>
+		  <li>  The issues upvoted by the user. </li>
+		  </ul>
+		  <p> This can be done by viewing the 'History' section in the dashboard.</p>
 		</div>
 
 		<script>
