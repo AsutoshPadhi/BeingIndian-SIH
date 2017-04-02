@@ -33,7 +33,7 @@
 			   <div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            
+                            <b>COLLABORATORS</b>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -49,18 +49,25 @@
                                     <tbody>
                                         <tr>
 										<?php
-										//require_once("functions/dataBaseConn.php");
-										 include '../functions/dataBaseConn.php';
+										require_once("functions/dataBaseConn.php");
+										//include '../functions/dataBaseConn.php';
+										
+										if($conn->connect_error)
+										{
+											die("Connection Failed".$conn->connect_error);
+										}
 										 $issue_id=$_GET['issueid'];
 										
 	
-										$sql="Select *from collaborators inner join institute on collaborators.inst_id=institute.inst_id where collaborators issue_id=$issue_id";
+										$sql="Select *from collaborators inner join institute on collaborators.inst_id=institute.inst_id where collaborators.issue_id=$issue_id";
 										$result=$conn->query($sql);
-										$row=$result->fetch_assoc();
+										
+										while($row=$result->fetch_assoc()){
 										$email=$row['inst_email'];
 										$name=$row['inst_name'];
                                            echo" <td>".$name."</td>
                                             <td>".$email."</td>";
+										}
                                         ?>
 										
                                         </tr>
