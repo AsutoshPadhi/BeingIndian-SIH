@@ -24,7 +24,7 @@
 					return 4;
 				}
 				else{
-					if($row['approved_solution']>LIKE_THRESHOLD)
+					if($row['approved_solution']>0)
 					{
 						return 3;
 					}
@@ -107,10 +107,11 @@
 
 	// FUNCTION TO UPVOTE A SOLUTION
 	// THIS FUNCTION UPDATES UPVOTE COUNT & INSERT USER&ISSUE TO issueupvote
-	function upvotecount($issueid,$userid)
+	function upvotecount($issueid,$email)
 	{
 
 		include 'dataBaseConn.php';
+		$userid = getUserId($email);
 		$sql="update issue set upvote_count=upvote_count+1 where issue_id=$issueid";
 		$result=$conn->query($sql);
 		
@@ -246,7 +247,20 @@ function updateDuplicate($inst_id,$issue_id,$similar_to_issue){
 		}
 
 }
+function approvedSolution ($solution,$issue)
+{
+	$likes=NumberOfLikes($solution);
+	if($likes>=LIKE_THRESHOLD)
+	{
+		$sql="update issue SET approved_solution=approved_solution+1 where issue_id=issue";
+		$result = $conn->query($sql);
+		
+		
 
+		
+	}
+	
+}
 
 
 ?>
