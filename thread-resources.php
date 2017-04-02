@@ -1,5 +1,7 @@
 <?php
-    if(isset($_GET['issueid'])&&isset($_GET['instid'])){
+    require_once 'functions/dataBaseConn.php';
+    if(isset($_GET['issueid'])&&isset($_GET['instid']))
+    {
         $issue_id = $_GET['issueid'];
         $inst_id = $_GET['instid'];
 ?>
@@ -9,49 +11,31 @@
             <div class="form-group">
                 <label>Enter url :</label>
                 <br>
-                <input class="form-control">
+                <input type="url" id="resource-url" class="form-control">
             </div>
             <div class="form-group">
                 <label>Enter description :</label>
                 <br>
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea class="form-control" id="resource-desc" rows="3"></textarea>
             </div>
-            <input type="submit" class="btn btn-default" value="Add your resource">
+            <input type="submit" class="btn btn-default" value="Add your resource" onclick="loadDoc('resource-display.php?inst_id=<?php echo $inst_id; ?>&issue_id=<?php echo $issue_id; ?>&url='+(document.getElementById('resource-url').value)+'&desc='+(document.getElementById('resource-desc').value),'display-resources')">
             </fieldset>
         </div>
-<?php
-        require('functions/dataBaseConn.php');
-        $getResourceDetails = "SELECT * FROM resource WHERE issue_id = $issue_id";
-        $resultResourceDetails = $conn->query($getResourceDetails);
-        while($resourceDetails = $resultResourceDetails->fetch_assoc()){
-?>
-        <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <?php
-                        $resourceDetails['inst_id'];
-                        $getInstName = "SELECT * FROM institute where inst_id =".$resourceDetails['inst_id']."";
-                        $resultInstName = $conn->query($getInstName);
-                        $inst = $resultInstName->fetch_assoc();
-                        echo "Reference given by :- ".$inst['inst_name'];
-                    ?>
-                </div>
-                <div class="panel-body">
-                    <?php
-                        echo $resourceDetails['resource_link'];
-                        echo "<br><br>";
-                        echo $resourceDetails['resource_desc'];
-                        echo "<br><br>";
-                    ?>
-                </div>
-            </div>
+
+
+        <div id="display-resources">
+        <?php
+            include 'resource-display.php'    
+        ?>
+
         </div>
-        </div>
+
+        
 <?php
-        }
+        
     }
-    else{
+    else
+    {
         echo "Some error occured!";
     }
 ?>

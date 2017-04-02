@@ -31,9 +31,8 @@
 	$get_dist = $dist->fetch_assoc();
 	$district_id = $get_dist['district_id'];
 	
-	$get_last_issue_id = "SELECT issue_id FROM issue";
-
 	#to get the last issue_id
+	$get_last_issue_id = "SELECT issue_id FROM issue";
 	$result = $conn->query($get_last_issue_id);
 	$j=0;
 	if($result->num_rows > 0)
