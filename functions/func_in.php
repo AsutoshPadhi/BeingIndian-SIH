@@ -191,6 +191,8 @@
 	// 	INSERTS SOLUTION DETAILS TO solution
 	function provideSolution($inst_id,$issue_id,$url){
 		include '../functions/dataBaseConn.php';
+		$sql = "UPDATE issue SET solution_count = solution_count + 1 WHERE issue_id = $issue_id";
+		$result = $conn->query($sql);
 		$sql = "SELECT * FROM solution";
 		$result = $conn->query($sql);
 		$count = $result->num_rows + 1;
@@ -205,6 +207,8 @@
 	// INSERTS issue_id and inst_id TO issuebogusupvote
 	function reportBogus($inst_id,$issue_id){
 		include '../functions/dataBaseConn.php';
+		$sql = "UPDATE issue SET bogus_count = bogus_count + 1 WHERE issue_id = $issue_id";
+		$result = $conn->query($sql);
 		$sql = "INSERT INTO issuebogusupvote(issue_id,inst_id) values($issue_id,$inst_id)";
 		if($result = $conn->query($sql))
 			return true;
@@ -216,6 +220,8 @@
 	// INSERTS issue_id, inst_id, similar_to_issue to issueduplicateupvote
 	function reportDuplicate($inst_id,$issue_id,$similar_to_issue){
 		include '../functions/dataBaseConn.php';
+		$sql = "UPDATE issue SET duplicate_count = duplicate_count + 1 WHERE issue_id = $issue_id";
+		$result = $conn->query($sql);
 		$sql = "INSERT INTO issueduplicateupvote(issue_id,inst_id,similar_to_issue) values($issue_id,$inst_id,$similar_to_issue)";
         if($result = $conn->query($sql))
 			return true;

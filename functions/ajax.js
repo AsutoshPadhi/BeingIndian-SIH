@@ -37,6 +37,7 @@ function getUrl(url,instid,issueid){
 }
 // used when inst is reporting duplicate
 function getUrl2(url,instid,issueid){
+	alert(url);
     var finalUrl = "reportDuplicate.php?url="+url+"&inst="+instid+"&issue="+issueid;
     var divid = "instButtons"+issueid; 
     loadDoc(finalUrl,divid);
