@@ -248,4 +248,5 @@ function updateDuplicate($inst_id,$issue_id,$similar_to_issue){
 }
 
 
+
 ?>

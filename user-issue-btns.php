@@ -5,15 +5,20 @@
 	require_once('functions/func_in.php');
 	if($login)
 	{
-		if($row['user_id'] == getUserId($email)){
+		if($row['user_id'] == getUserId($email))
+		{
 			echo "You've added this issue!";
 		}
 		else{
-			if(userStatus($email,$row['issue_id'])){
-				echo "<button style='margin-left: 15px' class='btn btn-default' onclick=\"loadDoc('dip.php?issueid=".$row['issue_id']."&userid=".$row['user_id']."','upvote".$row['issue_id']."')\">Upvote</button><br><br>". NumberOfCounts($issueid);
-			}
-			else{
-				echo "You've Already Upvoted this issue!";
+			if(status($issueid)==0)//check status 
+			{
+			
+				if(userStatus($email,$row['issue_id'])){
+					echo "<button style='margin-left: 15px' class='btn btn-default' onclick=\"loadDoc('dip.php?issueid=".$row['issue_id']."&userid=".$row['user_id']."','upvote".$row['issue_id']."')\">Upvote</button><br><br>". NumberOfCounts($issueid);
+				}
+				else{
+					echo "You've Already Upvoted this issue!";
+				}
 			}
 		}
 	}
