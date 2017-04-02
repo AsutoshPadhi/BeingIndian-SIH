@@ -1,3 +1,29 @@
-.box{
+.container
+{
+	display: flex;
+	flex-direction: row;
+	position: fixed;
+	top: 20%;
+	left: 10%;
+	/*transform: translateX(-50%);
+	transform: translateY(-50%);*/
+	padding: 50px;
+}
+form
+{
+	border: 1px solid lightgrey;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 50px;
+	border-radius: 10px;
+}
 
+#login
+{
+	position: relative;
+	top: 15px;
+	left: 70%;
+	transform: translateX(-50%);
 }

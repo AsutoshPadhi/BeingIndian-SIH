@@ -36,6 +36,7 @@
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Social Buttons CSS -->
     <link href="../vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../style/styleAdmin-login.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -67,15 +68,14 @@
         <div class="col-md-12">
             <div class="container text-center">
                 <form method="POST" action="login.php">
-                    <div class="form-group col-md-4">
-                        <label>Username</label>
+                    <h3>Admin Login</h3><hr>
+                    <div class="form-group col-md-12">
                         <input type="text" id="username" class="form-control" name="username" placeholder="Enter username">
                     </div>
-                    <div class="form-group col-md-4">
-                        <label>Password</label>
+                    <div class="form-group col-md-12">
                         <input type="password" id="password" class="form-control" name="password" placeholder="Enter password">
-                    </div>
-                    <input class="col-md-4 search btn btn-primary" type="submit" value="Login">
+                    </div><br><br>
+                    <div id="login"><input class="col-md-6 search btn btn-primary" type="submit" value="Login"></div>
                 </form>
             </div>
         </div>
