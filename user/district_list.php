@@ -4,8 +4,7 @@
 	include '../functions/dataBaseConn.php';
 
 	$state = $_GET['state'];
-	echo "<option>".$state."</option>";
-	//echo "<option>".$state."</option>";
+	
 	if($state == 1){
 		$getDistrict = "SELECT * FROM district WHERE 1";
 		$resultDistrict = $conn->query($getDistricts);
@@ -21,7 +20,6 @@
 	$result = $conn->query($sql);
 	if($result->num_rows>0)
 	{
-		echo "<option value='1' selected>All Districts</option>";
 		while($row = $result->fetch_assoc())
 		{
 			$district = $row['district_name'];
