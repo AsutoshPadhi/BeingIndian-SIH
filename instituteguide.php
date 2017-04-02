@@ -68,24 +68,31 @@
             <h1>Institute Guide</h1>
         </div>
 		
-		<button class="accordion">Deny an Issue</button>
+		<button class="accordion">Report an Issue as Duplicate</button>
 		<div class="panel">
-		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		  <p>The institute can mark an issue as a duplicate of another by adding the issue code of the newly added redundant issue. This helps in avoiding redundancies of issues.</p>
+		</div>
+		
+		
+		<button class="accordion">Report an Issue as Spam</button>
+		<div class="panel">
+		  <p>An issue that is found illegitimate by the institute can be marked as spam, in the "Report as Bogus" section.</p>
 		</div>
 
 		<button class="accordion">Provide a Solution</button>
 		<div class="panel">
-		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		</div>
-		
-		<button class="accordion">Updating User Profile</button>
-		<div class="panel">
-		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		  <p>The institute can provide a solution to a problem by giving the url that links the solution. This solution can be viewed by the users and the institutes.</p>
 		</div>
 		
 		<button class="accordion">Checking User History</button>
 		<div class="panel">
-		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		   <p>To simplify the process for the institute, he can view the history for: </p>
+		  <ul>
+		  <li>  The solutions added by the user. </li>
+		  <li>  The issues reported as spam. </li>
+		  <li>  The issues reported as duplicate. </li>
+		  </ul>
+		  <p> This can be done by viewing the 'History' section in the dashboard.</p>
 		</div>
 
 		<script>
