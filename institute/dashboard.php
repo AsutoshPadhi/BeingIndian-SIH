@@ -1,6 +1,6 @@
 <?php
     session_start();
-	require_once("globalVariables.php");
+	// require_once("globalVariables.php");
     if(isset($_SESSION['$cemail'])){
         $cemail = $_SESSION['$cemail'];
         require('../functions/dataBaseConn.php');
@@ -93,12 +93,12 @@
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i><?php echo "Welcome,O  ".$instname?><i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i><?php echo "Welcome, ".$instname?><i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                            </li>
-                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                            </li>
+                        </li>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -143,7 +143,10 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a onClick="javascript:loadDoc('change-password.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Change Password</a>
+                            <a onClick="javascript:loadDoc('add-an-expert.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Add an Expert</a>
+                        </li>
+                        <li>
+                            <a onClick="javascript:loadDoc('change-password.php','field');$('#searchBar').hide();"><i class="fa fa-gear fa-fw"></i> Change Password</a>
                         </li>
                         
                     </ul>
