@@ -10,7 +10,7 @@
 			echo "You've added this issue!";
 		}
 		else{
-			if(status($issueid)==0)//check status 
+			if(status($issueid)==0&&status($issueid)!=1&&status($issueid)!=2&&status($issueid)!=3&&status($issueid)!=4)//check status 
 			{
 			
 				if(userStatus($email,$row['issue_id'])){
