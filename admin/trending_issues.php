@@ -33,17 +33,17 @@
             $state = $_POST['state'];
             if(isset($_POST['district'])){
                 $district = $_POST['district'];
-                $pending_issues_state_district = "SELECT issue.issue_id,issue.title,user.fname,user.lname,state.state_name,district.district_name,issue.added_on FROM issue,district,state,user WHERE district.district_name = '".$district."' AND district.state_id = state.state_id AND district.district_id = issue.district_id AND issue.user_id = user.user_id AND issue.solution_count = 0 ORDER BY issue.added_on ASC ";
-                $filename = "pending_issues_".$state."_".$district.".csv";
-                $arr = array("Issue Code","Issue Title","User first name","User last name","State","District","Issue added on");
+                $pending_issues_state_district = "SELECT issue.issue_id,issue.title,user.fname,user.lname,state.state_name,district.district_name,issue.upvote_count FROM issue,district,state,user WHERE district.district_name = '".$district."' AND district.state_id = state.state_id AND district.district_id = issue.district_id AND issue.user_id = user.user_id AND issue.solution_count = 0 ORDER BY issue.upvote_count DESC";
+                $filename = "trending_issues_".$state."_".$district.".csv";
+                $arr = array("Issue Code","Issue Title","User first name","User last name","State","District","Total upvotes");
                 exportToCSV($pending_issues_state_district,$filename,$arr);
             }
         }
         else{
     ?>
-        <h3>Pending Issues</h3>
+    <h3>Trending Issues</h3>
         <div>
-            <form action="unsolved_issues.php" method="POST">
+            <form action="trending_issues.php" method="POST">
                 <div class="form-group col-xs-5 col-md-5">
                     <select class="form-control" id="state1" name="state" onchange="getDistrict((document.getElementById('state1').value),'district1')">
                             <option value="1" selected>All States</option>
