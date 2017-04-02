@@ -1,4 +1,4 @@
-<script src="../functions/ajax.js"></script>
+
 
 <?php
 
