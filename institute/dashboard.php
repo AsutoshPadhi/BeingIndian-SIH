@@ -143,7 +143,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a onClick="javascript:loadDoc('add-an-expert.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Add an Expert</a>
+                            <a onClick="javascript:loadDoc('add-ad-expert.php','field');$('#searchBar').hide();"><i class="fa fa-user fa-fw"></i> Add an Expert</a>
                         </li>
                         <li>
                             <a onClick="javascript:loadDoc('change-password.php','field');$('#searchBar').hide();"><i class="fa fa-gear fa-fw"></i> Change Password</a>
