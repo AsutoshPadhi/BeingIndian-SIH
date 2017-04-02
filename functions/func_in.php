@@ -107,10 +107,11 @@
 
 	// FUNCTION TO UPVOTE A SOLUTION
 	// THIS FUNCTION UPDATES UPVOTE COUNT & INSERT USER&ISSUE TO issueupvote
-	function upvotecount($issueid,$userid)
+	function upvotecount($issueid,$email)
 	{
 
 		include 'dataBaseConn.php';
+		$userid = getUserId($email);
 		$sql="update issue set upvote_count=upvote_count+1 where issue_id=$issueid";
 		$result=$conn->query($sql);
 		

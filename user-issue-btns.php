@@ -14,7 +14,7 @@
 			{
 			
 				if(userStatus($email,$row['issue_id'])){
-					echo "<button style='margin-left: 15px' class='btn btn-default' onclick=\"javasccript:loadDoc('dip.php?issueid=".$row['issue_id']."&userid=".$row['user_id']."','upvote".$row['issue_id']."')\">Upvote</button><br><br>". NumberOfCounts($issueid);
+					echo "<button style='margin-left: 15px' class='btn btn-default' onclick=\"javasccript:loadDoc('dip.php?issueid=".$row['issue_id']."&userid=".$email."','upvote".$row['issue_id']."')\">Upvote</button><br><br>". NumberOfCounts($issueid);
 				}
 				else{
 					echo "You've Already Upvoted this issue!";
