@@ -2,9 +2,6 @@
     if(isset($_GET['issueid'])&&isset($_GET['instid'])){
         $issue_id = $_GET['issueid'];
         $inst_id = $_GET['instid'];
-        require('functions/dataBaseConn.php');
-        $getResourceDetails = "SELECT * FROM resource WHERE issue_id = $issue_id";
-        $resultResourceDetails = $conn->query($getResourceDetails);
 ?>
         <div class="form-group">
             <fieldset>
@@ -23,8 +20,10 @@
             </fieldset>
         </div>
 <?php
+        require('functions/dataBaseConn.php');
+        $getResourceDetails = "SELECT * FROM resource WHERE issue_id = $issue_id";
+        $resultResourceDetails = $conn->query($getResourceDetails);
         while($resourceDetails = $resultResourceDetails->fetch_assoc()){
-            
 ?>
         <div class="row">
         <div class="col-lg-4">
