@@ -873,7 +873,6 @@ INSERT INTO `solutionlikedetails` (`solution_id`, `user_id`) VALUES
 
 
 INSERT INTO `collaborators` (`issue_id`, `inst_id`) VALUES
-(1, 6),
 (1, 6);
 
 --
@@ -889,23 +888,21 @@ INSERT INTO `comments` (`comment_id`, `comment_desc`, `inst_id`, `issue_id`, `li
 
 INSERT INTO `comment_like` (`comment_id`, `inst_id`) VALUES
 (1, 4),
-(1, 4),
-(1, 1),
 (1, 1);
 
 --
 -- Dumping data for table `replytocomment`
 --
 
-INSERT INTO `replytocomment` (`comment_id`, `comment_desc`) VALUES
-(1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'),
-(1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum');
+INSERT INTO `replytocomment` (`comment_id`, `reply_desc`,`inst_id`) VALUES
+(1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',1),
+(1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',2);
 
 --
 -- Dumping data for table `resource`
 --
 
-INSERT INTO `resource` (`resource_id`, `issue_id`, `inst_id`, `resource_desc`, `resource_link`, `like_count`, `added_on`) VALUES
+INSERT INTO `resource` (`resource_id`, `issue_id`, `inst_id`, `resource_desc`, `resource_link`, `likeCount`, `added_on`) VALUES
 (1, 3, 2, '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\r\n\r\n', 'http://www.lipsum.com/', 11, '2017-04-01 21:18:57'),
 (2, 3, 3, 'asdasdasd', 'asd', 12, '2017-04-02 10:18:31');
 
