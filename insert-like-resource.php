@@ -8,4 +8,8 @@
 	{
 		echo "You liked it";
 	}
+
+	#update like count in resource table
+	$update_like_sql = "UPDATE resource SET like_count = like_count+1 WHERE resource_id = $resource_id";
+	$update_like_res = $conn->query($update_like_sql);
 ?>

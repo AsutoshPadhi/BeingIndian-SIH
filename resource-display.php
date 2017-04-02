@@ -18,7 +18,7 @@
         $insert_resource_result = $conn->query($insert_resource_sql);
     }
 
-    $getResourceDetails = "SELECT * FROM resource WHERE issue_id = $issue_id";
+    $getResourceDetails = "SELECT * FROM resource WHERE issue_id = $issue_id ORDER BY like_count DESC";
     $resultResourceDetails = $conn->query($getResourceDetails);
     while($resourceDetails = $resultResourceDetails->fetch_assoc())
     {
