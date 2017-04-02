@@ -27,12 +27,13 @@
         <br>
         <div class="col-md-6">
 		<?php
-		$sql="SELECT *,count(inst_id)as colleges  FROM `issueduplicateupvote` group by issue_id,similar_to_issue having issue_id=$issue_id";
+		 include '../functions/dataBaseConn.php';
+		$sql="SELECT count(inst_id)as colleges  FROM `issueduplicateupvote` group by issue_id,similar_to_issue having issue_id=$issue_id";
 		$result=$conn->query($sql);
-		if($result)
+		while($row=$result->fetch_assoc())
 		{
 			$var=$row['colleges'];
-			echo $var;
+			echo "<i>".$var."colleges marked problem id ".$issue_id." as duplicate of </i><br>";
 		}
 		?>
         <input class="form-control" id="solutionUrl" name="solutionUrl" type="text" placeholder="Enter issue id of similar issue">
