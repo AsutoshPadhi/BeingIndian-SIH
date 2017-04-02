@@ -37,7 +37,16 @@ function getUrl(url,instid,issueid){
 }
 // used when inst is reporting duplicate
 function getUrl2(url,instid,issueid){
+	alert(url);
     var finalUrl = "reportDuplicate.php?url="+url+"&inst="+instid+"&issue="+issueid;
     var divid = "instButtons"+issueid; 
     loadDoc(finalUrl,divid);
 }
+function addComment(url,instid,issueid){
+	
+    var finalUrl = "threadpanel.php?url="+url+"&inst="+instid+"&issue="+issueid;
+    var divid = "commentSection"+issueid; 
+    loadDoc(finalUrl,divid);
+}
+
+
