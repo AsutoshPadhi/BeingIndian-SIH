@@ -27,7 +27,7 @@
         <?php
             include 'resource-display.php'    
         ?>
-        </div>
+        </div>      
 <?php
         
     }
