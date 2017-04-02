@@ -4,7 +4,7 @@
 
 require('functions/dataBaseConn.php');
 
-$text=$_GET['url'];
+/*$text=$_GET['url'];
 $inst=$_GET['inst'];
 $issue=$_GET['issue'];
 $sqlpre="SELECT * from comments  ";
@@ -12,7 +12,7 @@ $resultpre=$conn->query($sqlpre);
 $lastid = $conn->insert_id;
 $last_id=$lastid+1;
 $sql = "INSERT INTO comments(comment_id,comment_desc, inst_id,issue_id) VALUES ($last_id,$text,$instid,$issue)";
-$result1=$conn->query($sql);
+$result1=$conn->query($sql);*/
 
 $sqlcomment="SELECT * from institute where inst_id=$instid";
 $resultcomment=$conn->query($sqlcomment);
