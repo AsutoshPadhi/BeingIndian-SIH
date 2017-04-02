@@ -6,7 +6,7 @@
         <a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo "#".$row["issue_id"]; ?>	
     <br><hr>
     <?php
-        
+         
             echo  postedBy($row['issue_id']);
     ?>
     <br><hr>
