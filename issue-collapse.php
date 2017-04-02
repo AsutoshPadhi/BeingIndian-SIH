@@ -54,10 +54,10 @@
 				echo "Solution approved";
 				break;
 			case 4:
-				echo "Repoted Bogus";
+				echo "Reported duplicate";
 				break;
 			case 5:
-				echo "Repoted Duplicate";
+				echo "Reported bogus";
 				break;
 		}
 	?>
