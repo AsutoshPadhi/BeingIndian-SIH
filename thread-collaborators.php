@@ -33,7 +33,7 @@
 			   <div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            
+                            <b>COLLABORATORS</b>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
