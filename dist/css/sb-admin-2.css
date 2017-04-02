@@ -115,15 +115,15 @@ a{
   padding-left: 52px;
 }
 @media (min-width: 768px) {
+  .main-content{
+    margin-left: 250px;
+    padding: 15px;
+  }
   .sidebar {
     z-index: 1;
     position: absolute;
     width: 250px;
     margin-top: 51px;
-  }
-  .main-content{
-    margin-left: 250px;
-    padding: 15px;
   }
   .navbar-top-links .dropdown-messages,
   .navbar-top-links .dropdown-tasks,
