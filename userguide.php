@@ -92,8 +92,8 @@
 		<div class="panel">
 		  <p>To simplify the process for the user, he can view the history for: </p>
 		  <ul>
-		  <li> 1) The issues added by the user. </li>
-		  <li> 2) The issues upvoted by the user. </li>
+		  <li>  The issues added by the user. </li>
+		  <li>  The issues upvoted by the user. </li>
 		  </ul>
 		  <p> This can be done by viewing the 'History' section in the dashboard.</p>
 		</div>
