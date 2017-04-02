@@ -103,6 +103,7 @@
 <?php
     }
 ?>
+    <br>
 </div>
 <?php
     require('issue-desc.php');
