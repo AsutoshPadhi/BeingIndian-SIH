@@ -10,8 +10,9 @@
 <br>
 <!--accordian body-->
 <div id="demo<?php echo $i; ?>" class="<?php if($no_of_results == 1) echo"panel-collapse collapse-in body"; else echo "collapse body"; ?>">
-	<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >CODE</a> :  <?php echo "#".$row["issue_id"]; ?>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >(Click here to see the description)</a> 	
+	<b id="code">Code</b> :  <?php echo "#".$row["issue_id"]; ?>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a id='code' data-toggle='modal' data-target='#myModal<?php echo $row['issue_id']; ?>' data-id='<?php echo $row['issue_id']; ?>' class='view_data' >(Click here to see the description)</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="../thread.php?issueid=<?php echo $row['issue_id']; ?>">(Go to the thread page)</a>
 	<br><hr>
 	<b>Location : </b>
 	<!-- display location in collapse body-->
@@ -53,10 +54,10 @@
 				echo "Solution approved";
 				break;
 			case 4:
-				echo "Repoted Bogus";
+				echo "Reported duplicate";
 				break;
 			case 5:
-				echo "Repoted Duplicate";
+				echo "Reported bogus";
 				break;
 		}
 	?>

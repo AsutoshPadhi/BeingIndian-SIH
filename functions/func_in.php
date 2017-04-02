@@ -108,6 +108,7 @@
 	// THIS FUNCTION UPDATES UPVOTE COUNT & INSERT USER&ISSUE TO issueupvote
 	function upvotecount($issueid,$userid)
 	{
+		echo "i-".$issueid."u-".$userid;
 		include 'dataBaseConn.php';
 		$sql="update issue set upvote_count=upvote_count+1 where issue_id=$issueid";
 		$result=$conn->query($sql);
@@ -226,7 +227,7 @@
 function updateDuplicate($inst_id,$issue_id,$similar_to_issue){
 		include '../functions/dataBaseConn.php';
 		//instid1=$instid1;
-		echo $issue_id;
+		//echo $issue_id;
 		$sql = "Select * from issueduplicateupvote group by issue_id,similar_to_issue  having count(inst_id)>5 and similar_to_issue=$similar_to_issue";
         $result = $conn->query($sql);
 		
