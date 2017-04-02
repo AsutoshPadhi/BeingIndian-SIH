@@ -56,8 +56,11 @@
 	{
 		include 'dataBaseConn.php';
 		$userid = getUserId($email);
+
 		$sql=" update solution set like_count=like_count+1 where solution_id='$id'";
 		$result1 = $conn->query($sql);
+
+
 		$sql2="Insert into solutionlikedetails(solution_id,user_id) values($id,$userid)";
 		$result2=$conn->query($sql2);
 		echo "You've Liked this issue!";
@@ -106,13 +109,13 @@
 	// THIS FUNCTION UPDATES UPVOTE COUNT & INSERT USER&ISSUE TO issueupvote
 	function upvotecount($issueid,$userid)
 	{
-		
+
 		include 'dataBaseConn.php';
 		$sql="update issue set upvote_count=upvote_count+1 where issue_id=$issueid";
 		$result=$conn->query($sql);
 		
-		$sqlinsert = "INSERT INTO issueupvote(user_id,issue_id) values('$userid','$issueid')";
-		$result2=$conn->query($sqlinsert);
+		$sql2 = "INSERT INTO issueupvote(issue_id,user_id) values($issueid,$userid)";
+		$result2=$conn->query($sql2);
 		
 		echo "You've successfully upvoted this issue!";
 	}
