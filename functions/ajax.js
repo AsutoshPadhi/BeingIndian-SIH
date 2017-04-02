@@ -1,6 +1,7 @@
 //fills a html div dynamically with a php page
 function loadDoc(url,field) 
-{   
+{ 
+	alert("fii");
     // url - url of php page
     // field - id of div to be filled dynamically
     if(url == 'add-issue.php')      //to hide the searchBar when user clicks Add an issue in home page
@@ -41,3 +42,13 @@ function getUrl2(url,instid,issueid){
     var divid = "instButtons"+issueid; 
     loadDoc(finalUrl,divid);
 }
+//used when adding comment
+function addComment(url,instid,issueid)
+{
+	var finalUrl="threadpanel.php?url="+url+"&inst="+instid+"&issue="+issueid;
+	var divid="commentSection"+issueid;
+
+	loadDoc(finalUrl,divid);
+}
+
+

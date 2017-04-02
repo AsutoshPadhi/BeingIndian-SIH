@@ -9,6 +9,7 @@
 			echo "You've added this issue!";
 		}
 		else{
+			
 			if(userStatus($email,$row['issue_id'])){
 				echo "<button style='margin-left: 15px' class='btn btn-default' onclick=\"loadDoc('dip.php?issueid=".$row['issue_id']."&userid=".$row['user_id']."','upvote".$row['issue_id']."')\">Upvote</button><br><br>". NumberOfCounts($issueid);
 			}
