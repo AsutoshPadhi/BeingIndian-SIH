@@ -8,19 +8,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="functions/ajax.js"></script>
+    <script src="../functions/ajax.js"></script>
 
     <title>Better India!</title>
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
-    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Social Buttons CSS -->
-    <link href="vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+    <link href="../vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -50,8 +50,8 @@
 						$inst_id = $row['inst_id'];
                         $inst_district_id = $row['district_id'];
                         $inst_name = $row['inst_name'];
-                        if(isset($_POST['issueid'])){
-                            $issueid = $_POST['issueid'];
+                        if(isset($_GET['issueid'])){
+                            $issueid = $_GET['issueid'];
                         }
                     }
                     else{
@@ -82,14 +82,14 @@
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
-                            <a onClick="MyWindow=window.open('../userguide.php','MyWindow',width=300,height=150)">
+                            <a onClick="MyWindow=window.open('userguide.php','MyWindow',width=300,height=150)">
                                 <div>
                                     <i class="fa fa-info-circle fa-fw"></i> User guide
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a onClick="MyWindow=window.open('../instituteguide.php','MyWindow',width=300,height=150)">
+                            <a onClick="MyWindow=window.open('instituteguide.php','MyWindow',width=300,height=150)">
                                 <div>
                                     <i class="fa fa-institution fa-fw"></i> Institute guide
                                 </div>
@@ -150,16 +150,16 @@
         document.getElementById("main").style.marginLeft = "250px";
     </script>
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/sb-admin-2.js"></script>
 
 </body>
 </html>
