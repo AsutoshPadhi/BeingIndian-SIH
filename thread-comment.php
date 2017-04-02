@@ -14,9 +14,10 @@
 	<link href="thread-comment.css">
 </head>
 <script>
-function addComment(instid)
+function addComment(instid,lastid)
 {
-	var comment=document.getElementById("#comment").value;
+	
+
 	 var connection = new ActiveXObject("ADODB.Connection");
             var connectionstring = "";
             connection.Open(connectionstring);
@@ -25,8 +26,9 @@ function addComment(instid)
             var rs = new ActiveXObject("ADODB.Recordset");
 
             /* TODO: Get the last UID */
-            var sql = "INSERT INTO comments(Ime, Prezime) VALUES (ime,prezime)";
-            
+			var id=lastid+1;
+            var sql = "INSERT INTO comments(comment_id,comment_desc, inst_id) VALUES (id,comment,instid)";
+            	var comment=document.getElementById("#comment").value;
             rs.Open(sql, connection);
 
             /* Closing the connections */
@@ -41,16 +43,23 @@ $("#commentSection").append('<div id="created_div"></div>');
 
 <body >
 <?php
+require "functions/dataBaseConn.php";
 //$instid=$_GET['instid'];
 //$issueid=$_GET['issueid'];
 $instid=4;
 $issueid=3;
+$sqlpre="SELECT * from comments ";
+$resultpre=$conn->query($sqlpre);
+$last_id = $conn->insert_id;
 ?>
 <div id="body" >
 <div style="border:10px ;margin:15px"class="form-group">
+<form method="post" action="insert.php" >
 	<label>Add your comment </label>
-		<textarea class="form-control" rows="3" ></textarea>
-		<button style="margin:5px" type="submit" class="btn btn-default" id="comment" onclick="javascript:addComment(<?php  echo $instid; ?>)">Add</button>
+		<textarea class="form-control" name="comment" rows="3" ></textarea>
+		<button style="margin:5px" type="submit" class="btn btn-default" id="comment">Add</button>
+
+</form>
 </div>
 <!--Add comment funciton -->
 <?php
@@ -64,7 +73,7 @@ $issueid=3;
 <br>
 
 <?php
-require "functions/dataBaseConn.php";
+
 
 $sqlcomment="SELECT * from institute where inst_id=$instid";
 $resultcomment=$conn->query($sqlcomment);
