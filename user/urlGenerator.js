@@ -27,10 +27,8 @@ function generateUrlAdd(state,district,locality,pin,issueTitle,description)
 function getDistrict(state,field)
 {
     var url = "district_list.php?state="+state+"&callFunction=get_query";
-    //alert(url);
     loadDoc(url,field);
 }
-
 //Hides searchBar when any tab other than dashboard is clicked
 function hideSearchBar()
 {
